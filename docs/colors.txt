@@ -1,0 +1,4 @@
+Main Color 2A3647 (on hover 091931)
+Urgend FF3D00
+Medium FFA800
+Low 7AE229
