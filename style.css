@@ -1,5 +1,11 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans.ttf"); /* Locate the .ttf file within your directory*/
+}
+
 body {
   margin: 0;
+  font-family: "OpenSans";
 }
 
 p {
@@ -87,6 +93,7 @@ nav .navIconBox:hover p {
   align-items: center;
   justify-content: center;
   color: rgba(205, 205, 205, 1);
+  font-size: 14px;
   width: 76px;
   height: 76px;
   border-radius: 16px;
