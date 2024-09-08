@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+}
+
+.joinWrapper {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+}
