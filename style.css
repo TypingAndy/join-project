@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.joinWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(18, 255, 54);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 80px;
+  top: 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+  width: 32px;
+  margin-left: 16px;
+}
+
+.userProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  background-color: #ffffff;
+  color: rgba(41, 171, 226, 1);
+  font-weight: bold;
+  border-radius: 100%;
+  margin-right: 16px;
+  border: solid 2px #2a3647;
+  box-sizing: border-box;
+}
+
+.mainSection {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: beige;
+}
+
+.testContent {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(206, 137, 137);
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  background-color: #2a3647;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+}
+
+nav .navIconBox:hover {
+  background-color: #091931;
+}
+
+nav .navIconBox:hover img,
+nav .navIconBox:hover p {
+  filter: brightness(100);
+}
+
+.navIconBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(205, 205, 205, 1);
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  gap: 4px;
+}
+
+.navIconBox img {
+  height: 24px;
+  width: 24px;
+}
+
+.navIconBox p {
+  margin: 0;
+}
