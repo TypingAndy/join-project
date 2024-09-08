@@ -1,5 +1,16 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans.ttf");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter.ttf");
+}
+
 body {
   margin: 0;
+  font-family: "Inter";
 }
 
 p {
@@ -12,7 +23,6 @@ p {
   justify-content: space-between;
   height: 100vh;
   width: 100%;
-  background-color: rgb(18, 255, 54);
 }
 
 header {
@@ -48,11 +58,12 @@ header img {
 }
 
 .mainSection {
+  margin-top: 80px;
   gap: 8px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: beige;
+  background-color: rgba(246, 247, 248, 1);
 }
 
 .testContent {
@@ -87,6 +98,8 @@ nav .navIconBox:hover p {
   align-items: center;
   justify-content: center;
   color: rgba(205, 205, 205, 1);
+  font-size: 14px;
+  font-family: "OpenSans";
   width: 76px;
   height: 76px;
   border-radius: 16px;
@@ -100,4 +113,131 @@ nav .navIconBox:hover p {
 
 .navIconBox p {
   margin: 0;
+}
+
+/* Board.html Styling below:-------------------------------------------------------------------- */
+
+.boardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.boardTitleContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  justify-content: space-between;
+  color: black;
+  font-size: 47px;
+  font-weight: 700;
+}
+
+.boardTitleContainer img {
+  width: 40px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 32px;
+  border: 1px solid rgba(168, 168, 168, 1);
+}
+
+.inputContainer img {
+  width: 32px;
+  height: 32px;
+  padding: 0 16px;
+  border-left: 1px solid rgba(209, 209, 209, 1);
+}
+
+.findTaskInput {
+  border-width: 0;
+  padding: 0;
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.findTaskInput::placeholder {
+  color: rgba(209, 209, 209, 1);
+}
+
+.toDoSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.toDoSectionTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter;
+  font-size: 27px;
+  font-weight: 700;
+  color: rgba(42, 54, 71, 1);
+}
+
+.addTaskPlusIconSmall {
+  height: 30px;
+}
+
+.toDoSectionContentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.noTasksContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  background-color: rgba(231, 231, 231, 1);
+  color: rgba(168, 168, 168, 1);
+  border-radius: 10px;
+  border: 1px dashed rgba(168, 168, 168, 1);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+}
+
+.inProgressSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.inProgressTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter;
+  font-size: 27px;
+  font-weight: 700;
+  color: rgba(42, 54, 71, 1);
+}
+
+.inProgressContentWrapper {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 100px;
+}
+
+.taskCard {
+  width: 252px;
+  height: 263px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 24px;
 }
