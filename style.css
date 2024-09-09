@@ -1,0 +1,555 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans.ttf");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: "Inter";
+}
+
+p {
+  margin: 0;
+}
+
+.joinWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 80px;
+  top: 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+header img {
+  width: 32px;
+  margin-left: 16px;
+}
+
+.userProfile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  background-color: #ffffff;
+  color: rgba(41, 171, 226, 1);
+  font-weight: bold;
+  border-radius: 100%;
+  margin-right: 16px;
+  border: solid 2px #2a3647;
+  box-sizing: border-box;
+}
+
+.mainSection {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* height: calc(100vh - 80px); */
+  background-color: rgba(246, 247, 248, 1);
+}
+
+.testContent {
+  height: 300px;
+  width: 100%;
+  background-color: rgb(206, 137, 137);
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  background-color: #2a3647;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+}
+
+nav .navIconBox:hover {
+  background-color: #091931;
+}
+
+nav .navIconBox:hover img,
+nav .navIconBox:hover p {
+  filter: brightness(100);
+}
+
+.navIconBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(205, 205, 205, 1);
+  font-size: 14px;
+  font-family: "OpenSans";
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  gap: 4px;
+}
+
+.navIconBox img {
+  height: 24px;
+  width: 24px;
+}
+
+.navIconBox p {
+  margin: 0;
+}
+
+/* Summary.html Styling below:-------------------------------------------------------------------- */
+
+/* Board.html Styling below:-------------------------------------------------------------------- */
+
+.boardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.boardTitleContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  justify-content: space-between;
+  color: black;
+  font-size: 47px;
+  font-weight: 700;
+}
+
+.boardTitleContainer img {
+  width: 40px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  margin-top: 32px;
+  border: 1px solid rgba(168, 168, 168, 1);
+}
+
+.inputContainer img {
+  width: 32px;
+  height: 32px;
+  padding: 0 16px;
+  border-left: 1px solid rgba(209, 209, 209, 1);
+}
+
+.findTaskInput {
+  border-width: 0;
+  padding: 0;
+  padding-left: 16px;
+  font-size: 20px;
+}
+
+.findTaskInput::placeholder {
+  color: rgba(209, 209, 209, 1);
+}
+
+.toDoSection,
+.inProgressSection,
+.awaitFeedbackSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.doneSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 80px;
+}
+
+.toDoSectionTitleContainer,
+.inProgressTitleContainer,
+.awaitFeedbackTitleContainer,
+.doneTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Inter;
+  font-size: 27px;
+  font-weight: 700;
+  color: rgba(42, 54, 71, 1);
+}
+
+.addTaskPlusIconSmall {
+  height: 30px;
+}
+
+.toDoSectionContentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.noTasksContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 48px;
+  background-color: rgba(231, 231, 231, 1);
+  color: rgba(168, 168, 168, 1);
+  border-radius: 10px;
+  border: 1px dashed rgba(168, 168, 168, 1);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+}
+
+.toDoSectionContentWrapper,
+.inProgressContentWrapper,
+.awaitFeedbackContentWrapper,
+.doneContentWrapper {
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 16px;
+}
+
+.toDoSectionContentWrapper::-webkit-scrollbar,
+.inProgressContentWrapper::-webkit-scrollbar,
+.awaitFeedbackContentWrapper::-webkit-scrollbar,
+.doneContentWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.taskCard {
+  display: flex;
+  flex-direction: column;
+  width: 252px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  border-radius: 24px;
+  flex-shrink: 0;
+  margin: 8px 0;
+  padding: 16px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.taskCardCategory {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  width: fit-content;
+  background-color: rgba(0, 56, 255, 1);
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 2px 16px;
+  margin-bottom: 20px;
+}
+
+.taskCardTitle {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.taskCardDescription {
+  font-size: 16px;
+  color: rgba(168, 168, 168, 1);
+  margin-bottom: 20px;
+}
+
+.taskCardSubtasksContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 16px;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.taskCardSubtaskBarWrapper {
+  width: 60%;
+  height: 8px;
+  background-color: rgba(244, 244, 244, 1);
+  border-radius: 8px;
+}
+
+.taskCardSubtaskBar {
+  width: 50%;
+  height: 100%;
+  background-color: rgba(69, 137, 255, 1);
+  border-radius: 8px;
+}
+
+.taskCardBottomContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskCardBottomContainer img {
+  width: 32px;
+  height: 32px;
+}
+
+.taskCardUserContainer {
+  display: flex;
+  position: relative;
+  /* left: 20px; */
+}
+
+.taskCardUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 32px;
+  width: 32px;
+  border-radius: 100%;
+  background-color: rgba(255, 122, 0, 1);
+  border: solid 1px #ffffff;
+  color: white;
+  box-sizing: border-box;
+  margin-left: -10px;
+  font-size: 12px;
+}
+
+.taskCardUser:first-child {
+  margin-left: 0px;
+}
+
+/* AddTask.html Styling below:-------------------------------------------------------------------- */
+
+.addTaskSection {
+  margin-top: 80px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(246, 247, 248, 1);
+  padding: 0px 16px;
+}
+
+.addTaskHeaderBox {
+  width: 100%;
+  height: 112px;
+  font-weight: 700;
+  font-size: 47px;
+  position: relative;
+}
+
+.addTaskHeader {
+  top: 48px;
+  left: 16px;
+  position: absolute;
+}
+
+.addTaskForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addTaskFormLabels {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.addTaskTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addTaskInputTitle {
+  height: 40px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+}
+
+.addTaskInputTitle::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 6%;
+  color: #d1d1d1;
+}
+
+.addTaskDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addTaskInputDescription {
+  height: 88px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+}
+
+.addTaskInputDescription::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 6%;
+  color: #d1d1d1;
+}
+
+.addTaskAddContacts {
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addTaskContactsDropdown {
+  height: 48px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+  background-color: #FFFFFF;
+}
+
+.addTaskContactsDropdownLableBox {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 12px 16px 12px 16px;
+}
+
+.addTaskContactsDropdownLabel {
+  font-size: 16px;
+}
+
+.addTaskDueDate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.addTaskDueDateDropdown {
+
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 21px 8px 21px;
+}
+
+.addTaskDueDateDropDownEventImage {
+width: 24px;
+height: 24px;
+}
+
+.addTaskPrio {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addTaskPrioButtonBox {
+  display: flex;
+  gap: 16px;
+}
+
+.addTaskPrioButtonUrgend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonMedium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonLow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonImage {
+  width: 20px;
+  height: 14.5px;
+}
+
+.addTaskButton {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.addTaskRequiredInfo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.createTaskButton {
+  display: flex;
+  gap: 4px;
+  background-color: #2a3647;
+  padding: 16px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.addTaskButtonCheckImage {
+width: 24px;
+height: 24px;
+}
+
+/* Contacts.html Styling below:-------------------------------------------------------------------- */
