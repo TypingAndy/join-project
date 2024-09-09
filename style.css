@@ -275,7 +275,7 @@ nav .navIconBox:hover p {
 .addTaskForm {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 .addTaskFormLabels {
@@ -322,17 +322,133 @@ nav .navIconBox:hover p {
 }
 
 .addTaskAddContacts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+}
+
+.addTaskContactsDropdown {
+  height: 48px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+  background-color: #FFFFFF;
 
 }
 
 .addTaskContactsDropdownLableBox {
  display: flex;
- justify-content: space-around;
+ justify-content: space-between;
  align-items: center;
+ padding: 12px 16px 12px 16px;
+
 }
 
 .addTaskContactsDropdownLabel {
   font-size: 16px;
+
+}
+
+.addTaskDueDate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+.addTaskDueDateDropdown {
+
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 21px 8px 21px;
+}
+
+.addTaskDueDateDropDownEventImage {
+width: 24px;
+height: 24px;
+}
+
+.addTaskPrio {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addTaskPrioButtonBox {
+  display: flex;
+  gap: 16px;
+}
+
+.addTaskPrioButtonUrgend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonMedium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonLow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonImage {
+  width: 20px;
+  height: 14.5px;
+}
+
+.addTaskButton {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.addTaskRequiredInfo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.createTaskButton {
+  display: flex;
+  gap: 4px;
+  background-color: #2a3647;
+  padding: 16px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.addTaskButtonCheckImage {
+width: 24px;
+height: 24px;
 }
 
 /* Contacts.html Styling below:-------------------------------------------------------------------- */
