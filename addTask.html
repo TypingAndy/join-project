@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/add_task.js"></script>
+  </head>
+  <body>
+    <div class="joinWrapper">
+
+<!--header-->
+      <header>
+        <img src="./images/icons/join_logo_black.png" alt="" />
+        <div class="userProfile">
+          <p>AB</p>
+        </div>
+      </header>
+
+<!--addTaskSection-->
+<div class="addTaskSection">
+    <div class="addTaskHeaderBox">
+        <div class="addTaskHeader">Add Task</div>
+    </div>
+
+    <form class="addTaskForm" action="">
+
+        <div class="addTaskTitle">
+            <div class="addTaskFormLabels">Title<span style="color: red;">*</span></div>
+            <input class="addTaskInputTitle" required type="text" placeholder="Enter a Title">
+        </div>
+
+        <div class="addTaskDescription">
+            <div class="addTaskFormLabels">Description</div>
+            <input class="addTaskInputDescription" type="text" placeholder="Enter a Description">
+        </div>
+
+
+
+    <!--i am here-->
+        <div class="addTaskAddContacts">
+            <div class="addTaskFormLabels">Assigned to</div>
+            <div onclick="addTaskContactsDropdown()" class="addTaskContactsDropdown">
+                <div class="addTaskContactsDropdownLableBox">
+                    <div class="addTaskContactsDropdownLabel">Select contacts to assign</div>
+                    <img  src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
+                </div>
+                <div id="addTaskDropdownContent" class="addTaskDropdownContent">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="addTaskDueDate">
+            <div class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
+            <div>date menu</div>
+        </div>
+
+        <div class="addTaskPrio">
+            <div class="addTaskFormLabels">Prio</div>
+            <div>
+                <div>
+                    <div>Urgent</div>
+                    <img src="images/mobile/addTaskMobile/prioUrgent.png" alt="">
+                </div>
+                <div>
+                    <div>Medium</div>
+                    <img src="images/mobile/addTaskMobile/prioMedium.png" alt="">
+                </div>
+                <div>
+                    <div>Low</div>
+                    <img src="images/mobile/addTaskMobile/prioLow.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="addTaskButton">
+            <div class="addTaskRequiredInfo"><span style="color: red;">*</span>This field is requiered</div>
+            <div class="createTaskButton">
+                <div>Create Task</div>
+                <img src="images/mobile/addTaskMobile/check.png" alt="">
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--Navbar-->
+      <nav>
+        <div class="navIconBox">
+          <img src="./images/icons/Menu Icons.png" alt="" />
+          <p>Summary</p>
+        </div>
+        <div class="navIconBox">
+          <img src="./images/icons/Menu Icons-1.png" alt="" />
+          <p>Board</p>
+        </div>
+        <div class="navIconBox">
+          <img src="./images/icons/Menu Icons-2.png" alt="" />
+          <p>Add Tasks</p>
+        </div>
+        <div class="navIconBox">
+          <img src="./images/icons/Menu Icons-3.png" alt="" />
+          <p>Contacts</p>
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>
