@@ -118,9 +118,24 @@ nav .navIconBox:hover p {
   margin: 0;
 }
 
-/* Summary.html Styling below:-------------------------------------------------------------------- */
+/* landingpage.html Styling below:-------------------------------------------------------------------- */
 
-/* Board.html Styling below:-------------------------------------------------------------------- */
+.landingpageBox {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingpageImage {
+  width: 100px;
+}
+
+/* summary.html Styling below:-------------------------------------------------------------------- */
+
+/* board.html Styling below:-------------------------------------------------------------------- */
 
 .boardWrapper {
   display: flex;
@@ -355,11 +370,13 @@ nav .navIconBox:hover p {
 
 .addTaskSection {
   margin-top: 80px;
+
   gap: 8px;
   display: flex;
   flex-direction: column;
   background-color: rgba(246, 247, 248, 1);
   padding: 0px 16px;
+
 }
 
 .addTaskHeaderBox {
@@ -380,6 +397,7 @@ nav .navIconBox:hover p {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 88px;
 }
 
 .addTaskFormLabels {
@@ -405,6 +423,8 @@ nav .navIconBox:hover p {
   padding-left: 6%;
   color: #d1d1d1;
 }
+
+
 
 .addTaskDescription {
   display: flex;
@@ -495,6 +515,13 @@ height: 24px;
   border: solid 1px #D1D1D1;
 }
 
+.addTaskPrioButtonUrgend:hover {
+  color: #FFFFFF;
+  background-color: #FF3D00;
+}
+
+
+
 .addTaskPrioButtonMedium {
   display: flex;
   justify-content: center;
@@ -507,6 +534,11 @@ height: 24px;
   border: solid 1px #D1D1D1;
 }
 
+.addTaskPrioButtonMedium:hover {
+  color: #FFFFFF;
+  background-color: #FFA800;
+}
+
 .addTaskPrioButtonLow {
   display: flex;
   justify-content: center;
@@ -517,6 +549,11 @@ height: 24px;
   height: 41px;
   border-radius: 10px;
   border: solid 1px #D1D1D1;
+}
+
+.addTaskPrioButtonLow:hover {
+  color: #FFFFFF;
+  background-color: #7AE229;
 }
 
 .addTaskPrioButtonImage {
@@ -553,3 +590,84 @@ height: 24px;
 }
 
 /* Contacts.html Styling below:-------------------------------------------------------------------- */
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  padding-right: 30px;  
+}
+
+input[type="date"]::after {
+  content: "";
+  background-image: url(images/mobile/addTaskMobile/event.png);
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* helpPage.html Styling below:-------------------------------------------------------------------- */
+
+.helpPageSection {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px 16px 24px 16px;
+
+}
+
+.h1HelpBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  
+}
+
+.h1Help {
+  font-weight: 700;
+  font-size: 47px;
+}
+
+.h2Help {
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.h3Help {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.imageH1HelpBox{
+width: 32px;
+height: 32px;
+}
+
+.imageH1HelpBox:hover {
+  cursor: pointer;
+}
+
+.helpPageBlueJoin {
+  color: #29ABE2;
+}
+
+.helpPageHowToUseNumbers {
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.helpPageGuideBoxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+}
