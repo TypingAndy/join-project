@@ -636,12 +636,16 @@ input[type="date"]::after {
 .h1Help {
   font-weight: 700;
   font-size: 47px;
-
-  
 }
 
 .h2Help {
-  
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.h3Help {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .imageH1HelpBox{
@@ -651,4 +655,19 @@ height: 32px;
 
 .imageH1HelpBox:hover {
   cursor: pointer;
+}
+
+.helpPageBlueJoin {
+  color: #29ABE2;
+}
+
+.helpPageHowToUseNumbers {
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.helpPageGuideBoxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
 }
