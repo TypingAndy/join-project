@@ -118,9 +118,24 @@ nav .navIconBox:hover p {
   margin: 0;
 }
 
-/* Summary.html Styling below:-------------------------------------------------------------------- */
+/* landingpage.html Styling below:-------------------------------------------------------------------- */
 
-/* Board.html Styling below:-------------------------------------------------------------------- */
+.landingpageBox {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingpageImage {
+  width: 100px;
+}
+
+/* summary.html Styling below:-------------------------------------------------------------------- */
+
+/* board.html Styling below:-------------------------------------------------------------------- */
 
 .boardWrapper {
   display: flex;
@@ -600,4 +615,40 @@ input[type="date"]::after {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+/* helpPage.html Styling below:-------------------------------------------------------------------- */
+
+.helpPageSection {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px 16px 24px 16px;
+
+}
+
+.h1HelpBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  
+}
+
+.h1Help {
+  font-weight: 700;
+  font-size: 47px;
+
+  
+}
+
+.h2Help {
+  
+}
+
+.imageH1HelpBox{
+width: 32px;
+height: 32px;
+}
+
+.imageH1HelpBox:hover {
+  cursor: pointer;
 }
