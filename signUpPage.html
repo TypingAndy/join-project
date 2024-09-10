@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./images/icons/join_logo_black.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="signUp.css" />
+    <script src="js/add_task.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div class="signUpSection">
+      <img
+        class="signUpLogo"
+        src="./images/mobile/signUpPage/joinLogoDark.png"
+        alt=""
+      />
+
+      <div class="signUpBoard">
+        <div class="signUpBoardContentWrapper">
+          <img
+            class="arrowLeftBlue"
+            src="images/mobile/signUpPage/arrowLeftBlue.png"
+            alt=""
+          />
+          <div class="signUpTitleWrapper">
+            <div class="signUpTitle">Sign up</div>
+            <div class="signUpBlueLine"></div>
+          </div>
+
+          <div class="signUpInputContainer">
+            <input id="signUpNameInput" class="signUpInputName" placeholder="Name" type="text" />
+            <input id="signUpMailInput" class="signUpInputEmail" placeholder="Email" type="text" />
+            <input id="signUpPasswordInput" class="signUpInputPassword" placeholder="Password" type="text" />
+            <input class="signUpInputConfirmPassword" placeholder="Confirm Password" type="text"/>
+          </div>
+          <div class="signUpCheckOutBoxWrapper">
+            <div class="acceptPolicyBox">
+              <img
+                class="signUpCheckImg"
+                src="images/mobile/signUpPage/checkButtonBlack.png"
+                alt=""
+              />
+              <div>
+                I accept the <span class="blueFont">Privacy policy</span>
+              </div>
+            </div>
+            <div onclick="postData()" class="signUpButton">Sign up</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="signUpLinksBox">
+        <div class="signUpLinks">Privacy Policy</div>
+        <div class="signUpLinks">Legal Notice</div>
+      </div>
+    </div>
+  </body>
+</html>

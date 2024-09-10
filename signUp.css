@@ -1,0 +1,187 @@
+.signUpSection {
+  height: 100vh;
+  background-color: #d6dce2;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0px 16px;
+}
+
+.arrowLeftBlue {
+  width: 32px;
+  position: absolute;
+  left: 32px;
+  top: 32px;
+}
+
+.signUpLogo {
+  width: 64px;
+  padding: 38px;
+}
+
+.signUpBoard {
+  background-color: #ffffff;
+  height: 100%;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.signUpBoardContentWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.signUpTitleWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signUpTitle {
+  font-weight: 700;
+  font-size: 47px;
+  margin-top: 28px;
+}
+
+.signUpBlueLine {
+  height: 3px;
+  width: 88px;
+  background-color: #29abe2;
+  border-radius: 3px;
+  margin: 14px 0 24px 0;
+}
+
+.signUpInputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.signUpInputName {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/signUpPage/person.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.signUpInputEmail {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/signUpPage/mail.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.signUpInputPassword {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/signUpPage/lock.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.signUpInputConfirmPassword {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/signUpPage/lock.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.signUpInputName::placeholder {
+  color: #d1d1d1;
+}
+
+.signUpInputEmail::placeholder {
+  color: #d1d1d1;
+}
+
+.signUpInputPassword::placeholder {
+  color: #d1d1d1;
+}
+
+.signUpInputConfirmPassword::placeholder {
+  color: #d1d1d1;
+}
+
+.signUpCheckOutBoxWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.acceptPolicyBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 0 28px 0;
+}
+
+.signUpCheckImg {
+  width: 24px;
+}
+
+.blueFont {
+  color: #29abe2;
+}
+
+.signUpButton {
+  width: 180px;
+  height: 51px;
+  background-color: #2a3647;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.signUpLinksBox {
+  display: flex;
+  height: 160px;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+.signUpLinks {
+  color: #a8a8a8;
+}

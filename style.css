@@ -86,12 +86,12 @@ nav {
   bottom: 0;
 }
 
-nav .navIconBox:hover {
+.navIconBox:hover {
   background-color: #091931;
 }
 
-nav .navIconBox:hover img,
-nav .navIconBox:hover p {
+.navIconBox:hover img,
+.navIconBox:hover p {
   filter: brightness(100);
 }
 
@@ -132,6 +132,10 @@ nav .navIconBox:hover p {
 .landingpageImage {
   width: 100px;
 }
+
+
+
+
 
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
@@ -503,7 +507,7 @@ height: 24px;
   gap: 16px;
 }
 
-.addTaskPrioButtonUrgend {
+.addTaskPrioButtonUrgent {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -515,7 +519,7 @@ height: 24px;
   border: solid 1px #D1D1D1;
 }
 
-.addTaskPrioButtonUrgend:hover {
+.addTaskPrioButtonUrgent:hover {
   color: #FFFFFF;
   background-color: #FF3D00;
 }
@@ -559,6 +563,13 @@ height: 24px;
 .addTaskPrioButtonImage {
   width: 20px;
   height: 14.5px;
+}
+
+
+  .addTaskPrioButtonUrgent:hover img,
+  .addTaskPrioButtonMedium:hover img,
+  .addTaskPrioButtonLow:hover img {
+  filter:  brightness(10000%) saturate(0);
 }
 
 .addTaskButton {
