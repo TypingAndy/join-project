@@ -26,7 +26,6 @@
     </div>
 
     <form class="addTaskForm" action="">
-
         <div class="addTaskTitle">
             <div class="addTaskFormLabels">Title<span style="color: red;">*</span></div>
             <input class="addTaskInputTitle" required type="text" placeholder="Enter a Title">
@@ -37,9 +36,7 @@
             <input class="addTaskInputDescription" type="text" placeholder="Enter a Description">
         </div>
 
-
-
-    <!--i am here-->
+    <!--dropdown is not done-->
         <div class="addTaskAddContacts">
             <div class="addTaskFormLabels">Assigned to</div>
             <div onclick="addTaskContactsDropdown()" class="addTaskContactsDropdown">
@@ -48,36 +45,36 @@
                     <img  src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
                 </div>
                 <div id="addTaskDropdownContent" class="addTaskDropdownContent">
-                    <a href="#">Link 1</a>
+                    <!-- <a href="#">Link 1</a>
                     <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="#">Link 3</a> -->
                 </div>
             </div>
         </div>
 
-
-
-
-
+     <!--date is not done-->
         <div class="addTaskDueDate">
             <div class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
-            <div>date menu</div>
+           
+              <input class="addTaskDueDateDropdown" type="date">
+              
+           
         </div>
 
         <div class="addTaskPrio">
             <div class="addTaskFormLabels">Prio</div>
-            <div>
-                <div>
+            <div class="addTaskPrioButtonBox">
+                <div class="addTaskPrioButtonUrgent">
                     <div>Urgent</div>
-                    <img src="images/mobile/addTaskMobile/prioUrgent.png" alt="">
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.png" alt="">
                 </div>
-                <div>
+                <div class="addTaskPrioButtonMedium">
                     <div>Medium</div>
-                    <img src="images/mobile/addTaskMobile/prioMedium.png" alt="">
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="">
                 </div>
-                <div>
+                <div class="addTaskPrioButtonLow">
                     <div>Low</div>
-                    <img src="images/mobile/addTaskMobile/prioLow.png" alt="">
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.png" alt="">
                 </div>
             </div>
         </div>
@@ -86,10 +83,9 @@
             <div class="addTaskRequiredInfo"><span style="color: red;">*</span>This field is requiered</div>
             <div class="createTaskButton">
                 <div>Create Task</div>
-                <img src="images/mobile/addTaskMobile/check.png" alt="">
+                <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="">
             </div>
         </div>
-
     </form>
 </div>
 
