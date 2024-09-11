@@ -1,3 +1,8 @@
+input:focus {
+  outline: none;
+  /* border-color: transparent; */
+}
+
 .signUpSection {
   height: 100vh;
   background-color: #d6dce2;
@@ -143,6 +148,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .acceptPolicyBox {
@@ -151,6 +157,7 @@
   align-items: center;
   gap: 8px;
   padding: 48px 0 28px 0;
+  box-sizing: border-box;
 }
 
 .signUpCheckImg {
@@ -172,6 +179,7 @@
   border-radius: 8px;
   font-weight: 700;
   margin-bottom: 24px;
+  opacity: 0.1;
 }
 
 .signUpLinksBox {
