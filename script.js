@@ -25,6 +25,7 @@ async function postData() {
   document.getElementById("signUpPasswordInput").value = "";
   document.getElementById("signUpConfirmPasswordInput").value = "";
   clickPolicy();
+  loadData();
 }
 
 function validateSignUp() {
@@ -65,27 +66,27 @@ function clickPolicy() {
   validateSignUp();
 }
 
-// async function loadData(path = "users") {
-//   let response = await fetch(BASE_URL + path + ".json");
-//   responseToJson = await response.json();
-//   console.log(responseToJson);
+async function loadData(path = "users") {
+  let response = await fetch(BASE_URL + path + ".json");
+  responseToJson = await response.json();
+  console.log(responseToJson);
 
-//   document.getElementById("dataOutputWrapper").innerHTML = "";
+  if (!responseToJson) {
+    return;
+  } else {
+    Object.entries(responseToJson).forEach(([key, user]) => {
+      console.log(user.name, user.email, user.password);
 
-//   if (!responseToJson) {
-//     return;
-//   } else {
-//     Object.entries(responseToJson).forEach(([key, user]) => {
-//       dataOutputWrapper.innerHTML += `
-//       <div class="data">
-//         <div class="name">${user.name}</div>
-//         <div class="email">${user.email}</div>
-//         <div class="delete" onclick="deleteUser('${key}')">X</div>
-//       </div>
-//     `;
-//     });
-//   }
-// }
+      //   dataOutputWrapper.innerHTML += `
+      //   <div class="data">
+      //     <div class="name">${user.name}</div>
+      //     <div class="email">${user.email}</div>
+      //     <div class="delete" onclick="deleteUser('${key}')">X</div>
+      //   </div>
+      // `;
+    });
+  }
+}
 
 // function deleteUser(userId) {
 //   fetch(BASE_URL + `users/${userId}.json`, {
