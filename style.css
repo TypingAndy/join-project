@@ -595,6 +595,10 @@ height: 24px;
   border-radius: 10px;
 }
 
+.createTaskButton:hover {
+  cursor: pointer;
+}
+
 .addTaskButtonCheckImage {
 width: 24px;
 height: 24px;
