@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="js/add_task.js"></script>
+    <script src="script.js"></script>
   </head>
   <body>
     <div class="joinWrapper">
@@ -28,19 +29,19 @@
     <form class="addTaskForm" action="">
         <div class="addTaskTitle">
             <div class="addTaskFormLabels">Title<span style="color: red;">*</span></div>
-            <input class="addTaskInputTitle" required type="text" placeholder="Enter a Title">
+            <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title">
         </div>
 
         <div class="addTaskDescription">
             <div class="addTaskFormLabels">Description</div>
-            <input class="addTaskInputDescription" type="text" placeholder="Enter a Description">
+            <input id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description">
         </div>
 
     <!--dropdown is not done-->
         <div class="addTaskAddContacts">
             <div class="addTaskFormLabels">Assigned to</div>
             <div onclick="addTaskContactsDropdown()" class="addTaskContactsDropdown">
-                <div class="addTaskContactsDropdownLableBox">
+                <div onclick="loadFullNameList()" class="addTaskContactsDropdownLableBox">
                     <div class="addTaskContactsDropdownLabel">Select contacts to assign</div>
                     <img  src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
                 </div>
@@ -54,9 +55,9 @@
 
      <!--date is not done-->
         <div class="addTaskDueDate">
-            <div class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
+            <div  class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
            
-              <input class="addTaskDueDateDropdown" type="date">
+              <input id="taskDateInput" class="addTaskDueDateDropdown" type="date">
               
            
         </div>
@@ -64,15 +65,15 @@
         <div class="addTaskPrio">
             <div class="addTaskFormLabels">Prio</div>
             <div class="addTaskPrioButtonBox">
-                <div class="addTaskPrioButtonUrgent">
+                <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
                     <div>Urgent</div>
                     <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.png" alt="">
                 </div>
-                <div class="addTaskPrioButtonMedium">
+                <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
                     <div>Medium</div>
                     <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="">
                 </div>
-                <div class="addTaskPrioButtonLow">
+                <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
                     <div>Low</div>
                     <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.png" alt="">
                 </div>
@@ -81,7 +82,7 @@
 
         <div class="addTaskButton">
             <div class="addTaskRequiredInfo"><span style="color: red;">*</span>This field is requiered</div>
-            <div class="createTaskButton">
+            <div onclick="postTaskData()" class="createTaskButton">
                 <div>Create Task</div>
                 <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="">
             </div>

@@ -4,7 +4,7 @@ let responseToJson;
 let policyAccepted = false;
 let passwordMatch = false;
 
-async function postData() {
+async function postSignUpData() {
   console.log("test");
 
   let nameInput = document.getElementById("signUpNameInput").value;
@@ -88,8 +88,49 @@ async function loadData(path = "users") {
   }
 }
 
-// function deleteUser(userId) {
-//   fetch(BASE_URL + `users/${userId}.json`, {
-//     method: "DELETE",
-//   }).then(() => loadData());
-// }
+//functions addTask---------------------------------------------------------------------
+
+let taskPrioInput = "";
+let fullNameList = [];
+
+async function postTaskData() {
+
+  let taskTitleInput = document.getElementById("taskTitleInput").value;
+  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
+  //let taskAssignUserInput = document.getElementById("signUpPasswordInput").value;
+  let taskDateInput = document.getElementById("taskDateInput").value;
+ 
+  console.log(`Task priority set til here: ${taskPrioInput}`);
+ //console.log(taskTitleInput, taskDescriptionInput, taskDateInput);
+
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    //taskUserInput: taskAssignUserInput,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput
+  };
+ console.log(createTaskData);
+ 
+  await fetch(BASE_URL + `tasks/${taskTitleInput}/.json`, {
+    method: "PATCH",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createTaskData),
+  });
+}
+
+function setTaskPrio(priority) {
+  taskPrioInput = priority; 
+ }
+
+async function loadFullNameList() {
+  let response = await fetch(BASE_URL + "users" + ".json");
+  let = completeUserList = await response.json();
+  console.log(completeUserList);
+  fullNameList = Object.keys(completeUserList);
+  console.log(fullNameList);
+
+  }
+
