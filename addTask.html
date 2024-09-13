@@ -6,7 +6,6 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
     <link rel="stylesheet" href="style.css" />
-    <script src="js/add_task.js"></script>
     <script src="script.js"></script>
   </head>
   <body>
@@ -40,27 +39,16 @@
     <!--dropdown is not done-->
         <div class="addTaskAddContacts">
             <div class="addTaskFormLabels">Assigned to</div>
-            <div onclick="addTaskContactsDropdown()" class="addTaskContactsDropdown">
-                <div onclick="loadFullNameList()" class="addTaskContactsDropdownLableBox">
-                    <div class="addTaskContactsDropdownLabel">Select contacts to assign</div>
-                    <img  src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
-                </div>
-                <div id="addTaskDropdownContent" class="addTaskDropdownContent">
-                    <!-- <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a> -->
-                </div>
-            </div>
+              <select id="userNameDropDown" onclick="loadFullNameList()" class="addTaskContactsDropdownLableBox" name="userName"></select>
         </div>
 
-     <!--date is not done-->
+     <!--date, drop down doesnt work-->
         <div class="addTaskDueDate">
             <div  class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
-           
               <input id="taskDateInput" class="addTaskDueDateDropdown" type="date">
-              
-           
         </div>
+
+
 
         <div class="addTaskPrio">
             <div class="addTaskFormLabels">Prio</div>
