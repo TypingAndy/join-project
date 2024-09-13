@@ -133,10 +133,6 @@ nav {
   width: 100px;
 }
 
-
-
-
-
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
 /* board.html Styling below:-------------------------------------------------------------------- */
@@ -380,7 +376,6 @@ nav {
   flex-direction: column;
   background-color: rgba(246, 247, 248, 1);
   padding: 0px 16px;
-
 }
 
 .addTaskHeaderBox {
@@ -428,8 +423,6 @@ nav {
   color: #d1d1d1;
 }
 
-
-
 .addTaskDescription {
   display: flex;
   flex-direction: column;
@@ -450,7 +443,6 @@ nav {
 }
 
 .addTaskAddContacts {
-
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -459,15 +451,23 @@ nav {
 .addTaskContactsDropdown {
   height: 48px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
-  background-color: #FFFFFF;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+
+
+
 }
 
 .addTaskContactsDropdownLableBox {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 12px 16px 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 12px 16px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+  padding: 8px 21px 8px 21px;
+  font-family: "Inter";
 }
 
 .addTaskContactsDropdownLabel {
@@ -478,23 +478,18 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  
 }
-
 
 .addTaskDueDateDropdown {
-
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
-  background-color: #FFFFFF;
-  display: flex;
-  justify-content: space-between;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
   padding: 8px 21px 8px 21px;
+  font-family: "Inter";
 }
 
-.addTaskDueDateDropDownEventImage {
-width: 24px;
-height: 24px;
-}
+
 
 .addTaskPrio {
   display: flex;
@@ -511,53 +506,51 @@ height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
 }
 
 .addTaskPrioButtonUrgent:hover {
-  color: #FFFFFF;
-  background-color: #FF3D00;
+  color: #ffffff;
+  background-color: #ff3d00;
 }
-
-
 
 .addTaskPrioButtonMedium {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
 }
 
 .addTaskPrioButtonMedium:hover {
-  color: #FFFFFF;
-  background-color: #FFA800;
+  color: #ffffff;
+  background-color: #ffa800;
 }
 
 .addTaskPrioButtonLow {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
 }
 
 .addTaskPrioButtonLow:hover {
-  color: #FFFFFF;
-  background-color: #7AE229;
+  color: #ffffff;
+  background-color: #7ae229;
 }
 
 .addTaskPrioButtonImage {
@@ -565,17 +558,15 @@ height: 24px;
   height: 14.5px;
 }
 
-
-  .addTaskPrioButtonUrgent:hover img,
-  .addTaskPrioButtonMedium:hover img,
-  .addTaskPrioButtonLow:hover img {
-  filter:  brightness(10000%) saturate(0);
+.addTaskPrioButtonUrgent:hover img,
+.addTaskPrioButtonMedium:hover img,
+.addTaskPrioButtonLow:hover img {
+  filter: brightness(10000%) saturate(0);
 }
 
 .addTaskButton {
   display: flex;
   justify-content: space-between;
-
 }
 
 .addTaskRequiredInfo {
@@ -591,7 +582,7 @@ height: 24px;
   padding: 16px;
   font-size: 21px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
 }
 
@@ -600,37 +591,13 @@ height: 24px;
 }
 
 .addTaskButtonCheckImage {
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
-/* Contacts.html Styling below:-------------------------------------------------------------------- */
 
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-}
 
-input[type="date"] {
-  position: relative;
-}
-
-input[type="date"]::-webkit-datetime-edit {
-  padding-right: 30px;  
-}
-
-input[type="date"]::after {
-  content: "";
-  background-image: url(images/mobile/addTaskMobile/event.png);
-  background-size: 20px 20px;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
 
 /* helpPage.html Styling below:-------------------------------------------------------------------- */
 
@@ -638,14 +605,12 @@ input[type="date"]::after {
   margin-top: 80px;
   margin-bottom: 80px;
   padding: 32px 16px 24px 16px;
-
 }
 
 .h1HelpBox {
   display: flex;
   justify-content: space-between;
   padding-bottom: 32px;
-  
 }
 
 .h1Help {
@@ -663,9 +628,9 @@ input[type="date"]::after {
   font-size: 20px;
 }
 
-.imageH1HelpBox{
-width: 32px;
-height: 32px;
+.imageH1HelpBox {
+  width: 32px;
+  height: 32px;
 }
 
 .imageH1HelpBox:hover {
@@ -673,7 +638,7 @@ height: 32px;
 }
 
 .helpPageBlueJoin {
-  color: #29ABE2;
+  color: #29abe2;
 }
 
 .helpPageHowToUseNumbers {
@@ -687,21 +652,18 @@ height: 32px;
   gap: 35px;
 }
 
-
 /* privacyPolicy.html Styling below:-------------------------------------------------------------------- */
 
 .privacyPolicySection {
   margin-top: 80px;
   margin-bottom: 80px;
   padding: 32px 16px 24px 16px;
-
 }
 
 .h1PrivacyPolicyBox {
   display: flex;
   justify-content: space-between;
   padding-bottom: 32px;
-  
 }
 
 .h1PrivacyPolicy {
@@ -714,15 +676,11 @@ height: 32px;
   font-size: 27px;
 }
 
-
-.imageH1PrivacyPolicyBox{
-width: 32px;
-height: 32px;
+.imageH1PrivacyPolicyBox {
+  width: 32px;
+  height: 32px;
 }
 
 .imageH1privacyPolicyBox:hover {
   cursor: pointer;
 }
-
-
-

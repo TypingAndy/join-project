@@ -92,29 +92,27 @@ async function loadData(path = "users") {
 
 let taskPrioInput = "";
 let fullNameList = [];
+let addTaskCurrentUser = "";
 
 async function postTaskData() {
 
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  //let taskAssignUserInput = document.getElementById("signUpPasswordInput").value;
   let taskDateInput = document.getElementById("taskDateInput").value;
  
-  console.log(`Task priority set til here: ${taskPrioInput}`);
- //console.log(taskTitleInput, taskDescriptionInput, taskDateInput);
 
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
-    //taskUserInput: taskAssignUserInput,
+    taskAssignedUser: addTaskCurrentUser,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput
   };
- console.log(createTaskData);
+
  
   await fetch(BASE_URL + `tasks/${taskTitleInput}/.json`, {
     method: "PATCH",
-    header: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(createTaskData),
@@ -125,12 +123,37 @@ function setTaskPrio(priority) {
   taskPrioInput = priority; 
  }
 
-async function loadFullNameList() {
-  let response = await fetch(BASE_URL + "users" + ".json");
-  let = completeUserList = await response.json();
-  console.log(completeUserList);
-  fullNameList = Object.keys(completeUserList);
-  console.log(fullNameList);
+ async function loadFullNameList() {
+  try {
+    let response = await fetch(BASE_URL + "users" + ".json");
+    let completeUserList = await response.json();
+    fullNameList = Object.keys(completeUserList); 
 
+    let dropdown = document.getElementById('userNameDropDown');
+    dropdown.innerHTML = '';
+
+    fullNameList.forEach(name => {
+      let option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      dropdown.appendChild(option);
+    });
+
+
+    if (addTaskCurrentUser && fullNameList.includes(addTaskCurrentUser)) {
+      dropdown.value = addTaskCurrentUser;
+    }
+
+
+    dropdown.addEventListener('change', function() {
+      addTaskCurrentUser = dropdown.value;
+      console.log(`User selected: ${addTaskCurrentUser}`);
+    });
+
+  } catch (error) {
+    console.error('Error loading full name list:', error);
   }
+}
 
+
+window.onload = loadFullNameList;
