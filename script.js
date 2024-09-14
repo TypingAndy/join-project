@@ -110,8 +110,8 @@ async function postTaskData() {
   };
 
  
-  await fetch(BASE_URL + `tasks/${taskTitleInput}/.json`, {
-    method: "PATCH",
+  await fetch(BASE_URL + `.json`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
