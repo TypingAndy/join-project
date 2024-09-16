@@ -4,6 +4,7 @@ let responseToJson;
 let policyAccepted = false;
 let passwordMatch = false;
 
+
 async function postSignUpData() {
   console.log("test");
 
@@ -12,8 +13,8 @@ async function postSignUpData() {
   let passwordInput = document.getElementById("signUpPasswordInput").value;
   signUpData = { name: nameInput, email: mailInput, password: passwordInput };
 
-  await fetch(BASE_URL + `users/${nameInput}/.json`, {
-    method: "PATCH",
+  await fetch(BASE_URL + `users/.json`, {
+    method: "POST",
     header: {
       "Content-Type": "application/json",
     },
@@ -155,5 +156,26 @@ function setTaskPrio(priority) {
   }
 }
 
-
 window.onload = loadFullNameList;
+
+
+
+//link zu den anderen Seiten
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('summaryLink').addEventListener('click', function() {
+      window.location.href = 'summary.html';
+  });
+
+  document.getElementById('boardLink').addEventListener('click', function() {
+      window.location.href = 'board.html';
+  });
+
+  document.getElementById('addTaskLink').addEventListener('click', function() {
+      window.location.href = 'addTask.html';
+  });
+
+  document.getElementById('contactsLink').addEventListener('click', function() {
+      window.location.href = 'contacts.html';
+  });
+});

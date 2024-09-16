@@ -88,6 +88,7 @@ nav {
 
 .navIconBox:hover {
   background-color: #091931;
+  cursor: pointer;
 }
 
 .navIconBox:hover img,
@@ -414,12 +415,14 @@ nav {
   height: 40px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
+  padding-left: 12px;
+  font-size: 16px;
 }
 
 .addTaskInputTitle::placeholder {
   font-size: 16px;
   font-weight: 400;
-  padding-left: 6%;
+
   color: #d1d1d1;
 }
 
@@ -433,12 +436,17 @@ nav {
   height: 88px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
+  padding-left: 12px;
+  padding-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "inter";
+  resize: none;
 }
 
 .addTaskInputDescription::placeholder {
   font-size: 16px;
   font-weight: 400;
-  padding-left: 6%;
   color: #d1d1d1;
 }
 
@@ -453,9 +461,6 @@ nav {
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
-
-
-
 }
 
 .addTaskContactsDropdownLableBox {
@@ -468,6 +473,7 @@ nav {
   background-color: #ffffff;
   padding: 8px 21px 8px 21px;
   font-family: "Inter";
+  font-size: 16px;
 }
 
 .addTaskContactsDropdownLabel {
@@ -478,7 +484,6 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  
 }
 
 .addTaskDueDateDropdown {
@@ -487,9 +492,8 @@ nav {
   background-color: #ffffff;
   padding: 8px 21px 8px 21px;
   font-family: "Inter";
+  font-size: 16px;
 }
-
-
 
 .addTaskPrio {
   display: flex;
@@ -514,9 +518,14 @@ nav {
   border: solid 1px #d1d1d1;
 }
 
-.addTaskPrioButtonUrgent:hover {
+/* .addTaskPrioButtonUrgent:onclick {
   color: #ffffff;
   background-color: #ff3d00;
+} */
+
+.addTaskPrioButtonUrgent:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
 }
 
 .addTaskPrioButtonMedium {
@@ -532,9 +541,14 @@ nav {
 }
 
 .addTaskPrioButtonMedium:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+/* .addTaskPrioButtonMedium:hover {
   color: #ffffff;
   background-color: #ffa800;
-}
+} */
 
 .addTaskPrioButtonLow {
   display: flex;
@@ -549,20 +563,26 @@ nav {
 }
 
 .addTaskPrioButtonLow:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+/* .addTaskPrioButtonLow:onclick {
   color: #ffffff;
   background-color: #7ae229;
-}
+} */
 
 .addTaskPrioButtonImage {
   width: 20px;
   height: 14.5px;
 }
 
-.addTaskPrioButtonUrgent:hover img,
+/*onclick
+/* .addTaskPrioButtonUrgent:hover img,
 .addTaskPrioButtonMedium:hover img,
 .addTaskPrioButtonLow:hover img {
   filter: brightness(10000%) saturate(0);
-}
+} */
 
 .addTaskButton {
   display: flex;
@@ -588,13 +608,13 @@ nav {
 
 .createTaskButton:hover {
   cursor: pointer;
+  background-color: #29abe2;
 }
 
 .addTaskButtonCheckImage {
   width: 24px;
   height: 24px;
 }
-
 
 /* helpPage.html Styling below:-------------------------------------------------------------------- */
 
