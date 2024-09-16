@@ -1,9 +1,10 @@
 let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
 let signUpData = {};
 let responseToJson;
+// let userData = {};
+let sortedUsers = [];
 let policyAccepted = false;
 let passwordMatch = false;
-
 
 async function postSignUpData() {
   console.log("test");
@@ -70,23 +71,22 @@ function clickPolicy() {
 async function loadData(path = "users") {
   let response = await fetch(BASE_URL + path + ".json");
   responseToJson = await response.json();
-  console.log(responseToJson);
-
-  if (!responseToJson) {
-    return;
-  } else {
-    Object.entries(responseToJson).forEach(([key, user]) => {
-      console.log(user.name, user.email, user.password);
-
-      //   dataOutputWrapper.innerHTML += `
-      //   <div class="data">
-      //     <div class="name">${user.name}</div>
-      //     <div class="email">${user.email}</div>
-      //     <div class="delete" onclick="deleteUser('${key}')">X</div>
-      //   </div>
-      // `;
-    });
+  userData = { users: responseToJson };
+  sortUsersByName(responseToJson);
+}
+// Function to sort users by name
+function sortUsersByName(userData) {
+  // Convert users object to array
+  let usersArray = [];
+  for (let id in userData) {
+    usersArray.push({ id: id, ...userData[id] });
   }
+  // Sort the array by name
+  sortedUsers = usersArray.sort(function (a, b) {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  });
 }
 
 //functions addTask---------------------------------------------------------------------
@@ -142,36 +142,19 @@ if (priority == 'urgent') {
   }
 }
 
- async function loadFullNameList() {
-  try {
-    let response = await fetch(BASE_URL + "users" + ".json");
-    let completeUserList = await response.json();
-    fullNameList = Object.keys(completeUserList); 
-
-    let dropdown = document.getElementById('userNameDropDown');
-    dropdown.innerHTML = '';
-
-    fullNameList.forEach(name => {
-      let option = document.createElement('option');
-      option.value = name;
-      option.textContent = name;
-      dropdown.appendChild(option);
-    });
-
-
-    if (addTaskCurrentUser && fullNameList.includes(addTaskCurrentUser)) {
-      dropdown.value = addTaskCurrentUser;
-    }
-
-
-    dropdown.addEventListener('change', function() {
-      addTaskCurrentUser = dropdown.value;
-      console.log(`User selected: ${addTaskCurrentUser}`);
-    });
-
-  } catch (error) {
-    console.error('Error loading full name list:', error);
+function loadFullNameList() {
+  let dropdown = document.getElementById("userNameDropDown");
+  dropdown.innerHTML = "";
+  for (let index = 0; index < sortedUsers.length; index++) {
+    dropdown.innerHTML += `<option>${sortedUsers[index].name}</option>`;
   }
+  if (addTaskCurrentUser && fullNameList.includes(addTaskCurrentUser)) {
+    dropdown.value = addTaskCurrentUser;
+  }
+  dropdown.addEventListener("change", function () {
+    addTaskCurrentUser = dropdown.value;
+    console.log(`User selected: ${addTaskCurrentUser}`);
+  });
 }
 
 window.onload = loadFullNameList;
