@@ -518,10 +518,10 @@ nav {
   border: solid 1px #d1d1d1;
 }
 
-/* .addTaskPrioButtonUrgent:onclick {
+.addTaskPrioButtonUrgentOnClick {
   color: #ffffff;
   background-color: #ff3d00;
-} */
+} 
 
 .addTaskPrioButtonUrgent:hover {
   box-shadow: 2px 2px 2px #d1d1d1;
@@ -545,10 +545,10 @@ nav {
   cursor: pointer;
 }
 
-/* .addTaskPrioButtonMedium:hover {
+.addTaskPrioButtonMediumOnClick {
   color: #ffffff;
   background-color: #ffa800;
-} */
+} 
 
 .addTaskPrioButtonLow {
   display: flex;
@@ -567,22 +567,28 @@ nav {
   cursor: pointer;
 }
 
-/* .addTaskPrioButtonLow:onclick {
+.addTaskPrioButtonLowOnClick {
   color: #ffffff;
   background-color: #7ae229;
-} */
+} 
 
 .addTaskPrioButtonImage {
   width: 20px;
   height: 14.5px;
 }
 
-/*onclick
-/* .addTaskPrioButtonUrgent:hover img,
-.addTaskPrioButtonMedium:hover img,
-.addTaskPrioButtonLow:hover img {
+
+.addTaskPrioButtonUrgentIcon img{
   filter: brightness(10000%) saturate(0);
-} */
+}
+
+.addTaskPrioButtonMediumIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+.addTaskPrioButtonLowIcon img {
+  filter: brightness(10000%) saturate(0);
+} 
 
 .addTaskButton {
   display: flex;

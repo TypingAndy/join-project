@@ -122,7 +122,25 @@ async function postTaskData() {
 
 function setTaskPrio(priority) {
   taskPrioInput = priority; 
- }
+
+if (priority == 'urgent') {
+  document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.add('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+  document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+  document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+}
+
+  if (priority == 'medium') {
+    document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.add('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+    document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+    document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+  }
+
+  if (priority == 'low') {
+  document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.add('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+  document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+  document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+  }
+}
 
  async function loadFullNameList() {
   try {
@@ -157,6 +175,8 @@ function setTaskPrio(priority) {
 }
 
 window.onload = loadFullNameList;
+
+
 
 
 
