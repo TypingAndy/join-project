@@ -188,7 +188,6 @@ function loadFullNameList() {
   }
   dropdown.addEventListener("change", function () {
     addTaskCurrentUser = dropdown.value;
-    console.log(`User selected: ${addTaskCurrentUser}`);
   });
 }
 
