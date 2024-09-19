@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="loadData()">
     <div class="joinWrapper">
 
 <!--header-->
@@ -42,7 +42,7 @@
               <select id="userNameDropDown" onclick="loadFullNameList()" class="addTaskContactsDropdownLableBox" name="userName"></select>
         </div>
 
-     <!--date, drop down doesnt work-->
+  
         <div class="addTaskDueDate">
             <div  class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
               <input id="taskDateInput" class="addTaskDueDateDropdown" type="date">

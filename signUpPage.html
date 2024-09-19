@@ -11,7 +11,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="loadData()">
+  <body onload="loadUserData()">
     <div class="signUpSection">
       <img class="signUpLogo" src="./images/mobile/signUpPage/joinLogoDark.png" alt="" />
 
@@ -31,8 +31,8 @@
           </div>
           <div class="signUpCheckOutBoxWrapper">
             <div class="acceptPolicyBox">
-              <img onclick="clickPolicy()" id="checkbox" class="signUpCheckImg" src="images/mobile/signUpPage/checkButtonBlack.png" alt="" />
-              <div onclick="clickPolicy()">I accept the <span class="blueFont">Privacy policy</span></div>
+              <img onclick="clickPolicySignUpPassword()" id="checkbox" class="signUpCheckImg" src="images/mobile/signUpPage/checkButtonBlack.png" alt="" />
+              <div onclick="clickPolicySignUpPassword()">I accept the <span class="blueFont">Privacy policy</span></div>
             </div>
             <div id="signUpButton" onclick="postSignUpData()" class="signUpButton" type="submit">Sign up</div>
           </div>
