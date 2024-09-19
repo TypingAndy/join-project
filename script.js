@@ -1,34 +1,53 @@
 let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
+
+//signUpGlobalArrays
 let signUpData = {};
 let responseToJson;
-// let userData = {};
 let sortedUsers = [];
 let policyAccepted = false;
 let passwordMatch = false;
+// let userData = {};
 
-async function postSignUpData() {
-  console.log("test");
+//addTaskGlobalArrays
+let taskPrioInput = "";
+let fullNameList = [];
+let addTaskCurrentUser = "";
 
-  let nameInput = document.getElementById("signUpNameInput").value;
-  let mailInput = document.getElementById("signUpMailInput").value;
-  let passwordInput = document.getElementById("signUpPasswordInput").value;
-  signUpData = { name: nameInput, email: mailInput, password: passwordInput };
 
-  await fetch(BASE_URL + `users/.json`, {
-    method: "POST",
-    header: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(signUpData),
-  });
-
-  document.getElementById("signUpNameInput").value = "";
-  document.getElementById("signUpMailInput").value = "";
-  document.getElementById("signUpPasswordInput").value = "";
-  document.getElementById("signUpConfirmPasswordInput").value = "";
-  clickPolicy();
-  loadData();
+function getSignUpInputData(signUpData, confirmPasswordInput) {
+  let nameInput = document.getElementById("signUpNameInput");
+  let mailInput = document.getElementById("signUpMailInput");
+  let passwordInput = document.getElementById("signUpPasswordInput");
+  confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
+  signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value };
+  return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
 }
+
+
+async function postSignUpData() { 
+  let {signUpData, confirmPasswordInput} = getSignUpInputData();
+
+    await fetch(BASE_URL + `users/.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    });
+
+  clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput);
+  allowignUpPrivacyPolicyCheck();
+  loadUserData();
+}
+
+
+function clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput) {
+  nameInput.value = "";
+  mailInput.value = "";
+  passwordInput.value = "";
+  confirmPasswordInput.value = "";
+}
+
 
 function validateSignUp() {
   let button = document.getElementById("signUpButton");
@@ -42,6 +61,7 @@ function validateSignUp() {
     button.disabled = true;
   }
 }
+
 
 function checkMatchingPasswords() {
   let passwordValue = document.getElementById("signUpPasswordInput").value;
@@ -57,7 +77,8 @@ function checkMatchingPasswords() {
   validateSignUp();
 }
 
-function clickPolicy() {
+
+function allowignUpPrivacyPolicyCheck() {
   policyAccepted = !policyAccepted;
   let img = document.getElementById("checkbox");
   if (!policyAccepted) {
@@ -68,20 +89,21 @@ function clickPolicy() {
   validateSignUp();
 }
 
-async function loadData(path = "users") {
+
+async function loadUserData(path = "users") {
   let response = await fetch(BASE_URL + path + ".json");
   responseToJson = await response.json();
   userData = { users: responseToJson };
   sortUsersByName(responseToJson);
 }
-// Function to sort users by name
+
+
 function sortUsersByName(userData) {
-  // Convert users object to array
   let usersArray = [];
   for (let id in userData) {
     usersArray.push({ id: id, ...userData[id] });
   }
-  // Sort the array by name
+
   sortedUsers = usersArray.sort(function (a, b) {
     if (a.name < b.name) return -1;
     if (a.name > b.name) return 1;
@@ -89,19 +111,14 @@ function sortUsersByName(userData) {
   });
 }
 
+
 //functions addTask---------------------------------------------------------------------
 
-let taskPrioInput = "";
-let fullNameList = [];
-let addTaskCurrentUser = "";
-
-async function postTaskData() {
-
+function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("taskDateInput").value;
  
-
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -109,38 +126,56 @@ async function postTaskData() {
     taskDate: taskDateInput,
     taskPrio: taskPrioInput
   };
+  return createTaskData;
+}
 
- 
-  await fetch(BASE_URL + `.json`, {
+
+async function postTaskData() {
+
+  let createTaskData = getNewTaskInputData();
+
+   await fetch(BASE_URL + `/tasks.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(createTaskData),
   });
+
+
 }
+
 
 function setTaskPrio(priority) {
-  taskPrioInput = priority; 
-
-if (priority == 'urgent') {
-  document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.add('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
-  document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
-  document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+  taskPrioInput = priority;
+  setTaskPrioButtonColorSwitch(priority); 
 }
 
+
+function setTaskPrioButtonColorSwitch (priority) {
+  buttonUrgent = document.getElementsByClassName('addTaskPrioButtonUrgent')[0];
+  buttonMedium = document.getElementsByClassName('addTaskPrioButtonMedium')[0];
+  buttonLow = document.getElementsByClassName('addTaskPrioButtonLow')[0];
+
+  if (priority == 'urgent') {
+    buttonUrgent.classList.add('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+    buttonMedium.classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+    buttonLow.classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+  }
+
   if (priority == 'medium') {
-    document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.add('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
-    document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
-    document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+    buttonMedium.classList.add('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+    buttonUrgent.classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+    buttonLow.classList.remove('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
   }
 
   if (priority == 'low') {
-  document.getElementsByClassName('addTaskPrioButtonLow')[0].classList.add('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
-  document.getElementsByClassName('addTaskPrioButtonUrgent')[0].classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
-  document.getElementsByClassName('addTaskPrioButtonMedium')[0].classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
-  }
+    buttonLow.classList.add('addTaskPrioButtonLowOnClick', 'addTaskPrioButtonLowIcon');
+    buttonUrgent.classList.remove('addTaskPrioButtonUrgentOnClick', 'addTaskPrioButtonUrgentIcon');
+    buttonMedium.classList.remove('addTaskPrioButtonMediumOnClick', 'addTaskPrioButtonMediumIcon');
+    }
 }
+
 
 function loadFullNameList() {
   let dropdown = document.getElementById("userNameDropDown");
@@ -157,28 +192,17 @@ function loadFullNameList() {
   });
 }
 
+
 window.onload = loadFullNameList;
 
 
-
-
-
-//link zu den anderen Seiten
+//links to other pages
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('summaryLink').addEventListener('click', function() {
-      window.location.href = 'summary.html';
-  });
-
-  document.getElementById('boardLink').addEventListener('click', function() {
-      window.location.href = 'board.html';
-  });
-
-  document.getElementById('addTaskLink').addEventListener('click', function() {
-      window.location.href = 'addTask.html';
-  });
-
-  document.getElementById('contactsLink').addEventListener('click', function() {
-      window.location.href = 'contacts.html';
-  });
+  let linkButtonDirectionString = ['summary', 'board', 'addTask', 'contacts'];
+  for (let i = 0; i < linkButtonDirectionString.length; i++) {
+    document.getElementById(linkButtonDirectionString[i] + 'Link').addEventListener('click', function() {
+         window.location.href = linkButtonDirectionString[i] + '.html';
+    });
+  }
 });
