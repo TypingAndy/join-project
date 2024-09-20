@@ -1,0 +1,41 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinEditContact</title>
+    <link rel="stylesheet" href="/Views/Style/contact_mobile.css">
+  </head>
+  <body>
+    
+  </body>
+  </html>
+  <div class="addContactDiv">
+        <div class="closePngDiv">
+            <img class="closePng32px" src="/Views/img/close.png" alt="">
+        </div>
+        <div class="headlineDiv">
+            <img class="joinLogoCapa1" src="/Views/img/Capa 1.png" alt="">
+            <span class="addContactheadline">Edit contact</span>
+        </div>
+    </div>
+    <div class="formDiv">
+        <form onsubmit="postContacts()">
+            <div class="inputDiv">
+            <img src="/Views/img/Frame 79.png" alt="" style="width: 120px;">
+                <input id="name" type="text" placeholder="Name" required>
+                <input id="email" type="email" placeholder="Email" required>
+                <input id="phone" type="text" placeholder="Phone" required>
+               </div>
+        </form>
+        <div class="buttonDiv">
+            <button class="button2">Delete <img src="/Views/img/cancel.png" alt="" style="width: 24px;"></button>
+            <button class="button1">Safe<img src="/Views/img/check.png" alt="" style="width: 24px;" ></button>
+        </div>
+    </div>
+   
+
+  
+   <script src="/logic/contact.js"></script>
+</body>
+</html>
