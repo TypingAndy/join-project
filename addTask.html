@@ -36,13 +36,33 @@
             <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description"></textarea>
         </div>
 
-    <!--dropdown is not done-->
+
+
+
+        <div class="addTaskAddContacts">
+          <div class="addTaskFormLabels">Assigned to</div>
+
+
+
+            <div onclick="addTaskOpenUserDropDown()" class="addTaskContactsDropdownLableBox">
+              <div id="words" class="addTaskAssignContactsButton">
+                <div >Select contacts to assign</div>
+                <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
+              </div>
+              <div id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent  displayNone"></div>
+            </div>
+
+        </div>
+
+        
+
+        
+    <!-- dropdown is not done
         <div class="addTaskAddContacts">
             <div class="addTaskFormLabels">Assigned to</div>
               <select id="userNameDropDown" onclick="loadFullNameList()" class="addTaskContactsDropdownLableBox" name="userName"></select>
-        </div>
+        </div> -->
 
-  
         <div class="addTaskDueDate">
             <div  class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
               <input id="taskDateInput" class="addTaskDueDateDropdown" type="date">
@@ -96,5 +116,15 @@
         </div>
       </nav>
     </div>
+
+
+
+
+
+
+
   </body>
 </html>
+
+
+

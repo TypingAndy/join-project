@@ -95,6 +95,7 @@ async function loadUserData(path = "users") {
   responseToJson = await response.json();
   userData = { users: responseToJson };
   sortUsersByName(responseToJson);
+  loadFullNameList();
 }
 
 
@@ -177,22 +178,27 @@ function setTaskPrioButtonColorSwitch (priority) {
 }
 
 
+
 function loadFullNameList() {
   let dropdown = document.getElementById("userNameDropDown");
   dropdown.innerHTML = "";
-  for (let index = 0; index < sortedUsers.length; index++) {
-    dropdown.innerHTML += `<option>${sortedUsers[index].name}</option>`;
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    dropdown.innerHTML += /*html*/ `
+    <div class="addTaskDropDownSingleUserContainer">
+      <div>${sortedUsers[i].name}</div>
+      <img src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
+    </div>`
   }
-  if (addTaskCurrentUser && fullNameList.includes(addTaskCurrentUser)) {
-    dropdown.value = addTaskCurrentUser;
-  }
-  dropdown.addEventListener("change", function () {
-    addTaskCurrentUser = dropdown.value;
-  });
 }
 
 
-window.onload = loadFullNameList;
+function addTaskOpenUserDropDown() {
+  document.getElementById("userNameDropDown").classList.toggle("show");
+  document.getElementById("userNameDropDown").classList.toggle("displayNone");
+  document.getElementById("words").classList.toggle("displayNone");
+  
+}
 
 
 //links to other pages

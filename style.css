@@ -463,10 +463,20 @@ nav {
   background-color: #ffffff;
 }
 
+.addTaskAssignContactsButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
 .addTaskContactsDropdownLableBox {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   padding: 12px 16px 12px 16px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
@@ -474,7 +484,24 @@ nav {
   padding: 8px 21px 8px 21px;
   font-family: "Inter";
   font-size: 16px;
+  cursor: pointer;
 }
+
+.addTaskContactsDropdownLableBoxContent {
+width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+
+ 
+  font-family: "Inter";
+  font-size: 16px;
+
+}
+
+
 
 .addTaskContactsDropdownLabel {
   font-size: 16px;
@@ -706,4 +733,44 @@ nav {
 
 .imageH1privacyPolicyBox:hover {
   cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.show {
+  display: block;
+}
+
+
+
+.addTaskDropDownSingleUserContainer {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.addTaskDropDownSingleUserContainer:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+
+
+.displayNone {
+  display: none;
 }
