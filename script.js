@@ -196,10 +196,15 @@ function loadFullNameList() {
 function addTaskOpenUserDropDown() {
   document.getElementById("userNameDropDown").classList.toggle("show");
   document.getElementById("userNameDropDown").classList.toggle("displayNone");
-  document.getElementById("words").classList.toggle("displayNone");
+  document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
+
   
 }
 
+function stopPropagation(event) {
+      event.stopPropagation();
+}
 
 //links to other pages
 
