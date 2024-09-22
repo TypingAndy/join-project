@@ -463,17 +463,58 @@ nav {
   background-color: #ffffff;
 }
 
+.addTaskAssignContactsButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+
 .addTaskContactsDropdownLableBox {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px 12px 16px;
+  flex-direction: column;
+  padding: 8px 12px 8px 12px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
-  padding: 8px 21px 8px 21px;
+
   font-family: "Inter";
   font-size: 16px;
+  cursor: pointer;
+}
+
+.addTaskContactsDropdownLableBoxContent {
+width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+
+ 
+  font-family: "Inter";
+  font-size: 16px;
+
+}
+
+.dropDownSearchCloseButtonBox {
+  width: 100%;
+display: flex;
+justify-content: space-between;
+padding: 8px 0 8px 0;
+}
+
+.userNameDropDownSearchbar {
+width: 100%;
+font-family: "Inter";
+font-size: 16px;
+border: none;
+
+
 }
 
 .addTaskContactsDropdownLabel {
@@ -706,4 +747,44 @@ nav {
 
 .imageH1privacyPolicyBox:hover {
   cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.show {
+  display: block;
+}
+
+
+
+.addTaskDropDownSingleUserContainer {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.addTaskDropDownSingleUserContainer:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+
+
+.displayNone {
+  display: none;
 }

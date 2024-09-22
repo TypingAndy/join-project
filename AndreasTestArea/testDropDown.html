@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<style>
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.dropdown-button {
+  width: 100%;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+.dropdown-content div {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content div img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.dropdown-content div:hover {
+  background-color: #ddd;
+}
+
+</style>
+
+
+
+<body>
+    
+    <div class="custom-dropdown">
+        <button id="dropdownButton" class="dropdown-button">
+          Select User
+        </button>
+        <div id="dropdownContent" class="dropdown-content">
+          <!-- Dynamically generated options will be added here -->
+        </div>
+      </div>
+      
+
+</body>
+
+<script>
+
+    function loadFullNameList() {
+      let dropdownButton = document.getElementById("dropdownButton");
+      let dropdownContent = document.getElementById("dropdownContent");
+    
+      // Clear the dropdown content before populating
+      dropdownContent.innerHTML = "";
+    
+      // Loop through sortedUsers array to generate the dropdown options
+      for (let index = 0; index < sortedUsers.length; index++) {
+        let user = sortedUsers[index];
+        
+        // Create a div for each dropdown option
+        let option = document.createElement("div");
+        option.innerHTML = `
+         
+          <span>${user.name}</span>
+           <img src="../images/icons/checked.png" alt="Icon">
+        `;
+        option.addEventListener("click", function () {
+          // Set the button text to the selected option
+          dropdownButton.textContent = user.name;
+          addTaskCurrentUser = user.name;
+          // Hide the dropdown content
+          dropdownContent.style.display = "none";
+        });
+    
+        // Append the option to the dropdown content
+        dropdownContent.appendChild(option);
+      }
+    
+      // Open/close dropdown on button click
+      dropdownButton.addEventListener("click", function () {
+        // Toggle the dropdown visibility
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+      });
+    
+      // Close dropdown if clicked outside
+      window.addEventListener("click", function (e) {
+        if (!dropdownButton.contains(e.target) && !dropdownContent.contains(e.target)) {
+          dropdownContent.style.display = "none";
+        }
+      });
+    }
+    
+    // Sample data
+    let sortedUsers = [
+      { name: "Alice" },
+      { name: "Bob" },
+      { name: "Charlie" }
+    ];
+    
+    // Placeholder for selected user
+    let addTaskCurrentUser = null;
+    
+    // Call the function to load the custom dropdown
+    loadFullNameList();
+    
+    
+    
+    
+    </script>
+
+</html>
