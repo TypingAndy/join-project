@@ -469,10 +469,7 @@ nav {
   width: 100%;
 }
 
-
-
 .addTaskContactsDropdownLableBox {
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -488,38 +485,38 @@ nav {
 }
 
 .addTaskContactsDropdownLableBoxContent {
-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-
-
- 
   font-family: "Inter";
   font-size: 16px;
-
+  padding: 16px 0 0 0;
 }
 
 .dropDownSearchCloseButtonBox {
   width: 100%;
-display: flex;
-justify-content: space-between;
-padding: 8px 0 8px 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .userNameDropDownSearchbar {
-width: 100%;
-font-family: "Inter";
-font-size: 16px;
-border: none;
-
-
+  width: 80%;
+  font-family: "Inter";
+  font-size: 16px;
+  border: none;
 }
 
 .addTaskContactsDropdownLabel {
   font-size: 16px;
 }
+
+
+.addTaskButtonCheckImage {
+width: 24px;
+}
+
 
 .addTaskDueDate {
   display: flex;
@@ -562,7 +559,7 @@ border: none;
 .addTaskPrioButtonUrgentOnClick {
   color: #ffffff;
   background-color: #ff3d00;
-} 
+}
 
 .addTaskPrioButtonUrgent:hover {
   box-shadow: 2px 2px 2px #d1d1d1;
@@ -589,7 +586,7 @@ border: none;
 .addTaskPrioButtonMediumOnClick {
   color: #ffffff;
   background-color: #ffa800;
-} 
+}
 
 .addTaskPrioButtonLow {
   display: flex;
@@ -611,15 +608,14 @@ border: none;
 .addTaskPrioButtonLowOnClick {
   color: #ffffff;
   background-color: #7ae229;
-} 
+}
 
 .addTaskPrioButtonImage {
   width: 20px;
   height: 14.5px;
 }
 
-
-.addTaskPrioButtonUrgentIcon img{
+.addTaskPrioButtonUrgentIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
@@ -629,7 +625,7 @@ border: none;
 
 .addTaskPrioButtonLowIcon img {
   filter: brightness(10000%) saturate(0);
-} 
+}
 
 .addTaskButton {
   display: flex;
@@ -749,41 +745,19 @@ border: none;
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .show {
   display: block;
 }
 
-
-
 .addTaskDropDownSingleUserContainer {
   display: flex;
   justify-content: space-between;
-
 }
 
 .addTaskDropDownSingleUserContainer:hover {
   background-color: #d1d1d1;
   cursor: pointer;
 }
-
 
 .displayNone {
   display: none;
