@@ -11,7 +11,7 @@ let passwordMatch = false;
 //addTaskGlobalArrays
 let taskPrioInput = "";
 let fullNameList = [];
-let addTaskCurrentUser = "";
+let addTaskCurrentUser = [];
 
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
@@ -185,12 +185,23 @@ function loadFullNameList() {
 
   for (let i = 0; i < sortedUsers.length; i++) {
     dropdown.innerHTML += /*html*/ `
-    <div class="addTaskDropDownSingleUserContainer">
+    <div onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
       <div>${sortedUsers[i].name}</div>
-      <img src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
+      <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
+      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/buttonChecked.png" alt="">
+
     </div>`
   }
 }
+
+
+function addUserToTask (name, i) {
+  addTaskCurrentUser.push(name);
+  console.log(addTaskCurrentUser);
+  document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
+  document.getElementById(`check${i}`).classList.toggle("displayNone");
+}
+
 
 
 function addTaskOpenUserDropDown() {
