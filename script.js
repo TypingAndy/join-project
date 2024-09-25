@@ -4,6 +4,7 @@ let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebaseda
 let signUpData = {};
 let responseToJson;
 let sortedUsers = [];
+let allUserInitials = [];
 
 let policyAccepted = false;
 let passwordMatch = false;
@@ -28,7 +29,7 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
 async function postSignUpData() { 
   let {signUpData, confirmPasswordInput} = getSignUpInputData();
 
-    await fetch(BASE_URL + `test/.json`, {
+    await fetch(BASE_URL + `users/.json`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +97,9 @@ async function loadUserData(path = "users") {
   responseToJson = await response.json();
   userData = { users: responseToJson };
   sortUsersByName(responseToJson);
+  createUserInitials();
   loadFullNameList();
+
 }
 
 
@@ -181,28 +184,43 @@ function setTaskPrioButtonColorSwitch (priority) {
 
 
 function loadFullNameList() {
+
   let dropdown = document.getElementById("userNameDropDown");
   dropdown.innerHTML = "";
 
   for (let i = 0; i < sortedUsers.length; i++) {
     dropdown.innerHTML += /*html*/ `
     <div onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
-      <div>${sortedUsers[i].name}</div>
+      <div class="addTaskAddUserNameAndInitials">
+        <div>${sortedUsers[i].name}</div>
+        <div class="addTaskAllUserInitials">${allUserInitials[i]}</div>
+      </div>
       <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/buttonChecked.png" alt="">
 
     </div>`
   }
+  
 }
 
 
-function addUserToTask (name, i) {
-  addTaskCurrentUser.push(name);
+function addUserToTask(name, i) {
+  if (!addTaskCurrentUser.includes(name)) {
+    addTaskCurrentUser.push(name);
+  } else {
+
+    let i = addTaskCurrentUser.indexOf(name);
+    if (i > -1) {
+      addTaskCurrentUser.splice(i, 1); 
+    }
+  }
+
   console.log(addTaskCurrentUser);
+
+
   document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
   document.getElementById(`check${i}`).classList.toggle("displayNone");
 }
-
 
 
 function addTaskOpenUserDropDown() {
@@ -210,12 +228,23 @@ function addTaskOpenUserDropDown() {
   document.getElementById("userNameDropDown").classList.toggle("displayNone");
   document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-
-  
 }
 
 function stopPropagation(event) {
       event.stopPropagation();
+}
+
+
+
+function createUserInitials() {
+ 
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let fullName = sortedUsers[i].name; 
+    let nameParts = fullName.split(" "); 
+        
+    let initials = nameParts.map(part => part.charAt(0)).join(""); 
+    allUserInitials.push(initials); 
+  }
 }
 
 //links to other pages
