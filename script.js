@@ -4,6 +4,7 @@ let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebaseda
 let signUpData = {};
 let responseToJson;
 let sortedUsers = [];
+
 let policyAccepted = false;
 let passwordMatch = false;
 // let userData = {};
@@ -27,7 +28,7 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
 async function postSignUpData() { 
   let {signUpData, confirmPasswordInput} = getSignUpInputData();
 
-    await fetch(BASE_URL + `users/.json`, {
+    await fetch(BASE_URL + `test/.json`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +37,7 @@ async function postSignUpData() {
     });
 
   clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput);
-  allowignUpPrivacyPolicyCheck();
+  acceptPrivacyPolicyCheck()
   loadUserData();
 }
 
@@ -78,7 +79,7 @@ function checkMatchingPasswords() {
 }
 
 
-function allowignUpPrivacyPolicyCheck() {
+function acceptPrivacyPolicyCheck() {
   policyAccepted = !policyAccepted;
   let img = document.getElementById("checkbox");
   if (!policyAccepted) {
