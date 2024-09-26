@@ -86,12 +86,13 @@ nav {
   bottom: 0;
 }
 
-nav .navIconBox:hover {
+.navIconBox:hover {
   background-color: #091931;
+  cursor: pointer;
 }
 
-nav .navIconBox:hover img,
-nav .navIconBox:hover p {
+.navIconBox:hover img,
+.navIconBox:hover p {
   filter: brightness(100);
 }
 
@@ -118,9 +119,24 @@ nav .navIconBox:hover p {
   margin: 0;
 }
 
-/* Summary.html Styling below:-------------------------------------------------------------------- */
+/* landingpage.html Styling below:-------------------------------------------------------------------- */
 
-/* Board.html Styling below:-------------------------------------------------------------------- */
+.landingpageBox {
+  height: 100vh;
+  width: 100vw;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingpageImage {
+  width: 100px;
+}
+
+/* summary.html Styling below:-------------------------------------------------------------------- */
+
+/* board.html Styling below:-------------------------------------------------------------------- */
 
 .boardWrapper {
   display: flex;
@@ -355,6 +371,7 @@ nav .navIconBox:hover p {
 
 .addTaskSection {
   margin-top: 80px;
+
   gap: 8px;
   display: flex;
   flex-direction: column;
@@ -380,6 +397,7 @@ nav .navIconBox:hover p {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 88px;
 }
 
 .addTaskFormLabels {
@@ -387,46 +405,43 @@ nav .navIconBox:hover p {
   font-size: 16px;
 }
 
-.addTaskTitle {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 .addTaskInputTitle {
   height: 40px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
+  padding-left: 12px;
+  font-size: 16px;
 }
 
 .addTaskInputTitle::placeholder {
   font-size: 16px;
   font-weight: 400;
-  padding-left: 6%;
+
   color: #d1d1d1;
 }
 
-.addTaskDescription {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 
 .addTaskInputDescription {
   height: 88px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
+  padding-left: 12px;
+  padding-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "inter";
+  resize: none;
 }
 
 .addTaskInputDescription::placeholder {
   font-size: 16px;
   font-weight: 400;
-  padding-left: 6%;
   color: #d1d1d1;
 }
 
 .addTaskAddContacts {
-
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -435,88 +450,179 @@ nav .navIconBox:hover p {
 .addTaskContactsDropdown {
   height: 48px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
-  background-color: #FFFFFF;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+}
+
+.addTaskAssignContactsButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .addTaskContactsDropdownLableBox {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 12px 16px 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 8px 12px 8px 12px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+
+  font-family: "Inter";
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.addTaskContactsDropdownLableBoxContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Inter";
+  font-size: 16px;
+  padding: 16px 0 0 0;
+}
+
+.dropDownSearchCloseButtonBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.userNameDropDownSearchbar {
+  width: 80%;
+  font-family: "Inter";
+  font-size: 16px;
+  border: none;
+}
+
+.addTaskDropDownSingleUserContainer {
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addTaskDropDownSingleUserContainer:hover {
+  background-color: #d1d1d1;
 }
 
 .addTaskContactsDropdownLabel {
   font-size: 16px;
 }
 
-.addTaskDueDate {
+.addTaskAddUserNameAndInitials {
+  display: flex;
+  width: 70%;
+  gap: 16px;
+}
+
+.addTaskAllUserInitials {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(138, 123, 207);
+  color: #ffffff;
+  border-radius: 45px;
+  border: 2px rgb(255, 255, 255) solid;
+  font-size: 10px;
+}
+
+.addTaskButtonCheckImage {
+  width: 24px;
+}
+
+.addTaskSectionHeaderInputGap {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-
 
 .addTaskDueDateDropdown {
-
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
-  background-color: #FFFFFF;
-  display: flex;
-  justify-content: space-between;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
   padding: 8px 21px 8px 21px;
+  font-family: "Inter";
+  font-size: 16px;
 }
 
-.addTaskDueDateDropDownEventImage {
-width: 24px;
-height: 24px;
-}
 
-.addTaskPrio {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 .addTaskPrioButtonBox {
   display: flex;
   gap: 16px;
 }
 
-.addTaskPrioButtonUrgend {
+.addTaskPrioButtonUrgent {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
+}
+
+.addTaskPrioButtonUrgentOnClick {
+  color: #ffffff;
+  background-color: #ff3d00;
+}
+
+.addTaskPrioButtonUrgent:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
 }
 
 .addTaskPrioButtonMedium {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
+}
+
+.addTaskPrioButtonMedium:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+.addTaskPrioButtonMediumOnClick {
+  color: #ffffff;
+  background-color: #ffa800;
 }
 
 .addTaskPrioButtonLow {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   gap: 8px;
   width: 121px;
   height: 41px;
   border-radius: 10px;
-  border: solid 1px #D1D1D1;
+  border: solid 1px #d1d1d1;
+}
+
+.addTaskPrioButtonLow:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+.addTaskPrioButtonLowOnClick {
+  color: #ffffff;
+  background-color: #7AE229;
 }
 
 .addTaskPrioButtonImage {
@@ -524,10 +630,30 @@ height: 24px;
   height: 14.5px;
 }
 
+.addTaskPrioButtonUrgentIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+.addTaskPrioButtonMediumIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+.addTaskPrioButtonLowIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+
+.addTaskNewSubtaskPlaceholder {
+  color: #d1d1d1;
+}
+
+.addTaskNewSubtaskPlusImage {
+  width: 24px;
+}
+
 .addTaskButton {
   display: flex;
   justify-content: space-between;
-
 }
 
 .addTaskRequiredInfo {
@@ -543,13 +669,120 @@ height: 24px;
   padding: 16px;
   font-size: 21px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
 }
 
-.addTaskButtonCheckImage {
-width: 24px;
-height: 24px;
+.createTaskButton:hover {
+  cursor: pointer;
+  background-color: #29abe2;
 }
 
-/* Contacts.html Styling below:-------------------------------------------------------------------- */
+.addTaskButtonCheckImage {
+  width: 24px;
+  height: 24px;
+}
+
+/* helpPage.html Styling below:-------------------------------------------------------------------- */
+
+.helpPageSection {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px 16px 24px 16px;
+}
+
+.h1HelpBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.h1Help {
+  font-weight: 700;
+  font-size: 47px;
+}
+
+.h2Help {
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.h3Help {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.imageH1HelpBox {
+  width: 32px;
+  height: 32px;
+}
+
+.imageH1HelpBox:hover {
+  cursor: pointer;
+}
+
+.helpPageBlueJoin {
+  color: #29abe2;
+}
+
+.helpPageHowToUseNumbers {
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.helpPageGuideBoxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+/* privacyPolicy.html Styling below:-------------------------------------------------------------------- */
+
+.privacyPolicySection {
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px 16px 24px 16px;
+}
+
+.h1PrivacyPolicyBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.h1PrivacyPolicy {
+  font-weight: 700;
+  font-size: 47px;
+}
+
+.h2PrivacyPolicy {
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.imageH1PrivacyPolicyBox {
+  width: 32px;
+  height: 32px;
+}
+
+.imageH1privacyPolicyBox:hover {
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}
+
+.addTaskDropDownSingleUserContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addTaskDropDownSingleUserContainer:hover {
+  background-color: #d1d1d1;
+  cursor: pointer;
+}
+
+.displayNone {
+  display: none;
+}
