@@ -174,9 +174,10 @@ function loadFullNameList() {
   for (let i = 0; i < sortedUsers.length; i++) {
     dropdown.innerHTML += /*html*/ `
     <div onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
+      <div class="addTaskAllUserInitials">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
-        <div class="addTaskAllUserInitials">${allUserInitials[i]}</div>
+      
       </div>
       <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/buttonChecked.png" alt="">
@@ -220,6 +221,16 @@ function createUserInitials() {
     let initials = nameParts.map((part) => part.charAt(0)).join("");
     allUserInitials.push(initials);
   }
+}
+
+
+function addTaskChooseCategory() {
+
+}
+
+
+function addTaskAddSubtask() {
+
 }
 
 //links to other pages

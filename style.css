@@ -405,11 +405,6 @@ nav {
   font-size: 16px;
 }
 
-.addTaskTitle {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 .addTaskInputTitle {
   height: 40px;
@@ -426,11 +421,7 @@ nav {
   color: #d1d1d1;
 }
 
-.addTaskDescription {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 
 .addTaskInputDescription {
   height: 88px;
@@ -508,6 +499,17 @@ nav {
   border: none;
 }
 
+.addTaskDropDownSingleUserContainer {
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addTaskDropDownSingleUserContainer:hover {
+  background-color: #d1d1d1;
+}
+
 .addTaskContactsDropdownLabel {
   font-size: 16px;
 }
@@ -515,17 +517,19 @@ nav {
 .addTaskAddUserNameAndInitials {
   display: flex;
   width: 70%;
-  justify-content: space-between;
+  gap: 16px;
 }
 
 .addTaskAllUserInitials {
-  width: 24px;
+  width: 42px;
+  height: 42px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgb(138, 123, 207);
   color: #ffffff;
-  border-radius: 100%;
+  border-radius: 45px;
+  border: 2px rgb(255, 255, 255) solid;
   font-size: 10px;
 }
 
@@ -533,7 +537,7 @@ nav {
   width: 24px;
 }
 
-.addTaskDueDate {
+.addTaskSectionHeaderInputGap {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -548,11 +552,7 @@ nav {
   font-size: 16px;
 }
 
-.addTaskPrio {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 
 .addTaskPrioButtonBox {
   display: flex;
@@ -622,7 +622,7 @@ nav {
 
 .addTaskPrioButtonLowOnClick {
   color: #ffffff;
-  background-color: #517634;
+  background-color: #7AE229;
 }
 
 .addTaskPrioButtonImage {
@@ -640,6 +640,15 @@ nav {
 
 .addTaskPrioButtonLowIcon img {
   filter: brightness(10000%) saturate(0);
+}
+
+
+.addTaskNewSubtaskPlaceholder {
+  color: #d1d1d1;
+}
+
+.addTaskNewSubtaskPlusImage {
+  width: 24px;
 }
 
 .addTaskButton {
