@@ -529,11 +529,9 @@ nav {
   font-size: 10px;
 }
 
-
 .addTaskButtonCheckImage {
-width: 24px;
+  width: 24px;
 }
-
 
 .addTaskDueDate {
   display: flex;
@@ -624,7 +622,7 @@ width: 24px;
 
 .addTaskPrioButtonLowOnClick {
   color: #ffffff;
-  background-color: #7ae229;
+  background-color: #517634;
 }
 
 .addTaskPrioButtonImage {

@@ -10,8 +10,7 @@
   </head>
   <body onload="loadUserData()">
     <div class="joinWrapper">
-
-<!--header-->
+      <!--header-->
       <header>
         <img src="./images/icons/join_logo_black.png" alt="" />
         <div class="userProfile">
@@ -19,80 +18,73 @@
         </div>
       </header>
 
-<!--addTaskSection-->
-<div class="addTaskSection">
-    <div class="addTaskHeaderBox">
-        <div class="addTaskHeader">Add Task</div>
-    </div>
-
-    <form class="addTaskForm" action="">
-        <div class="addTaskTitle">
-            <div class="addTaskFormLabels">Title<span style="color: red;">*</span></div>
-            <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title">
+      <!--addTaskSection-->
+      <div class="addTaskSection">
+        <div class="addTaskHeaderBox">
+          <div class="addTaskHeader">Add Task</div>
         </div>
 
-        <div class="addTaskDescription">
+        <form class="addTaskForm" action="">
+          <div class="addTaskTitle">
+            <div class="addTaskFormLabels">Title<span style="color: red">*</span></div>
+            <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" />
+          </div>
+
+          <div class="addTaskDescription">
             <div class="addTaskFormLabels">Description</div>
             <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description"></textarea>
-        </div>
+          </div>
 
-
-
-
-        <div class="addTaskAddContacts">
-          <div class="addTaskFormLabels">Assigned to</div>
-
-
+          <div class="addTaskAddContacts">
+            <div class="addTaskFormLabels">Assigned to</div>
 
             <div onclick="addTaskOpenUserDropDown()" class="addTaskContactsDropdownLableBox">
               <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
                 <div>Select contacts to assign</div>
-                <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="">
+                <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
               </div>
               <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
-                <input onkeyup="filterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search..">
-                <img class="addTaskDropDownCloseButton" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="">
+                <input onkeyup="filterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
+                <img class="addTaskDropDownCloseButton" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
               </div>
-              <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent  displayNone"></div>
+              <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
             </div>
+          </div>
 
-        </div>
-     
+          <div class="addTaskDueDate">
+            <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
+            <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" />
+          </div>
 
-        <div class="addTaskDueDate">
-            <div  class="addTaskFormLabels">Due date<span style="color: red;">*</span></div>
-              <input id="taskDateInput" class="addTaskDueDateDropdown" type="date">
-        </div>
-
-        <div class="addTaskPrio">
+          <div class="addTaskPrio">
             <div class="addTaskFormLabels">Prio</div>
             <div class="addTaskPrioButtonBox">
-                <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
-                    <div>Urgent</div>
-                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.png" alt="">
-                </div>
-                <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
-                    <div>Medium</div>
-                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="">
-                </div>
-                <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
-                    <div>Low</div>
-                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.png" alt="">
-                </div>
+              <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
+                <div>Urgent</div>
+                <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.png" alt="" />
+              </div>
+              <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
+                <div>Medium</div>
+                <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="" />
+              </div>
+              <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
+                <div>Low</div>
+                <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.png" alt="" />
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="addTaskButton">
-            <div class="addTaskRequiredInfo"><span style="color: red;">*</span>This field is requiered</div>
+          <div class="addTaskButton">
+            <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
             <div onclick="postTaskData()" class="createTaskButton">
-                <div>Create Task</div>
-                <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="">
+              <div>Create Task</div>
+              <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="" />
             </div>
-        </div>
-    </form>
-</div>
+          </div>
+        </form>
+      </div>
 
-<!--Navbar-->
+      <!--Navbar-->
       <nav>
         <div id="summaryLink" class="navIconBox">
           <img src="./images/icons/Menu Icons.png" alt="" />
@@ -112,15 +104,5 @@
         </div>
       </nav>
     </div>
-
-
-
-
-
-
-
   </body>
 </html>
-
-
-
