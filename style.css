@@ -119,6 +119,11 @@ nav {
   margin: 0;
 }
 
+.img24px {
+width: 24px;
+height: 24px;
+}
+
 /* landingpage.html Styling below:-------------------------------------------------------------------- */
 
 .landingpageBox {
@@ -647,9 +652,6 @@ nav {
   color: #d1d1d1;
 }
 
-.addTaskNewSubtaskPlusImage {
-  width: 24px;
-}
 
 .addTaskButton {
   display: flex;
