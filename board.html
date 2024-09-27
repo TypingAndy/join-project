@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="loadAllTasks()">
     <div class="joinWrapper">
       <header>
         <img src="./images/icons/join_logo_black.png" alt="" />
@@ -31,7 +31,7 @@
               <p>To Do</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div class="toDoSectionContentWrapper">
+            <div id="toDoSectionContentWrapper" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
                 <p>No tasks to do</p>
               </div>
@@ -42,7 +42,7 @@
               <p>In progress</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div class="inProgressContentWrapper">
+            <div id="inProgressContentWrapper" class="inProgressContentWrapper">
               <div class="taskCard">
                 <div class="taskCardCategory">
                   <p>User Story</p>
@@ -92,7 +92,7 @@
               <p>Await feedback</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div class="awaitFeedbackContentWrapper">
+            <div id="awaitFeedbackContentWrapper" class="awaitFeedbackContentWrapper">
               <div class="taskCard">
                 <div class="taskCardCategory">
                   <p>User Story</p>
@@ -121,7 +121,7 @@
               <p>Done</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div class="doneContentWrapper">
+            <div id="doneContentWrapper" class="doneContentWrapper">
               <div class="taskCard">
                 <div class="taskCardCategory">
                   <p>User Story</p>

@@ -16,6 +16,17 @@ let passwordMatch = false;
 let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
+let categories = ['Cleaning', 'Company Outing', 'Cooking', 'Meetings', 'Others', 'Technical Task', 'User Story'];
+let subtasks = [];
+
+//boardGlobalArrays
+let convertedTasks = [];
+let allUnsortedTasks = [];
+let toDoTasks = [];
+let doneTasks = [];
+let inProgressTasks = [];
+let awaitFeedbackTasks = [];
+
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
   let nameInput = document.getElementById("signUpNameInput");
@@ -94,6 +105,7 @@ async function loadUserData(path = "users") {
   sortUsersByName(responseToJson);
   createUserInitials();
   loadFullNameList();
+
 }
 
 function sortUsersByName(userData) {
@@ -109,6 +121,98 @@ function sortUsersByName(userData) {
   });
 }
 
+//functions Board
+
+async function loadAllTasks(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json");
+  console.log(response);
+  
+  allUnsortedTasks = await response.json();
+  console.log(allUnsortedTasks);
+  convertUnsortedTasksToArray();
+
+
+
+  sortAllTasks();
+  renderTasks();
+}
+
+function sortAllTasks() {
+  toDoTasks = convertedTasks.filter(t => t.taskStatus == 'to do');
+  doneTasks = convertedTasks.filter(t => t.taskStatus == 'done');
+  inProgressTasks = convertedTasks.filter(t => t.taskStatus == 'work in progress');
+  awaitFeedbackTasks = convertedTasks.filter(t => t.taskStatus == 'await feedback');
+  console.log(toDoTasks);
+  
+}
+
+
+
+async function convertUnsortedTasksToArray() {
+
+    convertedTasks = Object.values(allUnsortedTasks);
+    console.log(convertedTasks);
+
+}
+
+
+function renderTasks() {
+  let inProgressElement = document.getElementById('inProgressContentWrapper');
+  let toDoElement = document.getElementById('inProgressContentWrapper');
+  let awaitFeedbackElement = document.getElementById('inProgressContentWrapper');
+  let doneElement = document.getElementById('inProgressContentWrapper');
+
+  inProgressElement.innerHTML = "";
+  toDoElement.innerHTML = "";
+  awaitFeedbackElement.innerHTML = "";
+  doneElement.innerHTML = "";
+
+  for (let i = 0; i < toDoTasks.length; i++) {
+    inProgressElement.innerHTML += /*html*/ `
+                  <div class="taskCard">
+                <div class="taskCardCategory">
+                  <p>User Story</p>
+                </div>
+                <p class="taskCardTitle">Kochwelt Page & Recipe Recommender</p>
+                <p class="taskCardDescription">Build start page with recipe recommendation...</p>
+                <div class="taskCardSubtasksContainer">
+                  <div class="taskCardSubtaskBarWrapper">
+                    <div class="taskCardSubtaskBar"></div>
+                  </div>
+                  <p>1/2 Subtasks</p>
+                </div>
+                <div class="taskCardBottomContainer">
+                  <div class="taskCardUserContainer">
+                    <div class="taskCardUser"><p>AB</p></div>
+                    <div class="taskCardUser"><p>AB</p></div>
+                    <div class="taskCardUser"><p>AB</p></div>
+                  </div>
+                  <img src="./images/icons/prio_high_icon.png" alt="" />
+                </div>
+              </div>
+    `
+    
+  }
+  
+}
+
+// async function filterUnsortedTask() {
+//   for (let i = 0; i < convertedTasks.length; i++) {
+//     convertedTasks[i].taskStatus.filter(task => {
+//     return task.status === 'to do'; 
+//     });
+//   }
+// };
+
+  // const gefilterteAufgaben = convertedTasks.filter(task => {
+  //   // Bedingung, die du zum Filtern verwenden möchtest
+  //   return task.status === 'unsorted'; // Beispielbedingung
+  // });
+
+//   // Mach etwas mit den gefilterten Aufgaben
+//   console.log(gefilterteAufgaben);
+// }
+
 //functions addTask---------------------------------------------------------------------
 
 function getNewTaskInputData() {
@@ -122,6 +226,7 @@ function getNewTaskInputData() {
     taskAssignedUser: addTaskCurrentUser,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
+    taskStatus: 'to do'
   };
   return createTaskData;
 }
@@ -181,7 +286,6 @@ function loadFullNameList() {
       </div>
       <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/buttonChecked.png" alt="">
-
     </div>`;
   }
 }
@@ -224,9 +328,18 @@ function createUserInitials() {
 }
 
 
-function addTaskChooseCategory() {
+function addTaskChooseCategoryDropdown() {
 
+  let categoryDropdown = document.getElementById("categoryListDropDown");
+  categoryDropdown.innerHTML = "";
+
+  for (let i = 0; i < categories.length; i++) {
+   categoryDropdown += `${categories[i]}`
+    
+  }
+  console.log(categoryDropdown);
 }
+
 
 
 function addTaskAddSubtask() {
