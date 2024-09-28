@@ -43,9 +43,9 @@
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Assigned to</div>
 
-            <div onclick="addTaskOpenUserDropDown()" class="addTaskContactsDropdownLableBox">
+            <div onclick="addTaskOpenUserDropDown()" id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
               <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
-                <div>Select contacts to assign</div>
+                <div class="fontInboxAlign">Select contacts to assign</div>
                 <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
               </div>
               <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
@@ -91,12 +91,12 @@
         <div class="addTaskSectionHeaderInputGap">
           <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
 
-          <div onclick="addTaskChooseCategoryDropdown()" class="addTaskContactsDropdownLableBox">
-            <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
-              <div>Select task category</div>
+          <div onclick="addTaskOpenCloseCategoryDropDown()" id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
+            <div id="addTaskChooseCategoryButton"  class="addTaskChooseCategoryButton">
+              <div class="fontInboxAlign">Select task category</div>
               <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
             </div>
-            <div id="categoryListDropDown">test</div>
+            <div  id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
 
           </div>
         </div>
