@@ -6,17 +6,18 @@ let responseToJson;
 let sortedUsers = [];
 let allUserInitials = [];
 let allUserColors = [];
-let userColorsPreset = ['#FF7A00', '#FF5EB3','#6E52FF','#9327FF','#00BEE8','#1FD7C1','#FF745E','#FFA35E','#FC71FF','#FFC701','#0038FF','#C3FF2B','#FFE62B','#FF4646','#FFBB2B'];
+let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 
 let policyAccepted = false;
 let passwordMatch = false;
-// let userData = {};
+
+let chosenCategory = "";
 
 //addTaskGlobalArrays
 let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
-let categories = ['Cleaning', 'Company Outing', 'Cooking', 'Meetings', 'Others', 'Technical Task', 'User Story'];
+let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
 
 //boardGlobalArrays
@@ -26,7 +27,6 @@ let toDoTasks = [];
 let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
-
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
   let nameInput = document.getElementById("signUpNameInput");
@@ -105,7 +105,7 @@ async function loadUserData(path = "users") {
   sortUsersByName(responseToJson);
   createUserInitials();
   loadFullNameList();
-
+  addTaskRenderCategoryDropdown();
 }
 
 function sortUsersByName(userData) {
@@ -126,41 +126,32 @@ function sortUsersByName(userData) {
 async function loadAllTasks(path = "tasks") {
   let response = await fetch(BASE_URL + path + ".json");
   console.log(response);
-  
+
   allUnsortedTasks = await response.json();
   console.log(allUnsortedTasks);
   convertUnsortedTasksToArray();
-
-
-
   sortAllTasks();
   renderTasks();
 }
 
 function sortAllTasks() {
-  toDoTasks = convertedTasks.filter(t => t.taskStatus == 'to do');
-  doneTasks = convertedTasks.filter(t => t.taskStatus == 'done');
-  inProgressTasks = convertedTasks.filter(t => t.taskStatus == 'work in progress');
-  awaitFeedbackTasks = convertedTasks.filter(t => t.taskStatus == 'await feedback');
+  toDoTasks = convertedTasks.filter((t) => t.taskStatus == "to do");
+  doneTasks = convertedTasks.filter((t) => t.taskStatus == "done");
+  inProgressTasks = convertedTasks.filter((t) => t.taskStatus == "work in progress");
+  awaitFeedbackTasks = convertedTasks.filter((t) => t.taskStatus == "await feedback");
   console.log(toDoTasks);
-  
 }
-
-
 
 async function convertUnsortedTasksToArray() {
-
-    convertedTasks = Object.values(allUnsortedTasks);
-    console.log(convertedTasks);
-
+  convertedTasks = Object.values(allUnsortedTasks);
+  console.log(convertedTasks);
 }
 
-
 function renderTasks() {
-  let inProgressElement = document.getElementById('inProgressContentWrapper');
-  let toDoElement = document.getElementById('inProgressContentWrapper');
-  let awaitFeedbackElement = document.getElementById('inProgressContentWrapper');
-  let doneElement = document.getElementById('inProgressContentWrapper');
+  let inProgressElement = document.getElementById("inProgressContentWrapper");
+  let toDoElement = document.getElementById("inProgressContentWrapper");
+  let awaitFeedbackElement = document.getElementById("inProgressContentWrapper");
+  let doneElement = document.getElementById("inProgressContentWrapper");
 
   inProgressElement.innerHTML = "";
   toDoElement.innerHTML = "";
@@ -190,28 +181,9 @@ function renderTasks() {
                   <img src="./images/icons/prio_high_icon.png" alt="" />
                 </div>
               </div>
-    `
-    
+    `;
   }
-  
 }
-
-// async function filterUnsortedTask() {
-//   for (let i = 0; i < convertedTasks.length; i++) {
-//     convertedTasks[i].taskStatus.filter(task => {
-//     return task.status === 'to do'; 
-//     });
-//   }
-// };
-
-  // const gefilterteAufgaben = convertedTasks.filter(task => {
-  //   // Bedingung, die du zum Filtern verwenden möchtest
-  //   return task.status === 'unsorted'; // Beispielbedingung
-  // });
-
-//   // Mach etwas mit den gefilterten Aufgaben
-//   console.log(gefilterteAufgaben);
-// }
 
 //functions addTask---------------------------------------------------------------------
 
@@ -226,7 +198,8 @@ function getNewTaskInputData() {
     taskAssignedUser: addTaskCurrentUser,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
-    taskStatus: 'to do'
+    taskStatus: "to do",
+    taskCategory: chosenCategory,
   };
   return createTaskData;
 }
@@ -300,8 +273,6 @@ function addUserToTask(name, i) {
     }
   }
 
-  console.log(addTaskCurrentUser);
-
   document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
   document.getElementById(`check${i}`).classList.toggle("displayNone");
 }
@@ -311,6 +282,8 @@ function addTaskOpenUserDropDown() {
   document.getElementById("userNameDropDown").classList.toggle("displayNone");
   document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
+  document.getElementById("addTaskContactsDropdownLableBox").classList.toggle("addTaskContactsDropdownLableBoxClosed");
+  document.getElementById("addTaskContactsDropdownLableBox").classList.toggle("addTaskContactsDropdownLableBoxOpen");
 }
 
 function stopPropagation(event) {
@@ -327,24 +300,34 @@ function createUserInitials() {
   }
 }
 
-
-function addTaskChooseCategoryDropdown() {
-
-  let categoryDropdown = document.getElementById("categoryListDropDown");
+function addTaskRenderCategoryDropdown() {
+  let categoryDropdown = document.getElementById("categoryDropDown");
   categoryDropdown.innerHTML = "";
 
   for (let i = 0; i < categories.length; i++) {
-   categoryDropdown += `${categories[i]}`
-    
+    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
   }
-  console.log(categoryDropdown);
 }
 
-
-
-function addTaskAddSubtask() {
-
+function chooseCategory(i) {
+  chosenCategory = i;
+  document.getElementById("addTaskChooseCategoryButton").innerHTML = /*html*/ `
+    <div id="addTaskChooseCategoryButton"  class="addTaskChooseCategoryButton">
+      <div class="fontInboxAlign">${chosenCategory}</div>
+      <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+    </div>
+    `;
+  console.log(chosenCategory);
 }
+
+function addTaskOpenCloseCategoryDropDown() {
+  document.getElementById("categoryDropDown").classList.toggle("show");
+  document.getElementById("categoryDropDown").classList.toggle("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownLableBox").classList.toggle("addTaskChooseCategoryDropdownLableBoxOpen");
+  document.getElementById("addTaskChooseCategoryDropdownLableBox").classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function addTaskAddSubtask() {}
 
 //links to other pages
 
@@ -356,5 +339,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
-

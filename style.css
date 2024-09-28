@@ -65,7 +65,6 @@ header img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* height: calc(100vh - 80px); */
   background-color: rgba(246, 247, 248, 1);
 }
 
@@ -119,9 +118,38 @@ nav {
   margin: 0;
 }
 
+
+/*----------------------------- multi-usage */
+
+.addTaskSectionHeaderInputGap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input {
+  border: 2px solid #29abe2;
+  outline: none;
+}
+
+
+input:focus {
+
+  border: solid 2px #29abe2;
+}
+
+input:active {
+  border: solid 2px #29abe2;
+}
+
 .img24px {
-width: 24px;
-height: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.fontInboxAlign {
+  display: flex;
+  align-items: center;
 }
 
 /* landingpage.html Styling below:-------------------------------------------------------------------- */
@@ -374,9 +402,10 @@ height: 24px;
 
 /* AddTask.html Styling below:-------------------------------------------------------------------- */
 
+
+
 .addTaskSection {
   margin-top: 80px;
-
   gap: 8px;
   display: flex;
   flex-direction: column;
@@ -411,6 +440,9 @@ height: 24px;
 }
 
 
+
+/*----------------------------- add Task Title */
+
 .addTaskInputTitle {
   height: 40px;
   border-radius: 10px;
@@ -426,7 +458,7 @@ height: 24px;
   color: #d1d1d1;
 }
 
-
+/*----------------------------- add Task Description */
 
 .addTaskInputDescription {
   height: 88px;
@@ -445,6 +477,8 @@ height: 24px;
   font-weight: 400;
   color: #d1d1d1;
 }
+
+/*----------------------------- add Task AddContact */
 
 .addTaskAddContacts {
   display: flex;
@@ -465,7 +499,8 @@ height: 24px;
   width: 100%;
 }
 
-.addTaskContactsDropdownLableBox {
+.addTaskContactsDropdownLableBoxClosed {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -474,34 +509,71 @@ height: 24px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
-
   font-family: "Inter";
   font-size: 16px;
   cursor: pointer;
+  z-index: 80;
+}
+
+.addTaskContactsDropdownLableBoxOpen {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: #ffffff;
+  font-family: "Inter";
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 100;
 }
 
 .addTaskContactsDropdownLableBoxContent {
   width: 100%;
+  max-height: 280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   font-family: "Inter";
   font-size: 16px;
-  padding: 16px 0 0 0;
+  border-radius: 0px 0px 10px 10px;
+  border: solid 1px #d1d1d1;
+  border-top: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: 44px;
 }
+
+
 
 .dropDownSearchCloseButtonBox {
   width: 100%;
   display: flex;
   justify-content: space-between;
+
+}
+
+.addTaskDropDownCloseButton {
+  position: absolute;
+  left: 321px;
+  top: 8px
+
+
 }
 
 .userNameDropDownSearchbar {
-  width: 80%;
+  width: 100%;
   font-family: "Inter";
   font-size: 16px;
-  border: none;
+  /* background: url(images/mobile/addTaskMobile/arrowDropDownUp.png);
+  background-repeat: no-repeat;
+  background-position: 320px; */
+  padding: 10px 3px 10px 3px;
+  border-radius: 10px 10px 0 0;
+  border: solid 1px #d1d1d1;
+  padding-inline: 12px;
 }
 
 .addTaskDropDownSingleUserContainer {
@@ -509,6 +581,7 @@ height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px 12px;
 }
 
 .addTaskDropDownSingleUserContainer:hover {
@@ -542,22 +615,18 @@ height: 24px;
   width: 24px;
 }
 
-.addTaskSectionHeaderInputGap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+/* ------------------------- add Task Date */
 
 .addTaskDueDateDropdown {
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
-  padding: 8px 21px 8px 21px;
+  padding: 8px 16px 8px 12px;
   font-family: "Inter";
   font-size: 16px;
 }
 
-
+/* ------------------------- add Task Prio */
 
 .addTaskPrioButtonBox {
   display: flex;
@@ -627,7 +696,7 @@ height: 24px;
 
 .addTaskPrioButtonLowOnClick {
   color: #ffffff;
-  background-color: #7AE229;
+  background-color: #7ae229;
 }
 
 .addTaskPrioButtonImage {
@@ -647,11 +716,76 @@ height: 24px;
   filter: brightness(10000%) saturate(0);
 }
 
+/* ------------------------- add Task Category */
+
+.addTaskChooseCategoryButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.addTaskChooseCategoryDropdownLableBoxClosed {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 8px 12px 8px 12px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+  font-family: "Inter";
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.addTaskChooseCategoryDropdownLableBoxOpen {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 8px 12px 8px 12px;
+  border-radius: 10px 10px 0 0;
+  border: solid 1px #d1d1d1;
+  border-bottom: none;
+  background-color: #ffffff;
+  font-family: "Inter";
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.addTaskChooseCategoryDropdownLableBoxContent {
+  width: 100%;
+  max-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Inter";
+  font-size: 16px;
+  border-radius: 0px 0px 10px 10px;
+  border: solid 1px #d1d1d1;
+  border-top: none;
+  margin-top: 32px;
+  overflow-y: auto;
+}
+
+.categorieList {
+  padding: 16px 12px;
+}
+.categorieList:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+}
+
+/* ------------------------- add Task Subtask */
 
 .addTaskNewSubtaskPlaceholder {
   color: #d1d1d1;
 }
 
+/* ------------------------- add Task post Button */
 
 .addTaskButton {
   display: flex;
@@ -772,7 +906,9 @@ height: 24px;
 }
 
 .show {
+  position: absolute;
   display: block;
+  background-color: #ffffff;
 }
 
 .addTaskDropDownSingleUserContainer {
