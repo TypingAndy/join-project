@@ -35,11 +35,6 @@
             <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description"></textarea>
           </div>
 
-
-
-
-
-
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Assigned to</div>
 
@@ -55,14 +50,6 @@
               <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
             </div>
           </div>
-
-
-
-
-
-
-
-          
 
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
@@ -86,48 +73,43 @@
               </div>
             </div>
           </div>
-       
 
-        <div class="addTaskSectionHeaderInputGap">
-          <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
 
-          <div onclick="addTaskOpenCloseCategoryDropDown()" id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
-            <div id="addTaskChooseCategoryButton"  class="addTaskChooseCategoryButton">
-              <div class="fontInboxAlign">Select task category</div>
-              <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+          <div class="addTaskSectionHeaderInputGap">
+            <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
+
+            <div onclick="addTaskOpenCloseCategoryDropDown()" id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
+              <div id="addTaskChooseCategoryButton" class="addTaskChooseCategoryButton">
+                <div class="fontInboxAlign">Select task category</div>
+                <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+              </div>
+              <div id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
             </div>
-            <div  id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
+          </div>
+
+
+          <div class="addTaskSectionHeaderInputGap">
+            <div class="addTaskFormLabels">Subtasks</div>
+
+            <div id="addSubtask" onclick="addTaskOpenAddSubtask()" class="addTaskSubtaskDropdownBox">
+              <input class="addTaskSubtaskInputCover fontInboxAlign" type="text" placeholder="Add new subtask" />
+              <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
+            </div>
+
+            <div id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
+              <div class="addTaskSubtaskInput">
+                <input id="addSubtaskInput" class="addTaskSubtaskInputField" />
+              </div>
+
+              <div class="addTaskSubtaskCheckXBox">
+                <img onclick="addTaskAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="images/mobile/addTaskMobile/xBlack.png" alt="" />
+                <img onclick="addTaskAddSubtask()" class="addTaskSubtaskCheck img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="" />
+              </div>
+            </div>
+
+<div id="subtaskBoard">SubtaskBoard</div>
 
           </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-        <div class="addTaskSectionHeaderInputGap">
-          <div class="addTaskFormLabels">Subtasks</div>
-
-          <div onclick="addTaskAddSubtask()" class="addTaskContactsDropdownLableBox">
-            <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
-              <div class="addTaskNewSubtaskPlaceholder">Add new subtask</div>
-              <img class="img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
-            </div>
-            <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
-              <img class="img24px" src="images/mobile/addTaskMobile/xBlack.png" alt="" />
-              <img class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="" />
-            </div>
-            <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
-          </div>
-        </div>
-
-
-
 
 
           <div class="addTaskButton">
@@ -139,7 +121,7 @@
           </div>
         </form>
       </div>
-  
+
       <!--Navbar-->
       <nav>
         <div id="summaryLink" class="navIconBox">
