@@ -200,6 +200,7 @@ function getNewTaskInputData() {
     taskPrio: taskPrioInput,
     taskStatus: "to do",
     taskCategory: chosenCategory,
+    taskSubtasks: subtasks,
   };
   return createTaskData;
 }
@@ -251,7 +252,7 @@ function loadFullNameList() {
 
   for (let i = 0; i < sortedUsers.length; i++) {
     dropdown.innerHTML += /*html*/ `
-    <div onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
+    <div id="addTaskAssignUserId${i}" onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
       <div class="addTaskAllUserInitials">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
@@ -275,6 +276,7 @@ function addUserToTask(name, i) {
 
   document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
   document.getElementById(`check${i}`).classList.toggle("displayNone");
+
 }
 
 function addTaskOpenUserDropDown() {
@@ -327,7 +329,52 @@ function addTaskOpenCloseCategoryDropDown() {
   document.getElementById("addTaskChooseCategoryDropdownLableBox").classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
 }
 
-function addTaskAddSubtask() {}
+
+
+
+function addTaskOpenAddSubtask () {
+  let inputBox = document.getElementById('addSubtaskInputBox');
+  let inputField = document.getElementById('addSubtaskInput');
+  let addSubtask = document.getElementById("addSubtask");
+
+  addSubtask.classList.add("displayNone");
+  inputBox.classList.remove("displayNone");
+  inputBox.classList.remove('displayNone');
+  inputField.focus(); 
+}
+
+
+function addTaskAddSubtaskCancel() {
+  document.getElementById('addSubtaskInput').value = "";
+  document.getElementById("addSubtask").classList.remove("displayNone");
+  document.getElementById("addSubtaskInputBox").classList.add("displayNone");
+}
+
+function addTaskAddSubtask() {
+  let subtaskInput = document.getElementById('addSubtaskInput');
+  subtasks.push(subtaskInput.value);
+  subtaskInput.value = "";
+  document.getElementById("addSubtask").classList.remove("displayNone");
+  document.getElementById("addSubtaskInputBox").classList.add("displayNone");
+  addTaskWriteSubtaskBoard ();
+
+
+}
+
+function addTaskWriteSubtaskBoard () {
+  let subtaskBoard = document.getElementById('subtaskBoard');
+  subtaskBoard.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+
+
+    subtaskBoard.innerHTML += /*html*/ `
+    <div>${subtasks[i]}</div>
+    `
+    
+  }
+}
+
+
 
 //links to other pages
 
