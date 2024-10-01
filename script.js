@@ -18,7 +18,7 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
-let subtasks = [];
+let subtasks = ["Cleaning","Cleaning","Cleaning",];
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -276,7 +276,6 @@ function addUserToTask(name, i) {
 
   document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
   document.getElementById(`check${i}`).classList.toggle("displayNone");
-
 }
 
 function addTaskOpenUserDropDown() {
@@ -314,10 +313,8 @@ function addTaskRenderCategoryDropdown() {
 function chooseCategory(i) {
   chosenCategory = i;
   document.getElementById("addTaskChooseCategoryButton").innerHTML = /*html*/ `
-    <div id="addTaskChooseCategoryButton"  class="addTaskChooseCategoryButton">
       <div class="fontInboxAlign">${chosenCategory}</div>
       <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
-    </div>
     `;
   console.log(chosenCategory);
 }
@@ -329,49 +326,64 @@ function addTaskOpenCloseCategoryDropDown() {
   document.getElementById("addTaskChooseCategoryDropdownLableBox").classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
 }
 
-
-
-
-function addTaskOpenAddSubtask () {
-  let inputBox = document.getElementById('addSubtaskInputBox');
-  let inputField = document.getElementById('addSubtaskInput');
+function addTaskOpenAddSubtask() {
+  let inputBox = document.getElementById("addSubtaskInputBox");
+  let inputField = document.getElementById("addSubtaskInput");
   let addSubtask = document.getElementById("addSubtask");
 
   addSubtask.classList.add("displayNone");
   inputBox.classList.remove("displayNone");
-  inputBox.classList.remove('displayNone');
-  inputField.focus(); 
+  inputBox.classList.remove("displayNone");
+  inputField.focus();
 }
 
-
 function addTaskAddSubtaskCancel() {
-  document.getElementById('addSubtaskInput').value = "";
+  document.getElementById("addSubtaskInput").value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
 }
 
 function addTaskAddSubtask() {
-  let subtaskInput = document.getElementById('addSubtaskInput');
+  let subtaskInput = document.getElementById("addSubtaskInput");
   subtasks.push(subtaskInput.value);
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
-  addTaskWriteSubtaskBoard ();
+  addTaskWriteSubtaskBoard();
+}
+
+function addTaskWriteSubtaskBoard() {
+  let subtaskBoard = document.getElementById("subtaskBoard");
+  subtaskBoard.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    subtaskBoard.innerHTML += /*html*/ `
+    <li class="addTaskSingleListSubtask">
+      <input id="taskBoardRewriteSubtaskInput${[i]}" class="taskBoardRewriteSubtaskInput displayNone" type="text">
+      <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
+        <div>${subtasks[i]}</div>
+        <div class="addTaskSubtaskIconBox">
+          <img onclick="addTaskRewriteSubtask(${i})" class="addTaskSubtaskRewirteIcons" src="images/mobile/addTaskMobile/pencilBlack.png">
+          <div class="addTaskSubtaskDividingLine"></div>
+          <img onclick="addTaskDeleteSubtaskFromBoard(${i})" class="addTaskSubtaskRewirteIcons" src="images/mobile/addTaskMobile/trashcanBlack.png">
+        </div>
+      </div>
+    </li>
+    `;
+  }
+}
+
+function addTaskRewriteSubtask(i){
+let subtask = subtasks[i];
+document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).value = subtask;
+document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).classList.toggle('displayNone');
+document.getElementById(`addTasksSubtask${[i]}`).classList.toggle('displayNone');
 
 
 }
 
-function addTaskWriteSubtaskBoard () {
-  let subtaskBoard = document.getElementById('subtaskBoard');
-  subtaskBoard.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-
-
-    subtaskBoard.innerHTML += /*html*/ `
-    <div>${subtasks[i]}</div>
-    `
-    
-  }
+function addTaskDeleteSubtaskFromBoard(i) {
+  subtasks.splice(i, 1);
+  addTaskWriteSubtaskBoard();
 }
 
 

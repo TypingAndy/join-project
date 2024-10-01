@@ -35,7 +35,7 @@ header {
   height: 80px;
   top: 0;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  z-index: 202;
 }
 
 header img {
@@ -134,12 +134,10 @@ input {
 
 input:focus {
   border: solid 2px #29abe2;
-  border-right: none;
 }
 
 input:active {
   border: solid 2px #29abe2;
-  border-right: none;
 }
 
 textarea {
@@ -461,7 +459,7 @@ textarea:active {
 /*----------------------------- add Task Title */
 
 .addTaskInputTitle {
-  height: 40px;
+  height: 48px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   padding-left: 12px;
@@ -471,7 +469,6 @@ textarea:active {
 .addTaskInputTitle::placeholder {
   font-size: 16px;
   font-weight: 400;
-
   color: #d1d1d1;
 }
 
@@ -514,15 +511,17 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-top: 12px;
 }
 
 .addTaskContactsDropdownLableBoxClosed {
+  height: 48px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 8px 12px 8px 12px;
+  padding: 0px 12px 0px 12px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
@@ -654,10 +653,11 @@ textarea:active {
 /* ------------------------- add Task Date */
 
 .addTaskDueDateDropdown {
+  height: 48px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
-  padding: 8px 16px 8px 12px;
+  padding: 0px 16px 0px 12px;
   font-family: "Inter";
   font-size: 16px;
 }
@@ -758,15 +758,17 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-top: 12px;
 }
 
 .addTaskChooseCategoryDropdownLableBoxClosed {
+  height: 48px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 8px 12px 8px 12px;
+  padding: 0px 12px 0px 12px;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
@@ -776,12 +778,13 @@ textarea:active {
 }
 
 .addTaskChooseCategoryDropdownLableBoxOpen {
+  height: 48px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 8px 12px 8px 12px;
+  padding: 0px 12px 0px 12px;
   border-radius: 10px 10px 0 0;
   border: solid 1px #d1d1d1;
   border-bottom: none;
@@ -803,8 +806,9 @@ textarea:active {
   border-radius: 0px 0px 10px 10px;
   border: solid 1px #d1d1d1;
   border-top: none;
-  margin-top: 32px;
+  margin-top: 48px;
   overflow-y: auto;
+  z-index: 120;
 }
 
 .categorieList {
@@ -818,6 +822,7 @@ textarea:active {
 /* ------------------------- add Task Subtask */
 
 .addTaskSubtaskDropdownBox {
+  height: 48px;
   position: relative;
   padding: 4px 0;
   display: flex;
@@ -840,7 +845,7 @@ textarea:active {
 .addTaskSubtaskPlusImage {
   position: absolute;
   right: 14px;
-  top: 8px;
+  top: 12px;
 }
 
 .addTaskSubtaskInputBox {
@@ -848,7 +853,7 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
+  height: 48px;
   width: 100%;
 }
 
@@ -868,6 +873,15 @@ textarea:active {
   font-family: "Inter";
   font-size: 16px;
   padding: 0 12px;
+  z-index: 50;
+}
+
+.addTaskSubtaskInputField:focus {
+  border-right: none;
+}
+
+.addTaskSubtaskInputField:active {
+  border-right: none;
 }
 
 .addTaskSubtaskCheckXBox {
@@ -875,9 +889,7 @@ textarea:active {
   justify-content: right;
   padding-right: 12px;
   align-items: center;
-
   gap: 8px;
-
   border-radius: 0px 10px 10px 0px;
   border: #29abe2 2px solid;
   border-left: none;
@@ -885,6 +897,39 @@ textarea:active {
   width: 20%;
   height: 100%;
   box-sizing: border-box;
+}
+
+.addTaskSubtaskRewirteIcons {
+  width: 24px;
+  height: 24px;
+}
+
+.addTaskSingleListSubtask {
+  height: 48px;
+}
+
+.addTaskDisplayFlexer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addTaskSubtaskIconBox {
+  display: flex;
+  gap: 4px;
+  padding-right: 14px;
+}
+
+.addTaskSubtaskDividingLine {
+  border: 1px solid #a8a8a8;
+  height: 24px;
+}
+
+.taskBoardRewriteSubtaskInput {
+  height: 48px;
+  font-size: 16px;
+  border-top: none;
+  border-left: none;
+  border-bottom: #29abe2 solid 1px;
 }
 
 /* ------------------------- add Task post Button */
