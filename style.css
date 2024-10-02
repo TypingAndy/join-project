@@ -274,10 +274,6 @@ textarea:active {
   color: rgba(42, 54, 71, 1);
 }
 
-.addTaskPlusIconSmall {
-  height: 30px;
-}
-
 .toDoSectionContentWrapper {
   display: flex;
   flex-direction: column;
@@ -440,7 +436,6 @@ textarea:active {
 
 .addTaskHeader {
   top: 48px;
-  left: 16px;
   position: absolute;
 }
 
@@ -558,7 +553,7 @@ textarea:active {
   border-top: none;
   overflow-y: auto;
   box-sizing: border-box;
-  margin-top: 44px;
+  margin-top: 52px;
 }
 
 .dropDownSearchCloseButtonBox {
@@ -597,15 +592,16 @@ textarea:active {
 
 .addTaskDropDownCloseButton {
   position: absolute;
-  right: 12px;
-  top: 8px;
+  right: 13px;
+  top: 12px;
 }
 
 .userNameDropDownSearchbar {
+  height: 48px;
   width: 100%;
   font-family: "Inter";
   font-size: 16px;
-  padding: 10px 3px 10px 3px;
+  padding: 0px 3px 0px 3px;
   border-radius: 10px 10px 0 0;
   border: solid 1px #d1d1d1;
   padding-inline: 12px;
@@ -639,8 +635,6 @@ textarea:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(138, 123, 207);
-  color: #ffffff;
   border-radius: 45px;
   border: 2px rgb(255, 255, 255) solid;
   font-size: 10px;
@@ -657,6 +651,7 @@ textarea:active {
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
+  box-sizing: border-box;
   padding: 0px 16px 0px 12px;
   font-family: "Inter";
   font-size: 16px;
@@ -820,6 +815,9 @@ textarea:active {
 }
 
 /* ------------------------- add Task Subtask */
+.addTaskPlusIconSmall {
+  height: 30px;
+}
 
 .addTaskSubtaskDropdownBox {
   height: 48px;
@@ -899,18 +897,20 @@ textarea:active {
   box-sizing: border-box;
 }
 
-.addTaskSubtaskRewirteIcons {
-  width: 24px;
-  height: 24px;
-}
+
 
 .addTaskSingleListSubtask {
   height: 48px;
+
+
 }
 
 .addTaskDisplayFlexer {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .addTaskSubtaskIconBox {
@@ -930,7 +930,17 @@ textarea:active {
   border-top: none;
   border-left: none;
   border-bottom: #29abe2 solid 1px;
+  padding: 0;
 }
+
+.addTaskRewriteSubtaskFlex {
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+}
+
+
 
 /* ------------------------- add Task post Button */
 

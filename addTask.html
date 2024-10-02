@@ -44,13 +44,12 @@
                 <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
               </div>
               <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
-                <input onkeyup="filterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
+                <input id="addTaskContactsSearchArea" onkeyup="filterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
                 <img class="addTaskDropDownCloseButton" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
               </div>
               <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
             </div>
           </div>
-
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
             <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" />
