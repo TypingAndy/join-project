@@ -5,9 +5,8 @@ let signUpData = {};
 let responseToJson;
 let sortedUsers = [];
 let allUserInitials = [];
-let allUserColors = [];
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
-
+let userColors = [];
 let policyAccepted = false;
 let passwordMatch = false;
 
@@ -18,7 +17,7 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
-let subtasks = ["Cleaning","Cleaning","Cleaning",];
+let subtasks = ["Cooking", "Cleaning", "Ironing"];
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -29,13 +28,23 @@ let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
+ 
   let nameInput = document.getElementById("signUpNameInput");
   let mailInput = document.getElementById("signUpMailInput");
   let passwordInput = document.getElementById("signUpPasswordInput");
+  let userColor = signUpAddColorToUser();
   confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
-  signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value };
-  return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
+  signUpData = {name: nameInput.value, email: mailInput.value, password: passwordInput.value, color:userColor};
+  return {signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput};
 }
+
+function signUpAddColorToUser() {
+  let randomNumber = Math.floor(Math.random() * 15);
+  let userColor = userColorsPreset[randomNumber];
+  return userColor;
+}
+
+ 
 
 async function postSignUpData() {
   let { signUpData, confirmPasswordInput } = getSignUpInputData();
@@ -101,9 +110,10 @@ function acceptPrivacyPolicyCheck() {
 async function loadUserData(path = "users") {
   let response = await fetch(BASE_URL + path + ".json");
   responseToJson = await response.json();
-  // userData = { users: responseToJson };
-  sortUsersByName(responseToJson);
-  createUserInitials();
+   sortUsersByName(responseToJson);
+   createUserInitials();
+   
+   
   loadFullNameList();
   addTaskRenderCategoryDropdown();
 }
@@ -246,14 +256,19 @@ function setTaskPrioButtonColorSwitch(priority) {
   }
 }
 
+function addTaskGetColorFromUser(i) {
+ return sortedUsers[i].color;
+}
+
 function loadFullNameList() {
   let dropdown = document.getElementById("userNameDropDown");
   dropdown.innerHTML = "";
 
   for (let i = 0; i < sortedUsers.length; i++) {
+    let currentColor = addTaskGetColorFromUser(i);
     dropdown.innerHTML += /*html*/ `
     <div id="addTaskAssignUserId${i}" onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
-      <div class="addTaskAllUserInitials">${allUserInitials[i]}</div>
+      <div class="addTaskAllUserInitials" style="background-color: ${currentColor};">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
       
@@ -279,12 +294,18 @@ function addUserToTask(name, i) {
 }
 
 function addTaskOpenUserDropDown() {
-  document.getElementById("userNameDropDown").classList.toggle("show");
-  document.getElementById("userNameDropDown").classList.toggle("displayNone");
+  let userNameDropDown = document.getElementById("userNameDropDown");
+  let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+
+  userNameDropDown.classList.toggle("show");
+  userNameDropDown.classList.toggle("displayNone");
   document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-  document.getElementById("addTaskContactsDropdownLableBox").classList.toggle("addTaskContactsDropdownLableBoxClosed");
-  document.getElementById("addTaskContactsDropdownLableBox").classList.toggle("addTaskContactsDropdownLableBoxOpen");
+  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
+  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
+
+  inputField.focus();
 }
 
 function stopPropagation(event) {
@@ -316,7 +337,6 @@ function chooseCategory(i) {
       <div class="fontInboxAlign">${chosenCategory}</div>
       <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
     `;
-  console.log(chosenCategory);
 }
 
 function addTaskOpenCloseCategoryDropDown() {
@@ -358,13 +378,20 @@ function addTaskWriteSubtaskBoard() {
   for (let i = 0; i < subtasks.length; i++) {
     subtaskBoard.innerHTML += /*html*/ `
     <li class="addTaskSingleListSubtask">
-      <input id="taskBoardRewriteSubtaskInput${[i]}" class="taskBoardRewriteSubtaskInput displayNone" type="text">
+      <div id="taskBoardRewriteSubtaskInput${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
+        <input id="addTaskSubtaskRewriteInput${i}" class="taskBoardRewriteSubtaskInput" type="text">
+        <div class="addTaskSubtaskIconBox">
+          <img onclick="addTaskCancelRewriting(${i})" id="addTaskCancelRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
+          <div class="addTaskSubtaskDividingLine"></div>
+          <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="">
+        </div>
+      </div>
       <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
         <div>${subtasks[i]}</div>
         <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskRewriteSubtask(${i})" class="addTaskSubtaskRewirteIcons" src="images/mobile/addTaskMobile/pencilBlack.png">
+          <img onclick="addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
           <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskDeleteSubtaskFromBoard(${i})" class="addTaskSubtaskRewirteIcons" src="images/mobile/addTaskMobile/trashcanBlack.png">
+          <img onclick="addTaskDeleteSubtaskFromBoard(${i})" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png">
         </div>
       </div>
     </li>
@@ -372,13 +399,14 @@ function addTaskWriteSubtaskBoard() {
   }
 }
 
-function addTaskRewriteSubtask(i){
-let subtask = subtasks[i];
-document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).value = subtask;
-document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).classList.toggle('displayNone');
-document.getElementById(`addTasksSubtask${[i]}`).classList.toggle('displayNone');
-
-
+function addTaskRewriteSubtask(i) {
+  let subtask = subtasks[i];
+  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+  document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).value = subtask;
+  document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).classList.toggle("displayNone");
+  document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
+  rewriteInput.value = subtasks[i];
+  rewriteInput.focus();
 }
 
 function addTaskDeleteSubtaskFromBoard(i) {
@@ -386,7 +414,19 @@ function addTaskDeleteSubtaskFromBoard(i) {
   addTaskWriteSubtaskBoard();
 }
 
+function addTaskCancelRewriting(i) {
+ let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+ rewriteInput.value = subtasks[i];
+ rewriteInput.focus();
+}
 
+function addTaskAcceptRewriting(i) {
+  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+  subtasks.splice(i, 1, rewriteInput.value);
+  document.getElementById(`taskBoardRewriteSubtaskInput${[i]}`).classList.toggle("displayNone");
+  document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
+  addTaskWriteSubtaskBoard();
+}
 
 //links to other pages
 
