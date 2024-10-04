@@ -1,0 +1,59 @@
+.alphabetCategory{
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.1);
+    padding-top:17px;
+    padding-left: 50px;
+    padding-bottom: 17px;
+    gap: 8px;
+}
+.contactsBox{
+    display: flex;
+    flex-direction: column;
+}
+.contactsBox2{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contactsDiv{
+    display: flex;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 36px;
+    gap: 35px;
+}
+.ContactMainSection {
+    margin-top: 80px;
+    padding-bottom: 80px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* height: calc(100vh - 80px); */
+    background-color: rgba(246, 247, 248, 1);
+  }
+  .ContactMainSection2 {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .addContactIcon{
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .assignContactColors {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 45px;
+    border: 2px rgb(255, 255, 255) solid;
+    font-size: 10px;
+  }
