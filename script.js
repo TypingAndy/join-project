@@ -277,7 +277,7 @@ function loadFullNameList() {
       
       </div>
       <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
-      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/buttonChecked.png" alt="">
+      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/checkButtonMobileSolvedWhite.png" alt="">
     </div>`;
   }
 }
