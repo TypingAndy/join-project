@@ -99,7 +99,6 @@ function loadAllContacts() {
     for (let i = 0; i < contacts.length; i++) {
       let firstLetter = contacts[i].name.charAt(0).toUpperCase();
   
-      // Hier die if-Bedingung hinzufügen
       if (contacts[i].name && contacts[i].email && contacts[i].phone) {
         if (!groupedContacts[firstLetter]) {
           groupedContacts[firstLetter] = [];
