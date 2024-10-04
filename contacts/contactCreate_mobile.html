@@ -12,6 +12,8 @@
     />
     <link rel="stylesheet" href="contact_mobile.css" />
     <link rel="stylesheet" href="/join-project/contacts/contact_mobile.css" />
+    <script src="/contacts/contact.js"></script>
+    <script src="script.js"></script>
   </head>
 
   <body>
@@ -37,18 +39,15 @@
         </div>
       </div>
       <div class="formDiv">
-        <form onsubmit="postContacts()">
+        <form onsubmit="addContact()">
           <div class="inputDiv">
-            <input id="name" type="text" placeholder="Name" required />
-            <input id="email" type="email" placeholder="Email" required />
-            <input id="phone" type="text" placeholder="Phone" required />
+            <input id="contactNameInput" type="text" placeholder="Name" required />
+            <input id="contactMailInput" type="email" placeholder="Email" required />
+            <input id="contactPhoneInput" type="text" placeholder="Phone" required />
           </div>
         </form>
         <div class="buttonDiv">
-          <!-- <button onclick="toggleAddNewContact()" class="button2">
-        Cancel <img src="/Views/img/cancel.png" alt="" style="width: 24px" />
-      </button> -->
-          <button class="button1">
+          <button onclick="addContact()" class="button1">
             Create contact
             <img src="/contacts/img/check.png" alt="" style="width: 24px" />
           </button>

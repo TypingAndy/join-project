@@ -45,3 +45,15 @@
     right: 20px;
     z-index: 1000;
   }
+
+  .assignContactColors {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 45px;
+    border: 2px rgb(255, 255, 255) solid;
+    font-size: 10px;
+  }
