@@ -1,26 +1,9 @@
-let BASE_URL =
-  "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
+let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
 let contactData = {};
 let responseToJson;
 let allContacts = [];
 let allContactsInitials = [];
-let userColorsPreset = [
-  "#FF7A00",
-  "#FF5EB3",
-  "#6E52FF",
-  "#9327FF",
-  "#00BEE8",
-  "#1FD7C1",
-  "#FF745E",
-  "#FFA35E",
-  "#FC71FF",
-  "#FFC701",
-  "#0038FF",
-  "#C3FF2B",
-  "#FFE62B",
-  "#FF4646",
-  "#FFBB2B",
-];
+let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let allContactsColors = [];
 let groupedContacts = {};
 
@@ -33,11 +16,10 @@ function init() {
 async function addContact() {
   let { contactData } = getContactInputData();
 
-if (!contactData.name || !contactData.email || !contactData.phone) {
-    return; 
+  if (!contactData.name || !contactData.email || !contactData.phone) {
+    return;
   }
-  
-  
+
   await fetch(BASE_URL + `contacts/.json`, {
     method: "POST",
     headers: {
@@ -60,7 +42,6 @@ function getContactInputData(contactData) {
   return { contactData, nameInput, mailInput, phoneInput };
 }
 
-
 async function loadContactData(path = "contacts") {
   let response = await fetch(BASE_URL + path + ".json");
   responseToJson = await response.json();
@@ -81,49 +62,43 @@ async function loadContactData(path = "contacts") {
 }
 
 function loadAllContacts() {
-    let allContactsList = document.getElementById("allContactsList");
-    allContactsList.innerHTML = "";
-  
-    let groupedContacts = groupContactsByInitial(allContacts);
-    let sortedLetters = Object.keys(groupedContacts).sort();
-  
-    sortedLetters.forEach((letter) => {
-      renderGroupedContacts(allContactsList, groupedContacts[letter], letter);
-    });
-  }
-  
+  let allContactsList = document.getElementById("allContactsList");
+  allContactsList.innerHTML = "";
 
-  function groupContactsByInitial(contacts) {
-    let groupedContacts = {};
-  
-    for (let i = 0; i < contacts.length; i++) {
-      let firstLetter = contacts[i].name.charAt(0).toUpperCase();
-  
-      if (contacts[i].name && contacts[i].email && contacts[i].phone) {
-        if (!groupedContacts[firstLetter]) {
-          groupedContacts[firstLetter] = [];
-        }
-  
-        groupedContacts[firstLetter].push(contacts[i]);
+  let groupedContacts = groupContactsByInitial(allContacts);
+  let sortedLetters = Object.keys(groupedContacts).sort();
+
+  sortedLetters.forEach((letter) => {
+    renderGroupedContacts(allContactsList, groupedContacts[letter], letter);
+  });
+}
+
+function groupContactsByInitial(contacts) {
+  let groupedContacts = {};
+
+  for (let i = 0; i < contacts.length; i++) {
+    let firstLetter = contacts[i].name.charAt(0).toUpperCase();
+
+    if (contacts[i].name && contacts[i].email && contacts[i].phone) {
+      if (!groupedContacts[firstLetter]) {
+        groupedContacts[firstLetter] = [];
       }
+
+      groupedContacts[firstLetter].push(contacts[i]);
     }
-  
-    return groupedContacts;
   }
-  
-  
+
+  return groupedContacts;
+}
 
 function renderGroupedContacts(allContactsList, contacts, letter) {
-
   addAlphabetCategory(allContactsList, letter);
-  
 
   contacts.forEach((contact) => {
     let index = allContacts.indexOf(contact);
     addContact(allContactsList, contact, allContactsInitials[index]);
   });
 }
-
 
 function addAlphabetCategory(allContactsList, letter) {
   allContactsList.innerHTML += `
@@ -132,7 +107,6 @@ function addAlphabetCategory(allContactsList, letter) {
     </div>
   `;
 }
-
 
 function addContact(allContactsList, contact, initials) {
   allContactsList.innerHTML += `
@@ -151,9 +125,6 @@ function addContact(allContactsList, contact, initials) {
   `;
 }
 
-  
-  
-
 function createContactInitials() {
   for (let i = 0; i < allContacts.length; i++) {
     let fullName = allContacts[i].name;
@@ -171,6 +142,3 @@ function assignContactColors() {
     allContacts[i].color = assignedColor;
   }
 }
-
-
-  
