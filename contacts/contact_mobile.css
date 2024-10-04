@@ -148,7 +148,7 @@ border-radius: 30px;
   padding: 20px;
   margin-top: 54px;
 }
-#name {
+#contactNameInput {
   background: url(/Views/img/person.png) no-repeat right;
   height: 48px;
   width: 100%;
@@ -157,7 +157,7 @@ border-radius: 30px;
   border-right: 0;
   border-bottom: 1;
 }
-#email {
+#contactMailInput {
   background: url(/Views/img/mail.png) no-repeat right;
   width: 100%;
   height: 48px;
@@ -166,7 +166,7 @@ border-radius: 30px;
   border-right: 0;
   border-bottom: 1;
 }
-#phone {
+#contactPhoneInput {
   background: url(/Views/img/call.png) no-repeat right;
   height: 48px;
   width: 100%;
@@ -232,3 +232,4 @@ border-radius: 30px;
   width: 80px;
   height: 80px;
 }
+
