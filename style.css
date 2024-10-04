@@ -644,6 +644,16 @@ textarea:active {
   width: 24px;
 }
 
+.addTaskNewBackgroundChecked {
+  background-color: #2A3647 !important;
+  color: white;
+}
+
+.addTaskNewBackgroundChecked:hover {
+  background-color: #091931 !important;
+  color: white;
+}
+
 /* ------------------------- add Task Date */
 
 .addTaskDueDateDropdown {

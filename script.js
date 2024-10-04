@@ -9,7 +9,6 @@ let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "
 let userColors = [];
 let policyAccepted = false;
 let passwordMatch = false;
-
 let chosenCategory = "";
 
 //addTaskGlobalArrays
@@ -26,6 +25,14 @@ let toDoTasks = [];
 let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
+
+//often Used funtions
+
+function stopPropagation(event) {
+  event.stopPropagation();
+}
+
+//sign up data
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
   let nameInput = document.getElementById("signUpNameInput");
@@ -276,17 +283,25 @@ function loadFullNameList() {
 }
 
 function addUserToTask(name, i) {
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+  inputField.focus();
+
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
+
+    document.getElementById(`check${i}`).classList.remove("displayNone");
+    document.getElementById(`noCheck${i}`).classList.add("displayNone");
+    document.getElementById(`addTaskAssignUserId${i}`).classList.add("addTaskNewBackgroundChecked");
   } else {
-    let i = addTaskCurrentUser.indexOf(name);
-    if (i > -1) {
-      addTaskCurrentUser.splice(i, 1);
+    let userIndex = addTaskCurrentUser.indexOf(name);
+    if (userIndex > -1) {
+      addTaskCurrentUser.splice(userIndex, 1);
+
+      document.getElementById(`check${i}`).classList.add("displayNone");
+      document.getElementById(`noCheck${i}`).classList.remove("displayNone");
+      document.getElementById(`addTaskAssignUserId${i}`).classList.remove("addTaskNewBackgroundChecked");
     }
   }
-
-  document.getElementById(`noCheck${i}`).classList.toggle("displayNone");
-  document.getElementById(`check${i}`).classList.toggle("displayNone");
 }
 
 function addTaskOpenUserDropDown() {
@@ -304,8 +319,20 @@ function addTaskOpenUserDropDown() {
   inputField.focus();
 }
 
-function stopPropagation(event) {
-  event.stopPropagation();
+function addTaskFilterFunction() {
+  let input = document.getElementById("addTaskContactsSearchArea");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let userName = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`addTaskAssignUserId${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
+  }
 }
 
 function createUserInitials() {
