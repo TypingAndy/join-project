@@ -9,7 +9,9 @@
     <script src="script.js"></script>
   </head>
   <body onload="loadUserData()">
+    <div id="backgroundClick" onclick="addTaskCloseUserDropDown()" class="backgroundClick displayNone"></div>
     <div class="joinWrapper">
+      
       <!--header-->
       <header>
         <img src="./images/icons/join_logo_black.svg" alt="" />
@@ -38,7 +40,7 @@
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Assigned to</div>
 
-            <div onclick="addTaskOpenUserDropDown()" id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
+            <div onclick="addTaskOpenCloseUserDropDown()" id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
               <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
                 <div class="fontInboxAlign">Select contacts to assign</div>
                 <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
@@ -141,6 +143,7 @@
           <p>Contacts</p>
         </div>
       </nav>
-    </div>
+
+  </div>
   </body>
 </html>
