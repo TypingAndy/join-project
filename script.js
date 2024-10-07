@@ -15,6 +15,7 @@ let chosenCategory = "";
 let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
+let taskAssignedUserInitials = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
 
@@ -158,39 +159,178 @@ async function convertUnsortedTasksToArray() {
 
 function renderTasks() {
   let inProgressElement = document.getElementById("inProgressContentWrapper");
-  let toDoElement = document.getElementById("inProgressContentWrapper");
-  let awaitFeedbackElement = document.getElementById("inProgressContentWrapper");
-  let doneElement = document.getElementById("inProgressContentWrapper");
+  let toDoElement = document.getElementById("toDoSectionContentWrapper");
+  let awaitFeedbackElement = document.getElementById("awaitFeedbackContentWrapper");
+  let doneElement = document.getElementById("doneContentWrapper");
 
   inProgressElement.innerHTML = "";
   toDoElement.innerHTML = "";
   awaitFeedbackElement.innerHTML = "";
   doneElement.innerHTML = "";
 
-  for (let i = 0; i < toDoTasks.length; i++) {
-    inProgressElement.innerHTML += /*html*/ `
-                  <div class="taskCard">
-                <div class="taskCardCategory">
-                  <p>User Story</p>
-                </div>
-                <p class="taskCardTitle">Kochwelt Page & Recipe Recommender</p>
-                <p class="taskCardDescription">Build start page with recipe recommendation...</p>
-                <div class="taskCardSubtasksContainer">
-                  <div class="taskCardSubtaskBarWrapper">
-                    <div class="taskCardSubtaskBar"></div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="taskCardBottomContainer">
-                  <div class="taskCardUserContainer">
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                  </div>
-                  <img src="./images/icons/prio_high_icon.png" alt="" />
-                </div>
+  renderInProgressTasks(inProgressElement);
+  renderToDoTasks(toDoElement);
+  renderAwaitFeedbackTasks(awaitFeedbackElement);
+  renderDoneElementTasks(doneElement);
+}
+
+function renderInProgressTasks(inProgressElement) {
+  if (inProgressTasks.length < 1) {
+    inProgressElement.innerHTML = `
+              <div class="noTasksContainer">
+                <p>No tasks to do</p>
               </div>
-    `;
+      `;
+  } else {
+    inProgressElement.innerHTML = "";
+    for (let i = 0; i < inProgressTasks.length; i++) {
+      let taskCardUserHtml = "";
+      for (let index = 0; index < inProgressTasks[i].taskAssignedUserInitials.length; index++) {
+        taskCardUserHtml += `<div class="taskCardUser"><p>${inProgressTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      }
+      let completedSubtaskCount = inProgressTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      inProgressElement.innerHTML += `
+                <div class="taskCard">
+                  <div class="taskCardCategory">
+                    <p>${inProgressTasks[i].taskCategory}</p>
+                  </div>
+                  <p class="taskCardTitle">${inProgressTasks[i].taskTitle}</p>
+                  <p class="taskCardDescription">${inProgressTasks[i].taskDescription}</p>
+                  <div class="taskCardSubtasksContainer">
+                    <div class="taskCardSubtaskBarWrapper">
+                      <div class="taskCardSubtaskBar"></div>
+                    </div>
+                    <p>${completedSubtaskCount}/${inProgressTasks[i].taskSubtasks.length} Subtasks</p>
+                  </div>
+                  <div class="taskCardBottomContainer">
+                    <div class="taskCardUserContainer">
+                 ${taskCardUserHtml}
+                    </div>
+                    <img src="./images/icons/prio_high_icon.png" alt="" />
+                  </div>
+                </div>
+      `;
+    }
+  }
+}
+
+function renderToDoTasks(toDoElement) {
+  if (toDoTasks.length < 1) {
+    toDoElement.innerHTML = `
+              <div class="noTasksContainer">
+                <p>No tasks to do</p>
+              </div>
+      `;
+  } else {
+    toDoElement.innerHTML = "";
+    for (let i = 0; i < toDoTasks.length; i++) {
+      let taskCardUserHtml = "";
+      for (let index = 0; index < toDoTasks[i].taskAssignedUserInitials.length; index++) {
+        taskCardUserHtml += `<div class="taskCardUser"><p>${toDoTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      }
+      let completedSubtaskCount = toDoTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      toDoElement.innerHTML += `
+                <div class="taskCard">
+                  <div class="taskCardCategory">
+                    <p>${toDoTasks[i].taskCategory}</p>
+                  </div>
+                  <p class="taskCardTitle">${toDoTasks[i].taskTitle}</p>
+                  <p class="taskCardDescription">${toDoTasks[i].taskDescription}</p>
+                  <div class="taskCardSubtasksContainer">
+                    <div class="taskCardSubtaskBarWrapper">
+                      <div class="taskCardSubtaskBar"></div>
+                    </div>
+                    <p>${completedSubtaskCount}/${toDoTasks[i].taskSubtasks.length} Subtasks</p>
+                  </div>
+                  <div class="taskCardBottomContainer">
+                    <div class="taskCardUserContainer">
+                 ${taskCardUserHtml}
+                    </div>
+                    <img src="./images/icons/prio_high_icon.png" alt="" />
+                  </div>
+                </div>
+      `;
+    }
+  }
+}
+
+function renderAwaitFeedbackTasks(awaitFeedbackElement) {
+  if (awaitFeedbackTasks.length < 1) {
+    awaitFeedbackElement.innerHTML = `
+              <div class="noTasksContainer">
+                <p>No tasks to do</p>
+              </div>
+      `;
+  } else {
+    awaitFeedbackElement.innerHTML = "";
+    for (let i = 0; i < awaitFeedbackTasks.length; i++) {
+      let taskCardUserHtml = "";
+      for (let index = 0; index < awaitFeedbackTasks[i].taskAssignedUserInitials.length; index++) {
+        taskCardUserHtml += `<div class="taskCardUser"><p>${awaitFeedbackTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      }
+      let completedSubtaskCount = awaitFeedbackTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      awaitFeedbackElement.innerHTML += `
+                <div class="taskCard">
+                  <div class="taskCardCategory">
+                    <p>${awaitFeedbackTasks[i].taskCategory}</p>
+                  </div>
+                  <p class="taskCardTitle">${awaitFeedbackTasks[i].taskTitle}</p>
+                  <p class="taskCardDescription">${awaitFeedbackTasks[i].taskDescription}</p>
+                  <div class="taskCardSubtasksContainer">
+                    <div class="taskCardSubtaskBarWrapper">
+                      <div class="taskCardSubtaskBar"></div>
+                    </div>
+                    <p>${completedSubtaskCount}/${awaitFeedbackTasks[i].taskSubtasks.length} Subtasks</p>
+                  </div>
+                  <div class="taskCardBottomContainer">
+                    <div class="taskCardUserContainer">
+                 ${taskCardUserHtml}
+                    </div>
+                    <img src="./images/icons/prio_high_icon.png" alt="" />
+                  </div>
+                </div>
+      `;
+    }
+  }
+}
+
+function renderDoneElementTasks(doneElement) {
+  if (doneTasks.length < 1) {
+    doneElement.innerHTML = `
+              <div class="noTasksContainer">
+                <p>No tasks to do</p>
+              </div>
+      `;
+  } else {
+    doneElement.innerHTML = "";
+    for (let i = 0; i < doneTasks.length; i++) {
+      let taskCardUserHtml = "";
+      for (let index = 0; index < doneTasks[i].taskAssignedUserInitials.length; index++) {
+        taskCardUserHtml += `<div class="taskCardUser"><p>${doneTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      }
+      let completedSubtaskCount = doneTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      doneElement.innerHTML += `
+                <div class="taskCard">
+                  <div class="taskCardCategory">
+                    <p>${doneTasks[i].taskCategory}</p>
+                  </div>
+                  <p class="taskCardTitle">${doneTasks[i].taskTitle}</p>
+                  <p class="taskCardDescription">${doneTasks[i].taskDescription}</p>
+                  <div class="taskCardSubtasksContainer">
+                    <div class="taskCardSubtaskBarWrapper">
+                      <div class="taskCardSubtaskBar"></div>
+                    </div>
+                    <p>${completedSubtaskCount}/${doneTasks[i].taskSubtasks.length} Subtasks</p>
+                  </div>
+                  <div class="taskCardBottomContainer">
+                    <div class="taskCardUserContainer">
+                 ${taskCardUserHtml}
+                    </div>
+                    <img src="./images/icons/prio_high_icon.png" alt="" />
+                  </div>
+                </div>
+      `;
+    }
   }
 }
 
@@ -205,6 +345,7 @@ function getNewTaskInputData() {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
+    taskAssignedUserInitials: taskAssignedUserInitials,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -299,6 +440,7 @@ function addUserToTask(name, i) {
 
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
+    taskAssignedUserInitials.push(allUserInitials[i]);
 
     check.classList.remove("displayNone");
     noCheck.classList.add("displayNone");
@@ -327,13 +469,13 @@ function addTaskOpenCloseUserDropDown() {
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
 
-  document.getElementById('backgroundClick').classList.toggle('displayNone');
+  document.getElementById("backgroundClick").classList.toggle("displayNone");
 
   inputField.focus();
 }
 
 function addTaskCloseUserDropDown() {
-  document.getElementById('backgroundClick').classList.add('displayNone');
+  document.getElementById("backgroundClick").classList.add("displayNone");
 
   let userNameDropDown = document.getElementById("userNameDropDown");
   let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
@@ -344,7 +486,6 @@ function addTaskCloseUserDropDown() {
   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-
 }
 
 function addTaskFilterFunction() {
@@ -401,9 +542,7 @@ function addTaskOpenCloseCategoryDropDown() {
   dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
   document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.toggle("displayNone");
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.toggle("displayNone");
-
 }
-
 
 function addTaskOpenAddSubtask() {
   let inputBox = document.getElementById("addSubtaskInputBox");
