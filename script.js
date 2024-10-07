@@ -327,13 +327,13 @@ function addTaskOpenCloseUserDropDown() {
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
 
-  document.getElementById('backgroundClick').classList.toggle('displayNone');
+  document.getElementById("backgroundClick").classList.toggle("displayNone");
 
   inputField.focus();
 }
 
 function addTaskCloseUserDropDown() {
-  document.getElementById('backgroundClick').classList.add('displayNone');
+  document.getElementById("backgroundClick").classList.add("displayNone");
 
   let userNameDropDown = document.getElementById("userNameDropDown");
   let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
@@ -344,7 +344,6 @@ function addTaskCloseUserDropDown() {
   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-
 }
 
 function addTaskFilterFunction() {
@@ -401,9 +400,7 @@ function addTaskOpenCloseCategoryDropDown() {
   dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
   document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.toggle("displayNone");
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.toggle("displayNone");
-
 }
-
 
 function addTaskOpenAddSubtask() {
   let inputBox = document.getElementById("addSubtaskInputBox");
