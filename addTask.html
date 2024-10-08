@@ -50,7 +50,10 @@
               </div>
               <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
             </div>
+
+            <div class="addUserSymbolsAssign" id="addUserSymbolsAssign"></div>
           </div>
+
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
             <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" />
@@ -121,19 +124,19 @@
 
       <!--Navbar-->
       <nav>
-        <div id="summaryLink" class="navIconBox">
+        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
           <img src="./images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
-        <div id="boardLink" class="navIconBox">
+        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
-        <div id="addTaskLink" class="navIconBox">
+        <div onclick="window.location.href='addTask.html'" id="addTaskLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
-        <div id="contactsLink" class="navIconBox">
+        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>

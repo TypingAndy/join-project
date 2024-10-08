@@ -1,11 +1,9 @@
-let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
 let contactData = {};
-let responseToJson;
 let allContacts = [];
 let allContactsInitials = [];
-let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let allContactsColors = [];
 let groupedContacts = {};
+
 
 function init() {
   loadAllContacts();
@@ -38,6 +36,8 @@ function getContactInputData(contactData) {
     name: nameInput.value,
     email: mailInput.value,
     phone: phoneInput.value,
+    // color:
+    // initials:
   };
   return { contactData, nameInput, mailInput, phoneInput };
 }

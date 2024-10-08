@@ -7,6 +7,7 @@ let sortedUsers = [];
 let allUserInitials = [];
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let userColors = [];
+
 let policyAccepted = false;
 let passwordMatch = false;
 let chosenCategory = "";
@@ -16,8 +17,11 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let taskAssignedUserInitials = [];
+let addTaskAssignedUserColors = [];
+let addTaskAssignedUserFontColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
+
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -27,7 +31,7 @@ let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 
-//often Used funtions
+//often Used functions
 
 function stopPropagation(event) {
   event.stopPropagation();
@@ -258,6 +262,8 @@ function getNewTaskInputData() {
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
     taskAssignedUserInitials: taskAssignedUserInitials,
+    taskAssignedUserColors: addTaskAssignedUserColors,
+    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -348,11 +354,14 @@ function addUserToTask(name, i) {
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
+  let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
     taskAssignedUserInitials.push(allUserInitials[i]);
+    addTaskAssignedUserColors.push(sortedUsers[i].color);
+    addTaskAssignedUserFontColors.push(blackWhite);
 
     check.classList.remove("displayNone");
     noCheck.classList.add("displayNone");
@@ -361,11 +370,28 @@ function addUserToTask(name, i) {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
       addTaskCurrentUser.splice(userIndex, 1);
+      taskAssignedUserInitials.splice(userIndex, 1);
+      addTaskAssignedUserColors.splice(userIndex, 1);
+      addTaskAssignedUserFontColors.splice(userIndex, 1);
 
       check.classList.add("displayNone");
       noCheck.classList.remove("displayNone");
       assignUserID.classList.remove("addTaskNewBackgroundChecked");
     }
+  }
+  addUserSymbolsToAssign();
+}
+
+function addUserSymbolsToAssign() {
+  let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
+  addUserSymbolsAssign.innerHTML = "";
+
+  for (let i = 0; i < addTaskCurrentUser.length; i++) {
+    addUserSymbolsAssign.innerHTML += /*html*/ `
+    <div>
+     <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
+    </div>
+    `;
   }
 }
 
@@ -475,7 +501,8 @@ function addTaskAddSubtaskCancel() {
 
 function addTaskAddSubtask() {
   let subtaskInput = document.getElementById("addSubtaskInput");
-  subtasks.push(subtaskInput.value);
+  subtasks.push({subtask: subtaskInput.value, done: false});
+
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
@@ -497,7 +524,7 @@ function addTaskWriteSubtaskBoard() {
         </div>
       </div>
       <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
-        <div>${subtasks[i]}</div>
+        <div>${subtasks[i].subtask}</div>
         <div class="addTaskSubtaskIconBox">
           <img onclick="addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
           <div class="addTaskSubtaskDividingLine"></div>
@@ -510,14 +537,14 @@ function addTaskWriteSubtaskBoard() {
 }
 
 function addTaskRewriteSubtask(i) {
-  let subtask = subtasks[i];
+  let subtask = subtasks[i].subtask;
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
 
   rewriteInputBox.value = subtask;
   rewriteInputBox.classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
-  rewriteInput.value = subtasks[i];
+  rewriteInput.value = subtasks[i].subtask;
   rewriteInput.focus();
 }
 
@@ -528,25 +555,14 @@ function addTaskDeleteSubtaskFromBoard(i) {
 
 function addTaskCancelRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  rewriteInput.value = subtasks[i];
+  rewriteInput.value = subtasks[i].subtask;
   rewriteInput.focus();
 }
 
 function addTaskAcceptRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  subtasks.splice(i, 1, rewriteInput.value);
-  document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`).classList.toggle("displayNone");
-  document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
+    subtasks[i].subtask = rewriteInput.value;
+  document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
+  document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
   addTaskWriteSubtaskBoard();
 }
-
-//links to other pages
-
-document.addEventListener("DOMContentLoaded", function () {
-  let linkButtonDirectionString = ["summary", "board", "addTask", "contacts"];
-  for (let i = 0; i < linkButtonDirectionString.length; i++) {
-    document.getElementById(linkButtonDirectionString[i] + "Link").addEventListener("click", function () {
-      window.location.href = linkButtonDirectionString[i] + ".html";
-    });
-  }
-});
