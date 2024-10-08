@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="./templates/board_templates.js"></script>
-    <script src="script.js"></script>
+
     <!-- <script src="./templates/board_templates.js"></script> -->
   </head>
   <body onload="loadAllTasks()">
@@ -25,7 +25,7 @@
             <img src="./images/icons/plus_add_task.png" alt="" />
           </div>
           <div class="inputContainer">
-            <input class="findTaskInput" type="text" placeholder="Find Task" />
+            <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" />
             <img src="./images/icons/search_icon.png" alt="" />
           </div>
           <div class="toDoSection">
@@ -44,108 +44,21 @@
               <p>In progress</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="inProgressContentWrapper" class="inProgressContentWrapper">
-              <div class="taskCard">
-                <div class="taskCardCategory">
-                  <p>User Story</p>
-                </div>
-                <p class="taskCardTitle">Kochwelt Page & Recipe Recommender</p>
-                <p class="taskCardDescription">Build start page with recipe recommendation...</p>
-                <div class="taskCardSubtasksContainer">
-                  <div class="taskCardSubtaskBarWrapper">
-                    <div class="taskCardSubtaskBar"></div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="taskCardBottomContainer">
-                  <div class="taskCardUserContainer">
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                  </div>
-                  <img src="./images/icons/prio_high_icon.png" alt="" />
-                </div>
-              </div>
-              <div class="taskCard">
-                <div class="taskCardCategory">
-                  <p>User Story</p>
-                </div>
-                <p class="taskCardTitle">hallo</p>
-                <p class="taskCardDescription">blabla...</p>
-                <div class="taskCardSubtasksContainer">
-                  <div class="taskCardSubtaskBarWrapper">
-                    <div class="taskCardSubtaskBar"></div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="taskCardBottomContainer">
-                  <div class="taskCardUserContainer">
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                  </div>
-                  <img src="./images/icons/prio_high_icon.png" alt="" />
-                </div>
-              </div>
-            </div>
+            <div id="inProgressContentWrapper" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="awaitFeedbackContentWrapper" class="awaitFeedbackContentWrapper">
-              <div class="taskCard">
-                <div class="taskCardCategory">
-                  <p>User Story</p>
-                </div>
-                <p class="taskCardTitle">Kochwelt Page & Recipe Recommender asdasdasdasdasdasdasdasd</p>
-                <p class="taskCardDescription">Build start page with recipe recommendation dfg dfgdfgdfgdfgdfgdfgdfgdfgdfg</p>
-                <div class="taskCardSubtasksContainer">
-                  <div class="taskCardSubtaskBarWrapper">
-                    <div class="taskCardSubtaskBar"></div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="taskCardBottomContainer">
-                  <div class="taskCardUserContainer">
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                  </div>
-                  <img src="./images/icons/prio_high_icon.png" alt="" />
-                </div>
-              </div>
-            </div>
+            <div id="awaitFeedbackContentWrapper" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="doneContentWrapper" class="doneContentWrapper">
-              <div class="taskCard">
-                <div class="taskCardCategory">
-                  <p>User Story</p>
-                </div>
-                <p class="taskCardTitle">Kochwelt Page & Recipe Recommender</p>
-                <p class="taskCardDescription">Build start page with recipe recommendation...</p>
-                <div class="taskCardSubtasksContainer">
-                  <div class="taskCardSubtaskBarWrapper">
-                    <div class="taskCardSubtaskBar"></div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="taskCardBottomContainer">
-                  <div class="taskCardUserContainer">
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                    <div class="taskCardUser"><p>AB</p></div>
-                  </div>
-                  <img src="./images/icons/prio_high_icon.png" alt="" />
-                </div>
-              </div>
-            </div>
+            <div id="doneContentWrapper" class="doneContentWrapper"></div>
           </div>
         </div>
       </div>
@@ -168,5 +81,6 @@
         </div>
       </nav>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
