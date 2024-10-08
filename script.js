@@ -7,6 +7,7 @@ let sortedUsers = [];
 let allUserInitials = [];
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let userColors = [];
+
 let policyAccepted = false;
 let passwordMatch = false;
 let chosenCategory = "";
@@ -16,8 +17,10 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let taskAssignedUserInitials = [];
+let addtaskAssignedUserColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
+
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -27,7 +30,7 @@ let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 
-//often Used funtions
+//often Used functions
 
 function stopPropagation(event) {
   event.stopPropagation();
@@ -176,11 +179,7 @@ function renderTasks() {
 
 function renderInProgressTasks(inProgressElement) {
   if (inProgressTasks.length < 1) {
-    inProgressElement.innerHTML = `
-              <div class="noTasksContainer">
-                <p>No tasks to do</p>
-              </div>
-      `;
+    inProgressElement.innerHTML = noTaskTemplate();
   } else {
     inProgressElement.innerHTML = "";
     for (let i = 0; i < inProgressTasks.length; i++) {
@@ -189,38 +188,16 @@ function renderInProgressTasks(inProgressElement) {
         taskCardUserHtml += `<div class="taskCardUser"><p>${inProgressTasks[i].taskAssignedUserInitials[index]}</p></div>`;
       }
       let completedSubtaskCount = inProgressTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      inProgressElement.innerHTML += `
-                <div class="taskCard">
-                  <div class="taskCardCategory">
-                    <p>${inProgressTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${inProgressTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${inProgressTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${inProgressTasks[i].taskSubtasks.length} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="./images/icons/prio_high_icon.png" alt="" />
-                  </div>
-                </div>
-      `;
+      let subtaskPercentage = (completedSubtaskCount / inProgressTasks[i].taskSubtasks.length) * 100;
+      inProgressElement.innerHTML += inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml);
+      document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
 function renderToDoTasks(toDoElement) {
   if (toDoTasks.length < 1) {
-    toDoElement.innerHTML = `
-              <div class="noTasksContainer">
-                <p>No tasks to do</p>
-              </div>
-      `;
+    toDoElement.innerHTML = noTaskTemplate();
   } else {
     toDoElement.innerHTML = "";
     for (let i = 0; i < toDoTasks.length; i++) {
@@ -229,38 +206,16 @@ function renderToDoTasks(toDoElement) {
         taskCardUserHtml += `<div class="taskCardUser"><p>${toDoTasks[i].taskAssignedUserInitials[index]}</p></div>`;
       }
       let completedSubtaskCount = toDoTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      toDoElement.innerHTML += `
-                <div class="taskCard">
-                  <div class="taskCardCategory">
-                    <p>${toDoTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${toDoTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${toDoTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${toDoTasks[i].taskSubtasks.length} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="./images/icons/prio_high_icon.png" alt="" />
-                  </div>
-                </div>
-      `;
+      let subtaskPercentage = (completedSubtaskCount / toDoTasks[i].taskSubtasks.length) * 100;
+      toDoElement.innerHTML += toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml);
+      document.getElementById(`taskCardSubtaskBarToDoTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
 function renderAwaitFeedbackTasks(awaitFeedbackElement) {
   if (awaitFeedbackTasks.length < 1) {
-    awaitFeedbackElement.innerHTML = `
-              <div class="noTasksContainer">
-                <p>No tasks to do</p>
-              </div>
-      `;
+    awaitFeedbackElement.innerHTML = noTaskTemplate();
   } else {
     awaitFeedbackElement.innerHTML = "";
     for (let i = 0; i < awaitFeedbackTasks.length; i++) {
@@ -269,38 +224,16 @@ function renderAwaitFeedbackTasks(awaitFeedbackElement) {
         taskCardUserHtml += `<div class="taskCardUser"><p>${awaitFeedbackTasks[i].taskAssignedUserInitials[index]}</p></div>`;
       }
       let completedSubtaskCount = awaitFeedbackTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      awaitFeedbackElement.innerHTML += `
-                <div class="taskCard">
-                  <div class="taskCardCategory">
-                    <p>${awaitFeedbackTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${awaitFeedbackTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${awaitFeedbackTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${awaitFeedbackTasks[i].taskSubtasks.length} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="./images/icons/prio_high_icon.png" alt="" />
-                  </div>
-                </div>
-      `;
+      let subtaskPercentage = (completedSubtaskCount / awaitFeedbackTasks[i].taskSubtasks.length) * 100;
+      awaitFeedbackElement.innerHTML += awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml);
+      document.getElementById(`taskCardSubtaskBarAwaitFeedbackTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
 function renderDoneElementTasks(doneElement) {
   if (doneTasks.length < 1) {
-    doneElement.innerHTML = `
-              <div class="noTasksContainer">
-                <p>No tasks to do</p>
-              </div>
-      `;
+    doneElement.innerHTML = noTaskTemplate();
   } else {
     doneElement.innerHTML = "";
     for (let i = 0; i < doneTasks.length; i++) {
@@ -309,27 +242,9 @@ function renderDoneElementTasks(doneElement) {
         taskCardUserHtml += `<div class="taskCardUser"><p>${doneTasks[i].taskAssignedUserInitials[index]}</p></div>`;
       }
       let completedSubtaskCount = doneTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      doneElement.innerHTML += `
-                <div class="taskCard">
-                  <div class="taskCardCategory">
-                    <p>${doneTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${doneTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${doneTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${doneTasks[i].taskSubtasks.length} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="./images/icons/prio_high_icon.png" alt="" />
-                  </div>
-                </div>
-      `;
+      let subtaskPercentage = (completedSubtaskCount / doneTasks[i].taskSubtasks.length) * 100;
+      doneElement.innerHTML += doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml);
+      document.getElementById(`taskCardSubtaskBarDoneTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
@@ -346,6 +261,7 @@ function getNewTaskInputData() {
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
     taskAssignedUserInitials: taskAssignedUserInitials,
+    taskAssignedUserColors: addtaskAssignedUserColors,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -441,6 +357,7 @@ function addUserToTask(name, i) {
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
     taskAssignedUserInitials.push(allUserInitials[i]);
+    addtaskAssignedUserColors.push(sortedUsers[i].color);
 
     check.classList.remove("displayNone");
     noCheck.classList.add("displayNone");
@@ -449,6 +366,8 @@ function addUserToTask(name, i) {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
       addTaskCurrentUser.splice(userIndex, 1);
+      taskAssignedUserInitials.splice(userIndex, 1);
+      addtaskAssignedUserColors.splice(userIndex, 1);
 
       check.classList.add("displayNone");
       noCheck.classList.remove("displayNone");
@@ -628,13 +547,4 @@ function addTaskAcceptRewriting(i) {
   addTaskWriteSubtaskBoard();
 }
 
-//links to other pages
 
-document.addEventListener("DOMContentLoaded", function () {
-  let linkButtonDirectionString = ["summary", "board", "addTask", "contacts"];
-  for (let i = 0; i < linkButtonDirectionString.length; i++) {
-    document.getElementById(linkButtonDirectionString[i] + "Link").addEventListener("click", function () {
-      window.location.href = linkButtonDirectionString[i] + ".html";
-    });
-  }
-});

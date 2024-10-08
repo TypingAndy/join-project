@@ -11,7 +11,6 @@
   <body onload="loadUserData()">
     <div id="backgroundClick" onclick="addTaskCloseUserDropDown()" class="backgroundClick displayNone"></div>
     <div class="joinWrapper">
-      
       <!--header-->
       <header>
         <img src="./images/icons/join_logo_black.svg" alt="" />
@@ -51,7 +50,10 @@
               </div>
               <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
             </div>
+
+            <div id="addUserSymbolsAssign">helllou</div>
           </div>
+
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
             <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" />
@@ -75,20 +77,18 @@
             </div>
           </div>
 
-
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
 
             <div onclick="addTaskOpenCloseCategoryDropDown()" id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
               <div id="addTaskChooseCategoryButton" class="addTaskChooseCategoryButton">
                 <div class="fontInboxAlign">Select task category</div>
-                <img id="addTaskChooseCategoryDropdownImageDown" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt=""/>
-                <img id="addTaskChooseCategoryDropdownImageUp" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt=""/>
+                <img id="addTaskChooseCategoryDropdownImageDown" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+                <img id="addTaskChooseCategoryDropdownImageUp" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
               </div>
               <div id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
             </div>
           </div>
-
 
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Subtasks</div>
@@ -110,9 +110,7 @@
             </div>
 
             <ul class="addTaskSubTaskList" id="subtaskBoard"></ul>
-         
           </div>
-
 
           <div class="addTaskButton">
             <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
@@ -126,24 +124,23 @@
 
       <!--Navbar-->
       <nav>
-        <div id="summaryLink" class="navIconBox">
+        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
           <img src="./images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
-        <div id="boardLink" class="navIconBox">
+        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
-        <div id="addTaskLink" class="navIconBox">
+        <div onclick="window.location.href='addTask.html'" id="addTaskLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
-        <div id="contactsLink" class="navIconBox">
+        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>
       </nav>
-
-  </div>
+    </div>
   </body>
 </html>
