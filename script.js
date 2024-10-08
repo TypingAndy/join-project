@@ -17,7 +17,8 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let taskAssignedUserInitials = [];
-let addtaskAssignedUserColors = [];
+let addTaskAssignedUserColors = [];
+let addTaskAssignedUserFontColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
 
@@ -262,6 +263,7 @@ function getNewTaskInputData() {
     taskAssignedUser: addTaskCurrentUser,
     taskAssignedUserInitials: taskAssignedUserInitials,
     taskAssignedUserColors: addtaskAssignedUserColors,
+    taskAssignedUserFontColors: addtaskAssignedUserFontColors,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -352,12 +354,14 @@ function addUserToTask(name, i) {
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
+  let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
     taskAssignedUserInitials.push(allUserInitials[i]);
-    addtaskAssignedUserColors.push(sortedUsers[i].color);
+    addTaskAssignedUserColors.push(sortedUsers[i].color);
+    addTaskAssignedUserFontColors.push(blackWhite);
 
     check.classList.remove("displayNone");
     noCheck.classList.add("displayNone");
@@ -367,12 +371,30 @@ function addUserToTask(name, i) {
     if (userIndex > -1) {
       addTaskCurrentUser.splice(userIndex, 1);
       taskAssignedUserInitials.splice(userIndex, 1);
-      addtaskAssignedUserColors.splice(userIndex, 1);
+      addTaskAssignedUserColors.splice(userIndex, 1);
+      addTaskAssignedUserFontColors.splice(userIndex, 1);
 
       check.classList.add("displayNone");
       noCheck.classList.remove("displayNone");
       assignUserID.classList.remove("addTaskNewBackgroundChecked");
     }
+  }
+  addUserSymbolsToAssign ()
+
+}
+
+function addUserSymbolsToAssign (){
+
+  let addUserSymbolsAssign =  document.getElementById('addUserSymbolsAssign');
+  addUserSymbolsAssign.innerHTML = "";
+
+  for (let i = 0; i < addTaskCurrentUser.length; i++) {
+    addUserSymbolsAssign.innerHTML += /*html*/ `
+    <div>
+     <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
+    </div>
+    `
+    
   }
 }
 
