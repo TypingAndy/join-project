@@ -573,6 +573,10 @@ textarea:active {
   margin-top: 52px;
 }
 
+.addUserSymbolsAssign {
+  display: flex;
+}
+
 .dropDownSearchCloseButtonBox {
   position: relative;
   display: flex;
