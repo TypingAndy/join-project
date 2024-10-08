@@ -22,7 +22,6 @@ let addTaskAssignedUserFontColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
 
-
 //boardGlobalArrays
 let convertedTasks = [];
 let allUnsortedTasks = [];
@@ -161,94 +160,118 @@ async function convertUnsortedTasksToArray() {
   console.log(convertedTasks);
 }
 
+function filterTasks(tasks, searchTerm) {
+  return tasks.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
 function renderTasks() {
+  let searchTerm = document.getElementById("findTaskInput").value;
+
   let inProgressElement = document.getElementById("inProgressContentWrapper");
   let toDoElement = document.getElementById("toDoSectionContentWrapper");
   let awaitFeedbackElement = document.getElementById("awaitFeedbackContentWrapper");
   let doneElement = document.getElementById("doneContentWrapper");
 
-  inProgressElement.innerHTML = "";
-  toDoElement.innerHTML = "";
-  awaitFeedbackElement.innerHTML = "";
-  doneElement.innerHTML = "";
+  let filteredInProgressTasks = filterTasks(inProgressTasks, searchTerm);
+  let filteredToDoTasks = filterTasks(toDoTasks, searchTerm);
+  let filteredAwaitFeedbackTasks = filterTasks(awaitFeedbackTasks, searchTerm);
+  let filteredDoneTasks = filterTasks(doneTasks, searchTerm);
 
-  renderInProgressTasks(inProgressElement);
-  renderToDoTasks(toDoElement);
-  renderAwaitFeedbackTasks(awaitFeedbackElement);
-  renderDoneElementTasks(doneElement);
+  renderInProgressTasks(inProgressElement, filteredInProgressTasks);
+  renderToDoTasks(toDoElement, filteredToDoTasks);
+  renderAwaitFeedbackTasks(awaitFeedbackElement, filteredAwaitFeedbackTasks);
+  renderDoneElementTasks(doneElement, filteredDoneTasks);
 }
 
-function renderInProgressTasks(inProgressElement) {
-  if (inProgressTasks.length < 1) {
+function renderInProgressTasks(inProgressElement, tasks) {
+  if (tasks.length < 1) {
     inProgressElement.innerHTML = noTaskTemplate();
   } else {
     inProgressElement.innerHTML = "";
-    for (let i = 0; i < inProgressTasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
       let taskCardUserHtml = "";
-      for (let index = 0; index < inProgressTasks[i].taskAssignedUserInitials.length; index++) {
-        taskCardUserHtml += `<div class="taskCardUser"><p>${inProgressTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      if (!tasks[i].taskAssignedUserInitials) {
+        taskCardUserHtml = "";
+      } else {
+        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
+          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+        }
       }
-      let completedSubtaskCount = inProgressTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / inProgressTasks[i].taskSubtasks.length) * 100;
-      inProgressElement.innerHTML += inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml);
+      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      inProgressElement.innerHTML += inProgressTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
-function renderToDoTasks(toDoElement) {
-  if (toDoTasks.length < 1) {
+function renderToDoTasks(toDoElement, tasks) {
+  if (tasks.length < 1) {
     toDoElement.innerHTML = noTaskTemplate();
   } else {
     toDoElement.innerHTML = "";
-    for (let i = 0; i < toDoTasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
       let taskCardUserHtml = "";
-      for (let index = 0; index < toDoTasks[i].taskAssignedUserInitials.length; index++) {
-        taskCardUserHtml += `<div class="taskCardUser"><p>${toDoTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      if (!tasks[i].taskAssignedUserInitials) {
+        taskCardUserHtml = "";
+      } else {
+        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
+          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+        }
       }
-      let completedSubtaskCount = toDoTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / toDoTasks[i].taskSubtasks.length) * 100;
-      toDoElement.innerHTML += toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml);
+      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      toDoElement.innerHTML += toDoTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarToDoTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
-function renderAwaitFeedbackTasks(awaitFeedbackElement) {
-  if (awaitFeedbackTasks.length < 1) {
+function renderAwaitFeedbackTasks(awaitFeedbackElement, tasks) {
+  if (tasks.length < 1) {
     awaitFeedbackElement.innerHTML = noTaskTemplate();
   } else {
     awaitFeedbackElement.innerHTML = "";
-    for (let i = 0; i < awaitFeedbackTasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
       let taskCardUserHtml = "";
-      for (let index = 0; index < awaitFeedbackTasks[i].taskAssignedUserInitials.length; index++) {
-        taskCardUserHtml += `<div class="taskCardUser"><p>${awaitFeedbackTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      if (!tasks[i].taskAssignedUserInitials) {
+        taskCardUserHtml = "";
+      } else {
+        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
+          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+        }
       }
-      let completedSubtaskCount = awaitFeedbackTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / awaitFeedbackTasks[i].taskSubtasks.length) * 100;
-      awaitFeedbackElement.innerHTML += awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml);
+      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      awaitFeedbackElement.innerHTML += awaitFeedbackTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarAwaitFeedbackTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
 
-function renderDoneElementTasks(doneElement) {
-  if (doneTasks.length < 1) {
+function renderDoneElementTasks(doneElement, tasks) {
+  if (tasks.length < 1) {
     doneElement.innerHTML = noTaskTemplate();
   } else {
     doneElement.innerHTML = "";
-    for (let i = 0; i < doneTasks.length; i++) {
+    for (let i = 0; i < tasks.length; i++) {
       let taskCardUserHtml = "";
-      for (let index = 0; index < doneTasks[i].taskAssignedUserInitials.length; index++) {
-        taskCardUserHtml += `<div class="taskCardUser"><p>${doneTasks[i].taskAssignedUserInitials[index]}</p></div>`;
+      if (!tasks[i].taskAssignedUserInitials) {
+        taskCardUserHtml = "";
+      } else {
+        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
+          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+        }
       }
-      let completedSubtaskCount = doneTasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / doneTasks[i].taskSubtasks.length) * 100;
-      doneElement.innerHTML += doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml);
+      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      doneElement.innerHTML += doneTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarDoneTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
+
+document.getElementById("findTaskInput").addEventListener("input", renderTasks);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -501,7 +524,7 @@ function addTaskAddSubtaskCancel() {
 
 function addTaskAddSubtask() {
   let subtaskInput = document.getElementById("addSubtaskInput");
-  subtasks.push({subtask: subtaskInput.value, done: false});
+  subtasks.push({ subtask: subtaskInput.value, done: false });
 
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
@@ -561,7 +584,7 @@ function addTaskCancelRewriting(i) {
 
 function addTaskAcceptRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-    subtasks[i].subtask = rewriteInput.value;
+  subtasks[i].subtask = rewriteInput.value;
   document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
   addTaskWriteSubtaskBoard();
