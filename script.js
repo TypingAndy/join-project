@@ -7,6 +7,7 @@ let sortedUsers = [];
 let allUserInitials = [];
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let userColors = [];
+
 let policyAccepted = false;
 let passwordMatch = false;
 let chosenCategory = "";
@@ -16,8 +17,10 @@ let taskPrioInput = "";
 let fullNameList = [];
 let addTaskCurrentUser = [];
 let taskAssignedUserInitials = [];
+let addtaskAssignedUserColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
+
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -27,7 +30,7 @@ let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 
-//often Used funtions
+//often Used functions
 
 function stopPropagation(event) {
   event.stopPropagation();
@@ -258,6 +261,7 @@ function getNewTaskInputData() {
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
     taskAssignedUserInitials: taskAssignedUserInitials,
+    taskAssignedUserColors: addtaskAssignedUserColors,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -353,6 +357,7 @@ function addUserToTask(name, i) {
   if (!addTaskCurrentUser.includes(name)) {
     addTaskCurrentUser.push(name);
     taskAssignedUserInitials.push(allUserInitials[i]);
+    addtaskAssignedUserColors.push(sortedUsers[i].color);
 
     check.classList.remove("displayNone");
     noCheck.classList.add("displayNone");
@@ -361,6 +366,8 @@ function addUserToTask(name, i) {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
       addTaskCurrentUser.splice(userIndex, 1);
+      taskAssignedUserInitials.splice(userIndex, 1);
+      addtaskAssignedUserColors.splice(userIndex, 1);
 
       check.classList.add("displayNone");
       noCheck.classList.remove("displayNone");
@@ -540,13 +547,4 @@ function addTaskAcceptRewriting(i) {
   addTaskWriteSubtaskBoard();
 }
 
-//links to other pages
 
-document.addEventListener("DOMContentLoaded", function () {
-  let linkButtonDirectionString = ["summary", "board", "addTask", "contacts"];
-  for (let i = 0; i < linkButtonDirectionString.length; i++) {
-    document.getElementById(linkButtonDirectionString[i] + "Link").addEventListener("click", function () {
-      window.location.href = linkButtonDirectionString[i] + ".html";
-    });
-  }
-});
