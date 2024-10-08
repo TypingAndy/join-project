@@ -262,8 +262,8 @@ function getNewTaskInputData() {
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
     taskAssignedUserInitials: taskAssignedUserInitials,
-    taskAssignedUserColors: addtaskAssignedUserColors,
-    taskAssignedUserFontColors: addtaskAssignedUserFontColors,
+    taskAssignedUserColors: addTaskAssignedUserColors,
+    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -379,13 +379,11 @@ function addUserToTask(name, i) {
       assignUserID.classList.remove("addTaskNewBackgroundChecked");
     }
   }
-  addUserSymbolsToAssign ()
-
+  addUserSymbolsToAssign();
 }
 
-function addUserSymbolsToAssign (){
-
-  let addUserSymbolsAssign =  document.getElementById('addUserSymbolsAssign');
+function addUserSymbolsToAssign() {
+  let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
   addUserSymbolsAssign.innerHTML = "";
 
   for (let i = 0; i < addTaskCurrentUser.length; i++) {
@@ -393,8 +391,7 @@ function addUserSymbolsToAssign (){
     <div>
      <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
     </div>
-    `
-    
+    `;
   }
 }
 
@@ -504,7 +501,8 @@ function addTaskAddSubtaskCancel() {
 
 function addTaskAddSubtask() {
   let subtaskInput = document.getElementById("addSubtaskInput");
-  subtasks.push(subtaskInput.value);
+  subtasks.push({subtask: subtaskInput.value, done: false});
+
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
@@ -526,7 +524,7 @@ function addTaskWriteSubtaskBoard() {
         </div>
       </div>
       <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
-        <div>${subtasks[i]}</div>
+        <div>${subtasks[i].subtask}</div>
         <div class="addTaskSubtaskIconBox">
           <img onclick="addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
           <div class="addTaskSubtaskDividingLine"></div>
@@ -539,14 +537,14 @@ function addTaskWriteSubtaskBoard() {
 }
 
 function addTaskRewriteSubtask(i) {
-  let subtask = subtasks[i];
+  let subtask = subtasks[i].subtask;
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
 
   rewriteInputBox.value = subtask;
   rewriteInputBox.classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
-  rewriteInput.value = subtasks[i];
+  rewriteInput.value = subtasks[i].subtask;
   rewriteInput.focus();
 }
 
@@ -557,16 +555,14 @@ function addTaskDeleteSubtaskFromBoard(i) {
 
 function addTaskCancelRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  rewriteInput.value = subtasks[i];
+  rewriteInput.value = subtasks[i].subtask;
   rewriteInput.focus();
 }
 
 function addTaskAcceptRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  subtasks.splice(i, 1, rewriteInput.value);
-  document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`).classList.toggle("displayNone");
-  document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
+    subtasks[i].subtask = rewriteInput.value;
+  document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
+  document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
   addTaskWriteSubtaskBoard();
 }
-
-
