@@ -308,38 +308,8 @@ async function postTaskData() {
   });
 }
 
-function setTaskPrio(priority) {
-  taskPrioInput = priority;
-  setTaskPrioButtonColorSwitch(priority);
-}
 
-function setTaskPrioButtonColorSwitch(priority) {
-  buttonUrgent = document.getElementsByClassName("addTaskPrioButtonUrgent")[0];
-  buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
-  buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
-
-  if (priority == "urgent") {
-    buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "medium") {
-    buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "low") {
-    buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-  }
-}
-
-function addTaskGetColorFromUser(i) {
-  return sortedUsers[i].color;
-}
+//functions addTask---------assign Contacts------------------------------------------------------------
 
 function loadFullNameList() {
   let dropdown = document.getElementById("userNameDropDown");
@@ -358,6 +328,10 @@ function loadFullNameList() {
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/checkButtonMobileSolvedWhite.png" alt="">
     </div>`;
   }
+}
+
+function addTaskGetColorFromUser(i) {
+  return sortedUsers[i].color;
 }
 
 function addTaskAdaptFontColorToBackground(i) {
@@ -475,6 +449,39 @@ function createUserInitials() {
   }
 }
 
+// addTask --------------------------- priority
+
+function setTaskPrio(priority) {
+  taskPrioInput = priority;
+  setTaskPrioButtonColorSwitch(priority);
+}
+
+function setTaskPrioButtonColorSwitch(priority) {
+  buttonUrgent = document.getElementsByClassName("addTaskPrioButtonUrgent")[0];
+  buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
+  buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
+
+  if (priority == "urgent") {
+    buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+  }
+
+  if (priority == "medium") {
+    buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+  }
+
+  if (priority == "low") {
+    buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+  }
+}
+
+// addTask --------------------------- category
+
 function addTaskRenderCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropDown");
   categoryDropdown.innerHTML = "";
@@ -504,6 +511,8 @@ function addTaskOpenCloseCategoryDropDown() {
   document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.toggle("displayNone");
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.toggle("displayNone");
 }
+
+// addTask --------------------------- subTask
 
 function addTaskOpenAddSubtask() {
   let inputBox = document.getElementById("addSubtaskInputBox");
