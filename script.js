@@ -36,6 +36,42 @@ function stopPropagation(event) {
   event.stopPropagation();
 }
 
+function signUpAddColorToUser() {
+  let randomNumber = Math.floor(Math.random() * 15);
+  let userColor = userColorsPreset[randomNumber];
+  return userColor;
+}
+
+function getColorFromUser(i) {
+  return sortedUsers[i].color;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
+  let categoryDropdown = document.getElementById("addTaskChooseCategoryDropdownLableBox");
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+
+  document.addEventListener("click", function (event) {
+    if (contactsDropdown.contains(event.target)) {
+      console.log("Klick innerhalb des Elements");
+      userNameDropDown.classList.add("show");
+      userNameDropDown.classList.remove("displayNone");
+      document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
+      document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
+      addTaskContactsDropdownLableBox.classList.remove("addTaskContactsDropdownLableBoxClosed");
+      addTaskContactsDropdownLableBox.classList.add("addTaskContactsDropdownLableBoxOpen");
+      inputField.focus();
+    } else {
+      userNameDropDown.classList.remove("show");
+      userNameDropDown.classList.add("displayNone");
+      document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
+      document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
+      addTaskContactsDropdownLableBox.classList.add("addTaskContactsDropdownLableBoxClosed");
+      addTaskContactsDropdownLableBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
+    }
+  });
+});
+
 //sign up data
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
@@ -46,12 +82,6 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
   confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
   signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value, color: userColor };
   return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
-}
-
-function signUpAddColorToUser() {
-  let randomNumber = Math.floor(Math.random() * 15);
-  let userColor = userColorsPreset[randomNumber];
-  return userColor;
 }
 
 async function postSignUpData() {
@@ -308,7 +338,6 @@ async function postTaskData() {
   });
 }
 
-
 //functions addTask---------assign Contacts------------------------------------------------------------
 
 function loadFullNameList() {
@@ -316,7 +345,7 @@ function loadFullNameList() {
   dropdown.innerHTML = "";
 
   for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = addTaskGetColorFromUser(i);
+    let currentColor = getColorFromUser(i);
     let blackWhite = addTaskAdaptFontColorToBackground(i);
     dropdown.innerHTML += /*html*/ `
     <div id="addTaskAssignUserId${i}" onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
@@ -330,12 +359,8 @@ function loadFullNameList() {
   }
 }
 
-function addTaskGetColorFromUser(i) {
-  return sortedUsers[i].color;
-}
-
 function addTaskAdaptFontColorToBackground(i) {
-  let currentColor = addTaskGetColorFromUser(i);
+  let currentColor = getColorFromUser(i);
   currentColor = currentColor.replace(/#/, "");
 
   let r = parseInt(currentColor.substring(0, 2), 16);
@@ -392,36 +417,20 @@ function addUserSymbolsToAssign() {
   }
 }
 
-function addTaskOpenCloseUserDropDown() {
-  let userNameDropDown = document.getElementById("userNameDropDown");
-  let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
-  let inputField = document.getElementById("addTaskContactsSearchArea");
+// function addTaskOpenCloseUserDropDown() {
+//   let userNameDropDown = document.getElementById("userNameDropDown");
+//   let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
+//   let inputField = document.getElementById("addTaskContactsSearchArea");
 
-  userNameDropDown.classList.toggle("show");
-  userNameDropDown.classList.toggle("displayNone");
-  document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
+//   userNameDropDown.classList.toggle("show");
+//   userNameDropDown.classList.toggle("displayNone");
+//   document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
+//   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
+//   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
+//   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
 
-  document.getElementById("backgroundClick").classList.toggle("displayNone");
-
-  inputField.focus();
-}
-
-function addTaskCloseUserDropDown() {
-  document.getElementById("backgroundClick").classList.add("displayNone");
-
-  let userNameDropDown = document.getElementById("userNameDropDown");
-  let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
-
-  userNameDropDown.classList.toggle("show");
-  userNameDropDown.classList.toggle("displayNone");
-  document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-}
+//   inputField.focus();
+// }
 
 function addTaskFilterFunction() {
   let input = document.getElementById("addTaskContactsSearchArea");
