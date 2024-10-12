@@ -46,31 +46,131 @@ function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
-  let categoryDropdown = document.getElementById("addTaskChooseCategoryDropdownLableBox");
-  let inputField = document.getElementById("addTaskContactsSearchArea");
+// open close assign Dropdown
 
-  document.addEventListener("click", function (event) {
-    if (contactsDropdown.contains(event.target)) {
-      console.log("Klick innerhalb des Elements");
-      userNameDropDown.classList.add("show");
-      userNameDropDown.classList.remove("displayNone");
-      document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
-      document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
-      addTaskContactsDropdownLableBox.classList.remove("addTaskContactsDropdownLableBoxClosed");
-      addTaskContactsDropdownLableBox.classList.add("addTaskContactsDropdownLableBoxOpen");
-      inputField.focus();
-    } else {
-      userNameDropDown.classList.remove("show");
-      userNameDropDown.classList.add("displayNone");
-      document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
-      document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
-      addTaskContactsDropdownLableBox.classList.add("addTaskContactsDropdownLableBoxClosed");
-      addTaskContactsDropdownLableBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
-    }
-  });
+document.addEventListener("click", function (event) {
+  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
+  let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+  let userNameDropDown = document.getElementById("userNameDropDown");
+
+  if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
+    openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+  } else {
+    closeAssignDropdown(userNameDropDown);
+  }
 });
+
+//                               open assign functions
+
+function openAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
+  addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown);
+  addOpenContactsRemoveClosedContacts(contactsDropdown);
+  removeButtonBoxAddDropdown();
+  inputField.focus();
+}
+
+function addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.add("show");
+  userNameDropDown.classList.remove("displayNone");
+}
+
+function addOpenContactsRemoveClosedContacts(contactsDropdown) {
+  contactsDropdown.classList.remove("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdown.classList.add("addTaskContactsDropdownLableBoxOpen");
+}
+
+function removeButtonBoxAddDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
+}
+
+//                               close assign functions
+
+function closeAssignDropdown() {
+  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown),
+  removeOpenContactsAddClosedContacts(),
+  addButtonBoxRemoveDropdown();
+}
+
+function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.remove("show");
+  userNameDropDown.classList.add("displayNone");
+}
+
+function removeOpenContactsAddClosedContacts() {
+  let contactsDropdownBox = document.getElementById("addTaskContactsDropdownLableBox");
+  contactsDropdownBox.classList.add("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdownBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
+}
+
+function addButtonBoxRemoveDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
+}
+
+// open close Category Dropdown
+
+document.addEventListener("click", function (event) {
+  let categoryDropdown = document.getElementById("categoryDropDown");
+  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
+
+  if (dropdownLableBox.contains(event.target)) {
+    toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else if (!categoryDropdown.contains(event.target)) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+});
+
+function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  if (categoryDropdown.classList.contains("show")) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else {
+    openCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+}
+
+function openCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  showCategoryDropdown(categoryDropdown);
+  addDropdownLableBox(dropdownLableBox);
+  switchAssignArrowToDown();
+}
+
+function showCategoryDropdown(categoryDropdown) {
+  categoryDropdown.classList.add("show");
+  categoryDropdown.classList.remove("displayNone");
+}
+
+function addDropdownLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchAssignArrowToDown() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.remove("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.add("displayNone");
+}
+
+function closeCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  closeCategoryDropdownWindow(categoryDropdown);
+  closeCategoryLableBox(dropdownLableBox);
+  switchCategoryArrowToUp();
+}
+
+function closeCategoryDropdownWindow(categoryDropdown) {
+  categoryDropdown.classList.remove("show");
+  categoryDropdown.classList.add("displayNone");
+}
+
+function closeCategoryLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchCategoryArrowToUp() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
+}
 
 //sign up data
 
@@ -417,21 +517,6 @@ function addUserSymbolsToAssign() {
   }
 }
 
-// function addTaskOpenCloseUserDropDown() {
-//   let userNameDropDown = document.getElementById("userNameDropDown");
-//   let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
-//   let inputField = document.getElementById("addTaskContactsSearchArea");
-
-//   userNameDropDown.classList.toggle("show");
-//   userNameDropDown.classList.toggle("displayNone");
-//   document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
-//   document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-//   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
-//   addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-
-//   inputField.focus();
-// }
-
 function addTaskFilterFunction() {
   let input = document.getElementById("addTaskContactsSearchArea");
   let filter = input.value.toUpperCase();
@@ -507,18 +592,6 @@ function chooseCategory(i) {
       <img id="addTaskChooseCategoryDropdownImageDown" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
       <img id="addTaskChooseCategoryDropdownImageUp"  src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt=""/>
     `;
-}
-
-function addTaskOpenCloseCategoryDropDown() {
-  let categoryDropDown = document.getElementById("categoryDropDown");
-  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
-
-  categoryDropDown.classList.toggle("show");
-  categoryDropDown.classList.toggle("displayNone");
-  dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxOpen");
-  dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
-  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.toggle("displayNone");
-  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.toggle("displayNone");
 }
 
 // addTask --------------------------- subTask
