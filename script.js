@@ -88,9 +88,7 @@ function removeButtonBoxAddDropdown() {
 //                               close assign functions
 
 function closeAssignDropdown() {
-  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown),
-  removeOpenContactsAddClosedContacts(),
-  addButtonBoxRemoveDropdown();
+  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown), removeOpenContactsAddClosedContacts(), addButtonBoxRemoveDropdown();
 }
 
 function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
@@ -269,12 +267,20 @@ function sortUsersByName(userData) {
 async function loadAllTasks(path = "tasks") {
   let response = await fetch(BASE_URL + path + ".json");
   console.log(response);
-
   allUnsortedTasks = await response.json();
   console.log(allUnsortedTasks);
   convertUnsortedTasksToArray();
+  addFirebaseIDtoConvertedTasksArray();
   sortAllTasks();
   renderTasks();
+}
+
+function addFirebaseIDtoConvertedTasksArray() {
+  const newArray = convertedTasks.map((item, index) => {
+    const id = Object.keys(allUnsortedTasks)[index];
+    return { ...item, ID: id };
+  });
+  convertedTasks = newArray;
 }
 
 function sortAllTasks() {
@@ -282,12 +288,10 @@ function sortAllTasks() {
   doneTasks = convertedTasks.filter((t) => t.taskStatus == "done");
   inProgressTasks = convertedTasks.filter((t) => t.taskStatus == "work in progress");
   awaitFeedbackTasks = convertedTasks.filter((t) => t.taskStatus == "await feedback");
-  console.log(toDoTasks);
 }
 
 async function convertUnsortedTasksToArray() {
   convertedTasks = Object.values(allUnsortedTasks);
-  console.log(convertedTasks);
 }
 
 function filterTasks(tasks, searchTerm) {
