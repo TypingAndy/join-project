@@ -36,6 +36,142 @@ function stopPropagation(event) {
   event.stopPropagation();
 }
 
+function signUpAddColorToUser() {
+  let randomNumber = Math.floor(Math.random() * 15);
+  let userColor = userColorsPreset[randomNumber];
+  return userColor;
+}
+
+function getColorFromUser(i) {
+  return sortedUsers[i].color;
+}
+
+// open close assign Dropdown
+
+document.addEventListener("click", function (event) {
+  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
+  let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+  let userNameDropDown = document.getElementById("userNameDropDown");
+
+  if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
+    openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+  } else {
+    closeAssignDropdown(userNameDropDown);
+  }
+});
+
+//                               open assign functions
+
+function openAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
+  addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown);
+  addOpenContactsRemoveClosedContacts(contactsDropdown);
+  removeButtonBoxAddDropdown();
+  inputField.focus();
+}
+
+function addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.add("show");
+  userNameDropDown.classList.remove("displayNone");
+}
+
+function addOpenContactsRemoveClosedContacts(contactsDropdown) {
+  contactsDropdown.classList.remove("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdown.classList.add("addTaskContactsDropdownLableBoxOpen");
+}
+
+function removeButtonBoxAddDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
+}
+
+//                               close assign functions
+
+function closeAssignDropdown() {
+  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown),
+  removeOpenContactsAddClosedContacts(),
+  addButtonBoxRemoveDropdown();
+}
+
+function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.remove("show");
+  userNameDropDown.classList.add("displayNone");
+}
+
+function removeOpenContactsAddClosedContacts() {
+  let contactsDropdownBox = document.getElementById("addTaskContactsDropdownLableBox");
+  contactsDropdownBox.classList.add("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdownBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
+}
+
+function addButtonBoxRemoveDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
+}
+
+// open close Category Dropdown
+
+document.addEventListener("click", function (event) {
+  let categoryDropdown = document.getElementById("categoryDropDown");
+  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
+
+  if (dropdownLableBox.contains(event.target)) {
+    toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else if (!categoryDropdown.contains(event.target)) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+});
+
+function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  if (categoryDropdown.classList.contains("show")) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else {
+    openCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+}
+
+function openCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  showCategoryDropdown(categoryDropdown);
+  addDropdownLableBox(dropdownLableBox);
+  switchAssignArrowToDown();
+}
+
+function showCategoryDropdown(categoryDropdown) {
+  categoryDropdown.classList.add("show");
+  categoryDropdown.classList.remove("displayNone");
+}
+
+function addDropdownLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchAssignArrowToDown() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.remove("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.add("displayNone");
+}
+
+function closeCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  closeCategoryDropdownWindow(categoryDropdown);
+  closeCategoryLableBox(dropdownLableBox);
+  switchCategoryArrowToUp();
+}
+
+function closeCategoryDropdownWindow(categoryDropdown) {
+  categoryDropdown.classList.remove("show");
+  categoryDropdown.classList.add("displayNone");
+}
+
+function closeCategoryLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchCategoryArrowToUp() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
+}
+
 //sign up data
 
 function getSignUpInputData(signUpData, confirmPasswordInput) {
@@ -46,12 +182,6 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
   confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
   signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value, color: userColor };
   return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
-}
-
-function signUpAddColorToUser() {
-  let randomNumber = Math.floor(Math.random() * 15);
-  let userColor = userColorsPreset[randomNumber];
-  return userColor;
 }
 
 async function postSignUpData() {
@@ -308,45 +438,14 @@ async function postTaskData() {
   });
 }
 
-function setTaskPrio(priority) {
-  taskPrioInput = priority;
-  setTaskPrioButtonColorSwitch(priority);
-}
-
-function setTaskPrioButtonColorSwitch(priority) {
-  buttonUrgent = document.getElementsByClassName("addTaskPrioButtonUrgent")[0];
-  buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
-  buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
-
-  if (priority == "urgent") {
-    buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "medium") {
-    buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "low") {
-    buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-  }
-}
-
-function addTaskGetColorFromUser(i) {
-  return sortedUsers[i].color;
-}
+//functions addTask---------assign Contacts------------------------------------------------------------
 
 function loadFullNameList() {
   let dropdown = document.getElementById("userNameDropDown");
   dropdown.innerHTML = "";
 
   for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = addTaskGetColorFromUser(i);
+    let currentColor = getColorFromUser(i);
     let blackWhite = addTaskAdaptFontColorToBackground(i);
     dropdown.innerHTML += /*html*/ `
     <div id="addTaskAssignUserId${i}" onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
@@ -361,7 +460,7 @@ function loadFullNameList() {
 }
 
 function addTaskAdaptFontColorToBackground(i) {
-  let currentColor = addTaskGetColorFromUser(i);
+  let currentColor = getColorFromUser(i);
   currentColor = currentColor.replace(/#/, "");
 
   let r = parseInt(currentColor.substring(0, 2), 16);
@@ -418,37 +517,6 @@ function addUserSymbolsToAssign() {
   }
 }
 
-function addTaskOpenCloseUserDropDown() {
-  let userNameDropDown = document.getElementById("userNameDropDown");
-  let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
-  let inputField = document.getElementById("addTaskContactsSearchArea");
-
-  userNameDropDown.classList.toggle("show");
-  userNameDropDown.classList.toggle("displayNone");
-  document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-
-  document.getElementById("backgroundClick").classList.toggle("displayNone");
-
-  inputField.focus();
-}
-
-function addTaskCloseUserDropDown() {
-  document.getElementById("backgroundClick").classList.add("displayNone");
-
-  let userNameDropDown = document.getElementById("userNameDropDown");
-  let addTaskContactsDropdownLableBox = document.getElementById("addTaskContactsDropdownLableBox");
-
-  userNameDropDown.classList.toggle("show");
-  userNameDropDown.classList.toggle("displayNone");
-  document.getElementById("addTaskAssignContactsButton").classList.toggle("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.toggle("displayNone");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxClosed");
-  addTaskContactsDropdownLableBox.classList.toggle("addTaskContactsDropdownLableBoxOpen");
-}
-
 function addTaskFilterFunction() {
   let input = document.getElementById("addTaskContactsSearchArea");
   let filter = input.value.toUpperCase();
@@ -475,6 +543,39 @@ function createUserInitials() {
   }
 }
 
+// addTask --------------------------- priority
+
+function setTaskPrio(priority) {
+  taskPrioInput = priority;
+  setTaskPrioButtonColorSwitch(priority);
+}
+
+function setTaskPrioButtonColorSwitch(priority) {
+  buttonUrgent = document.getElementsByClassName("addTaskPrioButtonUrgent")[0];
+  buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
+  buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
+
+  if (priority == "urgent") {
+    buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+  }
+
+  if (priority == "medium") {
+    buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+  }
+
+  if (priority == "low") {
+    buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+  }
+}
+
+// addTask --------------------------- category
+
 function addTaskRenderCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropDown");
   categoryDropdown.innerHTML = "";
@@ -493,17 +594,7 @@ function chooseCategory(i) {
     `;
 }
 
-function addTaskOpenCloseCategoryDropDown() {
-  let categoryDropDown = document.getElementById("categoryDropDown");
-  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
-
-  categoryDropDown.classList.toggle("show");
-  categoryDropDown.classList.toggle("displayNone");
-  dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxOpen");
-  dropdownLableBox.classList.toggle("addTaskChooseCategoryDropdownLableBoxClosed");
-  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.toggle("displayNone");
-  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.toggle("displayNone");
-}
+// addTask --------------------------- subTask
 
 function addTaskOpenAddSubtask() {
   let inputBox = document.getElementById("addSubtaskInputBox");
