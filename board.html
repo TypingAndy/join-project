@@ -33,7 +33,7 @@
               <p>To Do</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="toDoSectionContentWrapper" class="toDoSectionContentWrapper">
+            <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
                 <p>No tasks to do</p>
               </div>
@@ -44,21 +44,21 @@
               <p>In progress</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="inProgressContentWrapper" class="inProgressContentWrapper"></div>
+            <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="awaitFeedbackContentWrapper" class="awaitFeedbackContentWrapper"></div>
+            <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
               <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="doneContentWrapper" class="doneContentWrapper"></div>
+            <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
           </div>
         </div>
       </div>
