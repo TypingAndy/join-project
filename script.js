@@ -29,6 +29,7 @@ let toDoTasks = [];
 let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
+let currentDraggedElementID;
 
 //often Used functions
 
@@ -44,130 +45,6 @@ function signUpAddColorToUser() {
 
 function getColorFromUser(i) {
   return sortedUsers[i].color;
-}
-
-// open close assign Dropdown
-
-document.addEventListener("click", function (event) {
-  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
-  let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
-  let inputField = document.getElementById("addTaskContactsSearchArea");
-  let userNameDropDown = document.getElementById("userNameDropDown");
-
-  if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
-    openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
-  } else {
-    closeAssignDropdown(userNameDropDown);
-  }
-});
-
-//                               open assign functions
-
-function openAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
-  addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown);
-  addOpenContactsRemoveClosedContacts(contactsDropdown);
-  removeButtonBoxAddDropdown();
-  inputField.focus();
-}
-
-function addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown) {
-  userNameDropDown.classList.add("show");
-  userNameDropDown.classList.remove("displayNone");
-}
-
-function addOpenContactsRemoveClosedContacts(contactsDropdown) {
-  contactsDropdown.classList.remove("addTaskContactsDropdownLableBoxClosed");
-  contactsDropdown.classList.add("addTaskContactsDropdownLableBoxOpen");
-}
-
-function removeButtonBoxAddDropdown() {
-  document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
-}
-
-//                               close assign functions
-
-function closeAssignDropdown() {
-  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown), removeOpenContactsAddClosedContacts(), addButtonBoxRemoveDropdown();
-}
-
-function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
-  userNameDropDown.classList.remove("show");
-  userNameDropDown.classList.add("displayNone");
-}
-
-function removeOpenContactsAddClosedContacts() {
-  let contactsDropdownBox = document.getElementById("addTaskContactsDropdownLableBox");
-  contactsDropdownBox.classList.add("addTaskContactsDropdownLableBoxClosed");
-  contactsDropdownBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
-}
-
-function addButtonBoxRemoveDropdown() {
-  document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
-  document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
-}
-
-// open close Category Dropdown
-
-document.addEventListener("click", function (event) {
-  let categoryDropdown = document.getElementById("categoryDropDown");
-  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
-
-  if (dropdownLableBox.contains(event.target)) {
-    toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
-  } else if (!categoryDropdown.contains(event.target)) {
-    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
-  }
-});
-
-function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
-  if (categoryDropdown.classList.contains("show")) {
-    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
-  } else {
-    openCategoryDropdown(categoryDropdown, dropdownLableBox);
-  }
-}
-
-function openCategoryDropdown(categoryDropdown, dropdownLableBox) {
-  showCategoryDropdown(categoryDropdown);
-  addDropdownLableBox(dropdownLableBox);
-  switchAssignArrowToDown();
-}
-
-function showCategoryDropdown(categoryDropdown) {
-  categoryDropdown.classList.add("show");
-  categoryDropdown.classList.remove("displayNone");
-}
-
-function addDropdownLableBox(dropdownLableBox) {
-  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxOpen");
-  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxClosed");
-}
-
-function switchAssignArrowToDown() {
-  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.remove("displayNone");
-  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.add("displayNone");
-}
-
-function closeCategoryDropdown(categoryDropdown, dropdownLableBox) {
-  closeCategoryDropdownWindow(categoryDropdown);
-  closeCategoryLableBox(dropdownLableBox);
-  switchCategoryArrowToUp();
-}
-
-function closeCategoryDropdownWindow(categoryDropdown) {
-  categoryDropdown.classList.remove("show");
-  categoryDropdown.classList.add("displayNone");
-}
-
-function closeCategoryLableBox(dropdownLableBox) {
-  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxOpen");
-  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxClosed");
-}
-
-function switchCategoryArrowToUp() {
-  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
-  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
 }
 
 //sign up data
@@ -275,9 +152,13 @@ async function loadAllTasks(path = "tasks") {
   renderTasks();
 }
 
+async function convertUnsortedTasksToArray() {
+  convertedTasks = Object.values(allUnsortedTasks);
+}
+
 function addFirebaseIDtoConvertedTasksArray() {
-  const newArray = convertedTasks.map((item, index) => {
-    const id = Object.keys(allUnsortedTasks)[index];
+  let newArray = convertedTasks.map((item, index) => {
+      let id = Object.keys(allUnsortedTasks)[index];
     return { ...item, ID: id };
   });
   convertedTasks = newArray;
@@ -286,16 +167,8 @@ function addFirebaseIDtoConvertedTasksArray() {
 function sortAllTasks() {
   toDoTasks = convertedTasks.filter((t) => t.taskStatus == "to do");
   doneTasks = convertedTasks.filter((t) => t.taskStatus == "done");
-  inProgressTasks = convertedTasks.filter((t) => t.taskStatus == "work in progress");
+  inProgressTasks = convertedTasks.filter((t) => t.taskStatus == "in progress");
   awaitFeedbackTasks = convertedTasks.filter((t) => t.taskStatus == "await feedback");
-}
-
-async function convertUnsortedTasksToArray() {
-  convertedTasks = Object.values(allUnsortedTasks);
-}
-
-function filterTasks(tasks, searchTerm) {
-  return tasks.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm.toLowerCase()));
 }
 
 function renderTasks() {
@@ -317,26 +190,8 @@ function renderTasks() {
   renderDoneElementTasks(doneElement, filteredDoneTasks);
 }
 
-function renderInProgressTasks(inProgressElement, tasks) {
-  if (tasks.length < 1) {
-    inProgressElement.innerHTML = noTaskTemplate();
-  } else {
-    inProgressElement.innerHTML = "";
-    for (let i = 0; i < tasks.length; i++) {
-      let taskCardUserHtml = "";
-      if (!tasks[i].taskAssignedUserInitials) {
-        taskCardUserHtml = "";
-      } else {
-        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
-        }
-      }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
-      inProgressElement.innerHTML += inProgressTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
-      document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
-    }
-  }
+function filterTasks(tasks, searchTerm) {
+  return tasks.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm.toLowerCase()));
 }
 
 function renderToDoTasks(toDoElement, tasks) {
@@ -357,6 +212,28 @@ function renderToDoTasks(toDoElement, tasks) {
       let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
       toDoElement.innerHTML += toDoTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarToDoTasks${[i]}`).style.width = subtaskPercentage + `%`;
+    }
+  }
+}
+
+function renderInProgressTasks(inProgressElement, tasks) {
+  if (tasks.length < 1) {
+    inProgressElement.innerHTML = noTaskTemplate();
+  } else {
+    inProgressElement.innerHTML = "";
+    for (let i = 0; i < tasks.length; i++) {
+      let taskCardUserHtml = "";
+      if (!tasks[i].taskAssignedUserInitials) {
+        taskCardUserHtml = "";
+      } else {
+        for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
+          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+        }
+      }
+      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      inProgressElement.innerHTML += inProgressTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
+      document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
 }
@@ -403,6 +280,21 @@ function renderDoneElementTasks(doneElement, tasks) {
       document.getElementById(`taskCardSubtaskBarDoneTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
   }
+}
+
+function startDragging(id) {
+  currentDraggedElementID = id;
+  console.log(currentDraggedElementID);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(taskStatus) {
+  convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
+  sortAllTasks();
+  renderTasks();
 }
 
 document.getElementById("findTaskInput").addEventListener("input", renderTasks);
@@ -683,4 +575,130 @@ function addTaskAcceptRewriting(i) {
   document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
   addTaskWriteSubtaskBoard();
+}
+
+// addTask ---------------------------   Dropdown
+
+// open close assign Dropdown
+
+document.addEventListener("click", function (event) {
+  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
+  let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
+  let inputField = document.getElementById("addTaskContactsSearchArea");
+  let userNameDropDown = document.getElementById("userNameDropDown");
+
+  if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
+    openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+  } else {
+    closeAssignDropdown(userNameDropDown);
+  }
+});
+
+//                               open assign functions
+
+function openAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
+  addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown);
+  addOpenContactsRemoveClosedContacts(contactsDropdown);
+  removeButtonBoxAddDropdown();
+  inputField.focus();
+}
+
+function addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.add("show");
+  userNameDropDown.classList.remove("displayNone");
+}
+
+function addOpenContactsRemoveClosedContacts(contactsDropdown) {
+  contactsDropdown.classList.remove("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdown.classList.add("addTaskContactsDropdownLableBoxOpen");
+}
+
+function removeButtonBoxAddDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.add("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.remove("displayNone");
+}
+
+//                               close assign functions
+
+function closeAssignDropdown() {
+  removeShowAddDisplayNoneToAssignDropdown(userNameDropDown), removeOpenContactsAddClosedContacts(), addButtonBoxRemoveDropdown();
+}
+
+function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
+  userNameDropDown.classList.remove("show");
+  userNameDropDown.classList.add("displayNone");
+}
+
+function removeOpenContactsAddClosedContacts() {
+  let contactsDropdownBox = document.getElementById("addTaskContactsDropdownLableBox");
+  contactsDropdownBox.classList.add("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdownBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
+}
+
+function addButtonBoxRemoveDropdown() {
+  document.getElementById("addTaskAssignContactsButton").classList.remove("displayNone");
+  document.getElementById("dropDownSearchCloseButtonBox").classList.add("displayNone");
+}
+
+// open close Category Dropdown
+
+document.addEventListener("click", function (event) {
+  let categoryDropdown = document.getElementById("categoryDropDown");
+  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
+
+  if (dropdownLableBox.contains(event.target)) {
+    toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else if (!categoryDropdown.contains(event.target)) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+});
+
+function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  if (categoryDropdown.classList.contains("show")) {
+    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+  } else {
+    openCategoryDropdown(categoryDropdown, dropdownLableBox);
+  }
+}
+
+function openCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  showCategoryDropdown(categoryDropdown);
+  addDropdownLableBox(dropdownLableBox);
+  switchAssignArrowToDown();
+}
+
+function showCategoryDropdown(categoryDropdown) {
+  categoryDropdown.classList.add("show");
+  categoryDropdown.classList.remove("displayNone");
+}
+
+function addDropdownLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchAssignArrowToDown() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.remove("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.add("displayNone");
+}
+
+function closeCategoryDropdown(categoryDropdown, dropdownLableBox) {
+  closeCategoryDropdownWindow(categoryDropdown);
+  closeCategoryLableBox(dropdownLableBox);
+  switchCategoryArrowToUp();
+}
+
+function closeCategoryDropdownWindow(categoryDropdown) {
+  categoryDropdown.classList.remove("show");
+  categoryDropdown.classList.add("displayNone");
+}
+
+function closeCategoryLableBox(dropdownLableBox) {
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchCategoryArrowToUp() {
+  document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
+  document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
 }

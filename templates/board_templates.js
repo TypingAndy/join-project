@@ -8,7 +8,7 @@ function noTaskTemplate() {
 
 function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].ID}')">
                   <div class="taskCardCategory">
                     <p>${inProgressTasks[i].taskCategory}</p>
                   </div>
@@ -32,7 +32,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
 
 function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].ID}')">
                   <div class="taskCardCategory">
                     <p>${toDoTasks[i].taskCategory}</p>
                   </div>
@@ -55,8 +55,8 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
 }
 
 function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml) {
-  return `
-                <div class="taskCard" draggable="true">
+  return ` 
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].ID}')">
                   <div class="taskCardCategory">
                     <p>${awaitFeedbackTasks[i].taskCategory}</p>
                   </div>
@@ -80,7 +80,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
 
 function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].ID}')">
                   <div class="taskCardCategory">
                     <p>${doneTasks[i].taskCategory}</p>
                   </div>
