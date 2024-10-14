@@ -148,9 +148,11 @@ async function loadAllTasks(path = "tasks") {
   console.log(allUnsortedTasks);
   convertUnsortedTasksToArray();
   addFirebaseIDtoConvertedTasksArray();
-  addSimpleIdToTasks()
+  addSimpleIdToTasks();
   sortAllTasks();
   renderTasks();
+  console.log(convertedTasks);
+  
 }
 
 async function convertUnsortedTasksToArray() {
@@ -159,8 +161,8 @@ async function convertUnsortedTasksToArray() {
 
 function addFirebaseIDtoConvertedTasksArray() {
   let newArray = convertedTasks.map((item, index) => {
-      let  id = Object.keys(allUnsortedTasks)[index];
-    return { ...item, firebaseID: id };
+    let id = Object.keys(allUnsortedTasks)[index];
+    return { ...item, ID: id };
   });
   convertedTasks = newArray;
 }
@@ -168,14 +170,11 @@ function addFirebaseIDtoConvertedTasksArray() {
 function addSimpleIdToTasks() {
   for (let i = 0; i < convertedTasks.length; i++) {
     let newArray = convertedTasks.map((item, i) => {
-      let  id = [i];
-    return { ...item, ID: id };
-  });
-  convertedTasks = newArray;
-    
+      let id = [i];
+      return { ...item, numberedID: id };
+    });
+    convertedTasks = newArray;
   }
-
-
 }
 
 function sortAllTasks() {
