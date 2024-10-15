@@ -535,7 +535,7 @@ function addTaskWriteSubtaskBoard() {
   let subtaskBoard = document.getElementById("subtaskBoard");
   subtaskBoard.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
-    subtaskBoard.innerHTML += subTaskTemplate(i);
+    subtaskBoard.innerHTML += subtaskTemplate(i);
   }
 }
 
