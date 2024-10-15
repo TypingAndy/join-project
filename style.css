@@ -11,7 +11,6 @@
 body {
   margin: 0;
   font-family: "Inter";
-
 }
 
 p {
@@ -200,6 +199,41 @@ textarea:active {
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
 /* board.html Styling below:-------------------------------------------------------------------- */
+/* board popup --------------- */
+.boardPopupBackground {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #79e22928;
+  z-index: 400;
+}
+.boardTaskPopup {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 24px - 88px - 88px);
+  width: calc(100% - 24px);
+  background-color: #091931;
+  z-index: 500;
+  border-radius: 30px;
+}
+
+.boardTaskPopupContentWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #ff3c006a;
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  box-sizing: border-box;
+  border-radius: 30px;
+  gap: 16px;
+}
+
+/* board main ------------------- */
 
 .boardWrapper {
   display: flex;
