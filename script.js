@@ -148,8 +148,11 @@ async function loadAllTasks(path = "tasks") {
   console.log(allUnsortedTasks);
   convertUnsortedTasksToArray();
   addFirebaseIDtoConvertedTasksArray();
+  addSimpleIdToTasks();
   sortAllTasks();
   renderTasks();
+  console.log(convertedTasks);
+  
 }
 
 async function convertUnsortedTasksToArray() {
@@ -162,6 +165,16 @@ function addFirebaseIDtoConvertedTasksArray() {
     return { ...item, ID: id };
   });
   convertedTasks = newArray;
+}
+
+function addSimpleIdToTasks() {
+  for (let i = 0; i < convertedTasks.length; i++) {
+    let newArray = convertedTasks.map((item, i) => {
+      let id = [i];
+      return { ...item, numberedID: id };
+    });
+    convertedTasks = newArray;
+  }
 }
 
 function sortAllTasks() {
@@ -297,7 +310,7 @@ function moveTo(taskStatus) {
   renderTasks();
 }
 
-document.getElementById("findTaskInput").addEventListener("input", renderTasks);
+// document.getElementById("findTaskInput").addEventListener("input", renderTasks);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -343,15 +356,7 @@ function loadFullNameList() {
   for (let i = 0; i < sortedUsers.length; i++) {
     let currentColor = getColorFromUser(i);
     let blackWhite = addTaskAdaptFontColorToBackground(i);
-    dropdown.innerHTML += /*html*/ `
-    <div id="addTaskAssignUserId${i}" onclick="addUserToTask('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
-      <div class="addTaskAllUserInitials" style="background-color: ${currentColor}; color: ${blackWhite};">${allUserInitials[i]}</div>
-      <div class="addTaskAddUserNameAndInitials">
-        <div>${sortedUsers[i].name}</div>
-      </div>
-      <img id="noCheck${i}" src="images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
-      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="images/mobile/addTaskMobile/checkButtonMobileSolvedWhite.png" alt="">
-    </div>`;
+    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
   }
 }
 
@@ -367,7 +372,7 @@ function addTaskAdaptFontColorToBackground(i) {
   return luminance > 128 ? "black" : "white";
 }
 
-function addUserToTask(name, i) {
+function addUserToTaskToggle(name, i) {
   let inputField = document.getElementById("addTaskContactsSearchArea");
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
@@ -375,29 +380,37 @@ function addUserToTask(name, i) {
   let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
-  if (!addTaskCurrentUser.includes(name)) {
-    addTaskCurrentUser.push(name);
-    taskAssignedUserInitials.push(allUserInitials[i]);
-    addTaskAssignedUserColors.push(sortedUsers[i].color);
-    addTaskAssignedUserFontColors.push(blackWhite);
-
-    check.classList.remove("displayNone");
-    noCheck.classList.add("displayNone");
-    assignUserID.classList.add("addTaskNewBackgroundChecked");
-  } else {
+  if (!addTaskCurrentUser.includes(name))
+    addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
+  else {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
-      addTaskCurrentUser.splice(userIndex, 1);
-      taskAssignedUserInitials.splice(userIndex, 1);
-      addTaskAssignedUserColors.splice(userIndex, 1);
-      addTaskAssignedUserFontColors.splice(userIndex, 1);
-
-      check.classList.add("displayNone");
-      noCheck.classList.remove("displayNone");
-      assignUserID.classList.remove("addTaskNewBackgroundChecked");
+      removeUserFromTask(check, noCheck, assignUserID, userIndex)
     }
   }
   addUserSymbolsToAssign();
+}
+
+function addUserToTask (name, i, check, noCheck, assignUserID, blackWhite) {
+  addTaskCurrentUser.push(name);
+  taskAssignedUserInitials.push(allUserInitials[i]);
+  addTaskAssignedUserColors.push(sortedUsers[i].color);
+  addTaskAssignedUserFontColors.push(blackWhite);
+  
+  check.classList.remove("displayNone");
+  noCheck.classList.add("displayNone");
+  assignUserID.classList.add("addTaskNewBackgroundChecked");
+}
+
+function removeUserFromTask(check, noCheck, assignUserID, userIndex) {
+  addTaskCurrentUser.splice(userIndex, 1);
+  taskAssignedUserInitials.splice(userIndex, 1);
+  addTaskAssignedUserColors.splice(userIndex, 1);
+  addTaskAssignedUserFontColors.splice(userIndex, 1);
+
+  check.classList.add("displayNone");
+  noCheck.classList.remove("displayNone");
+  assignUserID.classList.remove("addTaskNewBackgroundChecked");
 }
 
 function addUserSymbolsToAssign() {
@@ -405,11 +418,7 @@ function addUserSymbolsToAssign() {
   addUserSymbolsAssign.innerHTML = "";
 
   for (let i = 0; i < addTaskCurrentUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += /*html*/ `
-    <div>
-     <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
-    </div>
-    `;
+    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i); 
   }
 }
 
@@ -451,24 +460,31 @@ function setTaskPrioButtonColorSwitch(priority) {
   buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
   buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
 
-  if (priority == "urgent") {
-    buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "medium") {
-    buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  }
-
-  if (priority == "low") {
-    buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-    buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-    buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-  }
+  if (priority == "urgent") 
+    highlightPrioButtonUrgent();
+  if (priority == "medium") 
+    highlightPrioButtonMedium();
+  if (priority == "low") 
+    highlightPrioButtonLow();
+  
 }
+
+function highlightPrioButtonUrgent() {
+  buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+  buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+  buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+}
+function highlightPrioButtonMedium() {
+  buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+  buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+  buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+}
+function highlightPrioButtonLow() {
+  buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
+  buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
+  buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
+}
+
 
 // addTask --------------------------- category
 
@@ -483,11 +499,7 @@ function addTaskRenderCategoryDropdown() {
 
 function chooseCategory(i) {
   chosenCategory = i;
-  document.getElementById("addTaskChooseCategoryButton").innerHTML = /*html*/ `
-      <div class="fontInboxAlign">${chosenCategory}</div>
-      <img id="addTaskChooseCategoryDropdownImageDown" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
-      <img id="addTaskChooseCategoryDropdownImageUp"  src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt=""/>
-    `;
+  document.getElementById("addTaskChooseCategoryButton").innerHTML = categoryTemplate(chosenCategory);
 }
 
 // addTask --------------------------- subTask
@@ -523,26 +535,7 @@ function addTaskWriteSubtaskBoard() {
   let subtaskBoard = document.getElementById("subtaskBoard");
   subtaskBoard.innerHTML = "";
   for (let i = 0; i < subtasks.length; i++) {
-    subtaskBoard.innerHTML += /*html*/ `
-    <li class="addTaskSingleListSubtask">
-      <div id="addTaskSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
-        <input id="addTaskSubtaskRewriteInput${i}" class="taskBoardRewriteSubtaskInput" type="text">
-        <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskCancelRewriting(${i})" id="addTaskCancelRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
-          <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="">
-        </div>
-      </div>
-      <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
-        <div>${subtasks[i].subtask}</div>
-        <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
-          <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskDeleteSubtaskFromBoard(${i})" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png">
-        </div>
-      </div>
-    </li>
-    `;
+    subtaskBoard.innerHTML += subtaskTemplate(i);
   }
 }
 
