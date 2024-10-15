@@ -158,7 +158,7 @@ async function convertUnsortedTasksToArray() {
 
 function addFirebaseIDtoConvertedTasksArray() {
   let newArray = convertedTasks.map((item, index) => {
-      let id = Object.keys(allUnsortedTasks)[index];
+    let id = Object.keys(allUnsortedTasks)[index];
     return { ...item, ID: id };
   });
   convertedTasks = newArray;
