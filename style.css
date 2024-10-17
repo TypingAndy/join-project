@@ -198,6 +198,17 @@ textarea:active {
 
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
+.summaryWrapper {
+  background-color: #79e22986;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  top: 80px;
+
+}
+
+
 /* board.html Styling below:-------------------------------------------------------------------- */
 /* board popup --------------- */
 .boardPopupBackground {
@@ -1062,6 +1073,11 @@ textarea:active {
   top: 12px;
 }
 
+.addTaskSubTaskList {
+  position: relative;
+}
+
+
 .addTaskSubtaskInputBox {
   position: relative;
   display: flex;
@@ -1115,6 +1131,7 @@ textarea:active {
 
 .addTaskSingleListSubtask {
   height: 48px;
+
 }
 
 .addTaskDisplayFlexer {
@@ -1123,6 +1140,7 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .addTaskSubtaskIconBox {
@@ -1143,6 +1161,7 @@ textarea:active {
   border-left: none;
   border-bottom: #29abe2 solid 1px;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .addTaskRewriteSubtaskFlex {
@@ -1150,6 +1169,8 @@ textarea:active {
   align-items: center;
   justify-content: space-between;
 }
+
+
 
 /* ------------------------- add Task post Button */
 
