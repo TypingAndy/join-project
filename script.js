@@ -570,6 +570,12 @@ function addTaskAcceptRewriting(i) {
   addTaskWriteSubtaskBoard();
 }
 
+function checkEnterKeyTrigger(event) {
+if (event.key === "Enter" || event.keyCode === 13) {
+  addTaskAddSubtask();
+}
+}
+
 // addTask ---------------------------   Dropdown
 
 // open close assign Dropdown
