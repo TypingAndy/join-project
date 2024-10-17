@@ -11,7 +11,6 @@
 body {
   margin: 0;
   font-family: "Inter";
-
 }
 
 p {
@@ -200,6 +199,191 @@ textarea:active {
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
 /* board.html Styling below:-------------------------------------------------------------------- */
+/* board popup --------------- */
+.boardPopupBackground {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #79e22928;
+  z-index: 400;
+}
+.boardTaskPopup {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 24px - 88px - 88px);
+  width: calc(100% - 24px);
+  background-color: #ffffff;
+  z-index: 500;
+  border-radius: 30px;
+}
+
+.boardTaskPopupContentWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff6a;
+  width: calc(100% - 40px);
+  height: calc(100% - 64px);
+  box-sizing: border-box;
+  border-radius: 30px;
+  gap: 16px;
+}
+
+.boardTaskPopupContentTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+  background-color: white;
+}
+
+.boardTaskPopupCategoryCard {
+  background-color: #0038ff;
+  padding: 4px 16px;
+  border-radius: 8px;
+}
+
+.boardTaskPopupCategoryLabel {
+  font-size: 16px;
+  color: white;
+}
+
+.boardTaskPopupContentCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.boardTaskPopupContentClose {
+  width: 32px;
+}
+
+.boardTaskPopupContentTitle {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.boardTaskPopupContentDescription {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentDateWrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.boardTaskPopupContentDateLabel,
+.boardTaskPopupContentPrioLabel,
+.boardTaskPopupContentAssignedToLabel,
+.boardTaskPopupContentSubtasksLabel {
+  font-size: 16px;
+  color: #42526e;
+}
+
+.boardTaskPopupContentDate {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentPrioWrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.boardTaskPopupContentPrioOutputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boardTaskPopupContentPrioValue {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentPrioIcon {
+  height: 32px;
+}
+
+.boardTaskPopupContentAssignedToWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boardTaskPopupContentAssignedToUserWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.boardTaskPopupContentAssignedToUserContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 16px;
+  /* background-color: #091931; */
+}
+
+.boardTaskPopupContentAssignedToUserCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1fd7c1;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+}
+
+.boardTaskPopupContentAssignedToUserInitials {
+  color: white;
+}
+
+.boardTaskPopupContentSubtasksList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 16px;
+  gap: 8px;
+}
+
+.boardTaskPopupContentSubtask {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.boardTaskPopupContentSubtaskIcon,
+.boardTaskPopupDeleteIcon,
+.boardTaskPopupEditIcon {
+  width: 24px;
+}
+
+.boardTaskPopupContentBottom {
+  justify-content: flex-end;
+  display: flex;
+  gap: 8px;
+}
+
+.boardTaskPopupContentDeleteContainer,
+.boardTaskPopupContentEditContainer {
+  display: flex;
+  align-items: center;
+}
+
+.boardTaskPopupContentBottomLine {
+  height: 100%;
+  width: 1px;
+  background-color: #d1d1d1;
+}
+/* board main ------------------- */
 
 .boardWrapper {
   display: flex;
