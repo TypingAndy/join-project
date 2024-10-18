@@ -211,9 +211,7 @@ textarea:active {
 }
 
 .summaryMidSectionWrapper {
-
 }
-
 
 /* board.html Styling below:-------------------------------------------------------------------- */
 /* board popup --------------- */
@@ -353,7 +351,6 @@ textarea:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1fd7c1;
   height: 42px;
   width: 42px;
   border-radius: 50%;

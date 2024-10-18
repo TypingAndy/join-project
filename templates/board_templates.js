@@ -116,24 +116,19 @@ function boardTaskPopupTemplate(i) {
     <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">Build start page with recipe.</p>
     <div class="boardTaskPopupContentDateWrapper">
       <p class="boardTaskPopupContentDateLabel">Due date:</p>
-      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">10/05/2023</p>
+      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">${convertedTasks[i].taskDate}</p>
     </div>
     <div class="boardTaskPopupContentPrioWrapper">
       <p class="boardTaskPopupContentPrioLabel">Priority:</p>
       <div class="boardTaskPopupContentPrioOutputWrapper">
-        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">Medium</p>
-        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/medium.png" alt="medium prio" />
+        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${convertedTasks[i].taskPrio}</p>
+        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/${convertedTasks[i].taskPrio}.png" alt="medium prio" />
       </div>
     </div>
     <div class="boardTaskPopupContentAssignedToWrapper">
       <p class="boardTaskPopupContentAssignedToLabel">Assigned To:</p>
-      <div class="boardTaskPopupContentAssignedToUserWrapper">
-        <div class="boardTaskPopupContentAssignedToUserContainer">
-          <div class="boardTaskPopupContentAssignedToUserCircle">
-            <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
-          </div>
-          <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
-        </div>
+      <div class="boardTaskPopupContentAssignedToUserWrapper" id="boardTaskPopupContentAssignedToUserWrapper">
+        
         <div class="boardTaskPopupContentAssignedToUserContainer">
           <div class="boardTaskPopupContentAssignedToUserCircle">
             <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
@@ -150,7 +145,7 @@ function boardTaskPopupTemplate(i) {
     </div>
     <div class="boardTaskPopupContentSubtasksWrapper">
       <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
-      <div class="boardTaskPopupContentSubtasksList">
+      <div class="boardTaskPopupContentSubtasksList" id="boardTaskPopupContentSubtasksList">
         <div class="boardTaskPopupContentSubtask">
           <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
@@ -175,4 +170,24 @@ function boardTaskPopupTemplate(i) {
   </div>
 </div>
 `;
+}
+
+function popupUserTemplate(usersIndex, i) {
+  return `
+        <div class="boardTaskPopupContentAssignedToUserContainer">
+          <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${convertedTasks[i].taskAssignedUserColors[usersIndex]};">
+            <p class="boardTaskPopupContentAssignedToUserInitials">${convertedTasks[i].taskAssignedUserInitials[usersIndex]}</p>
+          </div>
+          <p class="boardTaskPopupContentAssignedToUserLabel">${convertedTasks[i].taskAssignedUser[usersIndex]}</p>
+        </div>
+  `;
+}
+
+function popupSubtaskTemplate(subtasksIndex, i) {
+  return `
+        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i})">
+          <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
+          <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[i].taskSubtasks[subtasksIndex].subtask}</p>
+        </div>
+  `;
 }
