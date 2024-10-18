@@ -313,9 +313,12 @@ const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
 
 function openBoardTaskPopup(i) {
+  renderBoardTaskPopupContent(i);
+  renderBoardTaskPopupContentUsers(i);
+  renderBoardTaskPopupSubtasks(i);
   popupElement.style.display = "flex";
   popupBackgroundELement.style.display = "flex";
-  renderBoardTaskPopupContent(i);
+
   popupElement.addEventListener("click", stopPropagation);
 }
 
@@ -327,6 +330,32 @@ function closeBoardTaskPopup() {
 
 function renderBoardTaskPopupContent(i) {
   popupElement.innerHTML = boardTaskPopupTemplate(i);
+}
+
+function renderBoardTaskPopupContentUsers(i) {
+  const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
+  popupUsersElement.innerHTML = "";
+  for (let usersIndex = 0; usersIndex < convertedTasks[i].taskAssignedUser.length; usersIndex++) {
+    popupUsersElement.innerHTML += popupUserTemplate(usersIndex, i);
+  }
+}
+
+function renderBoardTaskPopupSubtasks(i) {
+  const popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
+  popupSubtasksElement.innerHTML = "";
+  for (let subtasksIndex = 0; subtasksIndex < convertedTasks[i].taskSubtasks.length; subtasksIndex++) {
+    popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, i);
+    if (convertedTasks[i].taskSubtasks[subtasksIndex].done) {
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/checked.png";
+    } else {
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/unchecked.png";
+    }
+  }
+}
+
+function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
+  convertedTasks[i].taskSubtasks[subtasksIndex].done = !convertedTasks[i].taskSubtasks[subtasksIndex].done;
+  renderBoardTaskPopupSubtasks(i);
 }
 
 document.getElementById("findTaskInput").addEventListener("input", renderTasks);
