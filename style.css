@@ -203,11 +203,15 @@ textarea:active {
   position: relative;
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
   top: 80px;
-
+  height: 100%;
 }
 
+.summaryMidSectionWrapper {
+
+}
 
 /* board.html Styling below:-------------------------------------------------------------------- */
 /* board popup --------------- */
@@ -1077,7 +1081,6 @@ textarea:active {
   position: relative;
 }
 
-
 .addTaskSubtaskInputBox {
   position: relative;
   display: flex;
@@ -1131,7 +1134,6 @@ textarea:active {
 
 .addTaskSingleListSubtask {
   height: 48px;
-
 }
 
 .addTaskDisplayFlexer {
@@ -1140,7 +1142,6 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .addTaskSubtaskIconBox {
@@ -1169,8 +1170,6 @@ textarea:active {
   align-items: center;
   justify-content: space-between;
 }
-
-
 
 /* ------------------------- add Task post Button */
 
