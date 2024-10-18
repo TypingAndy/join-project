@@ -203,9 +203,17 @@ textarea:active {
   position: relative;
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
   top: 80px;
+
+  height: 100%;
 }
+
+.summaryMidSectionWrapper {
+
+}
+
 
 /* board.html Styling below:-------------------------------------------------------------------- */
 /* board popup --------------- */
