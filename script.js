@@ -318,7 +318,6 @@ function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("taskDateInput").value;
-
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -540,10 +539,11 @@ function addTaskWriteSubtaskBoard() {
 }
 
 function addTaskRewriteSubtask(i) {
+  addTaskWriteSubtaskBoard();
+
   let subtask = subtasks[i].subtask;
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
-
   rewriteInputBox.value = subtask;
   rewriteInputBox.classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
@@ -556,18 +556,29 @@ function addTaskDeleteSubtaskFromBoard(i) {
   addTaskWriteSubtaskBoard();
 }
 
-function addTaskCancelRewriting(i) {
-  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  rewriteInput.value = subtasks[i].subtask;
-  rewriteInput.focus();
-}
-
 function addTaskAcceptRewriting(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
   subtasks[i].subtask = rewriteInput.value;
   document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
   document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
   addTaskWriteSubtaskBoard();
+}
+
+function addTaskCancleRewritingSubtask(i) {
+  addTaskDeleteRewritingSubtask(i)
+  addTaskAcceptRewriting(i)
+}
+
+function addTaskDeleteRewritingSubtask(i) {
+  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+  rewriteInput.value = subtasks[i].subtask;
+  rewriteInput.focus();
+}
+
+function checkEnterKeyTrigger(event) {
+  if (event.key === "Enter" || event.keyCode === 13) {
+    addTaskAddSubtask();
+  }
 }
 
 // addTask ---------------------------   Dropdown
@@ -636,6 +647,7 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
+
   let categoryDropdown = document.getElementById("categoryDropDown");
   let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 

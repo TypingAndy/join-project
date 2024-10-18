@@ -99,18 +99,20 @@
               <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
             </div>
 
-            <div id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
+            <div onkeydown="checkEnterKeyTrigger(event)" id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
               <div class="addTaskSubtaskInput">
                 <input id="addSubtaskInput" class="addTaskSubtaskInputField" />
               </div>
 
               <div class="addTaskSubtaskCheckXBox">
                 <img onclick="addTaskAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="images/mobile/addTaskMobile/xBlack.png" alt="" />
-                <img onclick="addTaskAddSubtask()" class="addTaskSubtaskCheck img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="" />
+                <img onclick="addTaskAddSubtask()" tabindex="0" class="addTaskSubtaskCheck img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="" />
               </div>
             </div>
 
-            <ul class="addTaskSubTaskList" id="subtaskBoard"></ul>
+            <ul class="addTaskSubTaskList" id="subtaskBoard">
+           
+            </ul>
           </div>
 
           <div class="addTaskButton">
