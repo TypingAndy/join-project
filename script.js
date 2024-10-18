@@ -152,7 +152,6 @@ async function loadAllTasks(path = "tasks") {
   sortAllTasks();
   renderTasks();
   console.log(convertedTasks);
-  
 }
 
 async function convertUnsortedTasksToArray() {
@@ -310,7 +309,27 @@ function moveTo(taskStatus) {
   renderTasks();
 }
 
-// document.getElementById("findTaskInput").addEventListener("input", renderTasks);
+const popupElement = document.getElementById("boardTaskPopup");
+const popupBackgroundELement = document.getElementById("boardPopupBackground");
+
+function openBoardTaskPopup(i) {
+  popupElement.style.display = "flex";
+  popupBackgroundELement.style.display = "flex";
+  renderBoardTaskPopupContent(i);
+  popupElement.addEventListener("click", stopPropagation);
+}
+
+function closeBoardTaskPopup() {
+  popupElement.style.display = "none";
+  popupBackgroundELement.style.display = "none";
+  popupElement.removeEventListener("click", stopPropagation);
+}
+
+function renderBoardTaskPopupContent(i) {
+  popupElement.innerHTML = boardTaskPopupTemplate(i);
+}
+
+document.getElementById("findTaskInput").addEventListener("input", renderTasks);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -379,23 +398,22 @@ function addUserToTaskToggle(name, i) {
   let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
-  if (!addTaskCurrentUser.includes(name))
-    addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
+  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
   else {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
-      removeUserFromTask(check, noCheck, assignUserID, userIndex)
+      removeUserFromTask(check, noCheck, assignUserID, userIndex);
     }
   }
   addUserSymbolsToAssign();
 }
 
-function addUserToTask (name, i, check, noCheck, assignUserID, blackWhite) {
+function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite) {
   addTaskCurrentUser.push(name);
   taskAssignedUserInitials.push(allUserInitials[i]);
   addTaskAssignedUserColors.push(sortedUsers[i].color);
   addTaskAssignedUserFontColors.push(blackWhite);
-  
+
   check.classList.remove("displayNone");
   noCheck.classList.add("displayNone");
   assignUserID.classList.add("addTaskNewBackgroundChecked");
@@ -417,7 +435,7 @@ function addUserSymbolsToAssign() {
   addUserSymbolsAssign.innerHTML = "";
 
   for (let i = 0; i < addTaskCurrentUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i); 
+    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i);
   }
 }
 
@@ -459,13 +477,9 @@ function setTaskPrioButtonColorSwitch(priority) {
   buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
   buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
 
-  if (priority == "urgent") 
-    highlightPrioButtonUrgent();
-  if (priority == "medium") 
-    highlightPrioButtonMedium();
-  if (priority == "low") 
-    highlightPrioButtonLow();
-  
+  if (priority == "urgent") highlightPrioButtonUrgent();
+  if (priority == "medium") highlightPrioButtonMedium();
+  if (priority == "low") highlightPrioButtonLow();
 }
 
 function highlightPrioButtonUrgent() {
@@ -483,7 +497,6 @@ function highlightPrioButtonLow() {
   buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
   buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
 }
-
 
 // addTask --------------------------- category
 
@@ -565,8 +578,8 @@ function addTaskAcceptRewriting(i) {
 }
 
 function addTaskCancleRewritingSubtask(i) {
-  addTaskDeleteRewritingSubtask(i)
-  addTaskAcceptRewriting(i)
+  addTaskDeleteRewritingSubtask(i);
+  addTaskAcceptRewriting(i);
 }
 
 function addTaskDeleteRewritingSubtask(i) {
@@ -647,7 +660,6 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
-
   let categoryDropdown = document.getElementById("categoryDropDown");
   let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 
