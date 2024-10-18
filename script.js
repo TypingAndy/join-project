@@ -21,6 +21,7 @@ let addTaskAssignedUserColors = [];
 let addTaskAssignedUserFontColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
+let globalSubtaskId = "";
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -358,7 +359,18 @@ function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
   renderBoardTaskPopupSubtasks(i);
 }
 
-document.getElementById("findTaskInput").addEventListener("input", renderTasks);
+// const findTaskInput = document.getElementById("findTaskInput");
+
+// function addInputListener() {
+//     findTaskInput.addEventListener("input", renderTasks);
+// }
+
+// function removeInputListener() {
+//     findTaskInput.removeEventListener("input", renderTasks);
+// }
+
+// findTaskInput.addEventListener("focus", addInputListener);
+// findTaskInput.addEventListener("blur", removeInputListener);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -565,7 +577,7 @@ function addTaskAddSubtaskCancel() {
 function addTaskAddSubtask() {
   let subtaskInput = document.getElementById("addSubtaskInput");
   subtasks.push({ subtask: subtaskInput.value, done: false });
-
+  globalSubtaskId = 0;
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
@@ -610,6 +622,28 @@ function addTaskCancleRewritingSubtask(i) {
   addTaskDeleteRewritingSubtask(i);
   addTaskAcceptRewriting(i);
 }
+
+function readIdFromSubtask(id) {
+  let fullId = id;
+  let idNumber = fullId.slice(-1);
+  globalSubtaskId = idNumber;
+  console.log(idNumber);
+}
+
+document.addEventListener("click", function (event) {
+  if (globalSubtaskId !== "") {
+    let i = globalSubtaskId;
+    let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
+    let acceptRewriting = document.getElementById(`addTaskAcceptRewriting${i}`);
+    let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+
+    if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
+      if (document.body.contains(event.target)) {
+        addTaskCancleRewritingSubtask(i);
+      }
+    }
+  }
+});
 
 function addTaskDeleteRewritingSubtask(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
