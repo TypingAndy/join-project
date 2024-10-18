@@ -8,7 +8,7 @@ function noTaskTemplate() {
 
 function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
                     <p>${toDoTasks[i].taskCategory}</p>
                   </div>
@@ -32,7 +32,7 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
 
 function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
                     <p>${inProgressTasks[i].taskCategory}</p>
                   </div>
@@ -56,7 +56,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
 
 function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return ` 
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
                     <p>${awaitFeedbackTasks[i].taskCategory}</p>
                   </div>
@@ -80,7 +80,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
 
 function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
                     <p>${doneTasks[i].taskCategory}</p>
                   </div>
@@ -100,4 +100,79 @@ function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml)
                   </div>
                 </div>
       `;
+}
+
+function boardTaskPopupTemplate(i) {
+  return `  
+  <div class="boardTaskPopupContentWrapper">
+  <div class="boardTaskPopupContentTop">
+    <div class="boardTaskPopupCategoryCard">
+      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[i].taskCategory}</p>
+    </div>
+    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
+  </div>
+  <div class="boardTaskPopupContentCenter">
+    <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${convertedTasks[i].taskTitle}</p>
+    <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">Build start page with recipe.</p>
+    <div class="boardTaskPopupContentDateWrapper">
+      <p class="boardTaskPopupContentDateLabel">Due date:</p>
+      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">10/05/2023</p>
+    </div>
+    <div class="boardTaskPopupContentPrioWrapper">
+      <p class="boardTaskPopupContentPrioLabel">Priority:</p>
+      <div class="boardTaskPopupContentPrioOutputWrapper">
+        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">Medium</p>
+        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/medium.png" alt="medium prio" />
+      </div>
+    </div>
+    <div class="boardTaskPopupContentAssignedToWrapper">
+      <p class="boardTaskPopupContentAssignedToLabel">Assigned To:</p>
+      <div class="boardTaskPopupContentAssignedToUserWrapper">
+        <div class="boardTaskPopupContentAssignedToUserContainer">
+          <div class="boardTaskPopupContentAssignedToUserCircle">
+            <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
+          </div>
+          <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
+        </div>
+        <div class="boardTaskPopupContentAssignedToUserContainer">
+          <div class="boardTaskPopupContentAssignedToUserCircle">
+            <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
+          </div>
+          <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
+        </div>
+        <div class="boardTaskPopupContentAssignedToUserContainer">
+          <div class="boardTaskPopupContentAssignedToUserCircle">
+            <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
+          </div>
+          <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
+        </div>
+      </div>
+    </div>
+    <div class="boardTaskPopupContentSubtasksWrapper">
+      <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
+      <div class="boardTaskPopupContentSubtasksList">
+        <div class="boardTaskPopupContentSubtask">
+          <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
+          <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
+        </div>
+        <div class="boardTaskPopupContentSubtask">
+          <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
+          <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="boardTaskPopupContentBottom">
+    <div class="boardTaskPopupContentDeleteContainer">
+      <img class="boardTaskPopupDeleteIcon" src="./images/icons/delete.png" alt="delete" />
+      <p>Delete</p>
+    </div>
+    <div class="boardTaskPopupContentBottomLine"></div>
+    <div class="boardTaskPopupContentEditContainer">
+      <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
+      <p>Edit</p>
+    </div>
+  </div>
+</div>
+`;
 }
