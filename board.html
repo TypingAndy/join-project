@@ -18,79 +18,8 @@
           <p>AB</p>
         </div>
       </header>
-      <div class="boardPopupBackground">
-        <div class="boardTaskPopup">
-          <div class="boardTaskPopupContentWrapper">
-            <div class="boardTaskPopupContentTop">
-              <div class="boardTaskPopupCategoryCard">
-                <p class="boardTaskPopupCategoryLabel">User Story</p>
-              </div>
-              <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="" />
-            </div>
-            <div class="boardTaskPopupContentCenter">
-              <p class="boardTaskPopupContentTitle">Kochwelt Page & Recipe</p>
-              <p class="boardTaskPopupContentDescription">Build start page with recipe.</p>
-              <div class="boardTaskPopupContentDateWrapper">
-                <p class="boardTaskPopupContentDateLabel">Due date:</p>
-                <p class="boardTaskPopupContentDate">10/05/2023</p>
-              </div>
-              <div class="boardTaskPopupContentPrioWrapper">
-                <p class="boardTaskPopupContentPrioLabel">Priority:</p>
-                <div class="boardTaskPopupContentPrioOutputWrapper">
-                  <p class="boardTaskPopupContentPrioValue">Medium</p>
-                  <img class="boardTaskPopupContentPrioIcon" src="./images/icons/medium.png" alt="medium prio" />
-                </div>
-              </div>
-              <div class="boardTaskPopupContentAssignedToWrapper">
-                <p class="boardTaskPopupContentAssignedToLabel">Assigned To:</p>
-                <div class="boardTaskPopupContentAssignedToUserWrapper">
-                  <div class="boardTaskPopupContentAssignedToUserContainer">
-                    <div class="boardTaskPopupContentAssignedToUserCircle">
-                      <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
-                    </div>
-                    <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
-                  </div>
-                  <div class="boardTaskPopupContentAssignedToUserContainer">
-                    <div class="boardTaskPopupContentAssignedToUserCircle">
-                      <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
-                    </div>
-                    <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
-                  </div>
-                  <div class="boardTaskPopupContentAssignedToUserContainer">
-                    <div class="boardTaskPopupContentAssignedToUserCircle">
-                      <p class="boardTaskPopupContentAssignedToUserInitials">EM</p>
-                    </div>
-                    <p class="boardTaskPopupContentAssignedToUserLabel">Emmanuel Mauer</p>
-                  </div>
-                </div>
-              </div>
-              <div class="boardTaskPopupContentSubtasksWrapper">
-                <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
-                <div class="boardTaskPopupContentSubtasksList">
-                  <div class="boardTaskPopupContentSubtask">
-                    <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
-                    <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
-                  </div>
-                  <div class="boardTaskPopupContentSubtask">
-                    <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
-                    <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="boardTaskPopupContentBottom">
-              <div class="boardTaskPopupContentDeleteContainer">
-                <img class="boardTaskPopupDeleteIcon" src="./images/icons/delete.png" alt="delete" />
-                <p>Delete</p>
-              </div>
-              <div class="boardTaskPopupContentBottomLine"></div>
-              <div class="boardTaskPopupContentEditContainer">
-                <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
-                <p>Edit</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="boardPopupBackground" id="boardPopupBackground" onclick="closeBoardTaskPopup()">
+        <div class="boardTaskPopup" id="boardTaskPopup"></div>
       </div>
 
       <div class="mainSection">

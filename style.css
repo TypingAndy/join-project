@@ -206,27 +206,27 @@ textarea:active {
   justify-content: center;
   align-items: center;
   top: 80px;
+
   height: 100%;
 }
 
 .summaryMidSectionWrapper {
-
 }
 
 /* board.html Styling below:-------------------------------------------------------------------- */
 /* board popup --------------- */
 .boardPopupBackground {
-  display: flex;
+  display: none;
   position: absolute;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: #79e22928;
+  /* background-color: #79e22928; */
   z-index: 400;
 }
 .boardTaskPopup {
-  display: flex;
+  display: none;
   position: absolute;
   justify-content: center;
   align-items: center;
@@ -351,7 +351,6 @@ textarea:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1fd7c1;
   height: 42px;
   width: 42px;
   border-radius: 50%;

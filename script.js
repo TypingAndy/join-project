@@ -21,6 +21,7 @@ let addTaskAssignedUserColors = [];
 let addTaskAssignedUserFontColors = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
+let globalSubtaskId = "";
 
 //boardGlobalArrays
 let convertedTasks = [];
@@ -152,7 +153,6 @@ async function loadAllTasks(path = "tasks") {
   sortAllTasks();
   renderTasks();
   console.log(convertedTasks);
-  
 }
 
 async function convertUnsortedTasksToArray() {
@@ -310,7 +310,67 @@ function moveTo(taskStatus) {
   renderTasks();
 }
 
-// document.getElementById("findTaskInput").addEventListener("input", renderTasks);
+const popupElement = document.getElementById("boardTaskPopup");
+const popupBackgroundELement = document.getElementById("boardPopupBackground");
+
+function openBoardTaskPopup(i) {
+  renderBoardTaskPopupContent(i);
+  renderBoardTaskPopupContentUsers(i);
+  renderBoardTaskPopupSubtasks(i);
+  popupElement.style.display = "flex";
+  popupBackgroundELement.style.display = "flex";
+
+  popupElement.addEventListener("click", stopPropagation);
+}
+
+function closeBoardTaskPopup() {
+  popupElement.style.display = "none";
+  popupBackgroundELement.style.display = "none";
+  popupElement.removeEventListener("click", stopPropagation);
+}
+
+function renderBoardTaskPopupContent(i) {
+  popupElement.innerHTML = boardTaskPopupTemplate(i);
+}
+
+function renderBoardTaskPopupContentUsers(i) {
+  const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
+  popupUsersElement.innerHTML = "";
+  for (let usersIndex = 0; usersIndex < convertedTasks[i].taskAssignedUser.length; usersIndex++) {
+    popupUsersElement.innerHTML += popupUserTemplate(usersIndex, i);
+  }
+}
+
+function renderBoardTaskPopupSubtasks(i) {
+  const popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
+  popupSubtasksElement.innerHTML = "";
+  for (let subtasksIndex = 0; subtasksIndex < convertedTasks[i].taskSubtasks.length; subtasksIndex++) {
+    popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, i);
+    if (convertedTasks[i].taskSubtasks[subtasksIndex].done) {
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/checked.png";
+    } else {
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/unchecked.png";
+    }
+  }
+}
+
+function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
+  convertedTasks[i].taskSubtasks[subtasksIndex].done = !convertedTasks[i].taskSubtasks[subtasksIndex].done;
+  renderBoardTaskPopupSubtasks(i);
+}
+
+// const findTaskInput = document.getElementById("findTaskInput");
+
+// function addInputListener() {
+//     findTaskInput.addEventListener("input", renderTasks);
+// }
+
+// function removeInputListener() {
+//     findTaskInput.removeEventListener("input", renderTasks);
+// }
+
+// findTaskInput.addEventListener("focus", addInputListener);
+// findTaskInput.addEventListener("blur", removeInputListener);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -379,23 +439,22 @@ function addUserToTaskToggle(name, i) {
   let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
-  if (!addTaskCurrentUser.includes(name))
-    addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
+  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
   else {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
-      removeUserFromTask(check, noCheck, assignUserID, userIndex)
+      removeUserFromTask(check, noCheck, assignUserID, userIndex);
     }
   }
   addUserSymbolsToAssign();
 }
 
-function addUserToTask (name, i, check, noCheck, assignUserID, blackWhite) {
+function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite) {
   addTaskCurrentUser.push(name);
   taskAssignedUserInitials.push(allUserInitials[i]);
   addTaskAssignedUserColors.push(sortedUsers[i].color);
   addTaskAssignedUserFontColors.push(blackWhite);
-  
+
   check.classList.remove("displayNone");
   noCheck.classList.add("displayNone");
   assignUserID.classList.add("addTaskNewBackgroundChecked");
@@ -417,7 +476,7 @@ function addUserSymbolsToAssign() {
   addUserSymbolsAssign.innerHTML = "";
 
   for (let i = 0; i < addTaskCurrentUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i); 
+    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i);
   }
 }
 
@@ -459,13 +518,9 @@ function setTaskPrioButtonColorSwitch(priority) {
   buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
   buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
 
-  if (priority == "urgent") 
-    highlightPrioButtonUrgent();
-  if (priority == "medium") 
-    highlightPrioButtonMedium();
-  if (priority == "low") 
-    highlightPrioButtonLow();
-  
+  if (priority == "urgent") highlightPrioButtonUrgent();
+  if (priority == "medium") highlightPrioButtonMedium();
+  if (priority == "low") highlightPrioButtonLow();
 }
 
 function highlightPrioButtonUrgent() {
@@ -483,7 +538,6 @@ function highlightPrioButtonLow() {
   buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
   buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
 }
-
 
 // addTask --------------------------- category
 
@@ -523,7 +577,7 @@ function addTaskAddSubtaskCancel() {
 function addTaskAddSubtask() {
   let subtaskInput = document.getElementById("addSubtaskInput");
   subtasks.push({ subtask: subtaskInput.value, done: false });
-
+  globalSubtaskId = 0;
   subtaskInput.value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
@@ -565,9 +619,31 @@ function addTaskAcceptRewriting(i) {
 }
 
 function addTaskCancleRewritingSubtask(i) {
-  addTaskDeleteRewritingSubtask(i)
-  addTaskAcceptRewriting(i)
+  addTaskDeleteRewritingSubtask(i);
+  addTaskAcceptRewriting(i);
 }
+
+function readIdFromSubtask(id) {
+  let fullId = id;
+  let idNumber = fullId.slice(-1);
+  globalSubtaskId = idNumber;
+  console.log(idNumber);
+}
+
+document.addEventListener("click", function (event) {
+  if (globalSubtaskId !== "") {
+    let i = globalSubtaskId;
+    let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
+    let acceptRewriting = document.getElementById(`addTaskAcceptRewriting${i}`);
+    let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+
+    if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
+      if (document.body.contains(event.target)) {
+        addTaskCancleRewritingSubtask(i);
+      }
+    }
+  }
+});
 
 function addTaskDeleteRewritingSubtask(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
@@ -647,7 +723,6 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
-
   let categoryDropdown = document.getElementById("categoryDropDown");
   let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 
