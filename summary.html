@@ -18,36 +18,46 @@
         </div>
       </header>
 
+
       <div class="summaryMidSectionWrapper">
-        <div>
-          <div>Join 360</div>
-          <div>Key Metrics at a Glance</div>
-        </div>
-        <div>
-          <div>to do</div>
-          <div>done</div>
 
-          <div>Prio and Date</div>
+        
 
-          <div>tasks in board</div>
-          <div>tasks in progress</div>
-          <div>await feedback</div>
-        </div>
+          <div class="summaryMidSectionDoDoneBox">
+            <div class="summaryMidSectionToDo">to do</div>
+            <div class="summaryMidSectionDone">done</div>
+          </div>
+
+          <div class="summaryMidSectionPrioDateBox">
+            <div class="summaryMidSectionPrio">Prio</div>
+            <div class="summaryMidSectionPrioDateDividingLine"></div>
+            <div class="summaryMidSectionDate">Date</div>
+          </div>
+
+          <div class="summaryMidSectionBoardProgressFreebackBox">
+            <div class="summaryMidSectionBoard">tasks in board</div>
+            <div class="summaryMidSectionProgress">tasks in progress</div>
+            <div class="summaryMidSectionFeedback">await feedback</div>
+          </div>
+
+        
+
       </div>
+      
       <nav>
-        <div class="navIconBox">
+        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
           <img src="./images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='addTask.html'" id="addTaskLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>
