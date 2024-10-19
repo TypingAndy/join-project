@@ -200,17 +200,134 @@ textarea:active {
 
 .summaryWrapper {
   background-color: #79e22986;
-  position: relative;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 80px;
-
-  height: 100%;
 }
 
 .summaryMidSectionWrapper {
+  background-color: #29aae283;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100vw;
+  padding: 16px;
+  gap: 16px;
+}
+
+/* @media (min-width: 768px) { 
+  .summaryMidSectionWrapper {
+    width: 60vh; 
+    height: 60%; 
+  }
+} */
+
+.summaryMidSectionDoDoneBox {
+  background-color: #ff3c0071;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.summaryMidSectionPrioDateBox {
+  background-color: #00ffd971;
+  position: relative;
+  display: flex;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+ 
+}
+
+.summaryMidSectionBoardProgressFreebackBox {
+  background-color: #ff00b771;
+  display: flex;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  gap: 16px;
+}
+
+.summaryMidSectionToDo {
+  background-color: #9c3333;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryMidSectionDone {
+  background-color: #339c9c5c;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryMidSectionPrio {
+  background-color: #9c9c3378;
+  width: 100%;
+  border-radius: 20px 0px 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryMidSectionPrioDateDividingLine {
+  position: absolute;
+  background-color: #2a3647;
+  width: 2px;
+  height: 60%;
+  left: calc(50% - 1px);
+  top: 20%;
+}
+
+.summaryMidSectionDate {
+  background-color: #b939b08e;
+  width: 100%;
+  border-radius: 0px 20px 20px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryMidSectionBoard {
+  background-color: #33339c76;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.summaryMidSectionProgress {
+  background-color: #ca800872;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.summaryMidSectionFeedback {
+  background-color: #b308ca72;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
 }
 
 /* board.html Styling below:-------------------------------------------------------------------- */
@@ -1171,10 +1288,10 @@ textarea:active {
 }
 
 .addTaskSubtaskInvisibleBackgroundClicker {
- background-color: #a7ff635c;
- width: 100%;
- height: 100%;
- position: absolute;
+  background-color: #a7ff635c;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 /* ------------------------- add Task post Button */
