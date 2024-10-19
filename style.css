@@ -198,8 +198,23 @@ textarea:active {
 
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
+.summaryIcons {
+  width: 40px;
+}
+
+.summaryMidSectionAmountFontSize {
+  font-size: 47px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.summaryMidSectionStandartFontSize {
+  font-size: 14px;
+  text-align: center;
+}
+
 .summaryWrapper {
-  background-color: #79e22986;
+  background-color: #F4F4F4;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -207,7 +222,7 @@ textarea:active {
 }
 
 .summaryMidSectionWrapper {
-  background-color: #29aae283;
+ 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -218,15 +233,14 @@ textarea:active {
   gap: 16px;
 }
 
-/* @media (min-width: 768px) { 
+@media (min-width: 768px) {
   .summaryMidSectionWrapper {
-    width: 60vh; 
-    height: 60%; 
+    width: 60vh;
+    height: 60%;
   }
-} */
+}
 
 .summaryMidSectionDoDoneBox {
-  background-color: #ff3c0071;
   display: flex;
   justify-content: space-between;
   border-radius: 20px;
@@ -236,17 +250,18 @@ textarea:active {
 }
 
 .summaryMidSectionPrioDateBox {
-  background-color: #00ffd971;
+  background-color: #ffffff;
   position: relative;
   display: flex;
   border-radius: 20px;
   width: 100%;
   height: 100%;
- 
+  gap: 40px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+
 }
 
 .summaryMidSectionBoardProgressFreebackBox {
-  background-color: #ff00b771;
   display: flex;
   border-radius: 20px;
   width: 100%;
@@ -254,80 +269,86 @@ textarea:active {
   gap: 16px;
 }
 
-.summaryMidSectionToDo {
-  background-color: #9c3333;
+.summaryMidSectionToDoAndDone {
+  background-color: white;
   width: 100%;
   border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.summaryMidSectionDone {
-  background-color: #339c9c5c;
-  width: 100%;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
+
 }
 
 .summaryMidSectionPrio {
-  background-color: #9c9c3378;
-  width: 100%;
+  background-color: #ffffff;
+  width: 45%;
   border-radius: 20px 0px 0px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
+
+  gap: 18px;
 }
 
 .summaryMidSectionPrioDateDividingLine {
   position: absolute;
-  background-color: #2a3647;
+  background-color: #D1D1D1;
   width: 2px;
   height: 60%;
-  left: calc(50% - 1px);
+  left: calc(45% + 1px);
   top: 20%;
 }
 
 .summaryMidSectionDate {
-  background-color: #b939b08e;
-  width: 100%;
+  background-color: #ffffff;
+  width: 55%;
   border-radius: 0px 20px 20px 0px;
   display: flex;
   justify-content: center;
-  align-items: center;
+
+  flex-direction: column;
+  gap: 16px;
 }
 
 .summaryMidSectionBoard {
-  background-color: #33339c76;
+  background-color: #ffffff;
   width: 100%;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  flex-direction: column;
+  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 .summaryMidSectionProgress {
-  background-color: #ca800872;
+  background-color: #ffffff;
   width: 100%;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  flex-direction: column;
   text-align: center;
+  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 .summaryMidSectionFeedback {
-  background-color: #b308ca72;
+  background-color: #ffffff;
   width: 100%;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 
+  flex-direction: column;
   text-align: center;
+  box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
 /* board.html Styling below:-------------------------------------------------------------------- */
