@@ -32,6 +32,13 @@ let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 let currentDraggedElementID;
 
+//summaryGlobalArrays
+let allUrgentTasksCount = 0;
+
+//oftenUsedGlobalArrays
+let currentDate = "";
+
+
 //often Used functions
 
 function stopPropagation(event) {
@@ -46,6 +53,11 @@ function signUpAddColorToUser() {
 
 function getColorFromUser(i) {
   return sortedUsers[i].color;
+}
+
+function getCurrentDate() {
+  currentDate = new Date().toISOString().split('T')[0];
+
 }
 
 //sign up data
@@ -142,10 +154,65 @@ function sortUsersByName(userData) {
 
 //functions Summary
 
+async function summaryAddAllValuesToBoard() {
+  await loadAllTasksSummary();
+  summaryCountUrgentTasks();
+  summaryAddToDoValue();
+  summaryAddDoneValue();
+  summaryAddUrgentValue();
+  summaryAddUrgentDateValue();
+  summaryAddBoardValue();
+  summaryAddProgressValue();
+  summaryAddFeedbackValue();
+  insertMinSelectableDate();
+}
+
+async function loadAllTasksSummary(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json");
+  allUnsortedTasks = await response.json();
+  convertUnsortedTasksToArray();
+  addFirebaseIDtoConvertedTasksArray();
+  addSimpleIdToTasks();
+  sortAllTasks();
+}
+
+function summaryCountUrgentTasks() {
+  allUrgentTasksCount += countToDoUrgentTasks() + countProgressUrgentTasks() + countFeedbackUrgentTasks();
+}
+
+function countToDoUrgentTasks() {
+  let urgentToDoCount = 0;
+  for (let i = 0; i < toDoTasks.length; i++) {
+    if (toDoTasks[i].taskPrio == "urgent") {
+      urgentToDoCount += 1;
+    }
+  }
+  return urgentToDoCount;
+}
+
+function countProgressUrgentTasks() {
+  let urgentProgressCount = 0;
+  for (let i = 0; i < inProgressTasks.length; i++) {
+    if (inProgressTasks[i].taskPrio == "urgent") {
+      urgentProgressCount += 1;
+    }
+  }
+  return urgentProgressCount;
+}
+
+function countFeedbackUrgentTasks() {
+  let urgentFeedbackCount = 0;
+  for (let i = 0; i < awaitFeedbackTasks.length; i++) {
+    if (awaitFeedbackTasks[i].taskPrio == "urgent") {
+      urgentFeedbackCount += 1;
+    }
+  }
+  return urgentFeedbackCount;
+}
+
 function summaryAddToDoValue() {
   let toDoValue = document.getElementById("summaryToDoValue");
   toDoValue.innerHTML = toDoTasks.length;
-  console.log(toDoTasks.length);
 }
 
 function summaryAddDoneValue() {
@@ -155,10 +222,12 @@ function summaryAddDoneValue() {
 
 function summaryAddUrgentValue() {
   let urgentValue = document.getElementById("summaryUrgentValue");
+  urgentValue.innerHTML = allUrgentTasksCount;
 }
 
 function summaryAddUrgentDateValue() {
   let urgentDateValue = document.getElementById("summaryDate");
+  
 }
 
 function summaryAddBoardValue() {
@@ -176,26 +245,11 @@ function summaryAddFeedbackValue() {
   feedbackValue.innerHTML = awaitFeedbackTasks.length;
 }
 
-async function summaryAddAllValuesToBoard() {
-  await loadAllTasksSummary();
-  summaryAddToDoValue();
-  summaryAddDoneValue();
-  summaryAddUrgentValue();
-  summaryAddUrgentDateValue();
-  summaryAddBoardValue();
-  summaryAddProgressValue();
-  summaryAddFeedbackValue();
+function insertMinSelectableDate() {
+  document.getElementById('taskDateInput').setAttribute('min', currentDate);
 }
 
-async function loadAllTasksSummary(path = "tasks") {
-  let response = await fetch(BASE_URL + path + ".json");
-  allUnsortedTasks = await response.json();
-  convertUnsortedTasksToArray();
-  addFirebaseIDtoConvertedTasksArray();
-  addSimpleIdToTasks();
-  sortAllTasks();
-}
-
+// urgentTasks.push(convertedTasks[i].taskPrio);
 //functions Board
 
 async function loadAllTasks(path = "tasks") {
