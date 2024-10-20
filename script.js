@@ -140,19 +140,73 @@ function sortUsersByName(userData) {
   });
 }
 
+//functions Summary
+
+ function summaryAddToDoValue() {
+  let toDoValue = document.getElementById("summaryToDoValue");
+  toDoValue.innerHTML = toDoTasks.length;
+  console.log(toDoTasks.length);
+  
+}
+
+function summaryAddDoneValue() {
+  let doneValue = document.getElementById("summaryDoneValue");
+  doneValue.innerHTML = doneTasks.length;
+}
+
+function summaryAddUrgentValue() {
+  let urgentValue = document.getElementById("summaryUrgentValue");
+}
+
+function summaryAddUrgentDateValue() {
+  let urgentDateValue = document.getElementById("summaryDate");
+}
+
+function summaryAddBoardValue() {
+  let boardValue = document.getElementById("summaryBoardValue");
+  boardValue.innerHTML = convertedTasks.length;
+}
+
+function summaryAddProgressValue() {
+  let progressValue = document.getElementById("summaryProgressValue");
+  progressValue.innerHTML = inProgressTasks.length;
+}
+
+function summaryAddFeedbackValue() {
+  let feedbackValue = document.getElementById("summaryFeedbackValue");
+  feedbackValue.innerHTML = awaitFeedbackTasks.length;
+}
+
+async function summaryAddAllValuesToBoard() {
+  await loadAllTasksSummary();
+  summaryAddToDoValue();
+  summaryAddDoneValue();
+  summaryAddUrgentValue();
+  summaryAddUrgentDateValue();
+  summaryAddBoardValue();
+  summaryAddProgressValue();
+  summaryAddFeedbackValue();
+}
+
+async function loadAllTasksSummary(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json");
+  allUnsortedTasks = await response.json();
+  convertUnsortedTasksToArray();
+  addFirebaseIDtoConvertedTasksArray();
+  addSimpleIdToTasks();
+  sortAllTasks();
+}
+
 //functions Board
 
 async function loadAllTasks(path = "tasks") {
   let response = await fetch(BASE_URL + path + ".json");
-  console.log(response);
   allUnsortedTasks = await response.json();
-  console.log(allUnsortedTasks);
   convertUnsortedTasksToArray();
   addFirebaseIDtoConvertedTasksArray();
   addSimpleIdToTasks();
   sortAllTasks();
   renderTasks();
-  console.log(convertedTasks);
 }
 
 async function convertUnsortedTasksToArray() {
@@ -359,18 +413,19 @@ function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
   renderBoardTaskPopupSubtasks(i);
 }
 
-// const findTaskInput = document.getElementById("findTaskInput");
+const findTaskInput = document.getElementById("findTaskInput");
 
-// function addInputListener() {
-//     findTaskInput.addEventListener("input", renderTasks);
-// }
+function addInputListener() {
+    findTaskInput.addEventListener("input", renderTasks);
+}
 
-// function removeInputListener() {
-//     findTaskInput.removeEventListener("input", renderTasks);
-// }
+function removeInputListener() {
+    findTaskInput.removeEventListener("input", renderTasks);
+}
 
-// findTaskInput.addEventListener("focus", addInputListener);
-// findTaskInput.addEventListener("blur", removeInputListener);
+
+findTaskInput.addEventListener("focus", addInputListener);
+findTaskInput.addEventListener("blur", removeInputListener);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -618,7 +673,7 @@ function addTaskAcceptRewriting(i) {
   addTaskWriteSubtaskBoard();
 }
 
-function addTaskCancleRewritingSubtask(i) {
+function addTaskCancelRewritingSubtask(i) {
   addTaskDeleteRewritingSubtask(i);
   addTaskAcceptRewriting(i);
 }
@@ -639,7 +694,7 @@ document.addEventListener("click", function (event) {
 
     if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
       if (document.body.contains(event.target)) {
-        addTaskCancleRewritingSubtask(i);
+        addTaskCancelRewritingSubtask(i);
       }
     }
   }
@@ -662,6 +717,9 @@ function checkEnterKeyTrigger(event) {
 // open close assign Dropdown
 
 document.addEventListener("click", function (event) {
+  let isOnBoardPage = window.location.pathname.endsWith('board.html');
+if (!isOnBoardPage) {
+
   let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
   let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
   let inputField = document.getElementById("addTaskContactsSearchArea");
@@ -672,6 +730,7 @@ document.addEventListener("click", function (event) {
   } else {
     closeAssignDropdown(userNameDropDown);
   }
+}
 });
 
 //                               open assign functions
@@ -723,6 +782,10 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
+  let isOnBoardPage = window.location.pathname.endsWith('board.html');
+  if (!isOnBoardPage) {
+
+ 
   let categoryDropdown = document.getElementById("categoryDropDown");
   let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 
@@ -731,6 +794,7 @@ document.addEventListener("click", function (event) {
   } else if (!categoryDropdown.contains(event.target)) {
     closeCategoryDropdown(categoryDropdown, dropdownLableBox);
   }
+}
 });
 
 function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
