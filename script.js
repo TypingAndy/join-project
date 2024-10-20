@@ -142,11 +142,10 @@ function sortUsersByName(userData) {
 
 //functions Summary
 
- function summaryAddToDoValue() {
+function summaryAddToDoValue() {
   let toDoValue = document.getElementById("summaryToDoValue");
   toDoValue.innerHTML = toDoTasks.length;
   console.log(toDoTasks.length);
-  
 }
 
 function summaryAddDoneValue() {
@@ -415,17 +414,18 @@ function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
 
 const findTaskInput = document.getElementById("findTaskInput");
 
-function addInputListener() {
+if (findTaskInput) {
+  function addInputListener() {
     findTaskInput.addEventListener("input", renderTasks);
-}
+  }
 
-function removeInputListener() {
+  function removeInputListener() {
     findTaskInput.removeEventListener("input", renderTasks);
+  }
+
+  findTaskInput.addEventListener("focus", addInputListener);
+  findTaskInput.addEventListener("blur", removeInputListener);
 }
-
-
-findTaskInput.addEventListener("focus", addInputListener);
-findTaskInput.addEventListener("blur", removeInputListener);
 
 //functions addTask---------------------------------------------------------------------
 
@@ -717,20 +717,19 @@ function checkEnterKeyTrigger(event) {
 // open close assign Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith('board.html');
-if (!isOnBoardPage) {
+  let isOnBoardPage = window.location.pathname.endsWith("board.html");
+  if (!isOnBoardPage) {
+    let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
+    let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
+    let inputField = document.getElementById("addTaskContactsSearchArea");
+    let userNameDropDown = document.getElementById("userNameDropDown");
 
-  let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
-  let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
-  let inputField = document.getElementById("addTaskContactsSearchArea");
-  let userNameDropDown = document.getElementById("userNameDropDown");
-
-  if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
-    openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
-  } else {
-    closeAssignDropdown(userNameDropDown);
+    if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
+      openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+    } else {
+      closeAssignDropdown(userNameDropDown);
+    }
   }
-}
 });
 
 //                               open assign functions
@@ -782,19 +781,17 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith('board.html');
+  let isOnBoardPage = window.location.pathname.endsWith("board.html");
   if (!isOnBoardPage) {
+    let categoryDropdown = document.getElementById("categoryDropDown");
+    let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 
- 
-  let categoryDropdown = document.getElementById("categoryDropDown");
-  let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
-
-  if (dropdownLableBox.contains(event.target)) {
-    toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
-  } else if (!categoryDropdown.contains(event.target)) {
-    closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+    if (dropdownLableBox.contains(event.target)) {
+      toggleCategoryDropdown(categoryDropdown, dropdownLableBox);
+    } else if (!categoryDropdown.contains(event.target)) {
+      closeCategoryDropdown(categoryDropdown, dropdownLableBox);
+    }
   }
-}
 });
 
 function toggleCategoryDropdown(categoryDropdown, dropdownLableBox) {
