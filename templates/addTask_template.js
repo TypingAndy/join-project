@@ -31,9 +31,9 @@ function subtaskTemplate(i) {
    return /*html*/ `
     <li class="addTaskSingleListSubtask">
       <div id="addTaskSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
-        <input id="addTaskSubtaskRewriteInput${i}" class="taskBoardRewriteSubtaskInput" type="text">
+        <input id="addTaskSubtaskRewriteInput${i}" onclick="readIdFromSubtask(this.id)" class="taskBoardRewriteSubtaskInput" type="text">
         <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskCancleRewritingSubtask(${i})" id="addTaskCancelRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
+          <img onclick="addTaskCancelRewritingSubtask(${i})" id="addTaskCancelRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
           <div class="addTaskSubtaskDividingLine"></div>
           <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="">
         </div>

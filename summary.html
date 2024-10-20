@@ -6,10 +6,10 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.svg" />
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="script.js"></script> -->
+    <script src="script.js"></script>
     <script src="templates/addTask_template.js"></script>
   </head>
-  <body>
+  <body onload="summaryAddAllValuesToBoard()">
     <div class="summaryWrapper">
       <header>
         <img src="./images/icons/join_logo_black.svg" alt="" />
@@ -18,36 +18,82 @@
         </div>
       </header>
 
-      <div class="summaryMidSectionWrapper">
-        <div>
-          <div>Join 360</div>
-          <div>Key Metrics at a Glance</div>
-        </div>
-        <div>
-          <div>to do</div>
-          <div>done</div>
-
-          <div>Prio and Date</div>
-
-          <div>tasks in board</div>
-          <div>tasks in progress</div>
-          <div>await feedback</div>
-        </div>
+      <div class="summaryHeaderBox">
+        <div class="summaryHeaderFont">Join 360</div>
+        <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
+        <div class="summaryHeaderBlueLine"></div>
       </div>
+
+      <div class="summaryMidSectionWrapper">
+        <div class="summaryMidSectionDoDoneBox">
+          <div class="summaryMidSectionToDoAndDone">
+            <img class="summaryIcons" src="images/icons/pencil_white_round.png" alt="">
+            <div>
+              <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
+              <div class="summaryMidSectionStandartFontSize">To-do</div>
+            </div>
+          </div>
+          <div class="summaryMidSectionToDoAndDone">
+            <img class="summaryIcons" src="images/icons/check_white_round.png" alt="">
+            <div>
+              <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
+              <div class="summaryMidSectionStandartFontSize">Done</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="summaryMidSectionPrioDateBox">
+          <div class="summaryMidSectionPrio">
+            <img class="summaryIcons" src="images/icons/urgent_white-arrow.png">
+              <div>
+                <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Urgent</div>
+              </div>
+            </div>
+         
+          <div class="summaryMidSectionPrioDateDividingLine"></div>
+
+          <div class="summaryMidSectionDate">
+            <div id="summaryDate"><b>September 16, 2044</b></div>
+            <div>Upcoming Deadline</div>
+          </div>
+        </div>
+
+        <div class="summaryMidSectionBoardProgressFreebackBox">
+
+          <div class="summaryMidSectionBoard">
+            <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
+            <div class="summaryMidSectionStandartFontSize">Tasks in<br>Board</div>
+          </div>
+
+          <div class="summaryMidSectionProgress">
+            <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
+            <div class="summaryMidSectionStandartFontSize">Tasks in<br>Progress</div>
+          </div>
+
+          <div class="summaryMidSectionFeedback">
+            <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
+            <div class="summaryMidSectionStandartFontSize">Await<br>Feedback</div>
+          </div>
+
+        </div>
+
+      </div>
+
       <nav>
-        <div class="navIconBox">
+        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
           <img src="./images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='addTask.html'" id="addTaskLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
-        <div class="navIconBox">
+        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
           <img src="./images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>
