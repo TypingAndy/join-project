@@ -34,10 +34,10 @@ let currentDraggedElementID;
 
 //summaryGlobalArrays
 let allUrgentTasksCount = 0;
+let allUrgentTasks = [];
 
 //oftenUsedGlobalArrays
 let currentDate = "";
-
 
 //often Used functions
 
@@ -56,8 +56,7 @@ function getColorFromUser(i) {
 }
 
 function getCurrentDate() {
-  currentDate = new Date().toISOString().split('T')[0];
-
+  currentDate = new Date().toISOString().split("T")[0];
 }
 
 //sign up data
@@ -156,15 +155,14 @@ function sortUsersByName(userData) {
 
 async function summaryAddAllValuesToBoard() {
   await loadAllTasksSummary();
+  summaryShowMostUrgentDate();
   summaryCountUrgentTasks();
   summaryAddToDoValue();
   summaryAddDoneValue();
   summaryAddUrgentValue();
-  summaryAddUrgentDateValue();
   summaryAddBoardValue();
   summaryAddProgressValue();
   summaryAddFeedbackValue();
-  insertMinSelectableDate();
 }
 
 async function loadAllTasksSummary(path = "tasks") {
@@ -177,37 +175,7 @@ async function loadAllTasksSummary(path = "tasks") {
 }
 
 function summaryCountUrgentTasks() {
-  allUrgentTasksCount += countToDoUrgentTasks() + countProgressUrgentTasks() + countFeedbackUrgentTasks();
-}
-
-function countToDoUrgentTasks() {
-  let urgentToDoCount = 0;
-  for (let i = 0; i < toDoTasks.length; i++) {
-    if (toDoTasks[i].taskPrio == "urgent") {
-      urgentToDoCount += 1;
-    }
-  }
-  return urgentToDoCount;
-}
-
-function countProgressUrgentTasks() {
-  let urgentProgressCount = 0;
-  for (let i = 0; i < inProgressTasks.length; i++) {
-    if (inProgressTasks[i].taskPrio == "urgent") {
-      urgentProgressCount += 1;
-    }
-  }
-  return urgentProgressCount;
-}
-
-function countFeedbackUrgentTasks() {
-  let urgentFeedbackCount = 0;
-  for (let i = 0; i < awaitFeedbackTasks.length; i++) {
-    if (awaitFeedbackTasks[i].taskPrio == "urgent") {
-      urgentFeedbackCount += 1;
-    }
-  }
-  return urgentFeedbackCount;
+  allUrgentTasksCount += allUrgentTasks.length;
 }
 
 function summaryAddToDoValue() {
@@ -225,11 +193,6 @@ function summaryAddUrgentValue() {
   urgentValue.innerHTML = allUrgentTasksCount;
 }
 
-function summaryAddUrgentDateValue() {
-  let urgentDateValue = document.getElementById("summaryDate");
-  
-}
-
 function summaryAddBoardValue() {
   let boardValue = document.getElementById("summaryBoardValue");
   boardValue.innerHTML = convertedTasks.length;
@@ -245,11 +208,56 @@ function summaryAddFeedbackValue() {
   feedbackValue.innerHTML = awaitFeedbackTasks.length;
 }
 
-function insertMinSelectableDate() {
-  document.getElementById('taskDateInput').setAttribute('min', currentDate);
+function summaryShowMostUrgentDate() {
+  extractUrgentTasks();
+  summaryAddUrgentDateValue();
 }
 
-// urgentTasks.push(convertedTasks[i].taskPrio);
+function extractUrgentTasks() {
+  pushToDoUrgentTasks();
+  pushProgressUrgentTasks();
+  pushFeedbackUrgentTasks();
+}
+
+function pushToDoUrgentTasks() {
+  for (let i = 0; i < toDoTasks.length; i++) {
+    if (toDoTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(toDoTasks[i]);
+    }
+  }
+}
+
+function pushProgressUrgentTasks() {
+  for (let i = 0; i < inProgressTasks.length; i++) {
+    if (inProgressTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(inProgressTasks[i]);
+    }
+  }
+}
+
+function pushFeedbackUrgentTasks() {
+  for (let i = 0; i < awaitFeedbackTasks.length; i++) {
+    if (awaitFeedbackTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(awaitFeedbackTasks[i]);
+    }
+  }
+}
+
+function summaryAddUrgentDateValue() {
+  let urgentDateValue = document.getElementById("summaryDate");
+  urgentDateValue.innerHTML = `<b>${filterLowestDate()}</b>`;
+}
+
+function filterLowestDate() {
+  let allDates = [];
+  for (let i = 0; i < allUrgentTasks.length; i++) {
+    allDates.push(allUrgentTasks[i].taskDate);
+  }
+
+  allDates.sort((a, b) => new Date(a) - new Date(b));
+  return allDates[0];
+}
+
 //functions Board
 
 async function loadAllTasks(path = "tasks") {
@@ -613,6 +621,12 @@ function createUserInitials() {
     let initials = nameParts.map((part) => part.charAt(0)).join("");
     allUserInitials.push(initials);
   }
+}
+
+// addTask --------------------------- date
+
+function insertMinSelectableDate() {
+  document.getElementById("taskDateInput").setAttribute("min", currentDate);
 }
 
 // addTask --------------------------- priority
