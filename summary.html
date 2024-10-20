@@ -6,10 +6,10 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.svg" />
     <link rel="stylesheet" href="style.css" />
-    <!-- <script src="script.js"></script> -->
+    <script src="script.js"></script>
     <script src="templates/addTask_template.js"></script>
   </head>
-  <body>
+  <body onload="summaryAddAllValuesToBoard()">
     <div class="summaryWrapper">
       <header>
         <img src="./images/icons/join_logo_black.svg" alt="" />
@@ -29,14 +29,14 @@
           <div class="summaryMidSectionToDoAndDone">
             <img class="summaryIcons" src="images/icons/pencil_white_round.png" alt="">
             <div>
-              <div class="summaryMidSectionAmountFontSize">2</div>
+              <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
               <div class="summaryMidSectionStandartFontSize">To-do</div>
             </div>
           </div>
           <div class="summaryMidSectionToDoAndDone">
             <img class="summaryIcons" src="images/icons/check_white_round.png" alt="">
             <div>
-              <div class="summaryMidSectionAmountFontSize">2</div>
+              <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
               <div class="summaryMidSectionStandartFontSize">Done</div>
             </div>
           </div>
@@ -46,7 +46,7 @@
           <div class="summaryMidSectionPrio">
             <img class="summaryIcons" src="images/icons/urgent_white-arrow.png">
               <div>
-                <div class="summaryMidSectionAmountFontSize">1</div>
+                <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
                 <div class="summaryMidSectionStandartFontSize">Urgent</div>
               </div>
             </div>
@@ -54,7 +54,7 @@
           <div class="summaryMidSectionPrioDateDividingLine"></div>
 
           <div class="summaryMidSectionDate">
-            <div><b>September 16, 2044</b></div>
+            <div id="summaryDate"><b>September 16, 2044</b></div>
             <div>Upcoming Deadline</div>
           </div>
         </div>
@@ -62,17 +62,17 @@
         <div class="summaryMidSectionBoardProgressFreebackBox">
 
           <div class="summaryMidSectionBoard">
-            <div class="summaryMidSectionAmountFontSize">8</div>
+            <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
             <div class="summaryMidSectionStandartFontSize">Tasks in<br>Board</div>
           </div>
 
           <div class="summaryMidSectionProgress">
-            <div class="summaryMidSectionAmountFontSize">3</div>
+            <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
             <div class="summaryMidSectionStandartFontSize">Tasks in<br>Progress</div>
           </div>
 
           <div class="summaryMidSectionFeedback">
-            <div class="summaryMidSectionAmountFontSize">4</div>
+            <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
             <div class="summaryMidSectionStandartFontSize">Await<br>Feedback</div>
           </div>
 
