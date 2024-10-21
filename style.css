@@ -221,7 +221,6 @@ textarea:active {
   top: 12%;
   height: 104px;
   left: 16px;
-  
 }
 
 /* @media (min-width: 400px) {
@@ -230,18 +229,17 @@ textarea:active {
   }
 } */
 
-.summaryHeaderFont{
+.summaryHeaderFont {
   font-size: 47px;
   font-weight: 700;
-
 }
 
-.summarySubHeaderFont{
+.summarySubHeaderFont {
   font-size: 20px;
 }
 
-.summaryHeaderBlueLine{
-  background-color: #29ABE2;
+.summaryHeaderBlueLine {
+  background-color: #29abe2;
   height: 3px;
   width: 90px;
   border-radius: 3px;
