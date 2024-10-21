@@ -786,8 +786,8 @@ function checkEnterKeyTrigger(event) {
 // open close assign Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith("board.html");
-  if (!isOnBoardPage) {
+  let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+  if (isOnAddTask) {
     let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
     let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
     let inputField = document.getElementById("addTaskContactsSearchArea");
@@ -850,8 +850,8 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith("board.html");
-  if (!isOnBoardPage) {
+  let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+  if (isOnAddTask) {
     let categoryDropdown = document.getElementById("categoryDropDown");
     let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 
