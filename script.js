@@ -142,6 +142,24 @@ function sortUsersByName(userData) {
 
 //functions Summary
 
+
+async function summaryAddAllValuesToBoard() {
+  await loadAllTasks();
+  summaryShowMostUrgentDate();
+  summaryCountUrgentTasks();
+  summaryAddToDoValue();
+  summaryAddDoneValue();
+  summaryAddUrgentValue();
+  summaryAddBoardValue();
+  summaryAddProgressValue();
+  summaryAddFeedbackValue();
+}
+
+function summaryCountUrgentTasks() {
+  allUrgentTasksCount += allUrgentTasks.length;
+}
+
+
 function summaryAddToDoValue() {
   let toDoValue = document.getElementById("summaryToDoValue");
   toDoValue.innerHTML = toDoTasks.length;
@@ -199,13 +217,16 @@ async function loadAllTasksSummary(path = "tasks") {
 //functions Board
 
 async function loadAllTasks(path = "tasks") {
+  let isOnBoardPage = window.location.pathname.endsWith("board.html");
   let response = await fetch(BASE_URL + path + ".json");
   allUnsortedTasks = await response.json();
   convertUnsortedTasksToArray();
   addFirebaseIDtoConvertedTasksArray();
   addSimpleIdToTasks();
   sortAllTasks();
-  renderTasks();
+  if (isOnBoardPage) {
+    renderTasks();
+ }
 }
 
 async function convertUnsortedTasksToArray() {
@@ -891,3 +912,138 @@ function switchCategoryArrowToUp() {
   document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
 }
+
+
+
+//functions addContacts---------------------------------------------------------------------
+
+
+async function init(){
+  await loadContactData();
+}
+
+async function postContact() {
+  let { contactData } = getContactInputData();
+
+  if (!contactData.name || !contactData.email || !contactData.phone) {
+    return;
+  }
+
+  await fetch(BASE_URL + `users/.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
+  clearAddContactInput();
+  navigateToContactInfo();
+}
+
+function getContactInputData(contactData) {
+  let nameInput = document.getElementById("contactNameInput");
+  let mailInput = document.getElementById("contactMailInput");
+  let phoneInput = document.getElementById("contactPhoneInput");
+  let userColor = signUpAddColorToUser();
+  contactData = {
+    name: nameInput.value,
+    email: mailInput.value,
+    phone: phoneInput.value,
+    color: userColor
+  };
+  return { contactData, nameInput, mailInput, phoneInput };
+}
+
+async function loadContactData(path = "users") {
+  let response = await fetch(BASE_URL + path + ".json");
+  let responseToJson = await response.json();
+
+  if (responseToJson) {
+      for (let key in responseToJson) {
+          let contact = responseToJson[key];
+          allContacts.push({
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              color: contact.color,
+          });
+          renderedContact.push({
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              color: contact.color,
+              id: key 
+          });
+      }
+  }
+  renderContacts();
+}
+
+function clearAddContactInput() {
+  // Zuerst das Element abrufen und dann den Wert leeren
+  let nameInput = document.getElementById("contactNameInput");
+  let mailInput = document.getElementById("contactMailInput");
+  let phoneInput = document.getElementById("contactPhoneInput");
+
+  // Dann den Wert auf leeren String setzen
+  nameInput.value = '';
+  mailInput.value = '';
+  phoneInput.value = '';
+}
+
+function renderContacts() {
+  let allContactsList = document.getElementById("allContactsList");
+  allContactsList.innerHTML = '';
+  allContacts.forEach((contact) => {
+    allContactsList.innerHTML += `
+      <div onclick="renderContactInfo('${contact.id}')" class="contactItem">
+        <div class="contactsDiv3">
+          <div class="assignContactColors" style="background-color: ${contact.color};"></div>
+          <div class="contactsBox">
+            <span>${contact.name}</span>
+            <span>${contact.email}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function navigateToContactInfo() {
+  window.location.href = 'contactInfo.html';
+}
+
+
+function findContactId(contactId) {
+  return renderedContact.find((contact) => contact.id === contactId);
+}
+
+
+function renderContactInfo(contactId) {
+  let currentContact = findContactId(contactId);
+  
+
+  if (currentContact) {
+      let contactsDiv2 = document.getElementById("contactsDiv2");
+      contactsDiv2.innerHTML = ``;
+      contactsDiv2.innerHTML += renderContactInfoHTML(currentContact);
+  }
+  navigateToContactInfo();
+}
+
+function renderContactInfoHTML(currentContact) {
+  return `<div id="contactId" class="displayFlex">
+            <img class="logoWidth" src="/images/icons/Profile badge.png" alt="">
+            <span class="spanConName">${currentContact.name}</span>
+          </div>
+    
+          <div class="contactsBox2">
+            <span class="spanConInfo">Contact Information</span>
+            <span class="spanHeader">Email</span>
+            <span class="spanEmailAdress">${currentContact.email}</span>
+            <span class="spanHeader">Phone</span>
+            <span class="spanPhone">${currentContact.phone}</span>
+          </div>
+        `;
+}
+
