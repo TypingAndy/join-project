@@ -333,11 +333,23 @@ function renderToDoTasks(toDoElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       toDoElement.innerHTML += toDoTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarToDoTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -355,11 +367,23 @@ function renderInProgressTasks(inProgressElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       inProgressElement.innerHTML += inProgressTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -377,11 +401,23 @@ function renderAwaitFeedbackTasks(awaitFeedbackElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       awaitFeedbackElement.innerHTML += awaitFeedbackTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarAwaitFeedbackTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -399,11 +435,23 @@ function renderDoneElementTasks(doneElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       doneElement.innerHTML += doneTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarDoneTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -785,8 +833,8 @@ function checkEnterKeyTrigger(event) {
 // open close assign Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith("board.html");
-  if (!isOnBoardPage) {
+  let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+  if (isOnAddTask) {
     let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
     let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
     let inputField = document.getElementById("addTaskContactsSearchArea");
@@ -849,8 +897,8 @@ function addButtonBoxRemoveDropdown() {
 // open close Category Dropdown
 
 document.addEventListener("click", function (event) {
-  let isOnBoardPage = window.location.pathname.endsWith("board.html");
-  if (!isOnBoardPage) {
+  let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+  if (isOnAddTask) {
     let categoryDropdown = document.getElementById("categoryDropDown");
     let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
 

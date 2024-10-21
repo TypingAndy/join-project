@@ -7,6 +7,7 @@ function noTaskTemplate() {
 }
 
 function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml) {
+  const subtasksLength = toDoTasks[i].taskSubtasks ? toDoTasks[i].taskSubtasks.length : 0;
   return `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
@@ -18,7 +19,7 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
                     <div class="taskCardSubtaskBarWrapper">
                       <div class="taskCardSubtaskBar" id="taskCardSubtaskBarToDoTasks${[i]}"></div>
                     </div>
-                    <p>${completedSubtaskCount}/${toDoTasks[i].taskSubtasks.length} Subtasks</p>
+                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
                   </div>
                   <div class="taskCardBottomContainer">
                     <div class="taskCardUserContainer">
@@ -31,6 +32,7 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
 }
 
 function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml) {
+  const subtasksLength = inProgressTasks[i].taskSubtasks ? inProgressTasks[i].taskSubtasks.length : 0;
   return `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
@@ -42,7 +44,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
                     <div class="taskCardSubtaskBarWrapper">
                       <div class="taskCardSubtaskBar" id="taskCardSubtaskBarInProgressTasks${[i]}"></div>
                     </div>
-                    <p>${completedSubtaskCount}/${inProgressTasks[i].taskSubtasks.length} Subtasks</p>
+                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
                   </div>
                   <div class="taskCardBottomContainer">
                     <div class="taskCardUserContainer">
@@ -55,6 +57,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
 }
 
 function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml) {
+  const subtasksLength = awaitFeedbackTasks[i].taskSubtasks ? awaitFeedbackTasks[i].taskSubtasks.length : 0;
   return ` 
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
@@ -66,7 +69,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
                     <div class="taskCardSubtaskBarWrapper">
                       <div class="taskCardSubtaskBar" id="taskCardSubtaskBarAwaitFeedbackTasks${[i]}"></div>
                     </div>
-                    <p>${completedSubtaskCount}/${awaitFeedbackTasks[i].taskSubtasks.length} Subtasks</p>
+                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
                   </div>
                   <div class="taskCardBottomContainer">
                     <div class="taskCardUserContainer">
@@ -79,6 +82,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
 }
 
 function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml) {
+  const subtasksLength = doneTasks[i].taskSubtasks ? doneTasks[i].taskSubtasks.length : 0;
   return `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
                   <div class="taskCardCategory">
@@ -90,7 +94,7 @@ function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml)
                     <div class="taskCardSubtaskBarWrapper">
                       <div class="taskCardSubtaskBar" id="taskCardSubtaskBarDoneTasks${[i]}"></div>
                     </div>
-                    <p>${completedSubtaskCount}/${doneTasks[i].taskSubtasks.length} Subtasks</p>
+                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
                   </div>
                   <div class="taskCardBottomContainer">
                     <div class="taskCardUserContainer">
