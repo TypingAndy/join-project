@@ -1,6 +1,6 @@
 let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebasedatabase.app/";
 
-//signUpGlobalArrays
+//signUpGlobalArrays.tst
 let signUpData = {};
 let responseToJson;
 let sortedUsers = [];
@@ -267,7 +267,7 @@ async function loadAllTasks(path = "tasks") {
   sortAllTasks();
   if (isOnBoardPage) {
     renderTasks();
- }
+  }
 }
 
 async function convertUnsortedTasksToArray() {
@@ -960,11 +960,9 @@ function switchCategoryArrowToUp() {
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
 }
 
-
 //functions addContacts---------------------------------------------------------------------
 
-
-async function init(){
+async function init() {
   await loadContactData();
 }
 
@@ -995,7 +993,7 @@ function getContactInputData(contactData) {
     name: nameInput.value,
     email: mailInput.value,
     phone: phoneInput.value,
-    color: userColor
+    color: userColor,
   };
   return { contactData, nameInput, mailInput, phoneInput };
 }
@@ -1005,22 +1003,22 @@ async function loadContactData(path = "users") {
   let responseToJson = await response.json();
 
   if (responseToJson) {
-      for (let key in responseToJson) {
-          let contact = responseToJson[key];
-          allContacts.push({
-              name: contact.name,
-              email: contact.email,
-              phone: contact.phone,
-              color: contact.color,
-          });
-          renderedContact.push({
-              name: contact.name,
-              email: contact.email,
-              phone: contact.phone,
-              color: contact.color,
-              id: key 
-          });
-      }
+    for (let key in responseToJson) {
+      let contact = responseToJson[key];
+      allContacts.push({
+        name: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        color: contact.color,
+      });
+      renderedContact.push({
+        name: contact.name,
+        email: contact.email,
+        phone: contact.phone,
+        color: contact.color,
+        id: key,
+      });
+    }
   }
   renderContacts();
 }
@@ -1032,14 +1030,14 @@ function clearAddContactInput() {
   let phoneInput = document.getElementById("contactPhoneInput");
 
   // Dann den Wert auf leeren String setzen
-  nameInput.value = '';
-  mailInput.value = '';
-  phoneInput.value = '';
+  nameInput.value = "";
+  mailInput.value = "";
+  phoneInput.value = "";
 }
 
 function renderContacts() {
   let allContactsList = document.getElementById("allContactsList");
-  allContactsList.innerHTML = '';
+  allContactsList.innerHTML = "";
   allContacts.forEach((contact) => {
     allContactsList.innerHTML += `
       <div onclick="renderContactInfo('${contact.id}')" class="contactItem">
@@ -1056,23 +1054,20 @@ function renderContacts() {
 }
 
 function navigateToContactInfo() {
-  window.location.href = 'contactInfo.html';
+  window.location.href = "contactInfo.html";
 }
-
 
 function findContactId(contactId) {
   return renderedContact.find((contact) => contact.id === contactId);
 }
 
-
 function renderContactInfo(contactId) {
   let currentContact = findContactId(contactId);
-  
 
   if (currentContact) {
-      let contactsDiv2 = document.getElementById("contactsDiv2");
-      contactsDiv2.innerHTML = ``;
-      contactsDiv2.innerHTML += renderContactInfoHTML(currentContact);
+    let contactsDiv2 = document.getElementById("contactsDiv2");
+    contactsDiv2.innerHTML = ``;
+    contactsDiv2.innerHTML += renderContactInfoHTML(currentContact);
   }
   navigateToContactInfo();
 }
