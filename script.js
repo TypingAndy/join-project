@@ -32,19 +32,6 @@ let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 let currentDraggedElementID;
 
-//summaryGlobalArrays
-let allUrgentTasksCount = 0;
-let allUrgentTasks = [];
-
-//oftenUsedGlobalArrays
-let currentDate = "";
-
-//contactGlobalArray
-let allContacts = [];
-let contactIndices = [];
-let renderedContact = [];
-let contactId;
-
 //often Used functions
 
 function stopPropagation(event) {
@@ -59,10 +46,6 @@ function signUpAddColorToUser() {
 
 function getColorFromUser(i) {
   return sortedUsers[i].color;
-}
-
-function getCurrentDate() {
-  currentDate = new Date().toISOString().split("T")[0];
 }
 
 //sign up data
@@ -159,6 +142,7 @@ function sortUsersByName(userData) {
 
 //functions Summary
 
+
 async function summaryAddAllValuesToBoard() {
   await loadAllTasks();
   summaryShowMostUrgentDate();
@@ -175,9 +159,11 @@ function summaryCountUrgentTasks() {
   allUrgentTasksCount += allUrgentTasks.length;
 }
 
+
 function summaryAddToDoValue() {
   let toDoValue = document.getElementById("summaryToDoValue");
   toDoValue.innerHTML = toDoTasks.length;
+  console.log(toDoTasks.length);
 }
 
 function summaryAddDoneValue() {
@@ -187,7 +173,10 @@ function summaryAddDoneValue() {
 
 function summaryAddUrgentValue() {
   let urgentValue = document.getElementById("summaryUrgentValue");
-  urgentValue.innerHTML = allUrgentTasksCount;
+}
+
+function summaryAddUrgentDateValue() {
+  let urgentDateValue = document.getElementById("summaryDate");
 }
 
 function summaryAddBoardValue() {
@@ -205,54 +194,24 @@ function summaryAddFeedbackValue() {
   feedbackValue.innerHTML = awaitFeedbackTasks.length;
 }
 
-function summaryShowMostUrgentDate() {
-  extractUrgentTasks();
+async function summaryAddAllValuesToBoard() {
+  await loadAllTasksSummary();
+  summaryAddToDoValue();
+  summaryAddDoneValue();
+  summaryAddUrgentValue();
   summaryAddUrgentDateValue();
+  summaryAddBoardValue();
+  summaryAddProgressValue();
+  summaryAddFeedbackValue();
 }
 
-function extractUrgentTasks() {
-  pushToDoUrgentTasks();
-  pushProgressUrgentTasks();
-  pushFeedbackUrgentTasks();
-}
-
-function pushToDoUrgentTasks() {
-  for (let i = 0; i < toDoTasks.length; i++) {
-    if (toDoTasks[i].taskPrio == "urgent") {
-      allUrgentTasks.push(toDoTasks[i]);
-    }
-  }
-}
-
-function pushProgressUrgentTasks() {
-  for (let i = 0; i < inProgressTasks.length; i++) {
-    if (inProgressTasks[i].taskPrio == "urgent") {
-      allUrgentTasks.push(inProgressTasks[i]);
-    }
-  }
-}
-
-function pushFeedbackUrgentTasks() {
-  for (let i = 0; i < awaitFeedbackTasks.length; i++) {
-    if (awaitFeedbackTasks[i].taskPrio == "urgent") {
-      allUrgentTasks.push(awaitFeedbackTasks[i]);
-    }
-  }
-}
-
-function summaryAddUrgentDateValue() {
-  let urgentDateValue = document.getElementById("summaryDate");
-  urgentDateValue.innerHTML = `<b>${filterLowestDate()}</b>`;
-}
-
-function filterLowestDate() {
-  let allDates = [];
-  for (let i = 0; i < allUrgentTasks.length; i++) {
-    allDates.push(allUrgentTasks[i].taskDate);
-  }
-
-  allDates.sort((a, b) => new Date(a) - new Date(b));
-  return allDates[0];
+async function loadAllTasksSummary(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json");
+  allUnsortedTasks = await response.json();
+  convertUnsortedTasksToArray();
+  addFirebaseIDtoConvertedTasksArray();
+  addSimpleIdToTasks();
+  sortAllTasks();
 }
 
 //functions Board
@@ -333,11 +292,23 @@ function renderToDoTasks(toDoElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       toDoElement.innerHTML += toDoTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarToDoTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -355,11 +326,23 @@ function renderInProgressTasks(inProgressElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       inProgressElement.innerHTML += inProgressTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarInProgressTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -377,11 +360,23 @@ function renderAwaitFeedbackTasks(awaitFeedbackElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       awaitFeedbackElement.innerHTML += awaitFeedbackTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarAwaitFeedbackTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -399,11 +394,23 @@ function renderDoneElementTasks(doneElement, tasks) {
         taskCardUserHtml = "";
       } else {
         for (let index = 0; index < tasks[i].taskAssignedUserInitials.length; index++) {
-          taskCardUserHtml += `<div class="taskCardUser"><p>${tasks[i].taskAssignedUserInitials[index]}</p></div>`;
+          const backgroundColor = tasks[i].taskAssignedUserColors[index] || "#000000";
+          const fontColor = tasks[i].taskAssignedUserFontColors[index] || "#FFFFFF";
+          taskCardUserHtml += `
+            <div class="taskCardUser" style="background-color: ${backgroundColor};">
+              <p style="color: ${fontColor};">
+                ${tasks[i].taskAssignedUserInitials[index]}
+              </p>
+            </div>
+          `;
         }
       }
-      let completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
-      let subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      let completedSubtaskCount = 0;
+      let subtaskPercentage = 0;
+      if (tasks[i].taskSubtasks && tasks[i].taskSubtasks.length > 0) {
+        completedSubtaskCount = tasks[i].taskSubtasks.filter((subtask) => subtask.done).length;
+        subtaskPercentage = (completedSubtaskCount / tasks[i].taskSubtasks.length) * 100;
+      }
       doneElement.innerHTML += doneTaskTemplate(tasks, i, completedSubtaskCount, taskCardUserHtml);
       document.getElementById(`taskCardSubtaskBarDoneTasks${[i]}`).style.width = subtaskPercentage + `%`;
     }
@@ -621,12 +628,6 @@ function createUserInitials() {
     let initials = nameParts.map((part) => part.charAt(0)).join("");
     allUserInitials.push(initials);
   }
-}
-
-// addTask --------------------------- date
-
-function insertMinSelectableDate() {
-  document.getElementById("taskDateInput").setAttribute("min", currentDate);
 }
 
 // addTask --------------------------- priority
@@ -913,6 +914,7 @@ function switchCategoryArrowToUp() {
 }
 
 
+
 //functions addContacts---------------------------------------------------------------------
 
 
@@ -1044,3 +1046,4 @@ function renderContactInfoHTML(currentContact) {
           </div>
         `;
 }
+
