@@ -160,7 +160,7 @@ function sortUsersByName(userData) {
 //functions Summary
 
 async function summaryAddAllValuesToBoard() {
-  await loadAllTasksSummary();
+  await loadAllTasks();
   summaryShowMostUrgentDate();
   summaryCountUrgentTasks();
   summaryAddToDoValue();
@@ -169,15 +169,6 @@ async function summaryAddAllValuesToBoard() {
   summaryAddBoardValue();
   summaryAddProgressValue();
   summaryAddFeedbackValue();
-}
-
-async function loadAllTasksSummary(path = "tasks") {
-  let response = await fetch(BASE_URL + path + ".json");
-  allUnsortedTasks = await response.json();
-  convertUnsortedTasksToArray();
-  addFirebaseIDtoConvertedTasksArray();
-  addSimpleIdToTasks();
-  sortAllTasks();
 }
 
 function summaryCountUrgentTasks() {
@@ -267,13 +258,16 @@ function filterLowestDate() {
 //functions Board
 
 async function loadAllTasks(path = "tasks") {
+  let isOnBoardPage = window.location.pathname.endsWith("board.html");
   let response = await fetch(BASE_URL + path + ".json");
   allUnsortedTasks = await response.json();
   convertUnsortedTasksToArray();
   addFirebaseIDtoConvertedTasksArray();
   addSimpleIdToTasks();
   sortAllTasks();
-  renderTasks();
+  if (isOnBoardPage) {
+    renderTasks();
+ }
 }
 
 async function convertUnsortedTasksToArray() {
@@ -926,7 +920,6 @@ async function init(){
   await loadContactData();
 }
 
-
 async function postContact() {
   let { contactData } = getContactInputData();
 
@@ -945,7 +938,6 @@ async function postContact() {
   navigateToContactInfo();
 }
 
-
 function getContactInputData(contactData) {
   let nameInput = document.getElementById("contactNameInput");
   let mailInput = document.getElementById("contactMailInput");
@@ -959,7 +951,6 @@ function getContactInputData(contactData) {
   };
   return { contactData, nameInput, mailInput, phoneInput };
 }
-
 
 async function loadContactData(path = "users") {
   let response = await fetch(BASE_URL + path + ".json");
@@ -986,8 +977,6 @@ async function loadContactData(path = "users") {
   renderContacts();
 }
 
-
-
 function clearAddContactInput() {
   // Zuerst das Element abrufen und dann den Wert leeren
   let nameInput = document.getElementById("contactNameInput");
@@ -999,7 +988,6 @@ function clearAddContactInput() {
   mailInput.value = '';
   phoneInput.value = '';
 }
-
 
 function renderContacts() {
   let allContactsList = document.getElementById("allContactsList");
@@ -1040,7 +1028,6 @@ function renderContactInfo(contactId) {
   }
   navigateToContactInfo();
 }
-
 
 function renderContactInfoHTML(currentContact) {
   return `<div id="contactId" class="displayFlex">
