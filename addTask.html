@@ -9,7 +9,7 @@
     <script src="script.js"></script>
     <script src="templates/addTask_template.js"></script>
   </head>
-  <body onload="loadUserData()">
+  <body onload="getCurrentDate(), loadUserData(), insertMinSelectableDate()">
 
     <div class="joinWrapper">
       <!--header-->
@@ -57,7 +57,7 @@
 
           <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
-            <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" />
+            <input id="taskDateInput" class="addTaskDueDateDropdown" type="date" min=""/>
           </div>
 
           <div class="addTaskSectionHeaderInputGap">

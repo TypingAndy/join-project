@@ -32,6 +32,19 @@ let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 let currentDraggedElementID;
 
+//summaryGlobalArrays
+let allUrgentTasksCount = 0;
+let allUrgentTasks = [];
+
+//oftenUsedGlobalArrays
+let currentDate = "";
+
+//contactGlobalArray
+let allContacts = [];
+let contactIndices = [];
+let renderedContact = [];
+let contactId;
+
 //often Used functions
 
 function stopPropagation(event) {
@@ -46,6 +59,10 @@ function signUpAddColorToUser() {
 
 function getColorFromUser(i) {
   return sortedUsers[i].color;
+}
+
+function getCurrentDate() {
+  currentDate = new Date().toISOString().split("T")[0];
 }
 
 //sign up data
@@ -142,10 +159,34 @@ function sortUsersByName(userData) {
 
 //functions Summary
 
+async function summaryAddAllValuesToBoard() {
+  await loadAllTasksSummary();
+  summaryShowMostUrgentDate();
+  summaryCountUrgentTasks();
+  summaryAddToDoValue();
+  summaryAddDoneValue();
+  summaryAddUrgentValue();
+  summaryAddBoardValue();
+  summaryAddProgressValue();
+  summaryAddFeedbackValue();
+}
+
+async function loadAllTasksSummary(path = "tasks") {
+  let response = await fetch(BASE_URL + path + ".json");
+  allUnsortedTasks = await response.json();
+  convertUnsortedTasksToArray();
+  addFirebaseIDtoConvertedTasksArray();
+  addSimpleIdToTasks();
+  sortAllTasks();
+}
+
+function summaryCountUrgentTasks() {
+  allUrgentTasksCount += allUrgentTasks.length;
+}
+
 function summaryAddToDoValue() {
   let toDoValue = document.getElementById("summaryToDoValue");
   toDoValue.innerHTML = toDoTasks.length;
-  console.log(toDoTasks.length);
 }
 
 function summaryAddDoneValue() {
@@ -155,10 +196,7 @@ function summaryAddDoneValue() {
 
 function summaryAddUrgentValue() {
   let urgentValue = document.getElementById("summaryUrgentValue");
-}
-
-function summaryAddUrgentDateValue() {
-  let urgentDateValue = document.getElementById("summaryDate");
+  urgentValue.innerHTML = allUrgentTasksCount;
 }
 
 function summaryAddBoardValue() {
@@ -176,24 +214,54 @@ function summaryAddFeedbackValue() {
   feedbackValue.innerHTML = awaitFeedbackTasks.length;
 }
 
-async function summaryAddAllValuesToBoard() {
-  await loadAllTasksSummary();
-  summaryAddToDoValue();
-  summaryAddDoneValue();
-  summaryAddUrgentValue();
+function summaryShowMostUrgentDate() {
+  extractUrgentTasks();
   summaryAddUrgentDateValue();
-  summaryAddBoardValue();
-  summaryAddProgressValue();
-  summaryAddFeedbackValue();
 }
 
-async function loadAllTasksSummary(path = "tasks") {
-  let response = await fetch(BASE_URL + path + ".json");
-  allUnsortedTasks = await response.json();
-  convertUnsortedTasksToArray();
-  addFirebaseIDtoConvertedTasksArray();
-  addSimpleIdToTasks();
-  sortAllTasks();
+function extractUrgentTasks() {
+  pushToDoUrgentTasks();
+  pushProgressUrgentTasks();
+  pushFeedbackUrgentTasks();
+}
+
+function pushToDoUrgentTasks() {
+  for (let i = 0; i < toDoTasks.length; i++) {
+    if (toDoTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(toDoTasks[i]);
+    }
+  }
+}
+
+function pushProgressUrgentTasks() {
+  for (let i = 0; i < inProgressTasks.length; i++) {
+    if (inProgressTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(inProgressTasks[i]);
+    }
+  }
+}
+
+function pushFeedbackUrgentTasks() {
+  for (let i = 0; i < awaitFeedbackTasks.length; i++) {
+    if (awaitFeedbackTasks[i].taskPrio == "urgent") {
+      allUrgentTasks.push(awaitFeedbackTasks[i]);
+    }
+  }
+}
+
+function summaryAddUrgentDateValue() {
+  let urgentDateValue = document.getElementById("summaryDate");
+  urgentDateValue.innerHTML = `<b>${filterLowestDate()}</b>`;
+}
+
+function filterLowestDate() {
+  let allDates = [];
+  for (let i = 0; i < allUrgentTasks.length; i++) {
+    allDates.push(allUrgentTasks[i].taskDate);
+  }
+
+  allDates.sort((a, b) => new Date(a) - new Date(b));
+  return allDates[0];
 }
 
 //functions Board
@@ -561,6 +629,12 @@ function createUserInitials() {
   }
 }
 
+// addTask --------------------------- date
+
+function insertMinSelectableDate() {
+  document.getElementById("taskDateInput").setAttribute("min", currentDate);
+}
+
 // addTask --------------------------- priority
 
 function setTaskPrio(priority) {
@@ -842,4 +916,144 @@ function closeCategoryLableBox(dropdownLableBox) {
 function switchCategoryArrowToUp() {
   document.getElementById("addTaskChooseCategoryDropdownImageUp").classList.add("displayNone");
   document.getElementById("addTaskChooseCategoryDropdownImageDown").classList.remove("displayNone");
+}
+
+
+//functions addContacts---------------------------------------------------------------------
+
+
+async function init(){
+  await loadContactData();
+}
+
+
+async function postContact() {
+  let { contactData } = getContactInputData();
+
+  if (!contactData.name || !contactData.email || !contactData.phone) {
+    return;
+  }
+
+  await fetch(BASE_URL + `users/.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
+  clearAddContactInput();
+  navigateToContactInfo();
+}
+
+
+function getContactInputData(contactData) {
+  let nameInput = document.getElementById("contactNameInput");
+  let mailInput = document.getElementById("contactMailInput");
+  let phoneInput = document.getElementById("contactPhoneInput");
+  let userColor = signUpAddColorToUser();
+  contactData = {
+    name: nameInput.value,
+    email: mailInput.value,
+    phone: phoneInput.value,
+    color: userColor
+  };
+  return { contactData, nameInput, mailInput, phoneInput };
+}
+
+
+async function loadContactData(path = "users") {
+  let response = await fetch(BASE_URL + path + ".json");
+  let responseToJson = await response.json();
+
+  if (responseToJson) {
+      for (let key in responseToJson) {
+          let contact = responseToJson[key];
+          allContacts.push({
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              color: contact.color,
+          });
+          renderedContact.push({
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              color: contact.color,
+              id: key 
+          });
+      }
+  }
+  renderContacts();
+}
+
+
+
+function clearAddContactInput() {
+  // Zuerst das Element abrufen und dann den Wert leeren
+  let nameInput = document.getElementById("contactNameInput");
+  let mailInput = document.getElementById("contactMailInput");
+  let phoneInput = document.getElementById("contactPhoneInput");
+
+  // Dann den Wert auf leeren String setzen
+  nameInput.value = '';
+  mailInput.value = '';
+  phoneInput.value = '';
+}
+
+
+function renderContacts() {
+  let allContactsList = document.getElementById("allContactsList");
+  allContactsList.innerHTML = '';
+  allContacts.forEach((contact) => {
+    allContactsList.innerHTML += `
+      <div onclick="renderContactInfo('${contact.id}')" class="contactItem">
+        <div class="contactsDiv3">
+          <div class="assignContactColors" style="background-color: ${contact.color};"></div>
+          <div class="contactsBox">
+            <span>${contact.name}</span>
+            <span>${contact.email}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function navigateToContactInfo() {
+  window.location.href = 'contactInfo.html';
+}
+
+
+function findContactId(contactId) {
+  return renderedContact.find((contact) => contact.id === contactId);
+}
+
+
+function renderContactInfo(contactId) {
+  let currentContact = findContactId(contactId);
+  
+
+  if (currentContact) {
+      let contactsDiv2 = document.getElementById("contactsDiv2");
+      contactsDiv2.innerHTML = ``;
+      contactsDiv2.innerHTML += renderContactInfoHTML(currentContact);
+  }
+  navigateToContactInfo();
+}
+
+
+function renderContactInfoHTML(currentContact) {
+  return `<div id="contactId" class="displayFlex">
+            <img class="logoWidth" src="/images/icons/Profile badge.png" alt="">
+            <span class="spanConName">${currentContact.name}</span>
+          </div>
+    
+          <div class="contactsBox2">
+            <span class="spanConInfo">Contact Information</span>
+            <span class="spanHeader">Email</span>
+            <span class="spanEmailAdress">${currentContact.email}</span>
+            <span class="spanHeader">Phone</span>
+            <span class="spanPhone">${currentContact.phone}</span>
+          </div>
+        `;
 }
