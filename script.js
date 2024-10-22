@@ -467,17 +467,34 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(taskStatus) {
+async function moveTo(taskStatus) {
   convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
+  //putNewTaskStatus(taskStatus);
+  // loadAllTasks();
   sortAllTasks();
   renderTasks();
 }
 
+// async function putNewTaskStatus(taskStatus) {
+//   let taskID = convertedTasks[currentDraggedElementID].ID;
+//   let task = convertedTasks[currentDraggedElementID];
+//   console.log(taskID);
+//   console.log(task);
+
+//   await fetch(`${BASE_URL}tasks/${taskID}/taskStatus`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(taskStatus),
+//   });
+// }
+
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
 
-function openBoardTaskPopup(i) {
-  renderBoardTaskPopupContent(i);
+function openBoardTaskPopup(i, taskID) {
+  renderBoardTaskPopupContent(i, taskID);
   renderBoardTaskPopupContentUsers(i);
   renderBoardTaskPopupSubtasks(i);
   popupElement.style.display = "flex";
@@ -492,8 +509,8 @@ function closeBoardTaskPopup() {
   popupElement.removeEventListener("click", stopPropagation);
 }
 
-function renderBoardTaskPopupContent(i) {
-  popupElement.innerHTML = boardTaskPopupTemplate(i);
+function renderBoardTaskPopupContent(i, taskID) {
+  popupElement.innerHTML = boardTaskPopupTemplate(i, taskID);
 }
 
 function renderBoardTaskPopupContentUsers(i) {
