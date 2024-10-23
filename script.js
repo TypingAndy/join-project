@@ -500,6 +500,11 @@ async function deleteTask(taskID) {
   loadAllTasks();
 }
 
+function editTask() {
+
+
+}
+
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
 
@@ -544,9 +549,40 @@ function renderBoardTaskPopupSubtasks(i) {
   }
 }
 
-function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
+function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i, taskFirebaseID) {
   convertedTasks[i].taskSubtasks[subtasksIndex].done = !convertedTasks[i].taskSubtasks[subtasksIndex].done;
+  setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID);
   renderBoardTaskPopupSubtasks(i);
+}
+
+function setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID) {
+  let taskStatus = convertedTasks[i].taskSubtasks[subtasksIndex].done
+  if (taskStatus === true) {
+    fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID)}
+
+  if (taskStatus === false) {
+   fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID)}
+}
+
+async function fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID) {
+    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(true),
+    });
+}
+
+async function fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID) {
+
+    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(false),
+    });
 }
 
 const findTaskInput = document.getElementById("findTaskInput");

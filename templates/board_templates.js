@@ -167,7 +167,7 @@ function boardTaskPopupTemplate(i, taskID) {
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
-    <div class="boardTaskPopupContentEditContainer">
+    <div onclick="editTask('${taskID}')" class="boardTaskPopupContentEditContainer">
       <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
       <p>Edit</p>
     </div>
@@ -189,7 +189,7 @@ function popupUserTemplate(usersIndex, i) {
 
 function popupSubtaskTemplate(subtasksIndex, i) {
   return `
-        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i})">
+        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i}, '${convertedTasks[i].ID}')">
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[i].taskSubtasks[subtasksIndex].subtask}</p>
         </div>
