@@ -469,26 +469,24 @@ function allowDrop(ev) {
 
 async function moveTo(taskStatus) {
   convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
-  //putNewTaskStatus(taskStatus);
+  putNewTaskStatus();
   // loadAllTasks();
   sortAllTasks();
   renderTasks();
 }
 
-// async function putNewTaskStatus(taskStatus) {
-//   let taskID = convertedTasks[currentDraggedElementID].ID;
-//   let task = convertedTasks[currentDraggedElementID];
-//   console.log(taskID);
-//   console.log(task);
+async function putNewTaskStatus() {
+  let taskID = convertedTasks[currentDraggedElementID].ID;
+  let task = convertedTasks[currentDraggedElementID];
 
-//   await fetch(`${BASE_URL}tasks/${taskID}/taskStatus`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(taskStatus),
-//   });
-// }
+  await fetch(`${BASE_URL}tasks/${taskID}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+}
 
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
