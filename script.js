@@ -470,7 +470,6 @@ function allowDrop(ev) {
 async function moveTo(taskStatus) {
   convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
   putNewTaskStatus();
-  // loadAllTasks();
   sortAllTasks();
   renderTasks();
 }
@@ -486,6 +485,19 @@ async function putNewTaskStatus() {
     },
     body: JSON.stringify(task),
   });
+}
+
+async function deleteTask(taskID) {
+
+  await fetch(`${BASE_URL}tasks/${taskID}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  closeBoardTaskPopup();
+  loadAllTasks();
 }
 
 const popupElement = document.getElementById("boardTaskPopup");
