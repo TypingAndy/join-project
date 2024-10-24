@@ -501,15 +501,18 @@ async function deleteTask(taskID) {
 }
 
 function editTask() {
-
-
+// open window
+// fill with HTML
+// autofill values
+// create ok button
+// create leave button
 }
 
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
 
-function openBoardTaskPopup(i, taskID) {
-  renderBoardTaskPopupContent(i, taskID);
+function openBoardTaskPopup(i, taskID, numberedID) {
+  renderBoardTaskPopupContent(i, taskID, numberedID);
   renderBoardTaskPopupContentUsers(i);
   renderBoardTaskPopupSubtasks(i);
   popupElement.style.display = "flex";
@@ -524,8 +527,8 @@ function closeBoardTaskPopup() {
   popupElement.removeEventListener("click", stopPropagation);
 }
 
-function renderBoardTaskPopupContent(i, taskID) {
-  popupElement.innerHTML = boardTaskPopupTemplate(i, taskID);
+function renderBoardTaskPopupContent(i, taskID, numberedID) {
+  popupElement.innerHTML = boardTaskPopupTemplate(i, taskID, numberedID);
 }
 
 function renderBoardTaskPopupContentUsers(i) {

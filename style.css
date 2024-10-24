@@ -779,11 +779,28 @@ input:focus {
   align-items: center;
 }
 
+.boardTaskPopupContentDeleteContainer,
+.boardTaskPopupContentEditContainer:hover {
+  cursor: pointer;
+}
+
 .boardTaskPopupContentBottomLine {
   height: 100%;
   width: 1px;
   background-color: #d1d1d1;
 }
+
+
+/* board popup edit */
+
+
+.boardTaskEditPopup {
+ position: absolute;
+ top: 0;
+ left: 0;
+
+}
+
 /* board main ------------------- */
 
 .boardWrapper {
