@@ -798,6 +798,10 @@ input:focus {
  position: absolute;
  top: 0;
  left: 0;
+ width: 1000px;
+ height: 1000px;
+ z-index: 10000;
+
 
 }
 
