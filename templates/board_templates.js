@@ -108,7 +108,7 @@ function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml)
 
 function boardTaskPopupTemplate(i, taskID, numberedID) {
   return `  
-  <div class="boardTaskPopupContentWrapper">
+  <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
   <div class="boardTaskPopupContentTop">
     <div class="boardTaskPopupCategoryCard">
       <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[i].taskCategory}</p>
@@ -167,7 +167,7 @@ function boardTaskPopupTemplate(i, taskID, numberedID) {
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
-    <div onclick="editTask('${numberedID}')" class="boardTaskPopupContentEditContainer">
+    <div onclick="renderPupupEditTaskContent('${numberedID}')" class="boardTaskPopupContentEditContainer">
       <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
       <p>Edit</p>
     </div>
@@ -193,5 +193,121 @@ function popupSubtaskTemplate(subtasksIndex, i) {
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[i].taskSubtasks[subtasksIndex].subtask}</p>
         </div>
+  `;
+}
+
+function popupEditTaskTemplate(numberedID) {
+  return /*html*/ `
+  <div class="boardTaskEditPopup" id="boardTaskEditPopup">
+          <div class="addTaskSection">
+
+            <form class="addTaskForm" action="">
+              <div class="addTaskSectionHeaderInputGap">
+                <div class="addTaskFormLabels">Title</div>
+                <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" value="${convertedTasks[numberedID].taskTitle}"/>
+              </div>
+    
+              <div class="addTaskSectionHeaderInputGap">
+              <div class="addTaskFormLabels">Description</div>
+              <textarea 
+                  id="taskDescriptionInput" 
+                  class="addTaskInputDescription" 
+                  type="text" 
+                  placeholder="Enter a Description"
+              >${convertedTasks[numberedID].taskDescription}</textarea>
+          </div>
+    
+              <div class="addTaskSectionHeaderInputGap">
+                <div class="addTaskFormLabels">Assigned to</div>
+    
+                <div  id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
+                  <div  id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
+                    <div class="fontInboxAlign">Select contacts to assign</div>
+                    <img src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+                  </div>
+                  <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
+                    <input id="addTaskContactsSearchArea" onkeyup="addTaskFilterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
+                    <img id="addTaskAssignDropdownArrow" class="addTaskDropDownCloseButton" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
+                  </div>
+                  <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
+                </div>
+    
+                <div class="addUserSymbolsAssign" id="addUserSymbolsAssign"></div>
+              </div>
+    
+              <input 
+              id="taskDateInput" 
+              class="addTaskDueDateDropdown" 
+              type="date" 
+              min=""
+              value="${convertedTasks[numberedID].taskDate}"
+          />
+    
+              <div class="addTaskSectionHeaderInputGap">
+                <div class="addTaskFormLabels">Prio</div>
+                <div class="addTaskPrioButtonBox">
+                  <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
+                    <div>Urgent</div>
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.svg" alt="" />
+                  </div>
+                  <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
+                    <div>Medium</div>
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="" />
+                  </div>
+                  <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
+                    <div>Low</div>
+                    <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+    
+              <div class="addTaskSectionHeaderInputGap">
+                <div class="addTaskFormLabels">Category</div>
+    
+                <div id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
+                  <div id="addTaskChooseCategoryButton" class="addTaskChooseCategoryButton">
+                    <div class="fontInboxAlign">Select task category</div>
+                    <img id="addTaskChooseCategoryDropdownImageDown" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+                    <img id="addTaskChooseCategoryDropdownImageUp" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
+                  </div>
+                  <div id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
+                </div>
+              </div>
+    
+              <div class="addTaskSectionHeaderInputGap">
+                <div class="addTaskFormLabels">Subtasks</div>
+    
+                <div id="addSubtask" onclick="addTaskOpenAddSubtask()" class="addTaskSubtaskDropdownBox">
+                  <input class="addTaskSubtaskInputCover fontInboxAlign" type="text" placeholder="Add new subtask" />
+                  <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
+                </div>
+    
+                <div onkeydown="checkEnterKeyTrigger(event)" id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
+                  <div class="addTaskSubtaskInput">
+                    <input id="addSubtaskInput" class="addTaskSubtaskInputField" />
+                  </div>
+    
+                  <div class="addTaskSubtaskCheckXBox">
+                    <img onclick="addTaskAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="images/mobile/addTaskMobile/xBlack.png" alt="" />
+                    <img onclick="addTaskAddSubtask()" tabindex="0" class="addTaskSubtaskCheck img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="" />
+                  </div>
+                </div>
+    
+                <ul class="addTaskSubTaskList" id="subtaskBoard">
+               
+                </ul>
+              </div>
+    
+              <div class="addTaskButton">
+    
+                <div class="createTaskButton">
+                  <div>Ok</div>
+                  <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+  
   `;
 }
