@@ -9,7 +9,7 @@ function noTaskTemplate() {
 function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml) {
   const subtasksLength = toDoTasks[i].taskSubtasks ? toDoTasks[i].taskSubtasks.length : 0;
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i}, '${toDoTasks[i].ID}', '${toDoTasks[i].numberedID}')">
                   <div class="taskCardCategory">
                     <p>${toDoTasks[i].taskCategory}</p>
                   </div>
@@ -34,7 +34,7 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
 function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml) {
   const subtasksLength = inProgressTasks[i].taskSubtasks ? inProgressTasks[i].taskSubtasks.length : 0;
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i}, '${inProgressTasks[i].ID}', '${inProgressTasks[i].numberedID}')">
                   <div class="taskCardCategory">
                     <p>${inProgressTasks[i].taskCategory}</p>
                   </div>
@@ -59,7 +59,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
 function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml) {
   const subtasksLength = awaitFeedbackTasks[i].taskSubtasks ? awaitFeedbackTasks[i].taskSubtasks.length : 0;
   return ` 
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i}, '${awaitFeedbackTasks[i].ID}', '${awaitFeedbackTasks[i].numberedID}')">
                   <div class="taskCardCategory">
                     <p>${awaitFeedbackTasks[i].taskCategory}</p>
                   </div>
@@ -84,7 +84,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
 function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml) {
   const subtasksLength = doneTasks[i].taskSubtasks ? doneTasks[i].taskSubtasks.length : 0;
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i})">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedID}')" onclick="openBoardTaskPopup(${i}, '${doneTasks[i].ID}', '${doneTasks[i].numberedID}')">
                   <div class="taskCardCategory">
                     <p>${doneTasks[i].taskCategory}</p>
                   </div>
@@ -106,7 +106,7 @@ function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml)
       `;
 }
 
-function boardTaskPopupTemplate(i) {
+function boardTaskPopupTemplate(i, taskID, numberedID) {
   return `  
   <div class="boardTaskPopupContentWrapper">
   <div class="boardTaskPopupContentTop">
@@ -162,12 +162,12 @@ function boardTaskPopupTemplate(i) {
     </div>
   </div>
   <div class="boardTaskPopupContentBottom">
-    <div class="boardTaskPopupContentDeleteContainer">
+    <div id="boardTaskPopupContentDeleteContainer" onclick="deleteTask('${taskID}')" class="boardTaskPopupContentDeleteContainer">
       <img class="boardTaskPopupDeleteIcon" src="./images/icons/delete.png" alt="delete" />
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
-    <div class="boardTaskPopupContentEditContainer">
+    <div onclick="editTask('${numberedID}')" class="boardTaskPopupContentEditContainer">
       <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
       <p>Edit</p>
     </div>
@@ -189,7 +189,7 @@ function popupUserTemplate(usersIndex, i) {
 
 function popupSubtaskTemplate(subtasksIndex, i) {
   return `
-        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i})">
+        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i}, '${convertedTasks[i].ID}')">
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[i].taskSubtasks[subtasksIndex].subtask}</p>
         </div>

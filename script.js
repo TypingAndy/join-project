@@ -467,17 +467,52 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(taskStatus) {
+async function moveTo(taskStatus) {
   convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
+  putNewTaskStatus();
   sortAllTasks();
   renderTasks();
+}
+
+async function putNewTaskStatus() {
+  let taskID = convertedTasks[currentDraggedElementID].ID;
+  let task = convertedTasks[currentDraggedElementID];
+
+  await fetch(`${BASE_URL}tasks/${taskID}.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+}
+
+async function deleteTask(taskID) {
+
+  await fetch(`${BASE_URL}tasks/${taskID}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  closeBoardTaskPopup();
+  loadAllTasks();
+}
+
+function editTask() {
+// open window
+// fill with HTML
+// autofill values
+// create ok button
+// create leave button
 }
 
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
 
-function openBoardTaskPopup(i) {
-  renderBoardTaskPopupContent(i);
+function openBoardTaskPopup(i, taskID, numberedID) {
+  renderBoardTaskPopupContent(i, taskID, numberedID);
   renderBoardTaskPopupContentUsers(i);
   renderBoardTaskPopupSubtasks(i);
   popupElement.style.display = "flex";
@@ -492,8 +527,8 @@ function closeBoardTaskPopup() {
   popupElement.removeEventListener("click", stopPropagation);
 }
 
-function renderBoardTaskPopupContent(i) {
-  popupElement.innerHTML = boardTaskPopupTemplate(i);
+function renderBoardTaskPopupContent(i, taskID, numberedID) {
+  popupElement.innerHTML = boardTaskPopupTemplate(i, taskID, numberedID);
 }
 
 function renderBoardTaskPopupContentUsers(i) {
@@ -517,9 +552,40 @@ function renderBoardTaskPopupSubtasks(i) {
   }
 }
 
-function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i) {
+function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i, taskFirebaseID) {
   convertedTasks[i].taskSubtasks[subtasksIndex].done = !convertedTasks[i].taskSubtasks[subtasksIndex].done;
+  setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID);
   renderBoardTaskPopupSubtasks(i);
+}
+
+function setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID) {
+  let taskStatus = convertedTasks[i].taskSubtasks[subtasksIndex].done
+  if (taskStatus === true) {
+    fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID)}
+
+  if (taskStatus === false) {
+   fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID)}
+}
+
+async function fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID) {
+    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(true),
+    });
+}
+
+async function fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID) {
+
+    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(false),
+    });
 }
 
 const findTaskInput = document.getElementById("findTaskInput");

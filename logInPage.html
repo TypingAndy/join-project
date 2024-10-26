@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="js/add_task.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body onload="loadUserData()">
+    <div class="logInSection">
+      <img class="logInLogo" src="./images/mobile/signUpPage/joinLogoDark.png" alt="" />
+
+      <div class="logInBoard">
+        <div class="logInBoardContentWrapper">
+          <div class="logInTitleWrapper">
+            <div class="logInTitle">Log in</div>
+            <div class="logInBlueLine"></div>
+          </div>
+
+          <div class="logInInputContainer">
+            <input id="logInMailInput" class="logInInputEmail" placeholder="Email" type="email"/>
+            <input id="logInPasswordInput" class="logInInputPassword" placeholder="Password" type="text" />
+          </div>
+          <div class="logInCheckOutBoxWrapper">
+            <div class="acceptPolicyBox">
+              <img id="logInCheckbox" class="logInCheckImg" src="images/mobile/signUpPage/checkButtonBlack.png" alt="" />
+              <div>Remember me</div>
+            </div>
+            <div id="logInButton" class="logInButton" type="submit">Log in</div>
+            <div id="logInButton" class="logInButton" type="submit">Guest Log in</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="logInNoUserSignUpBox">
+        <div class="logInNoUserSignUpText">Not a Join user?</div>
+        <div class="logInNoUserSignUpButton">Sign up</div>
+      </div>
+
+      <div class="logInLinksBox">
+        <div class="logInLinks">Privacy Policy</div>
+        <div class="logInLinks">Legal Notice</div>
+      </div>
+    </div>
+  </body>
+</html>

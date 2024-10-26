@@ -196,6 +196,225 @@ textarea:active {
   width: 100px;
 }
 
+/* logInPage.html Styling below:--------------------------------------------------------- */
+
+input:focus {
+  outline: none;
+  /* border-color: transparent; */
+}
+
+.logInSection {
+  height: 100vh;
+  background-color: #d6dce2;
+  display: flex;
+  flex-direction: column;
+
+  padding: 0px 16px;
+}
+
+.arrowLeftBlue {
+  width: 32px;
+  position: absolute;
+  left: 32px;
+  top: 32px;
+}
+
+.logInLogo {
+  width: 64px;
+  padding: 38px;
+}
+
+.logInBoard {
+  background-color: #ffffff;
+  height: 100%;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.logInBoardContentWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.logInTitleWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logInTitle {
+  font-weight: 700;
+  font-size: 47px;
+  margin-top: 28px;
+}
+
+.logInBlueLine {
+  height: 3px;
+  width: 88px;
+  background-color: #29abe2;
+  border-radius: 3px;
+  margin: 14px 0 24px 0;
+}
+
+.logInInputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.logInInputName {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/logInPage/person.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.logInInputEmail {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/logInPage/mail.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.logInInputPassword {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/logInPage/lock.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.logInInputConfirmPassword {
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: solid #d1d1d1 1px;
+  box-sizing: border-box;
+  padding-left: 16px;
+  font-size: 20px;
+  background: url("images/mobile/logInPage/lock.png");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  background-position: calc(100% - 16px);
+}
+
+.logInInputName::placeholder {
+  color: #d1d1d1;
+}
+
+.logInInputEmail::placeholder {
+  color: #d1d1d1;
+}
+
+.logInInputPassword::placeholder {
+  color: #d1d1d1;
+}
+
+.logInInputConfirmPassword::placeholder {
+  color: #d1d1d1;
+}
+
+.logInCheckOutBoxWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.acceptPolicyBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 0 28px 0;
+  box-sizing: border-box;
+}
+
+.logInCheckImg {
+  width: 24px;
+}
+
+.blueFont {
+  color: #29abe2;
+}
+
+.logInButton {
+  width: 180px;
+  height: 51px;
+  background-color: #2a3647;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  opacity: 0.1;
+}
+
+.logInLinksBox {
+  display: flex;
+  height: 160px;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+.logInLinks {
+  color: #a8a8a8;
+}
+
+.logInNoUserSignUpBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding-top: 40px;
+}
+
+.logInNoUserSignUpText {
+  font-size: 20px;
+}
+
+.logInNoUserSignUpButton {
+  color: white;
+  background-color: #2a3647;
+  padding: 15px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 /* summary.html Styling below:-------------------------------------------------------------------- */
 
 .summaryIcons {
@@ -221,7 +440,6 @@ textarea:active {
   top: 12%;
   height: 104px;
   left: 16px;
-  
 }
 
 /* @media (min-width: 400px) {
@@ -230,18 +448,17 @@ textarea:active {
   }
 } */
 
-.summaryHeaderFont{
+.summaryHeaderFont {
   font-size: 47px;
   font-weight: 700;
-
 }
 
-.summarySubHeaderFont{
+.summarySubHeaderFont {
   font-size: 20px;
 }
 
-.summaryHeaderBlueLine{
-  background-color: #29ABE2;
+.summaryHeaderBlueLine {
+  background-color: #29abe2;
   height: 3px;
   width: 90px;
   border-radius: 3px;
@@ -562,11 +779,32 @@ textarea:active {
   align-items: center;
 }
 
+.boardTaskPopupContentDeleteContainer,
+.boardTaskPopupContentEditContainer:hover {
+  cursor: pointer;
+}
+
 .boardTaskPopupContentBottomLine {
   height: 100%;
   width: 1px;
   background-color: #d1d1d1;
 }
+
+
+/* board popup edit */
+
+
+.boardTaskEditPopup {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 1000px;
+ height: 1000px;
+ z-index: 10000;
+
+
+}
+
 /* board main ------------------- */
 
 .boardWrapper {
