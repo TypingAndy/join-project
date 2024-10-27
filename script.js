@@ -488,7 +488,6 @@ async function putNewTaskStatus() {
 }
 
 async function deleteTask(taskID) {
-
   await fetch(`${BASE_URL}tasks/${taskID}.json`, {
     method: "DELETE",
     headers: {
@@ -500,12 +499,21 @@ async function deleteTask(taskID) {
   loadAllTasks();
 }
 
+function renderPupupEditTaskContent(numberedID) {
+  let editTaskPopupElement = document.getElementById("boardTaskPopupContentWrapper");
+  editTaskPopupElement.innerHTML = popupEditTaskTemplate(numberedID);
+
+  document.querySelector(".addTaskSection").style.backgroundColor = "white";
+  document.querySelector(".addTaskSection").style.marginTop = "0";
+  setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
+}
+
 function editTask() {
-// open window
-// fill with HTML
-// autofill values
-// create ok button
-// create leave button
+  // open window
+  // fill with HTML
+  // autofill values
+  // create ok button
+  // create leave button
 }
 
 const popupElement = document.getElementById("boardTaskPopup");
@@ -559,33 +567,34 @@ function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i, taskFirebaseID) {
 }
 
 function setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID) {
-  let taskStatus = convertedTasks[i].taskSubtasks[subtasksIndex].done
+  let taskStatus = convertedTasks[i].taskSubtasks[subtasksIndex].done;
   if (taskStatus === true) {
-    fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID)}
+    fetchSubtaskDoneToTrue(subtasksIndex, taskFirebaseID);
+  }
 
   if (taskStatus === false) {
-   fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID)}
+    fetchSubtaskDoneToFalse(subtasksIndex, taskFirebaseID);
+  }
 }
 
-async function fetchSubtaskDoneToTrue (subtasksIndex, taskFirebaseID) {
-    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(true),
-    });
+async function fetchSubtaskDoneToTrue(subtasksIndex, taskFirebaseID) {
+  await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(true),
+  });
 }
 
-async function fetchSubtaskDoneToFalse (subtasksIndex, taskFirebaseID) {
-
-    await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(false),
-    });
+async function fetchSubtaskDoneToFalse(subtasksIndex, taskFirebaseID) {
+  await fetch(`${BASE_URL}tasks/${taskFirebaseID}/taskSubtasks/${subtasksIndex}/done.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(false),
+  });
 }
 
 const findTaskInput = document.getElementById("findTaskInput");
