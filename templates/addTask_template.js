@@ -11,7 +11,7 @@ function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserIniti
     `;
 }
 
-function addUserSymbolTemlate (i) {
+function addUserSymbolTemplate (i) {
    return /*html*/ `
     <div>
      <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
@@ -33,9 +33,9 @@ function subtaskTemplate(i) {
       <div id="addTaskSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
         <input id="addTaskSubtaskRewriteInput${i}" onclick="readIdFromSubtask(this.id)" class="taskBoardRewriteSubtaskInput" type="text">
         <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskCancelRewritingSubtask(${i})" id="addTaskCancelRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
+          <img onclick="addTaskCancelRewritingSubtask(${i})" id="addTaskCancelRewritingSubtask${i}" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png" alt="">
           <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewriting${i}" class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="">
+          <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewritingSubtask${i}" class="img24px" src="images/mobile/addTaskMobile/checkBlack.png" alt="">
         </div>
       </div>
       <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
