@@ -34,6 +34,7 @@ let doneTasks = [];
 let inProgressTasks = [];
 let awaitFeedbackTasks = [];
 let currentDraggedElementID;
+let currentNumberedID = "";
 
 //summaryGlobalArrays
 let allUrgentTasksCount = 0;
@@ -511,6 +512,7 @@ async function renderPopupEditTaskContent(numberedID) {
   editPopUpAddUserToTask(numberedID);
 
   setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
+  currentNumberedID = numberedID;
 }
 
 function editPopUpAddUserToTask(numberedID) {
@@ -879,6 +881,7 @@ function closeBoardTaskPopup() {
   popupElement.style.display = "none";
   popupBackgroundELement.style.display = "none";
   popupElement.removeEventListener("click", stopPropagation);
+  editPopUpAddUserToTask(currentNumberedID);
 }
 
 function renderBoardTaskPopupContent(i, taskID, numberedID) {
