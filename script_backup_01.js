@@ -19,9 +19,6 @@ let addTaskCurrentUser = [];
 let taskAssignedUserInitials = [];
 let addTaskAssignedUserColors = [];
 let addTaskAssignedUserFontColors = [];
-let addTaskAssignedUserId = [];
-let addTaskAssignedUserFirebaseIds = [];
-let userUniqueId = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
 let subtasks = [];
 let globalSubtaskId = "";
@@ -505,9 +502,9 @@ async function deleteTask(taskID) {
 //--------------------------------------------
 //--------------------------------------------
 
-async function renderPopupEditTaskContent(numberedID) {
+function renderPopupEditTaskContent(numberedID) {
   renderAddTaskToEditPopup(numberedID);
-  await boardLoadEditPopUpUserData();
+  boardLoadEditPopUpUserData();
   editPopUpAddUserToTask(numberedID);
 
   setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
@@ -515,10 +512,8 @@ async function renderPopupEditTaskContent(numberedID) {
 
 function editPopUpAddUserToTask(numberedID) {
   for (let i = 0; i < convertedTasks[numberedID].taskAssignedUser.length; i++) {
-    const currentUserFirebaseId = convertedTasks[numberedID].taskAssignedUserFirebaseIDs[i];
-    const index = sortedUsers.findIndex((user) => user.id === currentUserFirebaseId);
-    boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], index);
-    console.log(convertedTasks[numberedID].taskAssignedUser[i], i, currentUserFirebaseId, index);
+    // boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], i);
+    console.log(convertedTasks[numberedID].taskAssignedUser[i], i);
   }
 }
 
@@ -550,7 +545,7 @@ function boardEditPopupLoadFullNameList() {
   for (let i = 0; i < sortedUsers.length; i++) {
     let currentColor = getColorFromUser(i);
     let blackWhite = addTaskAdaptFontColorToBackground(i);
-    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials, userUniqueId);
+    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
   }
 }
 
@@ -971,7 +966,6 @@ function getNewTaskInputData() {
     taskAssignedUserInitials: taskAssignedUserInitials,
     taskAssignedUserColors: addTaskAssignedUserColors,
     taskAssignedUserFontColors: addTaskAssignedUserFontColors,
-    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
@@ -1024,24 +1018,23 @@ function addUserToTaskToggle(name, i) {
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
   let blackWhite = addTaskAdaptFontColorToBackground(i);
-  let userFirebaseId = sortedUsers[i].id;
+  inputField.focus();
 
-  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
+  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
   else {
     let userIndex = addTaskCurrentUser.indexOf(name);
     if (userIndex > -1) {
-      removeUserFromTask(check, noCheck, assignUserID, userIndex, userFirebaseId);
+      removeUserFromTask(check, noCheck, assignUserID, userIndex);
     }
   }
   addUserSymbolsToAssign();
 }
 
-function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId) {
+function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite) {
   addTaskCurrentUser.push(name);
   taskAssignedUserInitials.push(allUserInitials[i]);
   addTaskAssignedUserColors.push(sortedUsers[i].color);
   addTaskAssignedUserFontColors.push(blackWhite);
-  addTaskAssignedUserFirebaseIds.push(userFirebaseId);
 
   check.classList.remove("displayNone");
   noCheck.classList.add("displayNone");
@@ -1053,7 +1046,6 @@ function removeUserFromTask(check, noCheck, assignUserID, userIndex) {
   taskAssignedUserInitials.splice(userIndex, 1);
   addTaskAssignedUserColors.splice(userIndex, 1);
   addTaskAssignedUserFontColors.splice(userIndex, 1);
-  addTaskAssignedUserFirebaseIds.splice(userIndex, 1);
 
   check.classList.add("displayNone");
   noCheck.classList.remove("displayNone");
