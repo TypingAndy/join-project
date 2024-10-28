@@ -499,22 +499,362 @@ async function deleteTask(taskID) {
   loadAllTasks();
 }
 
-function renderPupupEditTaskContent(numberedID) {
-  let editTaskPopupElement = document.getElementById("boardTaskPopupContentWrapper");
-  editTaskPopupElement.innerHTML = popupEditTaskTemplate(numberedID);
 
+
+//--------------------------------------------
+//--------------------------------------------
+
+
+function renderPopupEditTaskContent(numberedID) {
+  renderAddTaskToEditPopup(numberedID);
+  boardLoadEditPopUpUserData();
+  editPopUpAddUserToTask(numberedID);
   document.querySelector(".addTaskSection").style.backgroundColor = "white";
-  document.querySelector(".addTaskSection").style.marginTop = "0";
   setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
+
 }
 
-function editTask() {
-  // open window
-  // fill with HTML
-  // autofill values
-  // create ok button
-  // create leave button
+function editPopUpAddUserToTask(numberedID) {
+for (let i = 0; i < convertedTasks[numberedID].taskAssignedUser.length; i++) {
+  boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], i)
 }
+}
+
+
+function boardEditPopUpInsertMinSelectableDate() {
+  document.getElementById("boardEditPopUpTaskDateInput").setAttribute("min", currentDate);
+}
+
+function renderAddTaskToEditPopup (numberedID) {
+  document.getElementById('boardTaskPopup').innerHTML = renderAddTaskToEditPopupTemplate(numberedID); 
+  boardEditPopUpInsertMinSelectableDate();
+}
+
+async function boardLoadEditPopUpUserData(path = "users") {
+  let response = await fetch(BASE_URL + path + ".json");
+  responseToJson = await response.json();
+  sortUsersByName(responseToJson);
+  createUserInitials();
+  boardEditPopupLoadFullNameList();
+  boardEditPopUpRenderCategoryDropdown();
+  boardEditTaskRenderCategoryDropdown();
+}
+
+function boardEditPopupLoadFullNameList() {
+  let dropdown = document.getElementById("boardEditPopUpUserNameDropDown");
+  dropdown.innerHTML = "";
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let currentColor = getColorFromUser(i);
+    let blackWhite = addTaskAdaptFontColorToBackground(i);
+    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
+  }
+}
+
+function boardEditPopUpRenderCategoryDropdown() {
+  let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
+  categoryDropdown.innerHTML = "";
+
+  for (let i = 0; i < categories.length; i++) {
+    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+  }
+}
+
+function boardEditPopUpFilterFunction() {
+  let input = document.getElementById("boardEditPopupContactsSearchArea");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let userName = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`boardEditPopupAssignUserId${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
+  }
+}
+
+function boardEditPopupAddUserToTaskToggle(name, i) {
+  let inputField = document.getElementById("boardEditPopupContactsSearchArea");
+  let check = document.getElementById(`check${i}`);
+  let noCheck = document.getElementById(`noCheck${i}`);
+  let assignUserID = document.getElementById(`boardEditPopupAssignUserId${i}`);
+  let blackWhite = addTaskAdaptFontColorToBackground(i);
+  inputField.focus();
+
+  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
+  else {
+    let userIndex = addTaskCurrentUser.indexOf(name);
+    if (userIndex > -1) {
+      removeUserFromTask(check, noCheck, assignUserID, userIndex);
+    }
+  }
+  addUserSymbolsToAssign();
+}
+
+document.addEventListener("click", function (event) {
+
+  let taskSection = document.getElementById("boardEditPopUpTaskSection");
+
+  if (taskSection) {
+    let contactsDropdown = document.getElementById("boardEditPopupContactsDropdownLableBox");
+    let assignDropdownArrow = document.getElementById("boardEditPopupAssignDropdownArrow");
+    let inputField = document.getElementById("boardEditPopupContactsSearchArea");
+    let userNameDropDown = document.getElementById("boardEditPopUpUserNameDropDown");
+
+    if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
+      openEditPopupAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+    } else {
+      closeEditPopUpAssignDropdown(userNameDropDown);
+    }
+  }
+}, true);
+
+//                               open assign functions for EditPopup
+
+function openEditPopupAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
+  addShowRemoveDisplayNoneToAssignDropdownEditPopUp(userNameDropDown);
+  addOpenContactsRemoveClosedContactsEditPopUp(contactsDropdown);
+  removeButtonBoxAddDropdownEditPopUp();
+  inputField.focus();
+}
+
+function addShowRemoveDisplayNoneToAssignDropdownEditPopUp(userNameDropDown) {
+  userNameDropDown.classList.add("show");
+  userNameDropDown.classList.remove("displayNone");
+}
+
+function addOpenContactsRemoveClosedContactsEditPopUp(contactsDropdown) {
+  contactsDropdown.classList.remove("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdown.classList.add("addTaskContactsDropdownLableBoxOpen");
+}
+
+function removeButtonBoxAddDropdownEditPopUp() {
+  document.getElementById("boardEditPopupAssignContactsButton").classList.add("displayNone");
+  document.getElementById("boardEditPopUpDropDownSearchCloseButtonBox").classList.remove("displayNone");
+}
+
+//                               close assign functions for EditPopup
+
+function closeEditPopUpAssignDropdown(userNameDropDown) {
+  removeShowAddDisplayNoneToAssignDropdownEditPopUp(userNameDropDown), removeOpenContactsAddClosedContactsEditPopUp(), addButtonBoxRemoveDropdownEditPopUp();
+}
+
+function removeShowAddDisplayNoneToAssignDropdownEditPopUp(userNameDropDown) {
+  userNameDropDown.classList.remove("show");
+  userNameDropDown.classList.add("displayNone");
+}
+
+function removeOpenContactsAddClosedContactsEditPopUp() {
+  let contactsDropdownBox = document.getElementById("boardEditPopupContactsDropdownLableBox");
+  contactsDropdownBox.classList.add("addTaskContactsDropdownLableBoxClosed");
+  contactsDropdownBox.classList.remove("addTaskContactsDropdownLableBoxOpen");
+}
+
+function addButtonBoxRemoveDropdownEditPopUp() {
+  document.getElementById("boardEditPopupAssignContactsButton").classList.remove("displayNone");
+  document.getElementById("boardEditPopUpDropDownSearchCloseButtonBox").classList.add("displayNone");
+}
+
+
+// board Edit PopUp Category
+
+function boardEditTaskRenderCategoryDropdown() {
+  let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
+  categoryDropdown.innerHTML = "";
+
+  for (let i = 0; i < categories.length; i++) {
+    categoryDropdown.innerHTML += /*html*/ `<div onclick="boardEditTaskChooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+  }
+}
+
+function boardEditTaskChooseCategory(i) {
+  chosenCategory = i;
+  document.getElementById("boardEditPopupChooseCategoryButton").innerHTML = boardEditTaskCategoryTemplate(chosenCategory);
+}
+
+document.addEventListener("click", function (event) {
+  let taskSection = document.getElementById("boardEditPopUpTaskSection");
+  if (taskSection) {
+    let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
+    let dropdownLableBox = document.getElementById("boardEditPopUpChooseCategoryDropdownLableBox");
+
+    if (dropdownLableBox.contains(event.target)) {
+      toggleCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox);
+    } else if (!categoryDropdown.contains(event.target)) {
+      closeCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox);
+    }
+  }
+}, true);
+
+function toggleCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox) {
+  if (categoryDropdown.classList.contains("show")) {
+    closeCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox);
+  } else {
+    openCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox);
+  }
+}
+
+//                               open category functions for EditPopup
+
+function openCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox) {
+  showCategoryDropdownEditPopUp(categoryDropdown);
+  addDropdownLableBoxEditPopUp(dropdownLableBox);
+  switchAssignArrowToDownEditPopUp();
+}
+
+function showCategoryDropdownEditPopUp(categoryDropdown) {
+  categoryDropdown.classList.add("show");
+  categoryDropdown.classList.remove("displayNone");
+}
+
+function addDropdownLableBoxEditPopUp(dropdownLableBox) {
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchAssignArrowToDownEditPopUp() {
+  document.getElementById("boardEditPopUpChooseCategoryDropdownImageUp").classList.remove("displayNone");
+  document.getElementById("boardEditPopUpChooseCategoryDropdownImageDown").classList.add("displayNone");
+}
+
+//                               close category functions for EditPopup
+
+function closeCategoryDropdownEditPopUp(categoryDropdown, dropdownLableBox) {
+  closeCategoryDropdownWindowEditPopUp(categoryDropdown);
+  closeCategoryLableBoxEditPopUp(dropdownLableBox);
+  switchCategoryArrowToUpEditPopUp();
+}
+
+function closeCategoryDropdownWindowEditPopUp(categoryDropdown) {
+  categoryDropdown.classList.remove("show");
+  categoryDropdown.classList.add("displayNone");
+}
+
+function closeCategoryLableBoxEditPopUp(dropdownLableBox) {
+  dropdownLableBox.classList.remove("addTaskChooseCategoryDropdownLableBoxOpen");
+  dropdownLableBox.classList.add("addTaskChooseCategoryDropdownLableBoxClosed");
+}
+
+function switchCategoryArrowToUpEditPopUp() {
+  document.getElementById("boardEditPopUpChooseCategoryDropdownImageUp").classList.add("displayNone");
+  document.getElementById("boardEditPopUpChooseCategoryDropdownImageDown").classList.remove("displayNone");
+}
+
+
+
+//                        board Edit PupUp subTask
+
+function boardEditPopUpOpenAddSubtask() {
+  let inputBox = document.getElementById("boardEditPopUpAddSubtaskInputBox");
+  let inputField = document.getElementById("boardEditPopUpAddSubtaskInput");
+  let addSubtask = document.getElementById("boardEditPopUpaddSubtask");
+
+  addSubtask.classList.add("displayNone");
+  inputBox.classList.remove("displayNone");
+  inputBox.classList.remove("displayNone");
+  inputField.focus();
+}
+
+function boardEditPopUpAddSubtaskCancel() {
+  document.getElementById("boardEditPopUpAddSubtaskInput").value = "";
+  document.getElementById("boardEditPopUpaddSubtask").classList.remove("displayNone");
+  document.getElementById("boardEditPopUpAddSubtaskInputBox").classList.add("displayNone");
+}
+
+function boardEditPopUpAddSubtask() {
+  let subtaskInput = document.getElementById("boardEditPopUpAddSubtaskInput");
+  subtasks.push({ subtask: subtaskInput.value, done: false });
+  globalSubtaskId = 0;
+  subtaskInput.value = "";
+  document.getElementById("boardEditPopUpaddSubtask").classList.remove("displayNone");
+  document.getElementById("boardEditPopUpAddSubtaskInputBox").classList.add("displayNone");
+  boardEditPopUpWriteSubtaskBoard();
+}
+
+function boardEditPopUpWriteSubtaskBoard() {
+  let subtaskBoard = document.getElementById("boardEditPopUpSubtaskBoard");
+  subtaskBoard.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    subtaskBoard.innerHTML += subtaskTemplate(i);
+  }
+}
+
+function boardEditPopUpRewriteSubtask(i) {
+  boardEditPopUpWriteSubtaskBoard();
+
+  let subtask = subtasks[i].subtask;
+  let rewriteInput = document.getElementById(`boardEditPopUpSubtaskRewriteInput${i}`);
+  let rewriteInputBox = document.getElementById(`boardEditPopUpSubtaskRewriteInputBox${[i]}`);
+  rewriteInputBox.value = subtask;
+  rewriteInputBox.classList.toggle("displayNone");
+  document.getElementById(`boardEditPopUpSubtask${[i]}`).classList.toggle("displayNone");
+  rewriteInput.value = subtasks[i].subtask;
+  rewriteInput.focus();
+}
+
+function boardEditPopUpDeleteSubtaskFromBoard(i) {
+  subtasks.splice(i, 1);
+  boardEditPopUpWriteSubtaskBoard();
+}
+
+function boardEditPopUpAcceptRewriting(i) {
+  let rewriteInput = document.getElementById(`boardEditPopUpSubtaskRewriteInput${i}`);
+  subtasks[i].subtask = rewriteInput.value;
+  document.getElementById(`boardEditPopUpSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
+  document.getElementById(`boardEditPopUpSubtask${i}`).classList.toggle("displayNone");
+  boardEditPopUpWriteSubtaskBoard();
+}
+
+function boardEditPopUpCancelRewritingSubtask(i) {
+  boardEditPopUpDeleteRewritingSubtask(i);
+  boardEditPopUpAcceptRewriting(i);
+}
+
+function boardEditPopUpReadIdFromSubtask(id) {
+  let fullId = id;
+  let idNumber = fullId.slice(-1);
+  globalSubtaskId = idNumber;
+  console.log(idNumber);
+}
+
+document.addEventListener("click", function (event) {
+  let taskSection = document.getElementById("boardEditPopUpTaskSection");
+  if (globalSubtaskId !== "" && taskSection) {
+    let i = globalSubtaskId;
+    let cancelRewriting = document.getElementById(`boardEditPopUpCancelRewritingSubtask${i}`);
+    let acceptRewriting = document.getElementById(`boardEditPopUpAcceptRewritingSubtask${i}`);
+    let subtaskRewriteBox = document.getElementById(`boardEditPopUpSubtaskRewriteInput${i}`);
+
+    if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
+      if (document.body.contains(event.target)) {
+        boardEditPopUpCancelRewritingSubtask(i);
+      }
+    }
+  }
+}, true);
+
+function boardEditPopUpDeleteRewritingSubtask(i) {
+  let rewriteInput = document.getElementById(`boardEditPopUpSubtaskRewriteInput${i}`);
+  rewriteInput.value = subtasks[i].subtask;
+  rewriteInput.focus();
+}
+
+function checkEnterKeyTrigger(event) {
+  if (event.key === "Enter" || event.keyCode === 13) {
+    addTaskAddSubtask();
+  }
+}
+
+
+//--------------------------------------------
+//--------------------------------------------
+
+
+
+
 
 const popupElement = document.getElementById("boardTaskPopup");
 const popupBackgroundELement = document.getElementById("boardPopupBackground");
@@ -526,7 +866,7 @@ function openBoardTaskPopup(i, taskID, numberedID) {
   popupElement.style.display = "flex";
   popupBackgroundELement.style.display = "flex";
 
-  popupElement.addEventListener("click", stopPropagation);
+popupElement.addEventListener("click", stopPropagation);
 }
 
 function closeBoardTaskPopup() {
@@ -716,7 +1056,7 @@ function addUserSymbolsToAssign() {
   addUserSymbolsAssign.innerHTML = "";
 
   for (let i = 0; i < addTaskCurrentUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += addUserSymbolTemlate(i);
+    addUserSymbolsAssign.innerHTML += addUserSymbolTemplate(i);
   }
 }
 
@@ -880,7 +1220,7 @@ document.addEventListener("click", function (event) {
   if (globalSubtaskId !== "") {
     let i = globalSubtaskId;
     let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
-    let acceptRewriting = document.getElementById(`addTaskAcceptRewriting${i}`);
+    let acceptRewriting = document.getElementById(`addTaskAcceptRewritingSubtask${i}`);
     let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
 
     if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
@@ -1162,3 +1502,24 @@ function renderContactInfoHTML(currentContact) {
           </div>
         `;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
