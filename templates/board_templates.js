@@ -111,22 +111,22 @@ function boardTaskPopupTemplate(i, taskID, numberedID) {
   <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
   <div class="boardTaskPopupContentTop">
     <div class="boardTaskPopupCategoryCard">
-      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[i].taskCategory}</p>
+      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[numberedID].taskCategory}</p>
     </div>
-    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
+    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup(${numberedID})" />
   </div>
   <div class="boardTaskPopupContentCenter">
-    <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${convertedTasks[i].taskTitle}</p>
-    <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">Build start page with recipe.</p>
+    <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${convertedTasks[numberedID].taskTitle}</p>
+    <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">${convertedTasks[numberedID].taskDescription}</p>
     <div class="boardTaskPopupContentDateWrapper">
       <p class="boardTaskPopupContentDateLabel">Due date:</p>
-      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">${convertedTasks[i].taskDate}</p>
+      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">${convertedTasks[numberedID].taskDate}</p>
     </div>
     <div class="boardTaskPopupContentPrioWrapper">
       <p class="boardTaskPopupContentPrioLabel">Priority:</p>
       <div class="boardTaskPopupContentPrioOutputWrapper">
-        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${convertedTasks[i].taskPrio}</p>
-        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/${convertedTasks[i].taskPrio}.png" alt="medium prio" />
+        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${convertedTasks[numberedID].taskPrio}</p>
+        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/${convertedTasks[numberedID].taskPrio}.png" alt="medium prio" />
       </div>
     </div>
     <div class="boardTaskPopupContentAssignedToWrapper">
@@ -176,23 +176,22 @@ function boardTaskPopupTemplate(i, taskID, numberedID) {
 `;
 }
 
-function popupUserTemplate(usersIndex, i) {
+function popupUserTemplate(usersIndex, i, numberedID) {
   return `
         <div class="boardTaskPopupContentAssignedToUserContainer">
-          <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${convertedTasks[i].taskAssignedUserColors[usersIndex]};">
-            <p class="boardTaskPopupContentAssignedToUserInitials">${convertedTasks[i].taskAssignedUserInitials[usersIndex]}</p>
+          <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${convertedTasks[numberedID].taskAssignedUserColors[usersIndex]};">
+            <p class="boardTaskPopupContentAssignedToUserInitials">${convertedTasks[numberedID].taskAssignedUserInitials[usersIndex]}</p>
           </div>
-          <p class="boardTaskPopupContentAssignedToUserLabel">${convertedTasks[i].taskAssignedUser[usersIndex]}</p>
+          <p class="boardTaskPopupContentAssignedToUserLabel">${convertedTasks[numberedID].taskAssignedUser[usersIndex]}</p>
         </div>
   `;
 }
 
-function popupSubtaskTemplate(subtasksIndex, i) {
+function popupSubtaskTemplate(subtasksIndex, i, numberedID) {
   return `
-        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i}, '${convertedTasks[i].ID}')">
+        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i}, '${convertedTasks[numberedID].ID}', ${numberedID})">
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
-          <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[i].taskSubtasks[subtasksIndex].subtask}</p>
+          <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[numberedID].taskSubtasks[subtasksIndex].subtask}</p>
         </div>
   `;
 }
-

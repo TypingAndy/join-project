@@ -604,7 +604,7 @@ input:focus {
 /* board popup --------------- */
 .boardPopupBackground {
   display: none;
-  position: absolute;
+  position: fixed;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -628,6 +628,7 @@ input:focus {
 .boardTaskPopupContentWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #ffffff6a;
   width: calc(100% - 40px);
   height: calc(100% - 64px);
