@@ -1,6 +1,6 @@
 function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials) {
-    return /*html*/ `
-    <div id="addTaskAssignUserId${i}" onclick="addUserToTaskToggle('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
+  return /*html*/ `
+    <div id="addTaskAssignUserId${i}" onclick="addUserToTaskToggle('${sortedUsers[i].name}', ${i}, '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
       <div class="addTaskAllUserInitials" style="background-color: ${currentColor}; color: ${blackWhite};">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
@@ -11,8 +11,8 @@ function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserIniti
     `;
 }
 
-function addUserSymbolTemplate (i) {
-   return /*html*/ `
+function addUserSymbolTemplate(i) {
+  return /*html*/ `
     <div>
      <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
     </div>
@@ -20,7 +20,7 @@ function addUserSymbolTemplate (i) {
 }
 
 function categoryTemplate(chosenCategory) {
-    return /*html*/ `
+  return /*html*/ `
       <div class="fontInboxAlign">${chosenCategory}</div>
       <img id="addTaskChooseCategoryDropdownImageDown" class="displayNone" src="images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
       <img id="addTaskChooseCategoryDropdownImageUp"  src="images/mobile/addTaskMobile/arrowDropDownUp.png" alt=""/>
@@ -28,7 +28,7 @@ function categoryTemplate(chosenCategory) {
 }
 
 function subtaskTemplate(i) {
-   return /*html*/ `
+  return /*html*/ `
     <li class="addTaskSingleListSubtask">
       <div id="addTaskSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
         <input id="addTaskSubtaskRewriteInput${i}" onclick="readIdFromSubtask(this.id)" class="taskBoardRewriteSubtaskInput" type="text">

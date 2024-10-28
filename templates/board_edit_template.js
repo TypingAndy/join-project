@@ -103,7 +103,7 @@ function renderAddTaskToEditPopupTemplate(numberedID) {
 
 function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials) {
   return /*html*/ `
-    <div id="boardEditPopupAssignUserId${i}" onclick="boardEditPopupAddUserToTaskToggle('${sortedUsers[i].name}', ${i})" class="addTaskDropDownSingleUserContainer">
+    <div id="boardEditPopupAssignUserId${i}" onclick="boardEditPopupAddUserToTaskToggle('${sortedUsers[i].name}', ${i}, '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
       <div class="addTaskAllUserInitials" style="background-color: ${currentColor}; color: ${blackWhite};">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
