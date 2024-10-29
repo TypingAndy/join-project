@@ -513,6 +513,9 @@ async function renderPopupEditTaskContent(numberedID) {
 
   setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
   currentNumberedID = numberedID;
+  const categoryFromTask = convertedTasks[numberedID].taskCategory;
+  boardEditTaskChooseCategory(categoryFromTask);
+  boardEditInitializeSubtasks(numberedID);
 }
 
 function editPopUpAddUserToTask(numberedID) {
@@ -755,6 +758,13 @@ function switchCategoryArrowToUpEditPopUp() {
 }
 
 //                        board Edit PupUp subTask
+function boardEditInitializeSubtasks(numberedID) {
+  subtasks = [];
+  for (let index = 0; index < convertedTasks[numberedID].taskSubtasks.length; index++) {
+    subtasks.push(convertedTasks[numberedID].taskSubtasks[index]);
+  }
+  boardEditPopUpWriteSubtaskBoard();
+}
 
 function boardEditPopUpOpenAddSubtask() {
   let inputBox = document.getElementById("boardEditPopUpAddSubtaskInputBox");
@@ -966,7 +976,7 @@ if (findTaskInput) {
 function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("taskDateInput").value;
+  // let taskDateInput = document.getElementById("taskDateInput").value;
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -975,7 +985,7 @@ function getNewTaskInputData() {
     taskAssignedUserColors: addTaskAssignedUserColors,
     taskAssignedUserFontColors: addTaskAssignedUserFontColors,
     taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
-    taskDate: taskDateInput,
+    // taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
     taskCategory: chosenCategory,
@@ -989,6 +999,19 @@ async function postTaskData() {
 
   await fetch(BASE_URL + `/tasks.json`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createTaskData),
+  });
+}
+
+async function updateTaskData(currentNumberedID) {
+  let createTaskData = getNewTaskInputData();
+  let taskFirebaseID = convertedTasks[currentNumberedID].ID;
+
+  await fetch(BASE_URL + `/tasks/${taskFirebaseID}.json`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
