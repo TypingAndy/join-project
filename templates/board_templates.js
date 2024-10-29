@@ -113,7 +113,7 @@ function boardTaskPopupTemplate(i, taskID, numberedID) {
     <div class="boardTaskPopupCategoryCard">
       <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[numberedID].taskCategory}</p>
     </div>
-    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
+    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup(${numberedID})" />
   </div>
   <div class="boardTaskPopupContentCenter">
     <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${convertedTasks[numberedID].taskTitle}</p>
