@@ -519,11 +519,15 @@ async function renderPopupEditTaskContent(numberedID) {
 }
 
 function editPopUpAddUserToTask(numberedID) {
-  for (let i = 0; i < convertedTasks[numberedID].taskAssignedUser.length; i++) {
-    const currentUserFirebaseId = convertedTasks[numberedID].taskAssignedUserFirebaseIDs[i];
-    const index = sortedUsers.findIndex((user) => user.id === currentUserFirebaseId);
-    boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], index);
-    console.log(convertedTasks[numberedID].taskAssignedUser[i], i, currentUserFirebaseId, index);
+  let editPopup = document.getElementById('boardEditPopUpTaskSection');
+  if (editPopup){
+    for (let i = 0; i < convertedTasks[numberedID].taskAssignedUser.length; i++) {
+      const currentUserFirebaseId = convertedTasks[numberedID].taskAssignedUserFirebaseIDs[i];
+      const index = sortedUsers.findIndex((user) => user.id === currentUserFirebaseId);
+
+      boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], index);
+      console.log(convertedTasks[numberedID].taskAssignedUser[i], i, currentUserFirebaseId, index);
+    }
   }
 }
 
@@ -584,7 +588,7 @@ function boardEditPopUpFilterFunction() {
   }
 }
 
-function boardEditPopupAddUserToTaskToggle(name, i) {
+function boardEditPopupAddUserToTaskToggle(name, i, userFirebaseId) {
   let inputField = document.getElementById("boardEditPopupContactsSearchArea");
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
@@ -592,9 +596,9 @@ function boardEditPopupAddUserToTaskToggle(name, i) {
   let blackWhite = addTaskAdaptFontColorToBackground(i);
   inputField.focus();
 
-  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite);
+  if (!addTaskAssignedUserFirebaseIds.includes(userFirebaseId)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
   else {
-    let userIndex = addTaskCurrentUser.indexOf(name);
+    let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
     if (userIndex > -1) {
       removeUserFromTask(check, noCheck, assignUserID, userIndex);
     }
@@ -1044,19 +1048,19 @@ function addTaskAdaptFontColorToBackground(i) {
   return luminance > 128 ? "black" : "white";
 }
 
-function addUserToTaskToggle(name, i) {
+function addUserToTaskToggle(name, i, userFirebaseId) {
   let inputField = document.getElementById("addTaskContactsSearchArea");
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
   let blackWhite = addTaskAdaptFontColorToBackground(i);
-  let userFirebaseId = sortedUsers[i].id;
 
-  if (!addTaskCurrentUser.includes(name)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
+
+  if (!addTaskAssignedUserFirebaseIds.includes(userFirebaseId)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
   else {
-    let userIndex = addTaskCurrentUser.indexOf(name);
+    let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
     if (userIndex > -1) {
-      removeUserFromTask(check, noCheck, assignUserID, userIndex, userFirebaseId);
+      removeUserFromTask(check, noCheck, assignUserID, userIndex);
     }
   }
   addUserSymbolsToAssign();
