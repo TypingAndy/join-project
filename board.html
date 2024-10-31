@@ -35,7 +35,7 @@
           <div class="toDoSection">
             <div class="toDoSectionTitleContainer">
               <p>To Do</p>
-              <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('to do')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
@@ -46,21 +46,21 @@
           <div class="inProgressSection">
             <div class="inProgressTitleContainer">
               <p>In progress</p>
-              <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('in progress')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
-              <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('await feedback')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
-              <img class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('done')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
           </div>

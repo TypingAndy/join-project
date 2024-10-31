@@ -509,7 +509,14 @@ input:focus {
   height: 100%;
   gap: 40px;
   box-shadow: 0px 0px 4px 0px #0000001a;
+
 }
+
+.summaryMidSectionPrioDateBox:hover {
+  transition: 125ms;
+  scale: 1.1;
+}
+
 
 .summaryMidSectionBoardProgressFreebackBox {
   display: flex;
@@ -529,6 +536,13 @@ input:focus {
   align-items: center;
   gap: 10px;
   box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.summaryMidSectionToDoAndDone:hover {
+  background-color: #2a3647;
+  color: white;
+  transition: 125ms;
+  scale: 1.1;
 }
 
 .summaryMidSectionPrio {
@@ -574,6 +588,13 @@ input:focus {
   box-shadow: 0px 0px 4px 0px #0000001a;
 }
 
+.summaryMidSectionBoard:hover {
+  background-color: #2a3647;
+  color: white;
+  transition: 125ms;
+  scale: 1.1;
+}
+
 .summaryMidSectionProgress {
   background-color: #ffffff;
   width: 100%;
@@ -587,6 +608,13 @@ input:focus {
   box-shadow: 0px 0px 4px 0px #0000001a;
 }
 
+.summaryMidSectionProgress:hover {
+  background-color: #2a3647;
+  color: white;
+  transition: 125ms;
+  scale: 1.1;
+}
+
 .summaryMidSectionFeedback {
   background-color: #ffffff;
   width: 100%;
@@ -594,10 +622,16 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-direction: column;
   text-align: center;
   box-shadow: 0px 0px 4px 0px #0000001a;
+}
+
+.summaryMidSectionFeedback:hover {
+  background-color: #2a3647;
+  color: white;
+  transition: 125ms;
+  scale: 1.1;
 }
 
 /* board.html Styling below:-------------------------------------------------------------------- */

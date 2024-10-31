@@ -4,12 +4,12 @@ function renderAddTaskToEditPopupTemplate(numberedID) {
   <form class="addTaskForm" action="">
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Title</div>
-      <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" value="${convertedTasks[numberedID].taskTitle}" />
+      <input id="editPopupTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" value="${convertedTasks[numberedID].taskTitle}" />
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Description</div>
-      <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description">${convertedTasks[numberedID].taskDescription}</textarea>
+      <textarea id="editPopupDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description">${convertedTasks[numberedID].taskDescription}</textarea>
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
@@ -32,7 +32,7 @@ function renderAddTaskToEditPopupTemplate(numberedID) {
 
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Due date</div>
-      <input id="boardEditPopUpTaskDateInput" class="addTaskDueDateDropdown" type="date" min="" value="${convertedTasks[numberedID].taskDate}"/>
+      <input id="editPopupDateInput" class="addTaskDueDateDropdown" type="date" min="" value="${convertedTasks[numberedID].taskDate}"/>
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
