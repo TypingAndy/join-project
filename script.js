@@ -500,8 +500,11 @@ async function deleteTask(taskID) {
   });
 
   closeBoardTaskPopup();
-  loadAllTasks();
 }
+
+function openAddTaskPopup() {
+
+};
 
 //--------------------------------------------
 //--------------------------------------------
@@ -513,7 +516,7 @@ async function renderPopupEditTaskContent(numberedID) {
 
   setTaskPrio(`${convertedTasks[numberedID].taskPrio}`);
   currentNumberedID = numberedID;
-  const categoryFromTask = convertedTasks[numberedID].taskCategory;
+  let categoryFromTask = convertedTasks[numberedID].taskCategory;
   boardEditTaskChooseCategory(categoryFromTask);
   boardEditInitializeSubtasks(numberedID);
 }
@@ -522,17 +525,17 @@ function editPopUpAddUserToTask(numberedID) {
   let editPopup = document.getElementById('boardEditPopUpTaskSection');
   if (editPopup){
     for (let i = 0; i < convertedTasks[numberedID].taskAssignedUser.length; i++) {
-      const currentUserFirebaseId = convertedTasks[numberedID].taskAssignedUserFirebaseIDs[i];
-      const index = sortedUsers.findIndex((user) => user.id === currentUserFirebaseId);
+      let currentUserFirebaseId = convertedTasks[numberedID].taskAssignedUserFirebaseIDs[i];
+      let index = sortedUsers.findIndex((user) => user.id === currentUserFirebaseId);
 
-      boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], index);
+      boardEditPopupAddUserToTaskToggle(convertedTasks[numberedID].taskAssignedUser[i], index, currentUserFirebaseId);
       console.log(convertedTasks[numberedID].taskAssignedUser[i], i, currentUserFirebaseId, index);
     }
   }
 }
 
 function boardEditPopUpInsertMinSelectableDate() {
-  document.getElementById("boardEditPopUpTaskDateInput").setAttribute("min", currentDate);
+  document.getElementById("editPopupDateInput").setAttribute("min", currentDate);
 }
 
 function renderAddTaskToEditPopup(numberedID) {
@@ -878,8 +881,8 @@ function checkEnterKeyTrigger(event) {
 //--------------------------------------------
 //--------------------------------------------
 
-const popupElement = document.getElementById("boardTaskPopup");
-const popupBackgroundELement = document.getElementById("boardPopupBackground");
+let popupElement = document.getElementById("boardTaskPopup");
+let popupBackgroundELement = document.getElementById("boardPopupBackground");
 
 function openBoardTaskPopup(i, taskID, numberedID) {
   renderBoardTaskPopupContent(i, taskID, numberedID);
@@ -896,6 +899,7 @@ function closeBoardTaskPopup() {
   popupBackgroundELement.style.display = "none";
   popupElement.removeEventListener("click", stopPropagation);
   editPopUpAddUserToTask(currentNumberedID);
+  loadAllTasks();
 }
 
 function renderBoardTaskPopupContent(i, taskID, numberedID) {
@@ -903,7 +907,7 @@ function renderBoardTaskPopupContent(i, taskID, numberedID) {
 }
 
 function renderBoardTaskPopupContentUsers(i, numberedID) {
-  const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
+  let popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
   for (let usersIndex = 0; usersIndex < convertedTasks[numberedID].taskAssignedUser.length; usersIndex++) {
     popupUsersElement.innerHTML += popupUserTemplate(usersIndex, i, numberedID);
@@ -911,7 +915,7 @@ function renderBoardTaskPopupContentUsers(i, numberedID) {
 }
 
 function renderBoardTaskPopupSubtasks(i, numberedID) {
-  const popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
+  let popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
   popupSubtasksElement.innerHTML = "";
   for (let subtasksIndex = 0; subtasksIndex < convertedTasks[numberedID].taskSubtasks.length; subtasksIndex++) {
     popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, i, numberedID);
@@ -960,7 +964,7 @@ async function fetchSubtaskDoneToFalse(subtasksIndex, taskFirebaseID) {
   });
 }
 
-const findTaskInput = document.getElementById("findTaskInput");
+let findTaskInput = document.getElementById("findTaskInput");
 
 if (findTaskInput) {
   function addInputListener() {
@@ -980,7 +984,8 @@ if (findTaskInput) {
 function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  // let taskDateInput = document.getElementById("taskDateInput").value;
+  let taskDateInput = document.getElementById("taskDateInput").value;
+
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -989,7 +994,7 @@ function getNewTaskInputData() {
     taskAssignedUserColors: addTaskAssignedUserColors,
     taskAssignedUserFontColors: addTaskAssignedUserFontColors,
     taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
-    // taskDate: taskDateInput,
+    taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: "to do",
     taskCategory: chosenCategory,
@@ -1008,10 +1013,33 @@ async function postTaskData() {
     },
     body: JSON.stringify(createTaskData),
   });
+  window.location.href='board.html'
+}
+
+
+function editTaskInputData() {
+  let taskTitleInput = document.getElementById("editPopupTitleInput").value;
+  let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
+  let taskDateInput = document.getElementById("editPopupDateInput").value;
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    taskAssignedUser: addTaskCurrentUser,
+    taskAssignedUserInitials: taskAssignedUserInitials,
+    taskAssignedUserColors: addTaskAssignedUserColors,
+    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
+    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput,
+    taskStatus: "to do",
+    taskCategory: chosenCategory,
+    taskSubtasks: subtasks,
+  };
+  return createTaskData;
 }
 
 async function updateTaskData(currentNumberedID) {
-  let createTaskData = getNewTaskInputData();
+  let createTaskData = editTaskInputData();
   let taskFirebaseID = convertedTasks[currentNumberedID].ID;
 
   await fetch(BASE_URL + `/tasks/${taskFirebaseID}.json`, {
@@ -1021,6 +1049,11 @@ async function updateTaskData(currentNumberedID) {
     },
     body: JSON.stringify(createTaskData),
   });
+
+  loadAllTasks();
+  closeBoardTaskPopup();
+  
+
 }
 
 //functions addTask---------assign Contacts------------------------------------------------------------
@@ -1127,7 +1160,7 @@ function createUserInitials() {
 
 // addTask --------------------------- date
 
-function insertMinSelectableDate() {
+function insertMinSelectableDateAtAddTask() {
   document.getElementById("taskDateInput").setAttribute("min", currentDate);
 }
 
