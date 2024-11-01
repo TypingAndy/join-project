@@ -36,7 +36,6 @@ function loadFullNameList() {
 }
 
 function addUserToTaskToggle(name, i, userFirebaseId) {
-  let inputField = document.getElementById("addTaskContactsSearchArea");
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
@@ -191,8 +190,12 @@ function addTaskDeleteRewritingSubtask(i) {
   rewriteInput.focus();
 }
 
-function checkEnterKeyTrigger(event) {
+function acceptSubtaskOnEnterKeyTrigger(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
     addTaskAddSubtask();
   }
 }
+
+
+
+

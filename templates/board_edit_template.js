@@ -74,7 +74,7 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
         <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
       </div>
 
-      <div onkeydown="checkEnterKeyTrigger(event)" id="boardEditPopupAddSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
+      <div id="boardEditPopupAddSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
         <div class="addTaskSubtaskInput">
           <input id="boardEditPopupAddSubtaskInput" class="addTaskSubtaskInputField" />
         </div>
