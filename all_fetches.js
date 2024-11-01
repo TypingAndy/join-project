@@ -20,11 +20,8 @@ async function loadAllTasks(path = "tasks") {
       },
       body: JSON.stringify(signUpData),
     });
-    clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput);
-    acceptPrivacyPolicyCheck();
-    loadUserData();
   }
-  
+ 
   
   async function putNewTaskStatus() {
     let taskID = convertedTasks[currentDraggedElementID].ID;

@@ -69,10 +69,6 @@ function getCurrentDate() {
   currentDate = new Date().toISOString().split("T")[0];
 }
 
-
-
-
-
 function sortUsersByName(userData) {
   let usersArray = [];
   for (let id in userData) {
@@ -83,4 +79,14 @@ function sortUsersByName(userData) {
     if (a.name > b.name) return 1;
     return 0;
   });
+}
+
+function createUserInitials() {
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let fullName = sortedUsers[i].name;
+    let nameParts = fullName.split(" ");
+
+    let initials = nameParts.map((part) => part.charAt(0)).join("");
+    allUserInitials.push(initials);
+  }
 }
