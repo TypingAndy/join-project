@@ -1,15 +1,15 @@
-function renderAddTaskToEditPopupTemplate(numberedID) {
+function renderAddTaskToEditPopupTemplate(numberedTaskID) {
   return /*html*/ ` <div id="boardEditPopUpTaskSection" class="addTaskSection">
 
   <form class="addTaskForm" action="">
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Title</div>
-      <input id="editPopupTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" value="${convertedTasks[numberedID].taskTitle}" />
+      <input id="editPopupTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" value="${convertedTasks[numberedTaskID].taskTitle}" />
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Description</div>
-      <textarea id="editPopupDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description">${convertedTasks[numberedID].taskDescription}</textarea>
+      <textarea id="editPopupDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description">${convertedTasks[numberedTaskID].taskDescription}</textarea>
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
@@ -32,7 +32,7 @@ function renderAddTaskToEditPopupTemplate(numberedID) {
 
     <div class="addTaskSectionHeaderInputGap">
       <div class="addTaskFormLabels">Due date</div>
-      <input id="editPopupDateInput" class="addTaskDueDateDropdown" type="date" min="" value="${convertedTasks[numberedID].taskDate}"/>
+      <input id="editPopupDateInput" class="addTaskDueDateDropdown" type="date" min="" value="${convertedTasks[numberedTaskID].taskDate}"/>
     </div>
 
     <div class="addTaskSectionHeaderInputGap">
@@ -101,9 +101,9 @@ function renderAddTaskToEditPopupTemplate(numberedID) {
 </div>`;
 }
 
-function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials) {
+function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials, userUniqueId, numberedTaskID) {
   return /*html*/ `
-    <div id="boardEditPopupAssignUserId${i}" onclick="boardEditPopupAddUserToTaskToggle('${sortedUsers[i].name}', ${i}, '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
+    <div id="boardEditPopupAssignUserId${i}" onclick="toggleUserInsideEditPopup('${sortedUsers[i].name}', ${i}, '${sortedUsers[i].id}', ${numberedTaskID})" class="addTaskDropDownSingleUserContainer">
       <div class="addTaskAllUserInitials" style="background-color: ${currentColor}; color: ${blackWhite};">${allUserInitials[i]}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
@@ -118,6 +118,14 @@ function addUserSymbolTemplate(i) {
   return /*html*/ `
     <div>
      <div class="addTaskAllUserInitials" style="background-color: ${addTaskAssignedUserColors[i]}; color: ${addTaskAssignedUserFontColors[i]};">${taskAssignedUserInitials[i]}</div>
+    </div>
+    `;
+}
+
+function addUserSymbolTemplateEditPopup(i, numberedTaskID) {
+  return /*html*/ `
+    <div>
+     <div class="addTaskAllUserInitials" style="background-color: ${convertedTasks[numberedTaskID].taskAssignedUserColors[i]}; color: ${convertedTasks[numberedTaskID].taskAssignedUserFontColors[i]};">${convertedTasks[numberedTaskID].taskAssignedUserInitials[i]}</div>
     </div>
     `;
 }
