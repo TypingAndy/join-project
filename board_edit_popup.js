@@ -1,4 +1,3 @@
-// edit Task section ------------------------------
 
 async function renderPopupEditTaskContent(numberedTaskID) {
     renderAddTaskToEditPopup(numberedTaskID);

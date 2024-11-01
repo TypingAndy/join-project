@@ -8,19 +8,7 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
     return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
   }
   
-  async function postSignUpData() {
-    let { signUpData, confirmPasswordInput } = getSignUpInputData();
-    await fetch(BASE_URL + `users/.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(signUpData),
-    });
-    clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput);
-    acceptPrivacyPolicyCheck();
-    loadUserData();
-  }
+
   
   function clearSignUpInputField(nameInput, mailInput, passwordInput, confirmPasswordInput) {
     nameInput.value = "";
@@ -67,24 +55,7 @@ function getSignUpInputData(signUpData, confirmPasswordInput) {
     validateSignUp();
   }
   
-  async function loadUserData(path = "users") {
-    let response = await fetch(BASE_URL + path + ".json");
-    responseToJson = await response.json();
-    sortUsersByName(responseToJson);
-    createUserInitials();
-    loadFullNameList();
-    addTaskRenderCategoryDropdown();
-  }
+
   
-  function sortUsersByName(userData) {
-    let usersArray = [];
-    for (let id in userData) {
-      usersArray.push({ id: id, ...userData[id] });
-    }
-    sortedUsers = usersArray.sort(function (a, b) {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-  }
+
   

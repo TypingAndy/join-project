@@ -22,18 +22,7 @@ function getNewTaskInputData() {
     return createTaskData;
   }
   
-  async function postTaskData() {
-    let createTaskData = getNewTaskInputData();
-  
-    await fetch(BASE_URL + `/tasks.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createTaskData),
-    });
-    window.location.href = "board.html";
-  }
+
   
   function editTaskInputData() {
     let taskTitleInput = document.getElementById("editPopupTitleInput").value;
@@ -56,21 +45,7 @@ function getNewTaskInputData() {
     return createTaskData;
   }
   
-  async function updateTaskData(currentNumberedID) {
-    let createTaskData = editTaskInputData();
-    let taskFirebaseID = convertedTasks[currentNumberedID].ID;
-  
-    await fetch(BASE_URL + `/tasks/${taskFirebaseID}.json`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createTaskData),
-    });
-  
-    loadAllTasks();
-    closeBoardTaskPopup();
-  }
+
   
   //functions addTask---------assign Contacts------------------------------------------------------------
   
