@@ -1,7 +1,7 @@
 //                                 open/close dropdown EvetnListener for User-Assign inside addTask
 
 document.addEventListener("click", function (event) {
-    let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+    let isOnAddTask = window.location.pathname.endsWith("add_task.html");
     if (isOnAddTask) {
       let contactsDropdown = document.getElementById("addTaskContactsDropdownLableBox");
       let assignDropdownArrow = document.getElementById("addTaskAssignDropdownArrow");
@@ -65,7 +65,7 @@ document.addEventListener("click", function (event) {
   //                               open/close dropdown EvetnListener for Category inside addTask
   
   document.addEventListener("click", function (event) {
-    let isOnAddTask = window.location.pathname.endsWith("addTask.html");
+    let isOnAddTask = window.location.pathname.endsWith("add_task.html");
     if (isOnAddTask) {
       let categoryDropdown = document.getElementById("categoryDropDown");
       let dropdownLableBox = document.getElementById("addTaskChooseCategoryDropdownLableBox");
