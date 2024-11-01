@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.svg" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
-    <script src="all_fetches.js"></script>
+    <script src="firebase.js"></script>
     <script src="add_task.js"></script>
     <script src="templates/add_task_template.js"></script>
     <script src="add_task_dropdown.js"></script>
@@ -102,7 +102,7 @@
               <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="images/mobile/addTaskMobile/plusDark.png" alt="" />
             </div>
 
-            <div onkeydown="checkEnterKeyTrigger(event)" id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
+            <div onkeydown="acceptSubtaskOnEnterKeyTrigger(event)" id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
               <div class="addTaskSubtaskInput">
                 <input id="addSubtaskInput" class="addTaskSubtaskInputField" />
               </div>
