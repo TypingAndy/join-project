@@ -77,11 +77,11 @@ async function loadAllTasks(path = "tasks") {
     closeBoardTaskPopup();
   }
   
-  async function loadUserData(path = "users") {
+  async function fetchUserDataFromFirebase(path = "users") {
     let response = await fetch(BASE_URL + path + ".json");
     responseToJson = await response.json();
     sortUsersByName(responseToJson);
     createUserInitials();
-    loadFullNameList();
+    renderSortedUsersToDropdown();
     addTaskRenderCategoryDropdown();
   }

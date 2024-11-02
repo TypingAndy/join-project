@@ -4,7 +4,6 @@ function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("taskDateInput").value;
-
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -22,9 +21,9 @@ function getNewTaskInputData() {
   return createTaskData;
 }
 
-//functions addTask---------assign Contacts------------------------------------------------------------
+//functions addTask---------Assign Users to Task------------------------------------------------------------
 
-function loadFullNameList() {
+function renderSortedUsersToDropdown() {
   let dropdown = document.getElementById("userNameDropDown");
   dropdown.innerHTML = "";
 
@@ -36,22 +35,35 @@ function loadFullNameList() {
 }
 
 function addUserToTaskToggle(name, i, userFirebaseId) {
+  removeOrAddUserToTask(name, i, userFirebaseId);
+  addUserSymbolsToUserAssign();
+}
+
+function removeOrAddUserToTask(name, i, userFirebaseId) {
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
   let blackWhite = addTaskAdaptFontColorToBackground(i);
 
-  if (!addTaskAssignedUserFirebaseIds.includes(userFirebaseId)) addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
-  else {
-    let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
-    if (userIndex > -1) {
-      removeUserFromTask(check, noCheck, assignUserID, userIndex);
-    }
+  if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
+    addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
+  } else {
+    removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
   }
-  addUserSymbolsToAssign();
 }
 
-function addUserSymbolsToAssign() {
+function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
+  return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
+}
+
+function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
+  let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
+  if (userIndex > -1) {
+    removeUserFromTask(check, noCheck, assignUserID, userIndex);
+  }
+}
+
+function addUserSymbolsToUserAssign() {
   let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
   addUserSymbolsAssign.innerHTML = "";
 
@@ -195,7 +207,3 @@ function acceptSubtaskOnEnterKeyTrigger(event) {
     addTaskAddSubtask();
   }
 }
-
-
-
-
