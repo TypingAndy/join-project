@@ -9,16 +9,16 @@ document.addEventListener("click", function (event) {
       let userNameDropDown = document.getElementById("userNameDropDown");
   
       if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
-        openAssignDropdown(inputField, userNameDropDown, contactsDropdown);
+        openUserAssignDropdownInsideAddTask(inputField, userNameDropDown, contactsDropdown);
       } else {
-        closeAssignDropdown(userNameDropDown);
+        closeUserAssignDropdownInsideAddTask(userNameDropDown);
       }
     }
   });
   
   //                               open dropdown User-Assign inside addTask
   
-  function openAssignDropdown(inputField, userNameDropDown, contactsDropdown) {
+  function openUserAssignDropdownInsideAddTask(inputField, userNameDropDown, contactsDropdown) {
     addShowRemoveDisplayNoneToAssignDropdown(userNameDropDown);
     addOpenContactsRemoveClosedContacts(contactsDropdown);
     removeButtonBoxAddDropdown();
@@ -42,8 +42,10 @@ document.addEventListener("click", function (event) {
   
   //                               close dropdown User-Assign inside addTask
   
-  function closeAssignDropdown() {
-    removeShowAddDisplayNoneToAssignDropdown(userNameDropDown), removeOpenContactsAddClosedContacts(), addButtonBoxRemoveDropdown();
+  function closeUserAssignDropdownInsideAddTask() {
+    removeShowAddDisplayNoneToAssignDropdown(userNameDropDown);
+    removeOpenContactsAddClosedContacts();
+    addButtonBoxRemoveDropdown();
   }
   
   function removeShowAddDisplayNoneToAssignDropdown(userNameDropDown) {
