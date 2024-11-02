@@ -41,9 +41,9 @@ function subtaskTemplate(i) {
       <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
         <div>${subtasks[i].subtask}</div>
         <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
+          <img onclick="addTaskWriteSubtaskBoard(), addTaskRewriteSubtask(${i})" class="img24px" src="images/mobile/addTaskMobile/pencilBlack.png">
           <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskDeleteSubtaskFromBoard(${i})" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png">
+          <img onclick="addTaskDeleteSubtaskFromBoard(${i}),  addTaskWriteSubtaskBoard()" class="img24px" src="images/mobile/addTaskMobile/trashcanBlack.png">
         </div>
       </div>
     </li>
