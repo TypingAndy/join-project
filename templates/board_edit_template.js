@@ -92,7 +92,7 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
 
     <div class="addTaskButton">
 
-      <div onclick="updateTaskData(currentNumberedID)" class="createTaskButton">
+      <div onclick="updateTaskData(currentNumberedID), loadAllTasks(), closeBoardTaskPopup()" class="createTaskButton">
         <div>Ok</div>
         <img class="addTaskButtonCheckImage" src="images/mobile/addTaskMobile/checkWhite.png" alt="" />
       </div>

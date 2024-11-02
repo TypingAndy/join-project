@@ -35,7 +35,6 @@ let awaitFeedbackTasks = [];
 let currentDraggedElementID;
 let currentNumberedID = "";
 
-
 //oftenUsedGlobalArrays
 let currentDate = "";
 
@@ -123,7 +122,6 @@ function removeUserFromTask(check, noCheck, assignUserID, userIndex) {
   assignUserID.classList.remove("addTaskNewBackgroundChecked");
 }
 
-
 function setTaskPrio(priority) {
   taskPrioInput = priority;
   setTaskPrioButtonColorSwitch(priority);
@@ -155,7 +153,6 @@ function highlightPrioButtonLow() {
   buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
 }
 
-
 function addTaskAddSubtaskCancel() {
   document.getElementById("addSubtaskInput").value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");
@@ -171,7 +168,6 @@ function addTaskAddSubtask() {
   document.getElementById("addSubtaskInputBox").classList.add("displayNone");
   addTaskWriteSubtaskBoard();
 }
-
 
 function editTaskInputData() {
   let taskTitleInput = document.getElementById("editPopupTitleInput").value;
