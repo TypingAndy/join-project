@@ -144,8 +144,6 @@ function addTaskWriteSubtaskBoard() {
 }
 
 function addTaskRewriteSubtask(i) {
-  addTaskWriteSubtaskBoard();
-
   let subtask = subtasks[i].subtask;
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
@@ -158,7 +156,6 @@ function addTaskRewriteSubtask(i) {
 
 function addTaskDeleteSubtaskFromBoard(i) {
   subtasks.splice(i, 1);
-  addTaskWriteSubtaskBoard();
 }
 
 function addTaskAcceptRewriting(i) {
