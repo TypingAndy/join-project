@@ -1,3 +1,6 @@
+let allUrgentTasksCount = 0;
+let allUrgentTasks = [];
+
 async function summaryAddAllValuesToBoard() {
     await loadAllTasks();
     summaryShowMostUrgentDate();
