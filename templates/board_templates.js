@@ -163,7 +163,7 @@ function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
   </div>
   <div class="boardTaskPopupContentBottom">
     <div id="boardTaskPopupContentDeleteContainer" onclick="deleteTask('${taskID}'), closeBoardTaskPopup();" class="boardTaskPopupContentDeleteContainer">
-      <img class="boardTaskPopupDeleteIcon" src="../images/icons/delete.png" alt="delete" />
+      <img class="boardTaskPopupDeleteIcon" src="../images/icons/trashcan_black.png" alt="delete" />
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
