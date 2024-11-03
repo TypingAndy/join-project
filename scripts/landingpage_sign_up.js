@@ -49,8 +49,8 @@ function acceptPrivacyPolicyCheck() {
   policyAccepted = !policyAccepted;
   let img = document.getElementById("checkbox");
   if (!policyAccepted) {
-    img.src = "images/mobile/signUpPage/checkButtonBlack.png";
+    img.src = "../images/icons/unchecked.png";
   } else {
-    img.src = "./images/icons/checked.png";
+    img.src = "../images/icons/checked.png";
   }
 }
