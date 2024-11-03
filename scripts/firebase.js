@@ -43,7 +43,7 @@ async function postTaskData() {
     },
     body: JSON.stringify(createTaskData),
   });
-  window.location.href = "board.html";
+  window.location.href = "./html/board.html";
 }
 
 async function updateTaskData(currentNumberedID) {

@@ -331,9 +331,9 @@ function renderBoardTaskPopupSubtasks(i, numberedTaskID) {
   for (let subtasksIndex = 0; subtasksIndex < convertedTasks[numberedTaskID].taskSubtasks.length; subtasksIndex++) {
     popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, i, numberedTaskID);
     if (convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].done) {
-      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/checked.png";
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "../images/icons/checked.png";
     } else {
-      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/unchecked.png";
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "../images/icons/unchecked.png";
     }
   }
 }
