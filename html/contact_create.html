@@ -6,35 +6,27 @@
     <title>JoinAddContact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="contact_mobile.css" />
-    <script src="contact.js"></script>
-    <script src="../script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../contact_create.css" />
+    <script src="../scripts/contacts.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/firebase.js"></script>
   </head>
 
-  <body onload="init()">
+  <body>
     <div class="addContactDiv">
       <div class="header">
         <div class="closePngDiv">
           <div class="closePng">
-            <img
-              onclick="toggleAddNewContact()"
-              class="closePng24px"
-              src="/contacts/img/close.png"
-              alt=""
-            />
+            <img onclick="toggleAddNewContact()" class="closePng24px" src="../images/icons/close_white.png" alt="" />
           </div>
         </div>
         <div class="headlineDiv">
           <span class="addContactheadline">Add contact</span>
           <span class="addContactSpan">Tasks are better witha team</span>
-          <!-- <img src="/images/icons/Vector 5.svg" alt="" /> -->
         </div>
         <div class="userLogoDiv">
-          <img src="/contacts/img/Frame 79.png" alt="" style="width: 120px" />
+          <img src="../images/icons/Frame 79.png" alt="" style="width: 120px" />
         </div>
       </div>
       <div class="formDiv">
@@ -46,9 +38,9 @@
           </div>
         </form>
         <div class="buttonDiv">
-          <button onclick="addContact()" class="button1">
+          <button onclick="postAddContactData(), clearAddContactsInputData()" class="button1">
             Create contact
-            <img src="/contacts/img/check.png" alt="" style="width: 24px" />
+            <img src="../images/icons/check.png" alt="" style="width: 24px" />
           </button>
         </div>
       </div>
