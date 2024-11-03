@@ -18,11 +18,11 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
       <div  id="boardEditPopupContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
         <div  id="boardEditPopupAssignContactsButton" class="addTaskAssignContactsButton">
           <div class="fontInboxAlign">Select contacts to assign</div>
-          <img src="../images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+          <img class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
         </div>
         <div id="boardEditPopupDropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
           <input id="boardEditPopupContactsSearchArea" onkeyup="boardEditPopupFilterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
-          <img id="boardEditPopupAssignDropdownArrow" class="addTaskDropDownCloseButton" src="../images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
+          <img id="boardEditPopupAssignDropdownArrow" class="addTaskDropDownCloseButton img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
         </div>
         <div onclick="stopPropagation(event)" id="boardEditPopupUserNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
       </div>
@@ -40,15 +40,15 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
       <div class="addTaskPrioButtonBox">
         <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
           <div>Urgent</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
         </div>
         <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
           <div>Medium</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
         </div>
         <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
           <div>Low</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@ function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserIniti
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
       </div>
-      <img id="noCheck${i}" src="../images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
+      <img id="noCheck${i}" src="../images/icons/checkButtonMobile.png" alt="">
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="../images/icons/check_white.png" alt="">
     </div>
     `;
