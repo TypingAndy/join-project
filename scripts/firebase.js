@@ -22,6 +22,17 @@ async function postSignUpData() {
   });
 }
 
+async function postAddContactData() {
+  let contactData = createContactDataForFirebase();
+  await fetch(BASE_URL + `users/.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(contactData),
+  });
+}
+
 async function putNewTaskStatus() {
   let taskID = convertedTasks[currentDraggedElementID].ID;
   let task = convertedTasks[currentDraggedElementID];
