@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.svg" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_black.svg" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body onload="loadAllTasks()">
     <div class="joinWrapper">
       <header>
-        <img src="./images/icons/join_logo_black.svg" alt="" />
+        <img src="../images/icons/join_logo_black.svg" alt="" />
         <div class="userProfile">
           <p>AB</p>
         </div>
@@ -23,16 +23,16 @@
         <div class="boardWrapper">
           <div class="boardTitleContainer">
             <p>Board</p>
-            <img src="./images/icons/plus_add_task.png" alt="" />
+            <img src="../images/icons/plus_add_task.png" alt="" />
           </div>
           <div class="inputContainer">
             <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" />
-            <img src="./images/icons/search_icon.png" alt="" />
+            <img src="../images/icons/search_icon.png" alt="" />
           </div>
           <div class="toDoSection">
             <div class="toDoSectionTitleContainer">
               <p>To Do</p>
-              <img onclick="openAddTaskPopup('to do')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('to do')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
@@ -43,21 +43,21 @@
           <div class="inProgressSection">
             <div class="inProgressTitleContainer">
               <p>In progress</p>
-              <img onclick="openAddTaskPopup('in progress')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('in progress')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
-              <img onclick="openAddTaskPopup('await feedback')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('await feedback')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
-              <img onclick="openAddTaskPopup('done')" class="addTaskPlusIconSmall" src="./images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('done')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
           </div>
@@ -65,29 +65,29 @@
       </div>
       <nav>
         <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons.png" alt="" />
+          <img src="../images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
         <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-1.png" alt="" />
+          <img src="../images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
         <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-2.png" alt="" />
+          <img src="../images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
         <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-3.png" alt="" />
+          <img src="../images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>
       </nav>
     </div>
-    <script src="script.js"></script>
-    <script src="board.js"></script>
-    <script src="firebase.js"></script>
-    <script src="board_edit_popup.js"></script>
-    <script src="board_edit_popup_dropdown.js"></script>
-    <script src="./templates/board_templates.js"></script>
-    <script src="./templates/board_edit_template.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/board.js"></script>
+    <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/board_edit_popup.js"></script>
+    <script src="../scripts/board_edit_popup_dropdown.js"></script>
+    <script src="../templates/board_templates.js"></script>
+    <script src="../templates/board_edit_template.js"></script>
   </body>
 </html>
