@@ -25,7 +25,7 @@ function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml)
                     <div class="taskCardUserContainer">
                  ${taskCardUserHtml}
                     </div>
-                    <img src="./images/icons/${toDoTasks[i].taskPrio}.png" alt="" />
+                    <img src="../images/icons/${toDoTasks[i].taskPrio}.png" alt="" />
                   </div>
                 </div>
       `;
@@ -50,7 +50,7 @@ function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskC
                     <div class="taskCardUserContainer">
                  ${taskCardUserHtml}
                     </div>
-                    <img src="./images/icons/${inProgressTasks[i].taskPrio}.png" alt="" />
+                    <img src="../images/icons/${inProgressTasks[i].taskPrio}.png" alt="" />
                   </div>
                 </div>
       `;
@@ -75,7 +75,7 @@ function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount,
                     <div class="taskCardUserContainer">
                  ${taskCardUserHtml}
                     </div>
-                    <img src="./images/icons/${awaitFeedbackTasks[i].taskPrio}.png" alt="" />
+                    <img src="../images/icons/${awaitFeedbackTasks[i].taskPrio}.png" alt="" />
                   </div>
                 </div>
       `;
@@ -100,7 +100,7 @@ function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml)
                     <div class="taskCardUserContainer">
                  ${taskCardUserHtml}
                     </div>
-                    <img src="./images/icons/${doneTasks[i].taskPrio}.png" alt="" />
+                    <img src="../images/icons/${doneTasks[i].taskPrio}.png" alt="" />
                   </div>
                 </div>
       `;
@@ -113,7 +113,7 @@ function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
     <div class="boardTaskPopupCategoryCard">
       <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${convertedTasks[numberedTaskID].taskCategory}</p>
     </div>
-    <img class="boardTaskPopupContentClose" src="./images/icons/close.png" alt="close" onclick="closeBoardTaskPopup(${numberedTaskID})" />
+    <img class="boardTaskPopupContentClose" src="../images/icons/close.png" alt="close" onclick="closeBoardTaskPopup(${numberedTaskID})" />
   </div>
   <div class="boardTaskPopupContentCenter">
     <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${convertedTasks[numberedTaskID].taskTitle}</p>
@@ -126,7 +126,7 @@ function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
       <p class="boardTaskPopupContentPrioLabel">Priority:</p>
       <div class="boardTaskPopupContentPrioOutputWrapper">
         <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${convertedTasks[numberedTaskID].taskPrio}</p>
-        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="./images/icons/${convertedTasks[numberedTaskID].taskPrio}.png" alt="medium prio" />
+        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="../images/icons/${convertedTasks[numberedTaskID].taskPrio}.png" alt="medium prio" />
       </div>
     </div>
     <div class="boardTaskPopupContentAssignedToWrapper">
@@ -151,11 +151,11 @@ function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
       <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
       <div class="boardTaskPopupContentSubtasksList" id="boardTaskPopupContentSubtasksList">
         <div class="boardTaskPopupContentSubtask">
-          <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
+          <img class="boardTaskPopupContentSubtaskIcon" src="../images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
         </div>
         <div class="boardTaskPopupContentSubtask">
-          <img class="boardTaskPopupContentSubtaskIcon" src="./images/icons/unchecked.png" alt="" />
+          <img class="boardTaskPopupContentSubtaskIcon" src="../images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">Implement shit</p>
         </div>
       </div>
@@ -163,12 +163,12 @@ function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
   </div>
   <div class="boardTaskPopupContentBottom">
     <div id="boardTaskPopupContentDeleteContainer" onclick="deleteTask('${taskID}'), closeBoardTaskPopup();" class="boardTaskPopupContentDeleteContainer">
-      <img class="boardTaskPopupDeleteIcon" src="./images/icons/delete.png" alt="delete" />
+      <img class="boardTaskPopupDeleteIcon" src="../images/icons/delete.png" alt="delete" />
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
     <div onclick="renderPopupEditTaskContent('${numberedTaskID}')" class="boardTaskPopupContentEditContainer">
-      <img class="boardTaskPopupEditIcon" src="./images/icons/edit.png" alt="edit" />
+      <img class="boardTaskPopupEditIcon" src="../images/icons/edit.png" alt="edit" />
       <p>Edit</p>
     </div>
   </div>
@@ -190,7 +190,7 @@ function popupUserTemplate(usersIndex, i, numberedTaskID) {
 function popupSubtaskTemplate(subtasksIndex, i, numberedTaskID) {
   return `
         <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex}, ${i}, '${convertedTasks[numberedTaskID].ID}', ${numberedTaskID})">
-          <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="./images/icons/unchecked.png" alt="" />
+          <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="../images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].subtask}</p>
         </div>
   `;
