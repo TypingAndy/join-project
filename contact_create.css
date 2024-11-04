@@ -1,6 +1,6 @@
 body {
-    padding: 0;
-    font-family: "Inter";
+  padding: 0;
+  font-family: "Inter";
 }
 .button1 {
   background-color: #293647;
@@ -60,8 +60,11 @@ body {
   padding-right: 16px;
 }
 .addContactDiv {
-border: 1px solid #d1d1d1;
-border-radius: 30px;
+  width: 95%;
+  height: 90%;
+  border: 1px solid #d1d1d1;
+  border-radius: 30px;
+  background-color: white;
 }
 #addNewContact {
   position: absolute;
@@ -73,13 +76,7 @@ border-radius: 30px;
   height: 928px;
   padding: 32px 24px 32px 24px;
 }
-.contactsDiv2 {
-    padding-left: 16px;
-    padding-top: 16px;
-    gap: 30px;
-    display: flex;
-    flex-direction: column;
-}
+
 .contacts {
   width: 400px;
 }
@@ -105,20 +102,7 @@ border-radius: 30px;
   line-height: 20px;
   color: white;
 }
-.addContactheadline2 {
-  font-family: "Inter";
-  font-weight: 500;
-  font-size: 47px;
-  color: black;
-  line-height: 56.4px;
-}
-.addContactSpan2 {
-  font-family: "Inter";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 20px;
-  color: black;
-}
+
 .closePng {
   padding-top: 24px;
 }
@@ -130,9 +114,9 @@ border-radius: 30px;
   border-radius: 50px;
 }
 
-.closePng24px:hover{
-    background-color: #3dabe2;
-    cursor: pointer;
+.closePng24px:hover {
+  background-color: #3dabe2;
+  cursor: pointer;
 }
 .closePngDiv {
   display: flex;
@@ -147,6 +131,7 @@ border-radius: 30px;
   border-radius: 0px 0px 30px 30px;
   padding: 20px;
   margin-top: 54px;
+  background-color: white;
 }
 #contactNameInput {
   background: url(/Views/img/person.png) no-repeat right;
@@ -184,11 +169,11 @@ border-radius: 30px;
 .d-none {
   display: none;
 }
-.userLogoDiv{
-    position: relative;
-    bottom: -50px;
-    margin-right: auto;
-    margin-left: auto;
+.userLogoDiv {
+  position: relative;
+  bottom: -50px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .displayFlex {
@@ -214,7 +199,7 @@ border-radius: 30px;
   font-size: 16px;
   font-weight: 400;
   font-family: "Inter";
-  color: #007CEE;
+  color: #007cee;
 }
 
 .spanPhone {
@@ -232,4 +217,3 @@ border-radius: 30px;
   width: 80px;
   height: 80px;
 }
-
