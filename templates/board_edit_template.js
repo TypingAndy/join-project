@@ -18,11 +18,11 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
       <div  id="boardEditPopupContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
         <div  id="boardEditPopupAssignContactsButton" class="addTaskAssignContactsButton">
           <div class="fontInboxAlign">Select contacts to assign</div>
-          <img src="../images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
+          <img class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
         </div>
         <div id="boardEditPopupDropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
           <input id="boardEditPopupContactsSearchArea" onkeyup="boardEditPopupFilterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
-          <img id="boardEditPopupAssignDropdownArrow" class="addTaskDropDownCloseButton" src="../images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
+          <img id="boardEditPopupAssignDropdownArrow" class="addTaskDropDownCloseButton img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
         </div>
         <div onclick="stopPropagation(event)" id="boardEditPopupUserNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
       </div>
@@ -40,15 +40,15 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
       <div class="addTaskPrioButtonBox">
         <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
           <div>Urgent</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioUrgent.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
         </div>
         <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
           <div>Medium</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioMedium.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
         </div>
         <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
           <div>Low</div>
-          <img class="addTaskPrioButtonImage" src="images/mobile/addTaskMobile/prioLow.svg" alt="" />
+          <img class="addTaskPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
         </div>
       </div>
     </div>
@@ -59,8 +59,8 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
       <div id="boardEditPopupChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
         <div id="boardEditPopupChooseCategoryButton" class="addTaskChooseCategoryButton">
           <div class="fontInboxAlign">Select task category</div>
-          <img id="boardEditPopupChooseCategoryDropdownImageDown" src="../images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
-          <img id="boardEditPopupChooseCategoryDropdownImageUp" class="displayNone" src="../images/mobile/addTaskMobile/arrowDropDownUp.png" alt="" />
+          <img id="boardEditPopupChooseCategoryDropdownImageDown" class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
+          <img id="boardEditPopupChooseCategoryDropdownImageUp" class="displayNone img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
         </div>
         <div id="boardEditCategoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
       </div>
@@ -71,7 +71,7 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
 
       <div id="boardEditPopupaddSubtask" onclick="boardEditPopupOpenAddSubtask()" class="addTaskSubtaskDropdownBox">
         <input class="addTaskSubtaskInputCover fontInboxAlign" type="text" placeholder="Add new subtask" />
-        <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="../images/mobile/addTaskMobile/plusDark.png" alt="" />
+        <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="../images/icons/plus_dark.png" alt="" />
       </div>
 
       <div id="boardEditPopupAddSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
@@ -80,8 +80,9 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
         </div>
 
         <div class="addTaskSubtaskCheckXBox">
-          <img onclick="boardEditPopupAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="../images/mobile/addTaskMobile/xBlack.png" alt="" />
-          <img onclick="boardEditPopupAddSubtask()" tabindex="0" class="addTaskSubtaskCheck img24px" src="../images/mobile/addTaskMobile/checkBlack.png" alt="" />
+          <img onclick="boardEditPopupAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="../images/icons/x_black_subtask.png" alt="" />
+          <div class="addTaskSubtaskDividingLine"></div>
+          <img onclick="boardEditPopupAddSubtask()" tabindex="0" class="addTaskSubtaskCheck img24px" src="../images/icons/check_black.png" alt="" />
         </div>
       </div>
 
@@ -94,7 +95,7 @@ function renderAddTaskToEditPopupTemplate(numberedTaskID) {
 
       <div onclick="updateTaskData(currentNumberedID), loadAllTasks(), closeBoardTaskPopup()" class="createTaskButton">
         <div>Ok</div>
-        <img class="addTaskButtonCheckImage" src="../images/mobile/addTaskMobile/checkWhite.png" alt="" />
+        <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
       </div>
     </div>
   </form>
@@ -108,8 +109,8 @@ function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserIniti
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
       </div>
-      <img id="noCheck${i}" src="../images/mobile/addTaskMobile/checkButtonMobile.png" alt="">
-      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="../images/mobile/addTaskMobile/checkButtonMobileSolvedWhite.png" alt="">
+      <img id="noCheck${i}" src="../images/icons/checkButtonMobile.png" alt="">
+      <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="../images/icons/check_white.png" alt="">
     </div>
     `;
 }
@@ -133,8 +134,8 @@ function addUserSymbolTemplateEditPopup(i, numberedTaskID) {
 function boardEditTaskCategoryTemplate(chosenCategory) {
   return /*html*/ `
       <div class="fontInboxAlign">${chosenCategory}</div>
-      <img id="boardEditPopupChooseCategoryDropdownImageDown" class="displayNone" src="../images/mobile/addTaskMobile/arrowDropDownDown.png" alt="" />
-      <img id="boardEditPopupChooseCategoryDropdownImageUp"  src="../images/mobile/addTaskMobile/arrowDropDownUp.png" alt=""/>
+      <img id="boardEditPopupChooseCategoryDropdownImageDown" class="displayNone img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
+      <img id="boardEditPopupChooseCategoryDropdownImageUp" class="img24px"  src="../images/icons/arrow_drop_down_up.png" alt=""/>
     `;
 }
 
@@ -144,17 +145,17 @@ function subtaskTemplate(i) {
       <div id="boardEditPopupSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
         <input id="boardEditPopupSubtaskRewriteInput${i}" onclick="boardEditPopupReadIdFromSubtask(this.id)" class="taskBoardRewriteSubtaskInput" type="text">
         <div class="addTaskSubtaskIconBox">
-          <img onclick="boardEditPopupCancelRewritingSubtask(${i})" id="boardEditPopupCancelRewritingSubtask${i}" class="img24px" src="../images/mobile/addTaskMobile/trashcanBlack.png" alt="">
+          <img onclick="boardEditPopupCancelRewritingSubtask(${i})" id="boardEditPopupCancelRewritingSubtask${i}" class="img24px" src="../images/icons/trashcan_black.png" alt="">
           <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="boardEditPopupAcceptRewriting(${i})" id="boardEditPopupAcceptRewritingSubtask${i}" class="img24px" src="../images/mobile/addTaskMobile/checkBlack.png" alt="">
+          <img onclick="boardEditPopupAcceptRewriting(${i})" id="boardEditPopupAcceptRewritingSubtask${i}" class="img24px" src="../images/icons/check_black.png" alt="">
         </div>
       </div>
       <div id="boardEditPopupSubtask${[i]}" class="addTaskDisplayFlexer">
         <div>${subtasks[i].subtask}</div>
         <div class="addTaskSubtaskIconBox">
-          <img onclick="boardEditPopupRewriteSubtask(${i})" class="img24px" src="../images/mobile/addTaskMobile/pencilBlack.png">
+          <img onclick="boardEditPopupRewriteSubtask(${i})" class="img24px" src="../images/icons/pencil_black.png">
           <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="boardEditPopupDeleteSubtaskFromBoard(${i})" class="img24px" src="../images/mobile/addTaskMobile/trashcanBlack.png">
+          <img onclick="boardEditPopupDeleteSubtaskFromBoard(${i})" class="img24px" src="../images/icons/trashcan_black.png">
         </div>
       </div>
     </li>
