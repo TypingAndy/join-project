@@ -9,9 +9,10 @@
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../contact_create.css" />
-    <script src="../scripts/contacts.js"></script>
+    <script src="../scripts/user_data.js"></script>
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/contacts.js"></script>
   </head>
 
   <body>
@@ -24,7 +25,7 @@
         </div>
         <div class="headlineDiv">
           <span class="addContactheadline">Add contact</span>
-          <span class="addContactSpan">Tasks are better witha team</span>
+          <span class="addContactSpan">Tasks are better with a team</span>
         </div>
         <div class="userLogoDiv">
           <img src="../images/icons/Frame 79.png" alt="" style="width: 120px" />
@@ -39,7 +40,7 @@
           </div>
         </form>
         <div class="buttonDiv">
-          <button onclick="postAddContactData(), clearAddContactsInputData()" class="button1">
+          <button onclick="postUserData('contact'), clearAddContactsInputData()" class="button1">
             Create contact
             <img src="../images/icons/check.png" alt="" style="width: 24px" />
           </button>

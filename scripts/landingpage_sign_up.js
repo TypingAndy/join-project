@@ -1,12 +1,12 @@
-function getSignUpInputData(signUpData, confirmPasswordInput) {
-  let nameInput = document.getElementById("signUpNameInput");
-  let mailInput = document.getElementById("signUpMailInput");
-  let passwordInput = document.getElementById("signUpPasswordInput");
-  let userColor = signUpAddColorToUser();
-  confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
-  signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value, color: userColor };
-  return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
-}
+// function getSignUpInputData(signUpData, confirmPasswordInput) {
+//   let nameInput = document.getElementById("signUpNameInput");
+//   let mailInput = document.getElementById("signUpMailInput");
+//   let passwordInput = document.getElementById("signUpPasswordInput");
+//   let userColor = signUpAddColorToUser();
+//   confirmPasswordInput = document.getElementById("signUpConfirmPasswordInput");
+//   signUpData = { name: nameInput.value, email: mailInput.value, password: passwordInput.value, color: userColor };
+//   return { signUpData, nameInput, mailInput, passwordInput, confirmPasswordInput };
+// }
 
 function clearSignUpInputField() {
   let nameInput = document.getElementById("signUpNameInput");
