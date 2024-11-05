@@ -9,12 +9,6 @@ async function sortUserData() {
   });
 }
 
-async function returnData() {
-  const sortedUsers = await sortUserData();
-  const groupedUsers = await groupUsersByFirstLetter();
-  console.log(sortedUsers, groupedUsers);
-}
-
 async function groupUsersByFirstLetter() {
   const sortedUsers = await sortUserData();
   return sortedUsers.reduce((groups, user) => {
@@ -30,12 +24,43 @@ async function groupUsersByFirstLetter() {
 async function renderContacts() {
   const groupedUsers = await groupUsersByFirstLetter();
   let contactsMainSectionElement = document.getElementById("contactsMainSection");
-
+  contactsMainSectionElement.innerHTML = "";
   Object.entries(groupedUsers).forEach(([letter, users]) => {
     contactsMainSectionElement.innerHTML += contactsTemplate(letter, users);
   });
 }
 
-function hideAddContactButton() {
-  document.querySelector(".addContactCircleButton").style.display = "none";
+function toggleAddContactButton(event) {
+  if (event && event.target !== event.currentTarget) {
+    return;
+  }
+  const addContactButtonElement = document.querySelector(".addContactCircleButton");
+  addContactButtonElement.style.display = addContactButtonElement.style.display === "none" ? "flex" : "none";
+}
+
+function toggleAddContactPupup(event) {
+  if (event && event.target !== event.currentTarget) {
+    return;
+  }
+  const popupElement = document.getElementById("addContactPopupBackground");
+  popupElement.style.display = popupElement.style.display === "none" ? "flex" : "none";
+}
+
+function clearAddContactsInputData() {
+  document.getElementById("addContactNameInput").value = "";
+  document.getElementById("addContactMailInput").value = "";
+  document.getElementById("addContactPhoneInput").value = "";
+}
+
+async function handleCreateButtonClick() {
+  await postUserData("contact");
+  await renderContacts();
+  clearAddContactsInputData();
+  toggleAddContactPupup();
+  toggleContactDetails();
+}
+
+function toggleContactDetails() {
+  const contactDetailsElement = document.querySelector(".contactDetailsSection");
+  contactDetailsElement.style.display = contactDetailsElement.style.display === "none" ? "flex" : "none";
 }

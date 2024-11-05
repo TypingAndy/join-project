@@ -7,7 +7,7 @@ function contactsTemplate(letter, users) {
             .map(
               (user) =>
                 `
-            <div class="contactCard">
+            <div class="contactCard" onclick="toggleContactDetails('${user.id}'), toggleAddContactButton()">
               <div class="contactCardInitialsCircle" style="background-color: ${user.color}">
                 <span class="initials">${user.initials}</span>
               </div>
