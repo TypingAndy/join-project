@@ -13,19 +13,25 @@ async function loadAllTasks(path = "tasks") {
 
 async function postUserData(userType) {
   let userData = createUserDataForFirebase(userType);
-  await fetch(BASE_URL + `users/.json`, {
+  const response = await fetch(BASE_URL + `users/.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(userData),
   });
+  return response;
 }
 
 async function loadUserData() {
   let response = await fetch(BASE_URL + "users" + ".json");
   let unsortedUsers = await response.json();
   return unsortedUsers;
+}
+
+async function getNewUserId(response) {
+  const data = await response.json();
+  return data.name;
 }
 
 async function putNewTaskStatus() {

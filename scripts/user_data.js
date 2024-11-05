@@ -7,9 +7,9 @@ function createUserDataForFirebase(userType) {
 }
 
 function getAddContactsInputData() {
-  let contactNameInput = document.getElementById("contactNameInput");
-  let contactMailInput = document.getElementById("contactMailInput");
-  let contactPhoneInput = document.getElementById("contactPhoneInput");
+  let contactNameInput = document.getElementById("addContactNameInput");
+  let contactMailInput = document.getElementById("addContactMailInput");
+  let contactPhoneInput = document.getElementById("addContactPhoneInput");
   let addContactsInputData = { name: contactNameInput.value, email: contactMailInput.value, phone: contactPhoneInput.value, password: "", isRegistered: false };
   return addContactsInputData;
 }
@@ -43,10 +43,4 @@ function createUserInitials(userData) {
   let nameParts = fullName.split(" ");
   let initials = nameParts.map((part) => part.charAt(0)).join("");
   return initials;
-}
-
-function clearAddContactsInputData() {
-  document.getElementById("contactNameInput").value = "";
-  document.getElementById("contactMailInput").value = "";
-  document.getElementById("contactPhoneInput").value = "";
 }
