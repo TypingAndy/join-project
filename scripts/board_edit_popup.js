@@ -59,7 +59,7 @@ function addUserSymbolsToAssignInsideEditPopup(numberedTaskID) {
 }
 
 function boardEditPopupInsertMinSelectableDate() {
-  document.getElementById("editPopupDateInput").setAttribute("min", currentDate);
+  document.getElementById("editPopupDateInput").setAttribute("min", insertMinSelectableDate());
 }
 
 function renderAddTaskToEditPopup(numberedTaskID) {

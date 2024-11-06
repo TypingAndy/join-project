@@ -35,9 +35,6 @@ let awaitFeedbackTasks = [];
 let currentDraggedElementID;
 let currentNumberedID = "";
 
-//oftenUsedGlobalArrays
-let currentDate = "";
-
 //contactGlobalArray
 let allContacts = [];
 let contactIndices = [];
@@ -54,8 +51,13 @@ function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
 
+function insertMinSelectableDate() {
+  document.getElementById("dateInput").setAttribute("min", getCurrentDate());
+}
+
 function getCurrentDate() {
-  currentDate = new Date().toISOString().split("T")[0];
+  let currentDate = new Date().toISOString().split("T")[0];
+  return currentDate;
 }
 
 function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId) {
