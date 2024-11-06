@@ -1,14 +1,3 @@
-async function sortUserData() {
-  let data = await loadUserData();
-  const unsortedUsers = Object.entries(data).map(([id, user]) => ({
-    ...user,
-    id: id,
-  }));
-  return unsortedUsers.sort((a, b) => {
-    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-  });
-}
-
 async function groupUsersByFirstLetter() {
   const sortedUsers = await sortUserData();
   return sortedUsers.reduce((groups, user) => {
