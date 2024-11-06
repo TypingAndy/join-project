@@ -70,6 +70,23 @@ function highlightPrioButtonLow() {
   buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //functions addTask---------------------------------------------------------------------
 
 function getNewTaskInputData() {
