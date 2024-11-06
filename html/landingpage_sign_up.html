@@ -10,6 +10,7 @@
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/landingpage_sign_up.js"></script>
+    <script src="../scripts/user_data.js"></script>
   </head>
 
   <body>
@@ -35,7 +36,7 @@
               <img onclick="acceptPrivacyPolicyCheck(), validateSignUp();" id="checkbox" class="signUpCheckImg" src="../images/icons/unchecked.png" alt="" />
               <div onclick="acceptPrivacyPolicyCheck(), validateSignUp();">I accept the <span class="blueFont">Privacy policy</span></div>
             </div>
-            <div id="signUpButton" onclick="postSignUpData(), acceptPrivacyPolicyCheck(), clearSignUpInputField();" class="signUpButton" type="submit">Sign up</div>
+            <div id="signUpButton" onclick="postUserData(), acceptPrivacyPolicyCheck(), clearSignUpInputField();" class="signUpButton" type="submit">Sign up</div>
           </div>
         </div>
       </div>

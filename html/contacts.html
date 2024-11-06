@@ -7,120 +7,99 @@
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../contacts.css" />
-    <script src="./scripts/script.js"></script>
+    <link rel="stylesheet" href="../contact_create.css" />
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/contacts.js"></script>
+    <script src="../templates/contacts_template.js"></script>
+    <script src="../scripts/user_data.js"></script>
   </head>
-  <body>
+  <body onload="renderContacts()">
+    <div class="contactDetailsSection" style="display: none">
+      <div class="contactDetailsContentWrapper">
+        <div class="contactDetailsContentTop">
+          <div class="contactDetailsContentTopLabelWrapper">
+            <span>Contacts</span>
+            <p>Better with a team</p>
+            <p></p>
+            <div class="contactDetailsContentTopLabelLine"></div>
+          </div>
+          <div class="contactDetailsContentTopArrowWrapper">
+            <img onclick="toggleContactDetails(), toggleAddContactButton()" src="../images/icons/arrow-left-line.png" alt="back" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="addContactPopupBackground" id="addContactPopupBackground" onclick="toggleAddContactPupup(event), toggleAddContactButton(event)" style="display: none">
+      <div class="contactPopup">
+        <div class="userCircleWrapper">
+          <div class="userCircle">
+            <img src="../images/icons/person.png" alt="" />
+          </div>
+        </div>
+        <div class="contactPopupTop">
+          <img src="../images/icons/close_white.png" alt="" onclick="toggleAddContactPupup(), toggleAddContactButton()" />
+          <div class="contactPopupTopTitleWrapper">
+            <span class="contactPopupTitle">Add contact</span>
+            <span class="contactPopupTitlePhrase">Tasks are better with a team!</span>
+            <div class="contactPopupTitleLine"></div>
+          </div>
+        </div>
+        <div class="contactPopupBottom">
+          <form action="">
+            <div class="nameInputWrapper">
+              <input class="addContactNameInput" id="addContactNameInput" type="text" placeholder="Name" />
+              <img src="../images/icons/person_grey.png" alt="" />
+            </div>
+            <div class="mailInputWrapper">
+              <input class="addContactMailInput" id="addContactMailInput" type="text" placeholder="Email" />
+              <img src="../images/icons/mail_grey.png" alt="" />
+            </div>
+            <div class="phoneInputWrapper">
+              <input class="addContactPhoneInput" id="addContactPhoneInput" type="text" placeholder="Phone" />
+              <img src="../images/icons/callgrey.png" alt="" />
+            </div>
+            <div class="createContactButton" onclick="handleCreateButtonClick()">
+              <span>Create Contact</span>
+              <img src="../images/icons/check_white.png" alt="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <div class="joinWrapper">
       <header>
-        <img src="./images/icons/join_logo_black.svg" alt="" />
+        <img src="../images/icons/join_logo_black.svg" alt="" />
         <div class="userProfile">
           <p>AB</p>
         </div>
       </header>
-      <div class="ContactMainSection">
-        <div>
-          <img class="addContactIcon" src="/join-project/images/icons/Secondary mobile contact V1.svg" alt="" />
-        </div>
-        <div class="alphabetCategory">
-          <span>A</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Anton Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>B</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Benedikt Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>D</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>David Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>E</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Anton Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>A</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Eve Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>G</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Gustav Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>I</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Ines Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
-        <div class="alphabetCategory">
-          <span>M</span>
-        </div>
-        <div class="contactsDiv">
-          <img src="/join-project/images/icons/Profile badge.png" alt="" />
-          <div class="contactsBox">
-            <span>Manuel Mayer</span>
-            <a href="">antom@gmail.com</a>
-          </div>
-        </div>
+
+      <div class="contactsMainSection" id="contactsMainSection">
+        <div class="contactLetterWrapper" id="contactLetterWrapper"></div>
       </div>
 
       <nav>
         <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons.png" alt="" />
+          <img src="../images/icons/Menu Icons.png" alt="" />
           <p>Summary</p>
         </div>
         <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-1.png" alt="" />
+          <img src="../images/icons/Menu Icons-1.png" alt="" />
           <p>Board</p>
         </div>
         <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-2.png" alt="" />
+          <img src="../images/icons/Menu Icons-2.png" alt="" />
           <p>Add Tasks</p>
         </div>
         <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-          <img src="./images/icons/Menu Icons-3.png" alt="" />
+          <img src="../images/icons/Menu Icons-3.png" alt="" />
           <p>Contacts</p>
         </div>
       </nav>
+    </div>
+    <div class="addContactCircleButton" id="addContactButton" onclick="toggleAddContactPupup(), toggleAddContactButton()">
+      <img src="../images/icons/person_add.png" alt="" />
     </div>
   </body>
 </html>
