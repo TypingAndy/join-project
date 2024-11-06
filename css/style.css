@@ -1,11 +1,11 @@
 @font-face {
   font-family: "OpenSans";
-  src: url("./fonts/OpenSans.ttf");
+  src: url("../fonts/OpenSans.ttf");
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("./fonts/Inter.ttf");
+  src: url("../fonts/Inter.ttf");
 }
 
 body {
@@ -184,21 +184,6 @@ textarea:active {
   left: 0;
   top: 0;
   z-index: 91;
-}
-
-/* landingpage.html Styling below:-------------------------------------------------------------------- */
-
-.landingpageBox {
-  height: 100vh;
-  width: 100vw;
-  background-color: #2a3647;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.landingpageImage {
-  width: 100px;
 }
 
 /* board popup --------------- */
