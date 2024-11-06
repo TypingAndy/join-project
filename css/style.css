@@ -1,11 +1,11 @@
 @font-face {
   font-family: "OpenSans";
-  src: url("./fonts/OpenSans.ttf");
+  src: url("../fonts/OpenSans.ttf");
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("./fonts/Inter.ttf");
+  src: url("../fonts/Inter.ttf");
 }
 
 body {
@@ -35,7 +35,7 @@ header {
   height: 80px;
   top: 0;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
-  z-index: 202;
+  z-index: 90;
 }
 
 header img {
@@ -158,6 +158,11 @@ textarea:active {
   height: 24px;
 }
 
+.img20px {
+  width: 20px;
+  height: 20px;
+}
+
 .fontInboxAlign {
   display: flex;
   align-items: center;
@@ -171,24 +176,220 @@ textarea:active {
   background-color: #091931;
 }
 
-/* landingpage.html Styling below:-------------------------------------------------------------------- */
+.backgroundClick {
+  position: absolute;
+  background-color: #95959500;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 91;
+}
 
-.landingpageBox {
-  height: 100vh;
-  width: 100vw;
-  background-color: #2a3647;
+/* board popup --------------- */
+.boardPopupBackground {
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  /* background-color: #79e22928; */
+  z-index: 400;
+}
+.boardTaskPopup {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 24px - 88px - 88px);
+  width: calc(100% - 24px);
+  background-color: #ffffff;
+  z-index: 500;
+  border-radius: 30px;
+  overflow: auto;
+}
+
+.boardTaskPopupContentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff6a;
+  width: calc(100% - 40px);
+  height: calc(100% - 64px);
+  box-sizing: border-box;
+  border-radius: 30px;
+  gap: 16px;
+}
+
+.boardTaskPopupContentTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+  background-color: white;
+}
+
+.boardTaskPopupCategoryCard {
+  background-color: #0038ff;
+  padding: 4px 16px;
+  border-radius: 8px;
+}
+
+.boardTaskPopupCategoryLabel {
+  font-size: 16px;
+  color: white;
+}
+
+.boardTaskPopupContentCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.boardTaskPopupContentClose {
+  width: 32px;
+}
+
+.boardTaskPopupContentTitle {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.boardTaskPopupContentDescription {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentDateWrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.boardTaskPopupContentDateLabel,
+.boardTaskPopupContentPrioLabel,
+.boardTaskPopupContentAssignedToLabel,
+.boardTaskPopupContentSubtasksLabel {
+  font-size: 16px;
+  color: #42526e;
+}
+
+.boardTaskPopupContentDate {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentPrioWrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.boardTaskPopupContentPrioOutputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boardTaskPopupContentPrioValue {
+  font-size: 16px;
+}
+
+.boardTaskPopupContentPrioIcon {
+  height: 32px;
+}
+
+.boardTaskPopupContentAssignedToWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.boardTaskPopupContentAssignedToUserWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.boardTaskPopupContentAssignedToUserContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 16px;
+  /* background-color: #091931; */
+}
+
+.boardTaskPopupContentAssignedToUserCircle {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
 }
 
-.landingpageImage {
-  width: 100px;
+.boardTaskPopupContentAssignedToUserInitials {
+  color: white;
 }
 
-/* summary.html Styling below:-------------------------------------------------------------------- */
+.boardTaskPopupContentSubtasksList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 16px;
+  gap: 8px;
+}
 
-/* board.html Styling below:-------------------------------------------------------------------- */
+.boardTaskPopupContentSubtask {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.boardTaskPopupContentSubtaskIcon,
+.boardTaskPopupDeleteIcon,
+.boardTaskPopupEditIcon {
+  width: 24px;
+}
+
+.boardTaskPopupContentBottom {
+  justify-content: flex-end;
+  display: flex;
+  gap: 8px;
+}
+
+.boardTaskPopupContentDeleteContainer,
+.boardTaskPopupContentEditContainer {
+  display: flex;
+  align-items: center;
+}
+
+.boardTaskPopupContentDeleteContainer,
+.boardTaskPopupContentEditContainer:hover {
+  cursor: pointer;
+}
+
+.boardTaskPopupContentBottomLine {
+  height: 100%;
+  width: 1px;
+  background-color: #d1d1d1;
+}
+
+/* board popup edit */
+
+.boardTaskEditPopup {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  width: 100%;
+  /* height: 1000px; */
+  /* z-index: 10000; */
+  /* overflow: hidden; */
+}
+
+/* board main ------------------- */
 
 .boardWrapper {
   display: flex;
@@ -274,13 +475,6 @@ textarea:active {
   color: rgba(42, 54, 71, 1);
 }
 
-.toDoSectionContentWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-top: 20px;
-}
-
 .noTasksContainer {
   display: flex;
   justify-content: center;
@@ -346,12 +540,26 @@ textarea:active {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  max-height: calc(1.5em * 2);
 }
 
 .taskCardDescription {
   font-size: 16px;
   color: rgba(168, 168, 168, 1);
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+  max-height: calc(1.5em * 2);
 }
 
 .taskCardSubtasksContainer {
@@ -382,6 +590,7 @@ textarea:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
 .taskCardBottomContainer img {
@@ -503,10 +712,8 @@ textarea:active {
 }
 
 .addTaskAssignContactsButton {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  padding-top: 12px;
+  height: 100%;
 }
 
 .addTaskContactsDropdownLableBoxClosed {
@@ -554,6 +761,10 @@ textarea:active {
   overflow-y: auto;
   box-sizing: border-box;
   margin-top: 52px;
+}
+
+.addUserSymbolsAssign {
+  display: flex;
 }
 
 .dropDownSearchCloseButtonBox {
@@ -642,6 +853,16 @@ textarea:active {
 
 .addTaskButtonCheckImage {
   width: 24px;
+}
+
+.addTaskNewBackgroundChecked {
+  background-color: #2a3647 !important;
+  color: white;
+}
+
+.addTaskNewBackgroundChecked:hover {
+  background-color: #091931 !important;
+  color: white;
 }
 
 /* ------------------------- add Task Date */
@@ -846,6 +1067,10 @@ textarea:active {
   top: 12px;
 }
 
+.addTaskSubTaskList {
+  position: relative;
+}
+
 .addTaskSubtaskInputBox {
   position: relative;
   display: flex;
@@ -897,12 +1122,8 @@ textarea:active {
   box-sizing: border-box;
 }
 
-
-
 .addTaskSingleListSubtask {
   height: 48px;
-
-
 }
 
 .addTaskDisplayFlexer {
@@ -931,16 +1152,21 @@ textarea:active {
   border-left: none;
   border-bottom: #29abe2 solid 1px;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .addTaskRewriteSubtaskFlex {
-display: flex;
-align-items: center;
-justify-content: space-between;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-
+.addTaskSubtaskInvisibleBackgroundClicker {
+  background-color: #a7ff635c;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 
 /* ------------------------- add Task post Button */
 
@@ -974,110 +1200,4 @@ justify-content: space-between;
 .addTaskButtonCheckImage {
   width: 24px;
   height: 24px;
-}
-
-/* helpPage.html Styling below:-------------------------------------------------------------------- */
-
-.helpPageSection {
-  margin-top: 80px;
-  margin-bottom: 80px;
-  padding: 32px 16px 24px 16px;
-}
-
-.h1HelpBox {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 32px;
-}
-
-.h1Help {
-  font-weight: 700;
-  font-size: 47px;
-}
-
-.h2Help {
-  font-weight: 700;
-  font-size: 27px;
-}
-
-.h3Help {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.imageH1HelpBox {
-  width: 32px;
-  height: 32px;
-}
-
-.imageH1HelpBox:hover {
-  cursor: pointer;
-}
-
-.helpPageBlueJoin {
-  color: #29abe2;
-}
-
-.helpPageHowToUseNumbers {
-  font-weight: bold;
-  font-size: 27px;
-}
-
-.helpPageGuideBoxes {
-  display: flex;
-  justify-content: space-between;
-  gap: 35px;
-}
-
-/* privacyPolicy.html Styling below:-------------------------------------------------------------------- */
-
-.privacyPolicySection {
-  margin-top: 80px;
-  margin-bottom: 80px;
-  padding: 32px 16px 24px 16px;
-}
-
-.h1PrivacyPolicyBox {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 32px;
-}
-
-.h1PrivacyPolicy {
-  font-weight: 700;
-  font-size: 47px;
-}
-
-.h2PrivacyPolicy {
-  font-weight: 700;
-  font-size: 27px;
-}
-
-.imageH1PrivacyPolicyBox {
-  width: 32px;
-  height: 32px;
-}
-
-.imageH1privacyPolicyBox:hover {
-  cursor: pointer;
-}
-
-.show {
-  position: absolute;
-  display: block;
-  background-color: #ffffff;
-}
-
-.addTaskDropDownSingleUserContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.addTaskDropDownSingleUserContainer:hover {
-  background-color: #d1d1d1;
-  cursor: pointer;
-}
-
-.displayNone {
-  display: none;
 }

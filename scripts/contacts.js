@@ -1,14 +1,3 @@
-async function sortUserData() {
-  let data = await loadUserData();
-  const unsortedUsers = Object.entries(data).map(([id, user]) => ({
-    ...user,
-    id: id,
-  }));
-  return unsortedUsers.sort((a, b) => {
-    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
-  });
-}
-
 async function groupUsersByFirstLetter() {
   const sortedUsers = await sortUserData();
   return sortedUsers.reduce((groups, user) => {
@@ -52,8 +41,8 @@ function clearAddContactsInputData() {
   document.getElementById("addContactPhoneInput").value = "";
 }
 
-async function handleCreateButtonClick() {
-  await postUserData("contact");
+async function handleCreateContactsButtonClick() {
+  await postUserDataToFirebase("contact");
   await renderContacts();
   clearAddContactsInputData();
   toggleAddContactPupup();

@@ -59,7 +59,7 @@ function addUserSymbolsToAssignInsideEditPopup(numberedTaskID) {
 }
 
 function boardEditPopupInsertMinSelectableDate() {
-  document.getElementById("editPopupDateInput").setAttribute("min", currentDate);
+  document.getElementById("editPopupDateInput").setAttribute("min", insertMinSelectableDate());
 }
 
 function renderAddTaskToEditPopup(numberedTaskID) {
@@ -69,51 +69,51 @@ function renderAddTaskToEditPopup(numberedTaskID) {
   document.querySelector(".addTaskSection").style.setProperty("margin-top", "360px");
 }
 
-async function boardLoadEditPopupUserData(numberedTaskID, path = "users") {
-  let response = await fetch(BASE_URL + path + ".json");
-  responseToJson = await response.json();
-  sortUsersByName(responseToJson);
-  createUserInitials();
-  boardEditPopupLoadFullNameList(numberedTaskID);
-  boardEditPopupRenderCategoryDropdown();
-  boardEditTaskRenderCategoryDropdown();
-}
+// async function boardLoadEditPopupUserData(numberedTaskID, path = "users") {
+//   let response = await fetch(BASE_URL + path + ".json");
+//   responseToJson = await response.json();
+//   sortUsersByName(responseToJson);
+//   createUserInitials();
+//   boardEditPopupLoadFullNameList(numberedTaskID);
+//   boardEditPopupRenderCategoryDropdown();
+//   boardEditTaskRenderCategoryDropdown();
+// }
 
-function boardEditPopupLoadFullNameList(numberedTaskID) {
-  let dropdown = document.getElementById("boardEditPopupUserNameDropDown");
-  dropdown.innerHTML = "";
+// function boardEditPopupLoadFullNameList(numberedTaskID) {
+//   let dropdown = document.getElementById("boardEditPopupUserNameDropDown");
+//   dropdown.innerHTML = "";
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = getColorFromUser(i);
-    let blackWhite = addTaskAdaptFontColorToBackground(i);
-    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials, userUniqueId, numberedTaskID);
-  }
-}
+//   for (let i = 0; i < sortedUsers.length; i++) {
+//     let currentColor = getColorFromUser(i);
+//     let blackWhite = addTaskAdaptFontColorToBackground(i);
+//     dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials, userUniqueId, numberedTaskID);
+//   }
+// }
 
-function boardEditPopupRenderCategoryDropdown() {
-  let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
-  categoryDropdown.innerHTML = "";
+// function boardEditPopupRenderCategoryDropdown() {
+//   let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
+//   categoryDropdown.innerHTML = "";
 
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
-  }
-}
+//   for (let i = 0; i < categories.length; i++) {
+//     categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+//   }
+// }
 
-function boardEditPopupFilterFunction() {
-  let input = document.getElementById("boardEditPopupContactsSearchArea");
-  let filter = input.value.toUpperCase();
+// function boardEditPopupFilterFunction() {
+//   let input = document.getElementById("boardEditPopupContactsSearchArea");
+//   let filter = input.value.toUpperCase();
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`boardEditPopupAssignUserId${i}`);
+//   for (let i = 0; i < sortedUsers.length; i++) {
+//     let userName = sortedUsers[i].name.toUpperCase();
+//     let userElement = document.getElementById(`boardEditPopupAssignUserId${i}`);
 
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
-    } else {
-      userElement.classList.add("displayNone");
-    }
-  }
-}
+//     if (userName.includes(filter)) {
+//       userElement.classList.remove("displayNone");
+//     } else {
+//       userElement.classList.add("displayNone");
+//     }
+//   }
+// }
 
 document.addEventListener(
   "click",
@@ -138,19 +138,19 @@ document.addEventListener(
 
 // board Edit Popup Category
 
-function boardEditTaskRenderCategoryDropdown() {
-  let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
-  categoryDropdown.innerHTML = "";
+// function boardEditTaskRenderCategoryDropdown() {
+//   let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
+//   categoryDropdown.innerHTML = "";
 
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="boardEditTaskChooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
-  }
-}
+//   for (let i = 0; i < categories.length; i++) {
+//     categoryDropdown.innerHTML += /*html*/ `<div onclick="boardEditTaskChooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+//   }
+// }
 
-function boardEditTaskChooseCategory(i) {
-  chosenCategory = i;
-  document.getElementById("boardEditPopupChooseCategoryButton").innerHTML = boardEditTaskCategoryTemplate(chosenCategory);
-}
+// function boardEditTaskChooseCategory(i) {
+//   chosenCategory = i;
+//   document.getElementById("boardEditPopupChooseCategoryButton").innerHTML = boardEditTaskCategoryTemplate(chosenCategory);
+// }
 
 document.addEventListener(
   "click",
@@ -170,13 +170,13 @@ document.addEventListener(
   true
 );
 
-function toggleCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox) {
-  if (categoryDropdown.classList.contains("show")) {
-    closeCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
-  } else {
-    openCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
-  }
-}
+// function toggleCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox) {
+//   if (categoryDropdown.classList.contains("show")) {
+//     closeCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
+//   } else {
+//     openCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
+//   }
+// }
 
 //                        board Edit Popup subTask
 function boardEditInitializeSubtasks(numberedTaskID) {
