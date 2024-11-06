@@ -64,17 +64,6 @@ function getCurrentDate() {
   currentDate = new Date().toISOString().split("T")[0];
 }
 
-function sortUsersByName(userData) {
-  let usersArray = [];
-  for (let id in userData) {
-    usersArray.push({ id: id, ...userData[id] });
-  }
-  sortedUsers = usersArray.sort(function (a, b) {
-    if (a.name < b.name) return -1;
-    if (a.name > b.name) return 1;
-    return 0;
-  });
-}
 
 // function createUserInitials() {
 //   for (let i = 0; i < sortedUsers.length; i++) {

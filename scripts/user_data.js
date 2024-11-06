@@ -1,3 +1,14 @@
+async function sortUserData() {
+  let data = await loadUserDataFromFirebase();
+  const unsortedUsers = Object.entries(data).map(([id, user]) => ({
+    ...user,
+    id: id,
+  }));
+  return unsortedUsers.sort((a, b) => {
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+  });
+}
+
 function createUserDataForFirebase(userType) {
   const userData = userType === "contact" ? getAddContactsInputData() : getSignUpInputData();
   userData.initials = createUserInitials(userData);
@@ -22,6 +33,13 @@ function getSignUpInputData() {
   return signUpInputData;
 }
 
+function createUserInitials(userData) {
+  let fullName = userData.name;
+  let nameParts = fullName.split(" ");
+  let initials = nameParts.map((part) => part.charAt(0)).join("");
+  return initials;
+}
+
 function createUserColor() {
   let randomNumber = Math.floor(Math.random() * 15);
   let userColor = userColorsPreset[randomNumber];
@@ -36,11 +54,4 @@ function createUserFontColor(userData) {
   let b = parseInt(currentColor.substring(4, 6), 16);
   const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
   return luminance > 128 ? "black" : "white";
-}
-
-function createUserInitials(userData) {
-  let fullName = userData.name;
-  let nameParts = fullName.split(" ");
-  let initials = nameParts.map((part) => part.charAt(0)).join("");
-  return initials;
 }

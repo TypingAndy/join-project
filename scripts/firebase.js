@@ -11,7 +11,7 @@ async function loadAllTasks(path = "tasks") {
   }
 }
 
-async function postUserData(userType) {
+async function postUserDataToFirebase(userType) {
   let userData = createUserDataForFirebase(userType);
   const response = await fetch(BASE_URL + `users/.json`, {
     method: "POST",
@@ -23,11 +23,13 @@ async function postUserData(userType) {
   return response;
 }
 
-async function loadUserData() {
+async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
   let unsortedUsers = await response.json();
   return unsortedUsers;
 }
+
+
 
 async function getNewUserId(response) {
   const data = await response.json();
@@ -80,11 +82,4 @@ async function deleteTask(taskID) {
   });
 }
 
-async function fetchUserDataFromFirebase(path = "users") {
-  let response = await fetch(BASE_URL + path + ".json");
-  responseToJson = await response.json();
-  sortUsersByName(responseToJson);
-  createUserInitials();
-  renderSortedUsersToDropdown();
-  addTaskRenderCategoryDropdown();
-}
+

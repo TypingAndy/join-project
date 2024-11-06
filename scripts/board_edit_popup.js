@@ -49,15 +49,6 @@ function checkIfUserIsAssignedToTaskInEditPopup(name, i, userFirebaseId) {
   }
 }
 
-function addUserSymbolsToAssignInsideEditPopup(numberedTaskID) {
-  let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
-  addUserSymbolsAssign.innerHTML = "";
-
-  for (let i = 0; i < convertedTasks[numberedTaskID].taskAssignedUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += addUserSymbolTemplateEditPopup(i, numberedTaskID);
-  }
-}
-
 function boardEditPopupInsertMinSelectableDate() {
   document.getElementById("editPopupDateInput").setAttribute("min", currentDate);
 }
@@ -69,35 +60,6 @@ function renderAddTaskToEditPopup(numberedTaskID) {
   document.querySelector(".addTaskSection").style.setProperty("margin-top", "360px");
 }
 
-async function boardLoadEditPopupUserData(numberedTaskID, path = "users") {
-  let response = await fetch(BASE_URL + path + ".json");
-  responseToJson = await response.json();
-  sortUsersByName(responseToJson);
-  createUserInitials();
-  boardEditPopupLoadFullNameList(numberedTaskID);
-  boardEditPopupRenderCategoryDropdown();
-  boardEditTaskRenderCategoryDropdown();
-}
-
-function boardEditPopupLoadFullNameList(numberedTaskID) {
-  let dropdown = document.getElementById("boardEditPopupUserNameDropDown");
-  dropdown.innerHTML = "";
-
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = getColorFromUser(i);
-    let blackWhite = addTaskAdaptFontColorToBackground(i);
-    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials, userUniqueId, numberedTaskID);
-  }
-}
-
-function boardEditPopupRenderCategoryDropdown() {
-  let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
-  categoryDropdown.innerHTML = "";
-
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
-  }
-}
 
 function boardEditPopupFilterFunction() {
   let input = document.getElementById("boardEditPopupContactsSearchArea");

@@ -52,8 +52,8 @@ function clearAddContactsInputData() {
   document.getElementById("addContactPhoneInput").value = "";
 }
 
-async function handleCreateButtonClick() {
-  await postUserData("contact");
+async function handleCreateContactsButtonClick() {
+  await postUserDataToFirebase("contact");
   await renderContacts();
   clearAddContactsInputData();
   toggleAddContactPupup();
