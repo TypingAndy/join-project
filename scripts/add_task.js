@@ -1,3 +1,26 @@
+function rednerTaskFormTemplate() {
+ let taskForm = document.getElementById("taskForm");
+ taskForm.innerHTML = taskFormTemplate(); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //functions addTask---------------------------------------------------------------------
 
 function getNewTaskInputData() {

@@ -6,14 +6,16 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
-
+    <link rel="stylesheet" href="../css/task_form.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/add_task.js"></script>
     <script src="../templates/add_task_template.js"></script>
     <script src="../scripts/add_task_dropdown.js"></script>
+    <script src="../templates/task_form_template.js"></script>
   </head>
-  <body onload="insertMinSelectableDate()">
+  <body>
+    <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
       <header>
@@ -29,66 +31,54 @@
           <div class="addTaskHeader">Add Task</div>
         </div>
 
-        <form class="addTaskForm" action="">
-          
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Title<span style="color: red">*</span></div>
-            <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" />
+        <form id="taskForm" class="addTaskForm" action="">
+
+          <!-- rednerTaskFormTemplate -->
+
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Title<span style="color: red">*</span></div>
+            <div class="taskFormInputContainer">
+              <input id="taskTitleInput" class="taskFormTitleInput" required type="text" placeholder="Enter a Title" />
+            </div>
           </div>
 
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Description</div>
-            <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description"></textarea>
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Description</div>
+            <div class="taskFormTextAreaContainer">
+              <textarea id="taskDescriptionInput" class="taskFormDescriptionTextArea" type="text" placeholder="Enter a Description"></textarea>
+            </div>
           </div>
 
-
-
-
-
-
-
-
-          <div class="addTaskSectionHeaderInputGap">
+          <!-- <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Assigned to</div>
 
             <div id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
 
               <input placeholder="Select contacts to assign" class="addTaskAssignContactsButton">
 
-              <!-- <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
+              <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
                 <div class="fontInboxAlign">Select contacts to assign</div>
                 <img class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
-              </div> -->
+              </div>
 
-              <!-- <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
+              <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
                 <input id="addTaskContactsSearchArea" onkeyup="addTaskFilterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
                 <img id="addTaskAssignDropdownArrow" class="addTaskDropDownCloseButton img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
-              </div> -->
+              </div>
               
-              <!-- <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div> -->
+              <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div>
 
             </div>
 
             <div class="addUserSymbolsAssign" id="addUserSymbolsAssign"></div>
-          </div>
+          </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-          <div class="addTaskSectionHeaderInputGap">
+          <!-- <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
             <input id="dateInput" class="addTaskDueDateDropdown" type="date" min="" />
-          </div>
+          </div> -->
 
-          <div class="addTaskSectionHeaderInputGap">
+          <!-- <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Prio</div>
             <div class="addTaskPrioButtonBox">
               <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
@@ -104,7 +94,7 @@
                 <img class="addTaskPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div class="addTaskSectionHeaderInputGap">
             <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
@@ -141,16 +131,15 @@
 
             <ul class="addTaskSubTaskList" id="subtaskBoard"></ul>
           </div> -->
-
-          <div class="addTaskButton">
-            <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-            <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
-              <div>Create Task</div>
-              <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
-            </div>
-          </div>
-
         </form>
+
+        <div class="addTaskButton">
+          <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
+          <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
+            <div>Create Task</div>
+            <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+          </div>
+        </div>
       </div>
 
       <!--Navbar-->
