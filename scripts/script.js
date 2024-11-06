@@ -84,37 +84,6 @@ function removeUserFromTask(check, noCheck, assignUserID, userIndex) {
   assignUserID.classList.remove("addTaskNewBackgroundChecked");
 }
 
-function setTaskPrio(priority) {
-  taskPrioInput = priority;
-  setTaskPrioButtonColorSwitch(priority);
-}
-
-function setTaskPrioButtonColorSwitch(priority) {
-  buttonUrgent = document.getElementsByClassName("addTaskPrioButtonUrgent")[0];
-  buttonMedium = document.getElementsByClassName("addTaskPrioButtonMedium")[0];
-  buttonLow = document.getElementsByClassName("addTaskPrioButtonLow")[0];
-
-  if (priority == "urgent") highlightPrioButtonUrgent();
-  if (priority == "medium") highlightPrioButtonMedium();
-  if (priority == "low") highlightPrioButtonLow();
-}
-
-function highlightPrioButtonUrgent() {
-  buttonUrgent.classList.add("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-  buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-  buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-}
-function highlightPrioButtonMedium() {
-  buttonMedium.classList.add("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-  buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-  buttonLow.classList.remove("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-}
-function highlightPrioButtonLow() {
-  buttonLow.classList.add("addTaskPrioButtonLowOnClick", "addTaskPrioButtonLowIcon");
-  buttonUrgent.classList.remove("addTaskPrioButtonUrgentOnClick", "addTaskPrioButtonUrgentIcon");
-  buttonMedium.classList.remove("addTaskPrioButtonMediumOnClick", "addTaskPrioButtonMediumIcon");
-}
-
 function addTaskAddSubtaskCancel() {
   document.getElementById("addSubtaskInput").value = "";
   document.getElementById("addSubtask").classList.remove("displayNone");

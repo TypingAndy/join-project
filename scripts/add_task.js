@@ -1,6 +1,39 @@
 function rednerTaskFormTemplate() {
- let taskForm = document.getElementById("taskForm");
- taskForm.innerHTML = taskFormTemplate(); 
+  let taskForm = document.getElementById("taskForm");
+  taskForm.innerHTML = taskFormTemplate();
+}
+
+// priority
+
+function setTaskPrio(priority) {
+  taskPrioInput = priority;
+  setTaskPrioButtonColorSwitch(priority);
+}
+
+function setTaskPrioButtonColorSwitch(priority) {
+  buttonUrgent = document.getElementsByClassName("taskFormPrioButtonUrgent")[0];
+  buttonMedium = document.getElementsByClassName("taskFormPrioButtonMedium")[0];
+  buttonLow = document.getElementsByClassName("taskFormPrioButtonLow")[0];
+
+  if (priority == "urgent") highlightPrioButtonUrgent();
+  if (priority == "medium") highlightPrioButtonMedium();
+  if (priority == "low") highlightPrioButtonLow();
+}
+
+function highlightPrioButtonUrgent() {
+  buttonUrgent.classList.add("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
+  buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
+  buttonLow.classList.remove("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
+}
+function highlightPrioButtonMedium() {
+  buttonMedium.classList.add("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
+  buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
+  buttonLow.classList.remove("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
+}
+function highlightPrioButtonLow() {
+  buttonLow.classList.add("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
+  buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
+  buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
 }
 
 
@@ -122,8 +155,6 @@ function createUserInitials() {
 }
 
 // addTask --------------------------- date
-
-
 
 // addTask --------------------------- priority
 
