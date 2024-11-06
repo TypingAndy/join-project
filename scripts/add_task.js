@@ -3,7 +3,7 @@
 function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("taskDateInput").value;
+  let taskDateInput = document.getElementById("dateInput").value;
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -100,9 +100,7 @@ function createUserInitials() {
 
 // addTask --------------------------- date
 
-function insertMinSelectableDateAtAddTask() {
-  document.getElementById("taskDateInput").setAttribute("min", currentDate);
-}
+
 
 // addTask --------------------------- priority
 
