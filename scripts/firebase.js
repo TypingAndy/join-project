@@ -29,8 +29,6 @@ async function loadUserDataFromFirebase() {
   return unsortedUsers;
 }
 
-
-
 async function getNewUserId(response) {
   const data = await response.json();
   return data.name;
@@ -81,5 +79,3 @@ async function deleteTask(taskID) {
     },
   });
 }
-
-
