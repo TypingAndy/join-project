@@ -30,11 +30,22 @@
   padding: 0 12px;
   font-size: 16px;
   font-family: "Inter";
+  transition: border-radius 0.2s ease;
+}
+
+.taskFormInput:focus {
+  border-radius: 10px 10px 0 0;
 }
 
 .taskFormInput::placeholder {
   font-size: 16px;
   color: #d1d1d1;
+}
+
+.taskFormUserDropdownArrow {
+  position: absolute;
+  right: 14px;
+  top: 12px;
 }
 
 /* description */
@@ -63,6 +74,12 @@
 .taskFormDescriptionTextArea::placeholder {
   font-size: 16px;
   color: #d1d1d1;
+}
+
+/* assigned to */
+
+.taskFormUserDropdownArrow {
+  position: absolute;
 }
 
 /* task prioritiy */
@@ -167,6 +184,10 @@
   font-family: "Inter";
 }
 
+.taskFormCategoryInput:focus {
+  border-radius: 10px 10px 0 0;
+}
+
 .taskFormCategoryInput::placeholder {
   color: black;
 }
@@ -189,8 +210,24 @@
   color: black;
 }
 
-.taskFormSubtaskPlusImage {
+.subtaskDividingLine {
+  height: 24px;
+  border: solid #a8a8a8 1px;
+}
+
+.taskFormInputContainer {
+  position: relative;
+}
+
+.iconWrapper {
   position: absolute;
   right: 14px;
   top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.taskFormSubtaskPlusImage {
+  width: 24px;
+  height: 24px;
 }

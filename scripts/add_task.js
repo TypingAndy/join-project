@@ -3,6 +3,40 @@ function rednerTaskFormTemplate() {
   taskForm.innerHTML = taskFormTemplate();
 }
 
+function changeImageOnFocus(isFocused, currentID) {
+  let image = document.getElementById(currentID);
+  if (isFocused) {
+    image.src = "../images/icons/arrow_drop_down_up.png";
+  } else {
+    image.src = "../images/icons/arrow_drop_down_down.png";
+  }
+}
+
+// assigned to
+
+// category
+
+// subtask
+
+function focusOnSubtaskInput(isFocused) {
+  let plusIcon = document.getElementById("plusIcon");
+  let cancelIcon = document.getElementById("cancelIcon");
+  let dividingLine = document.getElementById("dividingLine");
+  let checkIcon = document.getElementById("checkIcon");
+
+  if (isFocused) {
+    plusIcon.style.display = "none";
+    cancelIcon.style.display = "inline";
+    dividingLine.style.display = "inline";
+    checkIcon.style.display = "inline";
+  } else {
+    plusIcon.style.display = "inline";
+    cancelIcon.style.display = "none";
+    dividingLine.style.display = "none";
+    checkIcon.style.display = "none";
+  }
+}
+
 // priority
 
 function setTaskPrio(priority) {
@@ -35,24 +69,6 @@ function highlightPrioButtonLow() {
   buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
   buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //functions addTask---------------------------------------------------------------------
 
@@ -129,7 +145,7 @@ function addUserSymbolsToUserAssign() {
 }
 
 function addTaskFilterFunction() {
-  let input = document.getElementById("addTaskContactsSearchArea");
+  let input = document.getElementById("taskFormUserInput");
   let filter = input.value.toUpperCase();
 
   for (let i = 0; i < sortedUsers.length; i++) {
