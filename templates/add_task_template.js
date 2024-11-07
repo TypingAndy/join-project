@@ -22,8 +22,6 @@ function addUserSymbolTemplate(i) {
 function categoryTemplate(chosenCategory) {
   return /*html*/ `
       <div class="fontInboxAlign">${chosenCategory}</div>
-      <img id="addTaskChooseCategoryDropdownImageDown" class="img24px" class="displayNone" src="../images/icons/arrow_drop_down_down.png" alt="" />
-      <img id="addTaskChooseCategoryDropdownImageUp"  class="img24px"  src="../images/icons/arrow_drop_down_up.png" alt=""/>
     `;
 }
 

@@ -115,26 +115,6 @@ function renderAddTaskToEditPopup(numberedTaskID) {
 //   }
 // }
 
-document.addEventListener(
-  "click",
-  function (event) {
-    let taskSection = document.getElementById("boardEditPopupTaskSection");
-
-    if (taskSection) {
-      let contactsDropdown = document.getElementById("boardEditPopupContactsDropdownLableBox");
-      let assignDropdownArrow = document.getElementById("boardEditPopupAssignDropdownArrow");
-      let inputField = document.getElementById("boardEditPopupContactsSearchArea");
-      let userNameDropDown = document.getElementById("boardEditPopupUserNameDropDown");
-
-      if (contactsDropdown.contains(event.target) && !assignDropdownArrow.contains(event.target)) {
-        openEditPopupAssignDropdown(inputField, userNameDropDown, contactsDropdown);
-      } else {
-        closeEditPopupAssignDropdown(userNameDropDown);
-      }
-    }
-  },
-  true
-);
 
 // board Edit Popup Category
 
@@ -152,23 +132,6 @@ document.addEventListener(
 //   document.getElementById("boardEditPopupChooseCategoryButton").innerHTML = boardEditTaskCategoryTemplate(chosenCategory);
 // }
 
-document.addEventListener(
-  "click",
-  function (event) {
-    let taskSection = document.getElementById("boardEditPopupTaskSection");
-    if (taskSection) {
-      let categoryDropdown = document.getElementById("boardEditCategoryDropDown");
-      let dropdownLableBox = document.getElementById("boardEditPopupChooseCategoryDropdownLableBox");
-
-      if (dropdownLableBox.contains(event.target)) {
-        toggleCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
-      } else if (!categoryDropdown.contains(event.target)) {
-        closeCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox);
-      }
-    }
-  },
-  true
-);
 
 // function toggleCategoryDropdownEditPopup(categoryDropdown, dropdownLableBox) {
 //   if (categoryDropdown.classList.contains("show")) {
@@ -260,25 +223,6 @@ function boardEditPopupReadIdFromSubtask(id) {
   console.log(idNumber);
 }
 
-document.addEventListener(
-  "click",
-  function (event) {
-    let taskSection = document.getElementById("boardEditPopupTaskSection");
-    if (globalSubtaskId !== "" && taskSection) {
-      let i = globalSubtaskId;
-      let cancelRewriting = document.getElementById(`boardEditPopupCancelRewritingSubtask${i}`);
-      let acceptRewriting = document.getElementById(`boardEditPopupAcceptRewritingSubtask${i}`);
-      let subtaskRewriteBox = document.getElementById(`boardEditPopupSubtaskRewriteInput${i}`);
-
-      if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
-        if (document.body.contains(event.target)) {
-          boardEditPopupCancelRewritingSubtask(i);
-        }
-      }
-    }
-  },
-  true
-);
 
 function boardEditPopupDeleteRewritingSubtask(i) {
   let rewriteInput = document.getElementById(`boardEditPopupSubtaskRewriteInput${i}`);
