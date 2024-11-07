@@ -3,16 +3,23 @@ function rednerTaskFormTemplate() {
   taskForm.innerHTML = taskFormTemplate();
 }
 
-function changeImageOnFocus(isFocused, currentID) {
-  let image = document.getElementById(currentID);
+function switchArrowInsideDropdown(isFocused, currentImageID, currentDropdownID) {
+  let image = document.getElementById(currentImageID);
+  let dropdown = document.getElementById(currentDropdownID);
   if (isFocused) {
     image.src = "../images/icons/arrow_drop_down_up.png";
+    dropdown.style.maxHeight = "200px";
   } else {
     image.src = "../images/icons/arrow_drop_down_down.png";
+    dropdown.style.maxHeight = "0";
   }
 }
 
 // assigned to
+
+function fillUserDropdown() {
+
+}
 
 // category
 
