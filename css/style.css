@@ -175,9 +175,7 @@ textarea:active {
   z-index: 91;
 }
 
-
 /*----------------------------- add Task AddContact */
-
 
 .addTaskSubtaskImageBox {
   display: flex;
@@ -238,7 +236,6 @@ textarea:active {
   background-color: #091931 !important;
   color: white;
 }
-
 
 /* ------------------------- add Task Subtask */
 .addTaskPlusIconSmall {

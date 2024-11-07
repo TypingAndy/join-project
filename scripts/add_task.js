@@ -45,6 +45,35 @@ async function fillUserDropdown() {
   }
 }
 
+// function addUserToTaskToggle(name, i, userFirebaseId) {
+//   removeOrAddUserToTask(name, i, userFirebaseId);
+//   addUserSymbolsToUserAssign();
+// }
+
+// function removeOrAddUserToTask(name, i, userFirebaseId) {
+//   let check = document.getElementById(`check${i}`);
+//   let noCheck = document.getElementById(`noCheck${i}`);
+//   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
+//   let blackWhite = addTaskAdaptFontColorToBackground(i);
+
+//   if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
+//     addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
+//   } else {
+//     removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
+//   }
+// }
+
+// function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
+//   return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
+// }
+
+// function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
+//   let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
+//   if (userIndex > -1) {
+//     removeUserFromTask(check, noCheck, assignUserID, userIndex);
+//   }
+// }
+
 // category
 
 function fillCategoryDropdown() {
@@ -115,94 +144,7 @@ function toggleSubtaskCheckOnFocus(isFocused) {
   }
 }
 
-//functions addTask---------------------------------------------------------------------
-
-function getNewTaskInputData() {
-  let taskTitleInput = document.getElementById("taskTitleInput").value;
-  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("dateInput").value;
-  let createTaskData = {
-    taskTitle: taskTitleInput,
-    taskDescription: taskDescriptionInput,
-    taskAssignedUser: addTaskCurrentUser,
-    taskAssignedUserInitials: taskAssignedUserInitials,
-    taskAssignedUserColors: addTaskAssignedUserColors,
-    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
-    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
-    taskDate: taskDateInput,
-    taskPrio: taskPrioInput,
-    taskStatus: "to do",
-    taskCategory: chosenCategory,
-    taskSubtasks: subtasks,
-  };
-  return createTaskData;
-}
-
-//functions addTask---------Assign Users to Task------------------------------------------------------------
-
-// function renderSortedUsersToDropdown() {
-//   let dropdown = document.getElementById("userNameDropDown");
-//   dropdown.innerHTML = "";
-
-//   for (let i = 0; i < sortedUsers.length; i++) {
-//     let currentColor = getColorFromUser(i);
-//     let blackWhite = addTaskAdaptFontColorToBackground(i);
-//     dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
-//   }
-// }
-
-// function addUserToTaskToggle(name, i, userFirebaseId) {
-//   removeOrAddUserToTask(name, i, userFirebaseId);
-//   addUserSymbolsToUserAssign();
-// }
-
-// function removeOrAddUserToTask(name, i, userFirebaseId) {
-//   let check = document.getElementById(`check${i}`);
-//   let noCheck = document.getElementById(`noCheck${i}`);
-//   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
-//   let blackWhite = addTaskAdaptFontColorToBackground(i);
-
-//   if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
-//     addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
-//   } else {
-//     removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
-//   }
-// }
-
-// function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
-//   return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
-// }
-
-// function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
-//   let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
-//   if (userIndex > -1) {
-//     removeUserFromTask(check, noCheck, assignUserID, userIndex);
-//   }
-// }
-
-// function addTaskFilterFunction() {
-//   let input = document.getElementById("taskFormUserInput");
-//   let filter = input.value.toUpperCase();
-
-//   for (let i = 0; i < sortedUsers.length; i++) {
-//     let userName = sortedUsers[i].name.toUpperCase();
-//     let userElement = document.getElementById(`addTaskAssignUserId${i}`);
-
-//     if (userName.includes(filter)) {
-//       userElement.classList.remove("displayNone");
-//     } else {
-//       userElement.classList.add("displayNone");
-//     }
-//   }
-// }
-
-// addTask --------------------------- date
-
-// addTask --------------------------- priority
-
-// addTask --------------------------- category
-
-// addTask --------------------------- subTask
+// subtask
 
 function addTaskOpenAddSubtask() {
   let inputBox = document.getElementById("addSubtaskInputBox");
@@ -283,4 +225,27 @@ function acceptSubtaskOnEnterKeyTrigger(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
     addTaskAddSubtask();
   }
+}
+
+// collecting DAta
+
+function getNewTaskInputData() {
+  let taskTitleInput = document.getElementById("taskTitleInput").value;
+  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
+  let taskDateInput = document.getElementById("dateInput").value;
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    taskAssignedUser: addTaskCurrentUser,
+    taskAssignedUserInitials: taskAssignedUserInitials,
+    taskAssignedUserColors: addTaskAssignedUserColors,
+    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
+    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput,
+    taskStatus: "to do",
+    taskCategory: chosenCategory,
+    taskSubtasks: subtasks,
+  };
+  return createTaskData;
 }
