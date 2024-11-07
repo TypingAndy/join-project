@@ -8,34 +8,29 @@ function switchArrowInsideDropdown(isFocused, currentImageID) {
 
   if (isFocused) {
     image.style.transform = "rotate(180deg)";
-    image.style.pointerEvents = 'auto';
+    image.style.pointerEvents = "auto";
   } else {
     setTimeout(() => {
       image.style.transform = "none";
-      image.style.pointerEvents = 'none';
+      image.style.pointerEvents = "none";
     }, 80);
   }
 }
 
-
-
 function handleDropdown(isFocused, currentDropdownID) {
   let dropdown = document.getElementById(currentDropdownID);
-  if (isFocused ) {
+  if (isFocused) {
     dropdown.style.maxHeight = "200px";
-    
-
   } else {
     setTimeout(() => {
       dropdown.style.maxHeight = "0";
-
     }, 80);
   }
 }
 
 function checkIfDropdownIsClicked() {
-let isClicked = true;
-return isClicked;
+  let isClicked = true;
+  return isClicked;
 }
 
 // user assign
@@ -101,7 +96,7 @@ function highlightPrioButtonLow() {
 
 // subtask
 
-function focusOnSubtaskInput(isFocused) {
+function toggleSubtaskCheckOnFocus(isFocused) {
   let plusIcon = document.getElementById("plusIcon");
   let cancelIcon = document.getElementById("cancelIcon");
   let dividingLine = document.getElementById("dividingLine");
@@ -185,15 +180,6 @@ function getNewTaskInputData() {
 //   }
 // }
 
-// function addUserSymbolsToUserAssign() {
-//   let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
-//   addUserSymbolsAssign.innerHTML = "";
-
-//   for (let i = 0; i < addTaskCurrentUser.length; i++) {
-//     addUserSymbolsAssign.innerHTML += addUserSymbolTemplate(i);
-//   }
-// }
-
 // function addTaskFilterFunction() {
 //   let input = document.getElementById("taskFormUserInput");
 //   let filter = input.value.toUpperCase();
@@ -207,16 +193,6 @@ function getNewTaskInputData() {
 //     } else {
 //       userElement.classList.add("displayNone");
 //     }
-//   }
-// }
-
-// function createUserInitials() {
-//   for (let i = 0; i < sortedUsers.length; i++) {
-//     let fullName = sortedUsers[i].name;
-//     let nameParts = fullName.split(" ");
-
-//     let initials = nameParts.map((part) => part.charAt(0)).join("");
-//     allUserInitials.push(initials);
 //   }
 // }
 
