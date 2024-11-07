@@ -20,12 +20,32 @@ async function postUserDataToFirebase(userType) {
     },
     body: JSON.stringify(userData),
   });
+  currentUserIdFromFirebase = (await response.json()).name;
   return response;
+}
+
+async function deleteUserFromFirebase(firebaseId) {
+  await fetch(BASE_URL + `users/${firebaseId}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+async function updateUserInFirebase(firebaseId, updatedUserData) {
+  await fetch(BASE_URL + `users/${firebaseId}.json`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedUserData),
+  });
 }
 
 async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
-  let unsortedUsers = await response.json();
+  unsortedUsers = await response.json();
   return unsortedUsers;
 }
 

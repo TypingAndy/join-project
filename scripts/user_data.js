@@ -1,5 +1,9 @@
+let userDataFromFirebase;
+let currentUserIdFromFirebase;
+
 async function sortUserData() {
   let data = await loadUserDataFromFirebase();
+  userDataFromFirebase = data;
   const unsortedUsers = Object.entries(data).map(([id, user]) => ({
     ...user,
     id: id,
