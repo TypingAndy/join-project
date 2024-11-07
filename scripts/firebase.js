@@ -24,6 +24,25 @@ async function postUserDataToFirebase(userType) {
   return response;
 }
 
+async function deleteUserFromFirebase(firebaseId) {
+  await fetch(BASE_URL + `users/${firebaseId}.json`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+async function updateUserInFirebase(firebaseId, updatedUserData) {
+  await fetch(BASE_URL + `users/${firebaseId}.json`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedUserData),
+  });
+}
+
 async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
   unsortedUsers = await response.json();

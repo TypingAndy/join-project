@@ -9,7 +9,7 @@ function contactsTemplate(letter, users) {
                 `
             <div class="contactCard" onclick="toggleContactDetails('${user.id}'), toggleAddContactButton()">
               <div class="contactCardInitialsCircle" style="background-color: ${user.color}">
-                <span class="initials">${user.initials}</span>
+                <span class="initials" style="color:${user.fontColor} ">${user.initials}</span>
               </div>
               <div class="contactInfos">
                 <span class="contactName">${user.name}</span>
@@ -119,22 +119,22 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <div class="contactPopupBottom">
       <form action="">
         <div class="nameInputWrapper">
-          <input class="addContactNameInput" id="addContactNameInput" type="text" value="${userDataFromFirebase[firebaseUserId].name}" />
+          <input class="addContactNameInput" id="editContactNameInput" type="text" value="${userDataFromFirebase[firebaseUserId].name}" />
           <img src="../images/icons/person_grey.png" alt="" />
         </div>
         <div class="mailInputWrapper">
-          <input class="addContactMailInput" id="addContactMailInput" type="text" value="${userDataFromFirebase[firebaseUserId].email}" />
+          <input class="addContactMailInput" id="editContactMailInput" type="text" value="${userDataFromFirebase[firebaseUserId].email}" />
           <img src="../images/icons/mail_grey.png" alt="" />
         </div>
         <div class="phoneInputWrapper">
-          <input class="addContactPhoneInput" id="addContactPhoneInput" type="text" value="${userDataFromFirebase[firebaseUserId].phone}" />
+          <input class="addContactPhoneInput" id="editContactPhoneInput" type="text" value="${userDataFromFirebase[firebaseUserId].phone}" />
           <img src="../images/icons/callgrey.png" alt="" />
         </div>
         <div class="editContactButtonWrapper">
-        <div class="deleteContactButton" onclick="handleCreateContactsButtonClick()">
+        <div class="deleteContactButton" onclick=" handleClickDeleteUser('${firebaseUserId}')">
           <span>Delete</span>
         </div>
-        <div class="saveContactButton" onclick="handleCreateContactsButtonClick()">
+        <div class="saveContactButton" onclick="handleClickSaveContact('${firebaseUserId}')">
         <span>Save</span>
         <img src="../images/icons/check_white.png" alt="" />
       </div>
