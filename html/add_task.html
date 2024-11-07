@@ -27,12 +27,12 @@
       </header>
 
       <!--addTaskSection-->
-      <div class="addTaskSection">
-        <div class="addTaskHeaderBox">
-          <div class="addTaskHeader">Add Task</div>
+      <div class="taskFormSection">
+        <div class="taskFormHeaderBox">
+          <div class="taskFormHeader">Add Task</div>
         </div>
 
-        <form id="taskForm" class="addTaskForm" action="">
+        <form id="taskForm" class="taskForm" action="">
           <!-- rednerTaskFormTemplate -->
 
           <div class="taskFormSectionBox">
@@ -120,7 +120,7 @@
             <div class="taskFormLabels">Subtasks</div>
 
             <div id="addSubtask" class="taskFormInputContainer">
-              <input onfocus="focusOnSubtaskInput(true)" onblur="focusOnSubtaskInput(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
+              <input onfocus="toggleSubtaskCheckOnFocus(true)" onblur="toggleSubtaskCheckOnFocus(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
               <div class="iconWrapper">
                 <img id="plusIcon" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
                 <img id="cancelIcon" class="taskFormSubtaskPlusImage" src="../images/icons/x_black_subtask.png" alt="" style="display: none" />
@@ -131,11 +131,11 @@
           </div>
         </form>
 
-        <div class="addTaskButton">
-          <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
+        <div class="taskFormCreateTaskButtonBox">
+          <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
           <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
             <div>Create Task</div>
-            <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+            <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
           </div>
         </div>
       </div>
