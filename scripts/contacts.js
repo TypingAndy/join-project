@@ -101,3 +101,22 @@ function showContactCreatedSuccessfullyPopup() {
     }, 0);
   }
 }
+
+async function handleClickSaveContact(firebaseId) {
+  await updateUserInFirebase(firebaseId, {
+    name: document.getElementById("editContactNameInput").value,
+    email: document.getElementById("editContactMailInput").value,
+    phone: document.getElementById("editContactPhoneInput").value,
+  });
+  await loadUserDataFromFirebase();
+  toggleContactPopup();
+  await renderContacts();
+  document.getElementById("contactDetailsSection").innerHTML = contactDetailsTemplate(firebaseId);
+}
+
+async function handleClickDeleteUser(firebaseId) {
+  await deleteUserFromFirebase(firebaseId);
+  await renderContacts();
+  toggleContactPopup();
+  toggleContactDetails();
+}
