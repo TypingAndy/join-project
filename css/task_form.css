@@ -40,6 +40,8 @@
   right: 14px;
   top: 12px;
   pointer-events: none;
+  transform: none;
+  transition: 450ms;
 }
 
 .taskFormDropdownBox {
@@ -51,6 +53,8 @@
   position: absolute;
   width: 100%;
   z-index: 100;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   max-height: 0;
   overflow-y: scroll;
@@ -89,6 +93,18 @@
 
 .taskFormUserDropdownArrow {
   position: absolute;
+}
+
+.userDropdownUserContainer {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.userDropdownUserContainer:hover {
+  background-color: #d1d1d1;
 }
 
 /* task prioritiy */

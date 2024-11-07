@@ -7,20 +7,23 @@ function switchArrowInsideDropdown(isFocused, currentImageID) {
   let image = document.getElementById(currentImageID);
 
   if (isFocused) {
-    image.src = "../images/icons/arrow_drop_down_up.png";
+    image.style.transform = "rotate(180deg)";
     image.style.pointerEvents = 'auto';
   } else {
     setTimeout(() => {
-      image.src = "../images/icons/arrow_drop_down_down.png";
+      image.style.transform = "none";
       image.style.pointerEvents = 'none';
     }, 80);
   }
 }
 
+
+
 function handleDropdown(isFocused, currentDropdownID) {
   let dropdown = document.getElementById(currentDropdownID);
   if (isFocused ) {
     dropdown.style.maxHeight = "200px";
+    
 
   } else {
     setTimeout(() => {

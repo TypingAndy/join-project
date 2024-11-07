@@ -1,15 +1,16 @@
 function nameListTemplate(i, sortedUsers) {
   return /*html*/ `
-    <div onclick="addUserToTaskToggle('${sortedUsers[i].name}', '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
-      <div class="addTaskAllUserInitials" style="background-color: ${sortedUsers[i].color};>${sortedUsers[i].initals}</div>
+    <div onclick="addUserToTaskToggle('${sortedUsers[i].name}', '${sortedUsers[i].id}')" class="userDropdownUserContainer">
+      <div class="addTaskAllUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
       </div>
       <img id="noCheck${i}" class="img24px" src="../images/icons/unchecked.png" alt="">
       <img id="check${i}" class="addTaskButtonCheckImage displayNone" src="../images/icons/check_solved_white.png" alt="">
     </div>
-    `;
+  `;
 }
+
 
 function addUserSymbolTemplate(i) {
   return /*html*/ `
