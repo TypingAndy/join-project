@@ -3,30 +3,47 @@ function rednerTaskFormTemplate() {
   taskForm.innerHTML = taskFormTemplate();
 }
 
-function switchArrowInsideDropdown(isFocused, currentImageID, currentDropdownID) {
+function switchArrowInsideDropdown(isFocused, currentImageID) {
   let image = document.getElementById(currentImageID);
-  let dropdown = document.getElementById(currentDropdownID);
+
   if (isFocused) {
     image.src = "../images/icons/arrow_drop_down_up.png";
-    dropdown.style.maxHeight = "200px";
+    image.style.pointerEvents = 'auto';
   } else {
     setTimeout(() => {
       image.src = "../images/icons/arrow_drop_down_down.png";
-      dropdown.style.maxHeight = "0";
+      image.style.pointerEvents = 'none';
     }, 80);
   }
 }
 
+function handleDropdown(isFocused, currentDropdownID) {
+  let dropdown = document.getElementById(currentDropdownID);
+  if (isFocused ) {
+    dropdown.style.maxHeight = "200px";
+
+  } else {
+    setTimeout(() => {
+      dropdown.style.maxHeight = "0";
+
+    }, 80);
+  }
+}
+
+function checkIfDropdownIsClicked() {
+let isClicked = true;
+return isClicked;
+}
+
 // user assign
 
-function fillUserDropdown() {
+async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
+  let sortedUsers = await sortUserData();
   console.log(sortedUsers);
 
   for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = getColorFromUser(i);
-    let blackWhite = addTaskAdaptFontColorToBackground(i);
-    userDropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
+    userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
   }
 }
 
@@ -125,80 +142,80 @@ function getNewTaskInputData() {
 
 //functions addTask---------Assign Users to Task------------------------------------------------------------
 
-function renderSortedUsersToDropdown() {
-  let dropdown = document.getElementById("userNameDropDown");
-  dropdown.innerHTML = "";
+// function renderSortedUsersToDropdown() {
+//   let dropdown = document.getElementById("userNameDropDown");
+//   dropdown.innerHTML = "";
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let currentColor = getColorFromUser(i);
-    let blackWhite = addTaskAdaptFontColorToBackground(i);
-    dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
-  }
-}
+//   for (let i = 0; i < sortedUsers.length; i++) {
+//     let currentColor = getColorFromUser(i);
+//     let blackWhite = addTaskAdaptFontColorToBackground(i);
+//     dropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
+//   }
+// }
 
-function addUserToTaskToggle(name, i, userFirebaseId) {
-  removeOrAddUserToTask(name, i, userFirebaseId);
-  addUserSymbolsToUserAssign();
-}
+// function addUserToTaskToggle(name, i, userFirebaseId) {
+//   removeOrAddUserToTask(name, i, userFirebaseId);
+//   addUserSymbolsToUserAssign();
+// }
 
-function removeOrAddUserToTask(name, i, userFirebaseId) {
-  let check = document.getElementById(`check${i}`);
-  let noCheck = document.getElementById(`noCheck${i}`);
-  let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
-  let blackWhite = addTaskAdaptFontColorToBackground(i);
+// function removeOrAddUserToTask(name, i, userFirebaseId) {
+//   let check = document.getElementById(`check${i}`);
+//   let noCheck = document.getElementById(`noCheck${i}`);
+//   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
+//   let blackWhite = addTaskAdaptFontColorToBackground(i);
 
-  if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
-    addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
-  } else {
-    removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
-  }
-}
+//   if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
+//     addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
+//   } else {
+//     removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
+//   }
+// }
 
-function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
-  return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
-}
+// function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
+//   return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
+// }
 
-function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
-  let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
-  if (userIndex > -1) {
-    removeUserFromTask(check, noCheck, assignUserID, userIndex);
-  }
-}
+// function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
+//   let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
+//   if (userIndex > -1) {
+//     removeUserFromTask(check, noCheck, assignUserID, userIndex);
+//   }
+// }
 
-function addUserSymbolsToUserAssign() {
-  let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
-  addUserSymbolsAssign.innerHTML = "";
+// function addUserSymbolsToUserAssign() {
+//   let addUserSymbolsAssign = document.getElementById("addUserSymbolsAssign");
+//   addUserSymbolsAssign.innerHTML = "";
 
-  for (let i = 0; i < addTaskCurrentUser.length; i++) {
-    addUserSymbolsAssign.innerHTML += addUserSymbolTemplate(i);
-  }
-}
+//   for (let i = 0; i < addTaskCurrentUser.length; i++) {
+//     addUserSymbolsAssign.innerHTML += addUserSymbolTemplate(i);
+//   }
+// }
 
-function addTaskFilterFunction() {
-  let input = document.getElementById("taskFormUserInput");
-  let filter = input.value.toUpperCase();
+// function addTaskFilterFunction() {
+//   let input = document.getElementById("taskFormUserInput");
+//   let filter = input.value.toUpperCase();
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`addTaskAssignUserId${i}`);
+//   for (let i = 0; i < sortedUsers.length; i++) {
+//     let userName = sortedUsers[i].name.toUpperCase();
+//     let userElement = document.getElementById(`addTaskAssignUserId${i}`);
 
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
-    } else {
-      userElement.classList.add("displayNone");
-    }
-  }
-}
+//     if (userName.includes(filter)) {
+//       userElement.classList.remove("displayNone");
+//     } else {
+//       userElement.classList.add("displayNone");
+//     }
+//   }
+// }
 
-function createUserInitials() {
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let fullName = sortedUsers[i].name;
-    let nameParts = fullName.split(" ");
+// function createUserInitials() {
+//   for (let i = 0; i < sortedUsers.length; i++) {
+//     let fullName = sortedUsers[i].name;
+//     let nameParts = fullName.split(" ");
 
-    let initials = nameParts.map((part) => part.charAt(0)).join("");
-    allUserInitials.push(initials);
-  }
-}
+//     let initials = nameParts.map((part) => part.charAt(0)).join("");
+//     allUserInitials.push(initials);
+//   }
+// }
 
 // addTask --------------------------- date
 
@@ -262,20 +279,20 @@ function readIdFromSubtask(id) {
   console.log(idNumber);
 }
 
-document.addEventListener("click", function (event) {
-  if (globalSubtaskId !== "") {
-    let i = globalSubtaskId;
-    let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
-    let acceptRewriting = document.getElementById(`addTaskAcceptRewritingSubtask${i}`);
-    let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+// document.addEventListener("click", function (event) {
+//   if (globalSubtaskId !== "") {
+//     let i = globalSubtaskId;
+//     let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
+//     let acceptRewriting = document.getElementById(`addTaskAcceptRewritingSubtask${i}`);
+//     let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
 
-    if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
-      if (document.body.contains(event.target)) {
-        addTaskCancelRewritingSubtask(i);
-      }
-    }
-  }
-});
+//     if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
+//       if (document.body.contains(event.target)) {
+//         addTaskCancelRewritingSubtask(i);
+//       }
+//     }
+//   }
+// });
 
 function addTaskDeleteRewritingSubtask(i) {
   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);

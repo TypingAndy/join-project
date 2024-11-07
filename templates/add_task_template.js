@@ -1,7 +1,7 @@
-function nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials) {
+function nameListTemplate(i, sortedUsers) {
   return /*html*/ `
-    <div id="addTaskAssignUserId${i}" onclick="addUserToTaskToggle('${sortedUsers[i].name}', ${i}, '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
-      <div class="addTaskAllUserInitials" style="background-color: ${currentColor}; color: ${blackWhite};">${allUserInitials[i]}</div>
+    <div onclick="addUserToTaskToggle('${sortedUsers[i].name}', '${sortedUsers[i].id}')" class="addTaskDropDownSingleUserContainer">
+      <div class="addTaskAllUserInitials" style="background-color: ${sortedUsers[i].color};>${sortedUsers[i].initals}</div>
       <div class="addTaskAddUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
       </div>

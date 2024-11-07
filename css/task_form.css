@@ -39,6 +39,7 @@
   position: absolute;
   right: 14px;
   top: 12px;
+  pointer-events: none;
 }
 
 .taskFormDropdownBox {
