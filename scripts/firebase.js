@@ -20,12 +20,13 @@ async function postUserDataToFirebase(userType) {
     },
     body: JSON.stringify(userData),
   });
+  currentUserIdFromFirebase = (await response.json()).name;
   return response;
 }
 
 async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
-  let unsortedUsers = await response.json();
+  unsortedUsers = await response.json();
   return unsortedUsers;
 }
 
