@@ -10,8 +10,10 @@ function switchArrowInsideDropdown(isFocused, currentImageID, currentDropdownID)
     image.src = "../images/icons/arrow_drop_down_up.png";
     dropdown.style.maxHeight = "200px";
   } else {
-    image.src = "../images/icons/arrow_drop_down_down.png";
-    dropdown.style.maxHeight = "0";
+    setTimeout(() => {
+      image.src = "../images/icons/arrow_drop_down_down.png";
+      dropdown.style.maxHeight = "0";
+    }, 80);
   }
 }
 
@@ -20,7 +22,7 @@ function switchArrowInsideDropdown(isFocused, currentImageID, currentDropdownID)
 function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   console.log(sortedUsers);
-  
+
   for (let i = 0; i < sortedUsers.length; i++) {
     let currentColor = getColorFromUser(i);
     let blackWhite = addTaskAdaptFontColorToBackground(i);
@@ -32,7 +34,7 @@ function fillUserDropdown() {
 
 function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
-console.log(categories);
+  console.log(categories);
 
   for (let i = 0; i < categories.length; i++) {
     categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
@@ -41,7 +43,6 @@ console.log(categories);
 
 function chooseCategory(chosenCategory) {
   console.log(chosenCategory);
-  
   document.getElementById("taskFormCategoryInput").value = chosenCategory;
 }
 
@@ -98,17 +99,6 @@ function focusOnSubtaskInput(isFocused) {
     checkIcon.style.display = "none";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 //functions addTask---------------------------------------------------------------------
 
@@ -215,8 +205,6 @@ function createUserInitials() {
 // addTask --------------------------- priority
 
 // addTask --------------------------- category
-
-
 
 // addTask --------------------------- subTask
 
