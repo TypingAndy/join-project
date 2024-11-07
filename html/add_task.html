@@ -6,14 +6,16 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
-
+    <link rel="stylesheet" href="../css/task_form.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/add_task.js"></script>
     <script src="../templates/add_task_template.js"></script>
     <script src="../scripts/add_task_dropdown.js"></script>
+    <script src="../templates/task_form_template.js"></script>
   </head>
-  <body onload="insertMinSelectableDate()">
+  <body>
+    <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
       <header>
@@ -29,128 +31,99 @@
           <div class="addTaskHeader">Add Task</div>
         </div>
 
-        <form class="addTaskForm" action="">
-          
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Title<span style="color: red">*</span></div>
-            <input id="taskTitleInput" class="addTaskInputTitle" required type="text" placeholder="Enter a Title" />
-          </div>
+        <form id="taskForm" class="addTaskForm" action="">
+          <!-- rednerTaskFormTemplate -->
 
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Description</div>
-            <textarea id="taskDescriptionInput" class="addTaskInputDescription" type="text" placeholder="Enter a Description"></textarea>
-          </div>
-
-
-
-
-
-
-
-
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Assigned to</div>
-
-            <div id="addTaskContactsDropdownLableBox" class="addTaskContactsDropdownLableBoxClosed">
-
-              <input placeholder="Select contacts to assign" class="addTaskAssignContactsButton">
-
-              <!-- <div id="addTaskAssignContactsButton" class="addTaskAssignContactsButton">
-                <div class="fontInboxAlign">Select contacts to assign</div>
-                <img class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
-              </div> -->
-
-              <!-- <div id="dropDownSearchCloseButtonBox" class="dropDownSearchCloseButtonBox displayNone">
-                <input id="addTaskContactsSearchArea" onkeyup="addTaskFilterFunction()" onclick="stopPropagation(event)" class="userNameDropDownSearchbar" type="text" placeholder="Search.." />
-                <img id="addTaskAssignDropdownArrow" class="addTaskDropDownCloseButton img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
-              </div> -->
-              
-              <!-- <div onclick="stopPropagation(event)" id="userNameDropDown" class="addTaskContactsDropdownLableBoxContent displayNone"></div> -->
-
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Title<span style="color: red">*</span></div>
+            <div class="taskFormInputContainer">
+              <input id="taskTitleInput" class="taskFormInput" required type="text" placeholder="Enter a Title" />
             </div>
-
-            <div class="addUserSymbolsAssign" id="addUserSymbolsAssign"></div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Due date<span style="color: red">*</span></div>
-            <input id="dateInput" class="addTaskDueDateDropdown" type="date" min="" />
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Description</div>
+            <div class="taskFormTextAreaContainer">
+              <textarea id="taskDescriptionInput" class="taskFormDescriptionTextArea" type="text" placeholder="Enter a Description"></textarea>
+            </div>
           </div>
 
-          <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Prio</div>
-            <div class="addTaskPrioButtonBox">
-              <div onclick="setTaskPrio('urgent')" class="addTaskPrioButtonUrgent">
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Assigned to</div>
+            <div class="taskFormInputContainer">
+              <input
+                id="taskFormUserInput"
+                onfocus="changeImageOnFocus(true, 'taskFormUserDropdownArrow')"
+                onblur="changeImageOnFocus(false, 'taskFormUserDropdownArrow')"
+                onkeyup="addTaskFilterFunction()"
+                placeholder="Select contacts to assign"
+                class="taskFormDropdownInput"
+              />
+              <img id="taskFormUserDropdownArrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
+            </div>
+          </div>
+
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
+            <div class="taskFormInputContainer">
+              <input id="dateInput" class="taskFormInput" type="date" min="" />
+            </div>
+          </div>
+
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Prio</div>
+            <div class="taskFormPrioButtonBox">
+              <div onclick="setTaskPrio('urgent')" class="taskFormPrioButtonUrgent">
                 <div>Urgent</div>
-                <img class="addTaskPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
+                <img class="taskFormPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
               </div>
-              <div onclick="setTaskPrio('medium')" class="addTaskPrioButtonMedium">
+              <div onclick="setTaskPrio('medium')" class="taskFormPrioButtonMedium">
                 <div>Medium</div>
-                <img class="addTaskPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
+                <img class="taskFormPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
               </div>
-              <div onclick="setTaskPrio('low')" class="addTaskPrioButtonLow">
+              <div onclick="setTaskPrio('low')" class="taskFormPrioButtonLow">
                 <div>Low</div>
-                <img class="addTaskPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
+                <img class="taskFormPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
               </div>
             </div>
           </div>
 
-          <!-- <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Category<span style="color: red">*</span></div>
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Category<span style="color: red">*</span></div>
 
-            <div id="addTaskChooseCategoryDropdownLableBox" class="addTaskChooseCategoryDropdownLableBoxClosed">
-              <div id="addTaskChooseCategoryButton" class="addTaskChooseCategoryButton">
-                <div class="fontInboxAlign">Select task category</div>
-                <img id="addTaskChooseCategoryDropdownImageDown" class="img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
-                <img id="addTaskChooseCategoryDropdownImageUp" class="displayNone img24px" src="../images/icons/arrow_drop_down_up.png" alt="" />
-              </div>
-              <div id="categoryDropDown" class="addTaskChooseCategoryDropdownLableBoxContent displayNone"></div>
-            </div>
-          </div> -->
-
-          <!-- <div class="addTaskSectionHeaderInputGap">
-            <div class="addTaskFormLabels">Subtasks</div>
-
-            <div id="addSubtask" onclick="addTaskOpenAddSubtask()" class="addTaskSubtaskDropdownBox">
-              <input class="addTaskSubtaskInputCover fontInboxAlign" type="text" placeholder="Add new subtask" />
-              <img id="addTaskSubtaskShowHidePlus" class="addTaskSubtaskPlusImage img24px" src="../images/icons/plus_dark.png" alt="" />
-            </div>
-
-            <div onkeydown="acceptSubtaskOnEnterKeyTrigger(event)" id="addSubtaskInputBox" class="addTaskSubtaskInputBox displayNone">
-              <div class="addTaskSubtaskInput">
-                <input id="addSubtaskInput" class="addTaskSubtaskInputField" />
-              </div>
-
-              <div class="addTaskSubtaskCheckXBox">
-                <img onclick="addTaskAddSubtaskCancel()" class="addTaskSubtaskX img24px" src="../images/icons/x_black_subtask.png" alt="" />
-                <div class="addTaskSubtaskDividingLine"></div>
-                <img onclick="addTaskAddSubtask()" tabindex="0" class="addTaskSubtaskCheck img24px" src="../images/icons/check_black.png" alt="" />
-              </div>
-            </div>
-
-            <ul class="addTaskSubTaskList" id="subtaskBoard"></ul>
-          </div> -->
-
-          <div class="addTaskButton">
-            <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-            <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
-              <div>Create Task</div>
-              <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+            <div class="taskFormInputContainer">
+              <input
+                onfocus="changeImageOnFocus(true, 'taskFormCategoryDropdownArrrow')"
+                onblur="changeImageOnFocus(false, 'taskFormCategoryDropdownArrrow')"
+                placeholder="Select task category"
+                class="taskFormDropdownInput"
+              />
+              <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
             </div>
           </div>
 
+          <div class="taskFormSectionBox">
+            <div class="taskFormLabels">Subtasks</div>
+
+            <div id="addSubtask" class="taskFormInputContainer">
+              <input onfocus="focusOnSubtaskInput(true)" onblur="focusOnSubtaskInput(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
+              <div class="iconWrapper">
+                <img id="plusIcon" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
+                <img id="cancelIcon" class="taskFormSubtaskPlusImage" src="../images/icons/x_black_subtask.png" alt="" style="display: none" />
+                <div id="dividingLine" class="subtaskDividingLine" style="display: none"></div>
+                <img id="checkIcon" class="taskFormSubtaskPlusImage" src="../images/icons/check_black.png" alt="" style="display: none" />
+              </div>
+            </div>
+          </div>
         </form>
+
+        <div class="addTaskButton">
+          <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
+          <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
+            <div>Create Task</div>
+            <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+          </div>
+        </div>
       </div>
 
       <!--Navbar-->

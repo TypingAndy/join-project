@@ -120,11 +120,7 @@ nav {
 
 /*----------------------------- multi-usage */
 
-.addTaskSectionHeaderInputGap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 
 input {
   border: 2px solid #29abe2;
@@ -163,10 +159,7 @@ textarea:active {
   height: 20px;
 }
 
-.fontInboxAlign {
-  display: flex;
-  align-items: center;
-}
+
 
 .backgroundBlue {
   background-color: #29abe2;
@@ -655,26 +648,11 @@ textarea:active {
   margin-bottom: 88px;
 }
 
-.addTaskFormLabels {
-  font-weight: 400;
-  font-size: 16px;
-}
+
 
 /*----------------------------- add Task Title */
 
-.addTaskInputTitle {
-  height: 48px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-  padding-left: 12px;
-  font-size: 16px;
-}
 
-.addTaskInputTitle::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: #d1d1d1;
-}
 
 /*----------------------------- add Task Description */
 
@@ -716,22 +694,7 @@ textarea:active {
   height: 100%;
 }
 
-.addTaskContactsDropdownLableBoxClosed {
-  height: 48px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  padding: 0px 12px 0px 12px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-  background-color: #ffffff;
-  font-family: "Inter";
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 80;
-}
+
 
 .addTaskContactsDropdownLableBoxOpen {
   position: relative;
@@ -880,93 +843,11 @@ textarea:active {
 
 /* ------------------------- add Task Prio */
 
-.addTaskPrioButtonBox {
-  display: flex;
-  gap: 16px;
-}
 
-.addTaskPrioButtonUrgent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  gap: 8px;
-  width: 121px;
-  height: 41px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-}
 
-.addTaskPrioButtonUrgentOnClick {
-  color: #ffffff;
-  background-color: #ff3d00;
-}
 
-.addTaskPrioButtonUrgent:hover {
-  box-shadow: 2px 2px 2px #d1d1d1;
-  cursor: pointer;
-}
 
-.addTaskPrioButtonMedium {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  gap: 8px;
-  width: 121px;
-  height: 41px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-}
 
-.addTaskPrioButtonMedium:hover {
-  box-shadow: 2px 2px 2px #d1d1d1;
-  cursor: pointer;
-}
-
-.addTaskPrioButtonMediumOnClick {
-  color: #ffffff;
-  background-color: #ffa800;
-}
-
-.addTaskPrioButtonLow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  gap: 8px;
-  width: 121px;
-  height: 41px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-}
-
-.addTaskPrioButtonLow:hover {
-  box-shadow: 2px 2px 2px #d1d1d1;
-  cursor: pointer;
-}
-
-.addTaskPrioButtonLowOnClick {
-  color: #ffffff;
-  background-color: #7ae229;
-}
-
-.addTaskPrioButtonImage {
-  width: 20px;
-  height: 14.5px;
-}
-
-.addTaskPrioButtonUrgentIcon img {
-  filter: brightness(10000%) saturate(0);
-}
-
-.addTaskPrioButtonMediumIcon img {
-  filter: brightness(10000%) saturate(0);
-}
-
-.addTaskPrioButtonLowIcon img {
-  filter: brightness(10000%) saturate(0);
-}
 
 /* ------------------------- add Task Category */
 
@@ -1050,22 +931,9 @@ textarea:active {
   box-sizing: border-box;
 }
 
-.addTaskSubtaskInputCover {
-  width: 100%;
-  height: 100%;
-  padding: 4.5px 12px 4.5px 12px;
-  border-radius: 10px;
-  border: solid 1px #d1d1d1;
-  background-color: #ffffff;
-  font-family: "Inter";
-  font-size: 16px;
-}
 
-.addTaskSubtaskPlusImage {
-  position: absolute;
-  right: 14px;
-  top: 12px;
-}
+
+
 
 .addTaskSubTaskList {
   position: relative;

@@ -1,0 +1,228 @@
+/* multi use */
+
+.taskFormSectionBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.taskFormLabels {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.taskFormInputContainer {
+  position: relative;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter";
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.taskFormInput {
+  width: 100%;
+  height: 100%;
+  border: solid 1px #d1d1d1;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 16px;
+  font-family: "Inter";
+}
+
+.taskFormInput::placeholder {
+  font-size: 16px;
+  color: #d1d1d1;
+}
+
+.taskFormUserDropdownArrow {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+}
+
+/* description */
+
+.taskFormTextAreaContainer {
+  height: 88px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Inter";
+  font-size: 16px;
+}
+
+.taskFormDescriptionTextArea {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border: solid 1px #d1d1d1;
+  padding: 12px 0 0 12px;
+  font-size: 16px;
+  font-family: "Inter";
+  box-sizing: border-box;
+}
+
+.taskFormDescriptionTextArea::placeholder {
+  font-size: 16px;
+  color: #d1d1d1;
+}
+
+/* assigned to */
+
+.taskFormUserDropdownArrow {
+  position: absolute;
+}
+
+/* task prioritiy */
+
+.taskFormPrioButtonBox {
+  display: flex;
+  gap: 16px;
+}
+
+.taskFormPrioButtonUrgent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+}
+
+.taskFormPrioButtonUrgentOnClick {
+  color: #ffffff;
+  background-color: #ff3d00;
+}
+
+.taskFormPrioButtonUrgent:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+.taskFormPrioButtonMedium {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+}
+
+.taskFormPrioButtonMedium:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+.taskFormPrioButtonMediumOnClick {
+  color: #ffffff;
+  background-color: #ffa800;
+}
+
+.taskFormPrioButtonLow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  gap: 8px;
+  width: 121px;
+  height: 41px;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+}
+
+.taskFormPrioButtonLow:hover {
+  box-shadow: 2px 2px 2px #d1d1d1;
+  cursor: pointer;
+}
+
+.taskFormPrioButtonLowOnClick {
+  color: #ffffff;
+  background-color: #7ae229;
+}
+
+.taskFormPrioButtonImage {
+  width: 20px;
+  height: 14.5px;
+}
+
+.taskFormPrioButtonUrgentIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+.taskFormPrioButtonMediumIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+.taskFormPrioButtonLowIcon img {
+  filter: brightness(10000%) saturate(0);
+}
+
+/* category */
+
+.taskFormDropdownInput {
+  width: 100%;
+  height: 100%;
+  border: solid 1px #d1d1d1;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 16px;
+  font-family: "Inter";
+}
+
+.taskFormDropdownInput:focus {
+  border-radius: 10px 10px 0 0;
+}
+
+.taskFormDropdownInput::placeholder {
+  color: black;
+}
+
+/* subtask */
+
+.taskFormSubtaskInput {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+  background-color: #ffffff;
+  padding: 0 12px;
+  font-family: "Inter";
+  font-size: 16px;
+}
+
+.taskFormSubtaskInput::placeholder {
+  color: black;
+}
+
+.subtaskDividingLine {
+  height: 24px;
+  border: solid #a8a8a8 1px;
+}
+
+.taskFormInputContainer {
+  position: relative;
+}
+
+.iconWrapper {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.taskFormSubtaskPlusImage {
+  width: 24px;
+  height: 24px;
+}
