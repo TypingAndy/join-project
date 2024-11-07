@@ -781,13 +781,7 @@ textarea:active {
   padding-inline: 12px;
 }
 
-.addTaskDropDownSingleUserContainer {
-  height: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 12px;
-}
+
 
 .addTaskDropDownSingleUserContainer:hover {
   background-color: #d1d1d1;
