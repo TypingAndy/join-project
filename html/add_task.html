@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="../css/task_form.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/user_data.js"></script>
+    <script src="../scripts/contacts.js"></script>
     <script src="../scripts/add_task.js"></script>
     <script src="../templates/add_task_template.js"></script>
-    <script src="../scripts/add_task_dropdown.js"></script>
     <script src="../templates/task_form_template.js"></script>
   </head>
-  <body>
+  <body onload="fillCategoryDropdown(), fillUserDropdown()">
     <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
@@ -64,23 +65,6 @@
             </div>
             <div class="taskFormDropdownBox">
               <div id="userDropdown" class="taskFormDropdownContent">
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
               </div>
             </div>  
 
@@ -118,6 +102,7 @@
 
             <div class="taskFormInputContainer">
               <input
+                id="taskFormCategoryInput"
                 onfocus="switchArrowInsideDropdown(true, 'taskFormCategoryDropdownArrrow', 'categoryDropdown')"
                 onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown')"
                 placeholder="Select task category"
@@ -126,25 +111,8 @@
               <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
             </div>
             <div class="taskFormDropdownBox">
-              <div id="categoryDropdown" class="taskFormDropdownContent">
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-                <div>test</div>
-              </div>
+              <div id="categoryDropdown" class="taskFormDropdownContent"></div>
+            </div>
           </div>
 
           <div class="taskFormSectionBox">
@@ -169,11 +137,11 @@
             <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
           </div>
         </div>
+
       </div>
-
-      <!--Navbar-->
-
     </div>
+    
+      <!--Navbar-->
     <nav>
       <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
         <img src="../images/icons/Menu Icons.png" alt="" />

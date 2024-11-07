@@ -15,33 +15,34 @@ function switchArrowInsideDropdown(isFocused, currentImageID, currentDropdownID)
   }
 }
 
-// assigned to
+// user assign
 
 function fillUserDropdown() {
-
+  let userDropdown = document.getElementById("userDropdown");
+  console.log(sortedUsers);
+  
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let currentColor = getColorFromUser(i);
+    let blackWhite = addTaskAdaptFontColorToBackground(i);
+    userDropdown.innerHTML += nameListTemplate(i, sortedUsers, currentColor, blackWhite, allUserInitials);
+  }
 }
 
 // category
 
-// subtask
+function fillCategoryDropdown() {
+  let categoryDropdown = document.getElementById("categoryDropdown");
+console.log(categories);
 
-function focusOnSubtaskInput(isFocused) {
-  let plusIcon = document.getElementById("plusIcon");
-  let cancelIcon = document.getElementById("cancelIcon");
-  let dividingLine = document.getElementById("dividingLine");
-  let checkIcon = document.getElementById("checkIcon");
-
-  if (isFocused) {
-    plusIcon.style.display = "none";
-    cancelIcon.style.display = "inline";
-    dividingLine.style.display = "inline";
-    checkIcon.style.display = "inline";
-  } else {
-    plusIcon.style.display = "inline";
-    cancelIcon.style.display = "none";
-    dividingLine.style.display = "none";
-    checkIcon.style.display = "none";
+  for (let i = 0; i < categories.length; i++) {
+    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
   }
+}
+
+function chooseCategory(chosenCategory) {
+  console.log(chosenCategory);
+  
+  document.getElementById("taskFormCategoryInput").value = chosenCategory;
 }
 
 // priority
@@ -77,11 +78,26 @@ function highlightPrioButtonLow() {
   buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
 }
 
+// subtask
 
+function focusOnSubtaskInput(isFocused) {
+  let plusIcon = document.getElementById("plusIcon");
+  let cancelIcon = document.getElementById("cancelIcon");
+  let dividingLine = document.getElementById("dividingLine");
+  let checkIcon = document.getElementById("checkIcon");
 
-
-
-
+  if (isFocused) {
+    plusIcon.style.display = "none";
+    cancelIcon.style.display = "inline";
+    dividingLine.style.display = "inline";
+    checkIcon.style.display = "inline";
+  } else {
+    plusIcon.style.display = "inline";
+    cancelIcon.style.display = "none";
+    dividingLine.style.display = "none";
+    checkIcon.style.display = "none";
+  }
+}
 
 
 
@@ -200,19 +216,7 @@ function createUserInitials() {
 
 // addTask --------------------------- category
 
-function addTaskRenderCategoryDropdown() {
-  let categoryDropdown = document.getElementById("categoryDropDown");
-  categoryDropdown.innerHTML = "";
 
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
-  }
-}
-
-function chooseCategory(i) {
-  chosenCategory = i;
-  document.getElementById("addTaskChooseCategoryButton").innerHTML = categoryTemplate(chosenCategory);
-}
 
 // addTask --------------------------- subTask
 
