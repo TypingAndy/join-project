@@ -51,26 +51,28 @@
 
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Assigned to</div>
-            <div class="taskFormInputContainer">
+            <div onclick="checkIfDropdownIsClicked()" class="taskFormInputContainer">
               <input
                 id="taskFormUserInput"
-                onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow', 'userDropdown')"
-                onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown')"
+                onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow'), handleDropdown(true, 'userDropdown')"
+                onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown')"
                 onkeyup="addTaskFilterFunction()"
                 placeholder="Select contacts to assign"
                 class="taskFormDropdownInput"
               />
-              <img id="taskFormUserDropdownArrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
-
+              <img
+                id="taskFormUserDropdownArrow"
+                onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown')"
+                class="taskFormUserDropdownArrow img24px"
+    
+                src="../images/icons/arrow_drop_down_down.png"
+                alt=""
+              />
             </div>
             <div class="taskFormDropdownBox">
-              <div id="userDropdown" class="taskFormDropdownContent">
-              </div>
-            </div>  
-
+              <div id="userDropdown" class="taskFormDropdownContent"></div>
+            </div>
           </div>
-
-          
 
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
@@ -103,15 +105,15 @@
             <div class="taskFormInputContainer">
               <input
                 id="taskFormCategoryInput"
-                onfocus="switchArrowInsideDropdown(true, 'taskFormCategoryDropdownArrrow', 'categoryDropdown')"
-                onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown')"
+                onfocus="switchArrowInsideDropdown(true, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(true, 'categoryDropdown')"
+                onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(false, 'categoryDropdown')"
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
               />
               <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
             </div>
             <div class="taskFormDropdownBox">
-              <div id="categoryDropdown" class="taskFormDropdownContent"></div>
+              <div id="categoryDropdown" onclick="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown')" class="taskFormDropdownContent"></div>
             </div>
           </div>
 
@@ -137,11 +139,10 @@
             <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
           </div>
         </div>
-
       </div>
     </div>
-    
-      <!--Navbar-->
+
+    <!--Navbar-->
     <nav>
       <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
         <img src="../images/icons/Menu Icons.png" alt="" />
