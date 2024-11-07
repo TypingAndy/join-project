@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="../css/task_form.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/user_data.js"></script>
+    <script src="../scripts/contacts.js"></script>
     <script src="../scripts/add_task.js"></script>
     <script src="../templates/add_task_template.js"></script>
-    <script src="../scripts/add_task_dropdown.js"></script>
     <script src="../templates/task_form_template.js"></script>
   </head>
-  <body>
+  <body onload="fillCategoryDropdown(), fillUserDropdown()">
     <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
@@ -26,12 +27,12 @@
       </header>
 
       <!--addTaskSection-->
-      <div class="addTaskSection">
-        <div class="addTaskHeaderBox">
-          <div class="addTaskHeader">Add Task</div>
+      <div class="taskFormSection">
+        <div class="taskFormHeaderBox">
+          <div class="taskFormHeader">Add Task</div>
         </div>
 
-        <form id="taskForm" class="addTaskForm" action="">
+        <form id="taskForm" class="taskForm" action="">
           <!-- rednerTaskFormTemplate -->
 
           <div class="taskFormSectionBox">
@@ -53,13 +54,22 @@
             <div class="taskFormInputContainer">
               <input
                 id="taskFormUserInput"
-                onfocus="changeImageOnFocus(true, 'taskFormUserDropdownArrow')"
-                onblur="changeImageOnFocus(false, 'taskFormUserDropdownArrow')"
+                onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow'), handleDropdown(true, 'userDropdown')"
+                onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown')"
                 onkeyup="addTaskFilterFunction()"
                 placeholder="Select contacts to assign"
                 class="taskFormDropdownInput"
               />
-              <img id="taskFormUserDropdownArrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
+              <img
+                id="taskFormUserDropdownArrow"
+                onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown')"
+                class="taskFormUserDropdownArrow img24px"
+                src="../images/icons/arrow_drop_down_down.png"
+                alt=""
+              />
+            </div>
+            <div class="taskFormDropdownBox">
+              <div id="userDropdown" class="taskFormDropdownContent"></div>
             </div>
           </div>
 
@@ -93,12 +103,16 @@
 
             <div class="taskFormInputContainer">
               <input
-                onfocus="changeImageOnFocus(true, 'taskFormCategoryDropdownArrrow')"
-                onblur="changeImageOnFocus(false, 'taskFormCategoryDropdownArrrow')"
+                id="taskFormCategoryInput"
+                onfocus="switchArrowInsideDropdown(true, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(true, 'categoryDropdown')"
+                onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(false, 'categoryDropdown')"
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
               />
               <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
+            </div>
+            <div class="taskFormDropdownBox">
+              <div id="categoryDropdown" onclick="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown')" class="taskFormDropdownContent"></div>
             </div>
           </div>
 
@@ -106,7 +120,7 @@
             <div class="taskFormLabels">Subtasks</div>
 
             <div id="addSubtask" class="taskFormInputContainer">
-              <input onfocus="focusOnSubtaskInput(true)" onblur="focusOnSubtaskInput(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
+              <input onfocus="toggleSubtaskCheckOnFocus(true)" onblur="toggleSubtaskCheckOnFocus(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
               <div class="iconWrapper">
                 <img id="plusIcon" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
                 <img id="cancelIcon" class="taskFormSubtaskPlusImage" src="../images/icons/x_black_subtask.png" alt="" style="display: none" />
@@ -117,34 +131,34 @@
           </div>
         </form>
 
-        <div class="addTaskButton">
-          <div class="addTaskRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
+        <div class="taskFormCreateTaskButtonBox">
+          <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
           <div onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton">
             <div>Create Task</div>
-            <img class="addTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+            <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
           </div>
         </div>
       </div>
-
-      <!--Navbar-->
-      <nav>
-        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons.png" alt="" />
-          <p>Summary</p>
-        </div>
-        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-1.png" alt="" />
-          <p>Board</p>
-        </div>
-        <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-2.png" alt="" />
-          <p>Add Tasks</p>
-        </div>
-        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-3.png" alt="" />
-          <p>Contacts</p>
-        </div>
-      </nav>
     </div>
+
+    <!--Navbar-->
+    <nav>
+      <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
+        <img src="../images/icons/Menu Icons.png" alt="" />
+        <p>Summary</p>
+      </div>
+      <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
+        <img src="../images/icons/Menu Icons-1.png" alt="" />
+        <p>Board</p>
+      </div>
+      <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
+        <img src="../images/icons/Menu Icons-2.png" alt="" />
+        <p>Add Tasks</p>
+      </div>
+      <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
+        <img src="../images/icons/Menu Icons-3.png" alt="" />
+        <p>Contacts</p>
+      </div>
+    </nav>
   </body>
 </html>

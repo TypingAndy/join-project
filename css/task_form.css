@@ -16,14 +16,12 @@
   height: 48px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-family: "Inter";
+  flex-direction: column;
   font-size: 16px;
   cursor: pointer;
 }
 
 .taskFormInput {
-  width: 100%;
   height: 100%;
   border: solid 1px #d1d1d1;
   border-radius: 10px;
@@ -41,6 +39,57 @@
   position: absolute;
   right: 14px;
   top: 12px;
+  pointer-events: none;
+  transform: none;
+  transition: 450ms;
+}
+
+.taskFormDropdownBox {
+  position: relative;
+  margin-top: -8px;
+}
+
+.taskFormDropdownContent {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  max-height: 0;
+  overflow-y: scroll;
+  transition: max-height 0.3s ease;
+}
+
+/* taskFormBox */
+
+.taskFormSection {
+  margin-top: 80px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(246, 247, 248, 1);
+  padding: 0px 16px;
+}
+
+.taskFormHeaderBox {
+  width: 100%;
+  height: 112px;
+  font-weight: 700;
+  font-size: 47px;
+  position: relative;
+}
+
+.taskFormHeader {
+  top: 48px;
+  position: absolute;
+}
+
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 88px;
 }
 
 /* description */
@@ -75,6 +124,35 @@
 
 .taskFormUserDropdownArrow {
   position: absolute;
+}
+
+.userDropdownUserContainer {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.userDropdownUserContainer:hover {
+  background-color: #d1d1d1;
+}
+
+.taskFormUserInitials {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 45px;
+  border: 2px rgb(255, 255, 255) solid;
+  font-size: 10px;
+}
+
+.taskFormUserNameAndInitials {
+  width: 70%;
+  gap: 16px;
 }
 
 /* task prioritiy */
@@ -170,13 +248,11 @@
 /* category */
 
 .taskFormDropdownInput {
-  width: 100%;
   height: 100%;
   border: solid 1px #d1d1d1;
   border-radius: 10px;
   padding: 0 12px;
   font-size: 16px;
-  font-family: "Inter";
 }
 
 .taskFormDropdownInput:focus {
@@ -187,17 +263,23 @@
   color: black;
 }
 
+.categorieList {
+  padding: 16px 12px;
+}
+.categorieList:hover {
+  cursor: pointer;
+  background-color: #d1d1d1;
+}
+
 /* subtask */
 
 .taskFormSubtaskInput {
   position: relative;
-  width: 100%;
   height: 100%;
   border-radius: 10px;
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
   padding: 0 12px;
-  font-family: "Inter";
   font-size: 16px;
 }
 
@@ -210,10 +292,6 @@
   border: solid #a8a8a8 1px;
 }
 
-.taskFormInputContainer {
-  position: relative;
-}
-
 .iconWrapper {
   position: absolute;
   right: 14px;
@@ -223,6 +301,40 @@
 }
 
 .taskFormSubtaskPlusImage {
+  width: 24px;
+  height: 24px;
+}
+
+/* ------------------------- taskForm Post/Patch Button */
+
+.taskFormCreateTaskButtonBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskFormRequiredInfo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.createTaskButton {
+  display: flex;
+  gap: 4px;
+  background-color: #2a3647;
+  padding: 16px;
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.createTaskButton:hover {
+  cursor: pointer;
+  background-color: #29abe2;
+}
+
+.createTaskButtonCheckImage {
   width: 24px;
   height: 24px;
 }
