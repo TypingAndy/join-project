@@ -170,6 +170,13 @@
   gap: 16px;
 }
 
+.userIconsBox {
+  display: flex;
+  flex-wrap: wrap; 
+  overflow: hidden; 
+  gap: 5px; 
+}
+
 /* task prioritiy */
 
 .taskFormPrioButtonBox {

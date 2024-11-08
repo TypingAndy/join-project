@@ -15,7 +15,7 @@
     <script src="../templates/add_task_template.js"></script>
     <script src="../templates/task_form_template.js"></script>
   </head>
-  <body onload="fillCategoryDropdown(), fillUserDropdown()">
+  <body onload="fillCategoryDropdown(), fillUserDropdown(), insertUserIconsInsideAssign()">
     <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
@@ -72,9 +72,11 @@
                 alt=""
               />
             </div>
+
             <div class="taskFormDropdownBox">
               <div id="userDropdown" class="taskFormDropdownContent"></div>
             </div>
+            <div id="taskFormUserIcon" class="userIconsBox"></div>
           </div>
 
 
