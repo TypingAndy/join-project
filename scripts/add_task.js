@@ -34,7 +34,6 @@ function handleDropdown(isFocused, currentDropdownID) {
 async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   sortedUsers = await sortUserData();
-  console.log(sortedUsers);
 
   for (let i = 0; i < sortedUsers.length; i++) {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
@@ -69,20 +68,26 @@ function userFilterFunction() {
   }
 }
 
-// category
-
-function fillCategoryDropdown() {
-  let categoryDropdown = document.getElementById("categoryDropdown");
-  console.log(categories);
-
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+async function insertUserIconsInsideAssign() {
+  let sortedUsers = await sortUserData();
+  let userIconContainer = document.getElementById('taskFormUserIcon');
+  
+  for (let i = 0; i < sortedUsers.length; i++) {
+    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
   }
 }
 
-function chooseCategory(chosenCategory) {
-  console.log(chosenCategory);
-  document.getElementById("taskFormCategoryInput").value = chosenCategory;
+
+
+// date
+
+function insertMinSelectableDate() {
+  document.getElementById("dateInput").setAttribute("min", getCurrentDate());
+}
+
+function getCurrentDate() {
+  let currentDate = new Date().toISOString().split("T")[0];
+  return currentDate;
 }
 
 // priority
@@ -116,6 +121,22 @@ function highlightPrioButtonLow() {
   buttonLow.classList.add("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
   buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
   buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
+}
+
+// category
+
+function fillCategoryDropdown() {
+  let categoryDropdown = document.getElementById("categoryDropdown");
+  console.log(categories);
+
+  for (let i = 0; i < categories.length; i++) {
+    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+  }
+}
+
+function chooseCategory(chosenCategory) {
+  console.log(chosenCategory);
+  document.getElementById("taskFormCategoryInput").value = chosenCategory;
 }
 
 // subtask

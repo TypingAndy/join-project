@@ -5,7 +5,6 @@ let signUpData = {};
 let responseToJson;
 
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
-let sortedUsers;
 let policyAccepted = false;
 let passwordMatch = false;
 let chosenCategory = "";
@@ -50,14 +49,7 @@ function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
 
-function insertMinSelectableDate() {
-  document.getElementById("dateInput").setAttribute("min", getCurrentDate());
-}
 
-function getCurrentDate() {
-  let currentDate = new Date().toISOString().split("T")[0];
-  return currentDate;
-}
 
 function rednerTaskFormTemplate() {
   let taskForm = document.getElementById("taskForm");

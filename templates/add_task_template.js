@@ -11,6 +11,10 @@ function nameListTemplate(i, sortedUsers) {
   `;
 }
 
+function iconTemplate(i, sortedUsers) {
+ return /*html*/ `<div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>`
+}
+
 function categoryTemplate(chosenCategory) {
   return /*html*/ `
       <div class="fontInboxAlign">${chosenCategory}</div>
