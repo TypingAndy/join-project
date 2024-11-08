@@ -1,6 +1,6 @@
 function nameListTemplate(i, sortedUsers) {
   return /*html*/ `
-    <div onclick="addUserToTaskToggle('${sortedUsers[i].name}', '${sortedUsers[i].id}')" class="userDropdownUserContainer">
+    <div id="userContainerInsideUserDropdown${i}" onclick="addUserToTaskToggle('${i}', '${sortedUsers[i].id}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
       <div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>
       <div class="taskFormUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>

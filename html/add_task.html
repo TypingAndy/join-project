@@ -49,6 +49,10 @@
             </div>
           </div>
 
+
+
+
+
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Assigned to</div>
             <div class="taskFormInputContainer">
@@ -56,7 +60,7 @@
                 id="taskFormUserInput"
                 onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow'), handleDropdown(true, 'userDropdown')"
                 onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown')"
-                onkeyup="addTaskFilterFunction()"
+                onkeyup="userFilterFunction()"
                 placeholder="Select contacts to assign"
                 class="taskFormDropdownInput"
               />
@@ -73,10 +77,19 @@
             </div>
           </div>
 
+
+
+
+
+
+
+
+          
+
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
             <div class="taskFormInputContainer">
-              <input id="dateInput" class="taskFormInput" type="date" min="" />
+              <input id="dateInput" onclick="insertMinSelectableDate()" class="taskFormInput" required type="date" min="" />
             </div>
           </div>
 
@@ -108,6 +121,7 @@
                 onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(false, 'categoryDropdown')"
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
+                required
               />
               <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
             </div>

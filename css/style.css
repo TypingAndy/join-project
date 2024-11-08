@@ -175,6 +175,10 @@ textarea:active {
   z-index: 91;
 }
 
+.displayNone {
+  display: none;
+}
+
 /*----------------------------- add Task AddContact */
 
 .addTaskSubtaskImageBox {

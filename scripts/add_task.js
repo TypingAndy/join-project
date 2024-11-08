@@ -1,8 +1,3 @@
-function rednerTaskFormTemplate() {
-  let taskForm = document.getElementById("taskForm");
-  taskForm.innerHTML = taskFormTemplate();
-}
-
 function switchArrowInsideDropdown(isFocused, currentImageID) {
   let image = document.getElementById(currentImageID);
 
@@ -19,25 +14,26 @@ function switchArrowInsideDropdown(isFocused, currentImageID) {
 
 function handleDropdown(isFocused, currentDropdownID) {
   let dropdown = document.getElementById(currentDropdownID);
+
   if (isFocused) {
     dropdown.style.maxHeight = "200px";
+    dropdown.style.border = "2px #29abe2 solid";
+    dropdown.style.borderTop = "none";
+    dropdown.style.overflowY = "scroll";
   } else {
     setTimeout(() => {
       dropdown.style.maxHeight = "0";
+      dropdown.style.border = "none";
+      dropdown.style.overflow = "hidden";
     }, 80);
   }
-}
-
-function checkIfDropdownIsClicked() {
-  let isClicked = true;
-  return isClicked;
 }
 
 // user assign
 
 async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
-  let sortedUsers = await sortUserData();
+  sortedUsers = await sortUserData();
   console.log(sortedUsers);
 
   for (let i = 0; i < sortedUsers.length; i++) {
@@ -45,34 +41,33 @@ async function fillUserDropdown() {
   }
 }
 
-// function addUserToTaskToggle(name, i, userFirebaseId) {
-//   removeOrAddUserToTask(name, i, userFirebaseId);
-//   addUserSymbolsToUserAssign();
-// }
+function addUserToTaskToggle(i) {
+  let check = document.getElementById(`check${i}`);
+  let noCheck = document.getElementById(`noCheck${i}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
 
-// function removeOrAddUserToTask(name, i, userFirebaseId) {
-//   let check = document.getElementById(`check${i}`);
-//   let noCheck = document.getElementById(`noCheck${i}`);
-//   let assignUserID = document.getElementById(`addTaskAssignUserId${i}`);
-//   let blackWhite = addTaskAdaptFontColorToBackground(i);
+  check.classList.toggle("displayNone");
+  noCheck.classList.toggle("displayNone");
 
-//   if (checkIfUserIsAlreadyAddedToTask(userFirebaseId)) {
-//     addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId);
-//   } else {
-//     removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID);
-//   }
-// }
+  userContainer.classList.toggle("userDropdownUserContainerBackground");
+  userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
+}
 
-// function checkIfUserIsAlreadyAddedToTask(userFirebaseId) {
-//   return !addTaskAssignedUserFirebaseIds.includes(userFirebaseId);
-// }
+function userFilterFunction() {
+  let input = document.getElementById("taskFormUserInput");
+  let filter = input.value.toUpperCase();
 
-// function removeUserFromTaskByIndex(userFirebaseId, check, noCheck, assignUserID) {
-//   let userIndex = addTaskAssignedUserFirebaseIds.indexOf(userFirebaseId);
-//   if (userIndex > -1) {
-//     removeUserFromTask(check, noCheck, assignUserID, userIndex);
-//   }
-// }
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let userName = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
+  }
+}
 
 // category
 
@@ -146,59 +141,59 @@ function toggleSubtaskCheckOnFocus(isFocused) {
 
 // subtask
 
-function addTaskOpenAddSubtask() {
-  let inputBox = document.getElementById("addSubtaskInputBox");
-  let inputField = document.getElementById("addSubtaskInput");
-  let addSubtask = document.getElementById("addSubtask");
+// function addTaskOpenAddSubtask() {
+//   let inputBox = document.getElementById("addSubtaskInputBox");
+//   let inputField = document.getElementById("addSubtaskInput");
+//   let addSubtask = document.getElementById("addSubtask");
 
-  addSubtask.classList.add("displayNone");
-  inputBox.classList.remove("displayNone");
-  inputBox.classList.remove("displayNone");
-  inputField.focus();
-}
+//   addSubtask.classList.add("displayNone");
+//   inputBox.classList.remove("displayNone");
+//   inputBox.classList.remove("displayNone");
+//   inputField.focus();
+// }
 
-function addTaskWriteSubtaskBoard() {
-  let subtaskBoard = document.getElementById("subtaskBoard");
-  subtaskBoard.innerHTML = "";
-  for (let i = 0; i < subtasks.length; i++) {
-    subtaskBoard.innerHTML += subtaskTemplate(i);
-  }
-}
+// function addTaskWriteSubtaskBoard() {
+//   let subtaskBoard = document.getElementById("subtaskBoard");
+//   subtaskBoard.innerHTML = "";
+//   for (let i = 0; i < subtasks.length; i++) {
+//     subtaskBoard.innerHTML += subtaskTemplate(i);
+//   }
+// }
 
-function addTaskRewriteSubtask(i) {
-  let subtask = subtasks[i].subtask;
-  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
-  rewriteInputBox.value = subtask;
-  rewriteInputBox.classList.toggle("displayNone");
-  document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
-  rewriteInput.value = subtasks[i].subtask;
-  rewriteInput.focus();
-}
+// function addTaskRewriteSubtask(i) {
+//   let subtask = subtasks[i].subtask;
+//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+//   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
+//   rewriteInputBox.value = subtask;
+//   rewriteInputBox.classList.toggle("displayNone");
+//   document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
+//   rewriteInput.value = subtasks[i].subtask;
+//   rewriteInput.focus();
+// }
 
-function addTaskDeleteSubtaskFromBoard(i) {
-  subtasks.splice(i, 1);
-}
+// function addTaskDeleteSubtaskFromBoard(i) {
+//   subtasks.splice(i, 1);
+// }
 
-function addTaskAcceptRewriting(i) {
-  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  subtasks[i].subtask = rewriteInput.value;
-  document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
-  document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
-  addTaskWriteSubtaskBoard();
-}
+// function addTaskAcceptRewriting(i) {
+//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+//   subtasks[i].subtask = rewriteInput.value;
+//   document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
+//   document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
+//   addTaskWriteSubtaskBoard();
+// }
 
-function addTaskCancelRewritingSubtask(i) {
-  addTaskDeleteRewritingSubtask(i);
-  addTaskAcceptRewriting(i);
-}
+// function addTaskCancelRewritingSubtask(i) {
+//   addTaskDeleteRewritingSubtask(i);
+//   addTaskAcceptRewriting(i);
+// }
 
-function readIdFromSubtask(id) {
-  let fullId = id;
-  let idNumber = fullId.slice(-1);
-  globalSubtaskId = idNumber;
-  console.log(idNumber);
-}
+// function readIdFromSubtask(id) {
+//   let fullId = id;
+//   let idNumber = fullId.slice(-1);
+//   globalSubtaskId = idNumber;
+//   console.log(idNumber);
+// }
 
 // document.addEventListener("click", function (event) {
 //   if (globalSubtaskId !== "") {
@@ -215,17 +210,17 @@ function readIdFromSubtask(id) {
 //   }
 // });
 
-function addTaskDeleteRewritingSubtask(i) {
-  let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-  rewriteInput.value = subtasks[i].subtask;
-  rewriteInput.focus();
-}
+// function addTaskDeleteRewritingSubtask(i) {
+//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
+//   rewriteInput.value = subtasks[i].subtask;
+//   rewriteInput.focus();
+// }
 
-function acceptSubtaskOnEnterKeyTrigger(event) {
-  if (event.key === "Enter" || event.keyCode === 13) {
-    addTaskAddSubtask();
-  }
-}
+// function acceptSubtaskOnEnterKeyTrigger(event) {
+//   if (event.key === "Enter" || event.keyCode === 13) {
+//     addTaskAddSubtask();
+//   }
+// }
 
 // collecting DAta
 
