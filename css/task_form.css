@@ -42,6 +42,7 @@
   pointer-events: none;
   transform: none;
   transition: 450ms;
+  cursor: pointer;
 }
 
 .taskFormDropdownBox {
@@ -55,10 +56,12 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  box-sizing: border-box;
   background-color: #ffffff;
   max-height: 0;
   overflow-y: scroll;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.15s ease, border 0.1s ease;
 }
 
 /* taskFormBox */
@@ -122,9 +125,7 @@
 
 /* assigned to */
 
-.taskFormUserDropdownArrow {
-  position: absolute;
-}
+
 
 .userDropdownUserContainer {
   height: 56px;
@@ -135,8 +136,22 @@
   cursor: pointer;
 }
 
-.userDropdownUserContainer:hover {
+.userDropdownUserContainerBackground {
+  background-color: #ffffff;
+  color: black;
+}
+
+.userDropdownUserContainerBackground:hover {
   background-color: #d1d1d1;
+}
+
+.userDropdownUserContainerBackgroundToggled {
+  background-color: #2a3647;
+  color: white;
+}
+
+.userDropdownUserContainerBackgroundToggled:hover {
+  background-color: #091931;
 }
 
 .taskFormUserInitials {
@@ -337,4 +352,8 @@
 .createTaskButtonCheckImage {
   width: 24px;
   height: 24px;
+}
+
+.displayNone {
+  display: none;
 }

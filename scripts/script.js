@@ -5,7 +5,7 @@ let signUpData = {};
 let responseToJson;
 
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
-
+let sortedUsers;
 let policyAccepted = false;
 let passwordMatch = false;
 let chosenCategory = "";
@@ -59,29 +59,17 @@ function getCurrentDate() {
   return currentDate;
 }
 
-function addUserToTask(name, i, check, noCheck, assignUserID, blackWhite, userFirebaseId) {
-  addTaskCurrentUser.push(name);
-  taskAssignedUserInitials.push(allUserInitials[i]);
-  addTaskAssignedUserColors.push(sortedUsers[i].color);
-  addTaskAssignedUserFontColors.push(blackWhite);
-  addTaskAssignedUserFirebaseIds.push(userFirebaseId);
-
-  check.classList.remove("displayNone");
-  noCheck.classList.add("displayNone");
-  assignUserID.classList.add("addTaskNewBackgroundChecked");
+function rednerTaskFormTemplate() {
+  let taskForm = document.getElementById("taskForm");
+  taskForm.innerHTML = taskFormTemplate();
 }
 
-function removeUserFromTask(check, noCheck, assignUserID, userIndex) {
-  addTaskCurrentUser.splice(userIndex, 1);
-  taskAssignedUserInitials.splice(userIndex, 1);
-  addTaskAssignedUserColors.splice(userIndex, 1);
-  addTaskAssignedUserFontColors.splice(userIndex, 1);
-  addTaskAssignedUserFirebaseIds.splice(userIndex, 1);
 
-  check.classList.add("displayNone");
-  noCheck.classList.remove("displayNone");
-  assignUserID.classList.remove("addTaskNewBackgroundChecked");
-}
+
+
+
+
+
 
 function addTaskAddSubtaskCancel() {
   document.getElementById("addSubtaskInput").value = "";
