@@ -44,12 +44,15 @@ function addUserToTaskToggle(i) {
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
+  let userIcon = document.getElementById(`taskFormUserIcon${i}`);
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
 
   userContainer.classList.toggle("userDropdownUserContainerBackground");
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
+
+  userIcon.classList.toggle("displayNone");
 }
 
 function userFilterFunction() {
@@ -70,14 +73,12 @@ function userFilterFunction() {
 
 async function insertUserIconsInsideAssign() {
   let sortedUsers = await sortUserData();
-  let userIconContainer = document.getElementById('taskFormUserIcon');
-  
+  let userIconContainer = document.getElementById("taskFormUserIcon");
+
   for (let i = 0; i < sortedUsers.length; i++) {
     userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
   }
 }
-
-
 
 // date
 
@@ -160,90 +161,52 @@ function toggleSubtaskCheckOnFocus(isFocused) {
   }
 }
 
-// subtask
+function addSubtaskToList() {
+  let subtaskInput = document.getElementById("taskFormSubtaskInput").value;
 
-// function addTaskOpenAddSubtask() {
-//   let inputBox = document.getElementById("addSubtaskInputBox");
-//   let inputField = document.getElementById("addSubtaskInput");
-//   let addSubtask = document.getElementById("addSubtask");
+  subtasks.push(subtaskInput);
+}
 
-//   addSubtask.classList.add("displayNone");
-//   inputBox.classList.remove("displayNone");
-//   inputBox.classList.remove("displayNone");
-//   inputField.focus();
-// }
+function renderSubtasksToList() {
+  let subtaskList = document.getElementById("taskFormSubtaskList");
+  subtaskList.innerHTML = "";
+  for (let i = 0; i < subtasks.length; i++) {
+    subtaskList.innerHTML += subtaskTemplate(i);
+  }
+}
 
-// function addTaskWriteSubtaskBoard() {
-//   let subtaskBoard = document.getElementById("subtaskBoard");
-//   subtaskBoard.innerHTML = "";
-//   for (let i = 0; i < subtasks.length; i++) {
-//     subtaskBoard.innerHTML += subtaskTemplate(i);
-//   }
-// }
+function toggleRewriteInputInsideSubtask(i) {
+  let subtaskTitle = document.getElementById(`taskFormSubtaskTitle(${i})`);
+  let rewriteInput = document.getElementById(`taskFormSubtaskRewriteInput(${i})`);
+  subtaskTitle.classList.toggle("displayNone");
+  rewriteInput.classList.toggle("displayNone");
+  rewriteInput.value = subtaskTitle.textContent;
+}
 
-// function addTaskRewriteSubtask(i) {
-//   let subtask = subtasks[i].subtask;
-//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-//   let rewriteInputBox = document.getElementById(`addTaskSubtaskRewriteInputBox${[i]}`);
-//   rewriteInputBox.value = subtask;
-//   rewriteInputBox.classList.toggle("displayNone");
-//   document.getElementById(`addTasksSubtask${[i]}`).classList.toggle("displayNone");
-//   rewriteInput.value = subtasks[i].subtask;
-//   rewriteInput.focus();
-// }
+function toggleButtonsInsideSubtask(i) {
+  let iconBox = document.getElementById(`subtaskIconBox(${i})`);
+  let rewriteIconBox = document.getElementById(`subtaskRewriteIconBox(${i})`);
 
-// function addTaskDeleteSubtaskFromBoard(i) {
-//   subtasks.splice(i, 1);
-// }
+  iconBox.classList.toggle("displayNone");
+  rewriteIconBox.classList.toggle("displayNone");
+}
 
-// function addTaskAcceptRewriting(i) {
-//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-//   subtasks[i].subtask = rewriteInput.value;
-//   document.getElementById(`addTaskSubtaskRewriteInputBox${i}`).classList.toggle("displayNone");
-//   document.getElementById(`addTasksSubtask${i}`).classList.toggle("displayNone");
-//   addTaskWriteSubtaskBoard();
-// }
+function toggleListMarkerInsideSubtask(i) {
+  let listMarker = document.getElementById(`subtaskSingleListContent(${i})`);
+  listMarker.classList.toggle("no-marker");
+}
 
-// function addTaskCancelRewritingSubtask(i) {
-//   addTaskDeleteRewritingSubtask(i);
-//   addTaskAcceptRewriting(i);
-// }
+function pushRewrittenSubtask(i) {
+  let rewrittenSubtask = document.getElementById(`taskFormSubtaskRewriteInput(${i})`).value;
+  subtasks.splice(i, 1, rewrittenSubtask);
+  console.log(subtasks);
+}
 
-// function readIdFromSubtask(id) {
-//   let fullId = id;
-//   let idNumber = fullId.slice(-1);
-//   globalSubtaskId = idNumber;
-//   console.log(idNumber);
-// }
+function deleteSubtaskFromList(i) {
+  subtasks.splice(i, 1);
+}
 
-// document.addEventListener("click", function (event) {
-//   if (globalSubtaskId !== "") {
-//     let i = globalSubtaskId;
-//     let cancelRewriting = document.getElementById(`addTaskCancelRewritingSubtask${i}`);
-//     let acceptRewriting = document.getElementById(`addTaskAcceptRewritingSubtask${i}`);
-//     let subtaskRewriteBox = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-
-//     if (event.target !== cancelRewriting && event.target !== acceptRewriting && event.target !== subtaskRewriteBox) {
-//       if (document.body.contains(event.target)) {
-//         addTaskCancelRewritingSubtask(i);
-//       }
-//     }
-//   }
-// });
-
-// function addTaskDeleteRewritingSubtask(i) {
-//   let rewriteInput = document.getElementById(`addTaskSubtaskRewriteInput${i}`);
-//   rewriteInput.value = subtasks[i].subtask;
-//   rewriteInput.focus();
-// }
-
-// function acceptSubtaskOnEnterKeyTrigger(event) {
-//   if (event.key === "Enter" || event.keyCode === 13) {
-//     addTaskAddSubtask();
-//   }
-// }
-
-// collecting DAta
+// collecting Data
 
 function getNewTaskInputData() {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
