@@ -12,7 +12,7 @@ function nameListTemplate(i, sortedUsers) {
 }
 
 function iconTemplate(i, sortedUsers) {
- return /*html*/ `<div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>`
+  return /*html*/ `<div id=taskFormUserIcon${i} class="taskFormUserInitials displayNone" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>`;
 }
 
 function categoryTemplate(chosenCategory) {
@@ -23,23 +23,25 @@ function categoryTemplate(chosenCategory) {
 
 function subtaskTemplate(i) {
   return /*html*/ `
-    <!-- <li class="addTaskSingleListSubtask">
-      <div id="addTaskSubtaskRewriteInputBox${[i]}" class="addTaskRewriteSubtaskFlex displayNone">
-        <input id="addTaskSubtaskRewriteInput${i}" onclick="readIdFromSubtask(this.id)" class="taskBoardRewriteSubtaskInput" type="text">
-        <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskCancelRewritingSubtask(${i})" id="addTaskCancelRewritingSubtask${i}" class="img24px" src="../images/icons/trashcan_black.png" alt="">
-          <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskAcceptRewriting(${i})" id="addTaskAcceptRewritingSubtask${i}" class="img24px" src="../images/icons/check_black.png" alt="">
+    <li id="subtaskSingleListContent(${i})" class="taskFormSubtaskListBox">
+      <div id="addTasksSubtask(${i})" class="taskFormSubtaskListSingle">
+
+        <div id="taskFormSubtaskTitle(${i})">${subtasks[i]}</div>
+        <input id="taskFormSubtaskRewriteInput(${i})" type="text" class="subtaskRewriteInput displayNone">
+
+        <div id="subtaskIconBox(${i})" class="subtaskIconBox">
+          <img onclick="renderSubtasksToList(),toggleRewriteInputInsideSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleListMarkerInsideSubtask(${i})" class="img24px" src="../images/icons/pencil_black.png">
+          <div class="taskFormSubtaskDividingLine"></div>
+          <img onclick="deleteSubtaskFromList(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/trashcan_black.png">
         </div>
-      </div>
-      <div id="addTasksSubtask${[i]}" class="addTaskDisplayFlexer">
-        <div>${subtasks[i].subtask}</div>
-        <div class="addTaskSubtaskIconBox">
-          <img onclick="addTaskWriteSubtaskBoard(), addTaskRewriteSubtask(${i})" class="img24px" src="../images/icons/pencil_black.png">
-          <div class="addTaskSubtaskDividingLine"></div>
-          <img onclick="addTaskDeleteSubtaskFromBoard(${i}),  addTaskWriteSubtaskBoard()" class="img24px" src="../images/icons/trashcan_black.png">
+
+        <div id="subtaskRewriteIconBox(${i})" class="subtaskRewriteIconBox displayNone">
+          <img onclick="toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px"  src="../images/icons/x_black_subtask.png">
+          <div class="taskFormSubtaskDividingLine"></div>
+          <img onclick="pushRewrittenSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/check_black.png">
         </div>
+
       </div>
-    </li> -->
+    </li>
     `;
 }

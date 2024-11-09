@@ -125,8 +125,6 @@
 
 /* assigned to */
 
-
-
 .userDropdownUserContainer {
   height: 56px;
   display: flex;
@@ -172,9 +170,9 @@
 
 .userIconsBox {
   display: flex;
-  flex-wrap: wrap; 
-  overflow: hidden; 
-  gap: 5px; 
+  flex-wrap: wrap;
+  overflow: hidden;
+  gap: 5px;
 }
 
 /* task prioritiy */
@@ -324,6 +322,55 @@
 
 .taskFormSubtaskPlusImage {
   width: 24px;
+  height: 24px;
+}
+
+.taskFormSubtaskListBox {
+  position: relative;
+  height: 48px;
+}
+
+.taskFormSubtaskListSingle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+}
+
+.subtaskRewriteInput {
+  position: absolute;
+  height: 100%;
+  width: calc(100% + 40px);
+  font-size: 16px;
+  padding: 4px 40px;
+  left: -40px;
+  border: 0;
+  border-bottom: 2px solid #29abe2;
+  box-sizing: border-box;
+}
+
+.subtaskIconBox {
+  display: flex;
+  gap: 4px;
+  padding-right: 14px;
+}
+
+.subtaskRewriteIconBox {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  gap: 4px;
+  padding-right: 14px;
+}
+
+.no-marker {
+  list-style-type: none;
+}
+
+.taskFormSubtaskDividingLine {
+  border: 1px solid #a8a8a8;
   height: 24px;
 }
 
