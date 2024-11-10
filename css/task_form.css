@@ -161,6 +161,7 @@
   border-radius: 45px;
   border: 2px rgb(255, 255, 255) solid;
   font-size: 10px;
+  color: black;
 }
 
 .taskFormUserNameAndInitials {
@@ -174,6 +175,11 @@
   overflow: hidden;
   gap: 5px;
 }
+
+.maxHeight200 {
+  max-height: 200px;
+}
+
 
 /* task prioritiy */
 
