@@ -45,6 +45,7 @@ function addUserToTaskToggle(i) {
   let noCheck = document.getElementById(`noCheck${i}`);
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
   let userIcon = document.getElementById(`taskFormUserIcon${i}`);
+  let userDropdown = document.getElementById('userDropdown');
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
@@ -53,6 +54,8 @@ function addUserToTaskToggle(i) {
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
 
   userIcon.classList.toggle("displayNone");
+
+  userDropdown.classList.add("maxHeight200");
 }
 
 function userFilterFunction() {
@@ -175,6 +178,14 @@ function renderSubtasksToList() {
   }
 }
 
+function openRewriteInput(i) {
+renderSubtasksToList();
+toggleRewriteInputInsideSubtask(i);
+toggleButtonsInsideSubtask(i);
+toggleListMarkerInsideSubtask(i);
+focusOnInput(i);
+}
+
 function toggleRewriteInputInsideSubtask(i) {
   let subtaskTitle = document.getElementById(`taskFormSubtaskTitle(${i})`);
   let rewriteInput = document.getElementById(`taskFormSubtaskRewriteInput(${i})`);
@@ -194,6 +205,11 @@ function toggleButtonsInsideSubtask(i) {
 function toggleListMarkerInsideSubtask(i) {
   let listMarker = document.getElementById(`subtaskSingleListContent(${i})`);
   listMarker.classList.toggle("no-marker");
+}
+
+function focusOnInput(i) {
+  let rewriteInput = document.getElementById(`taskFormSubtaskRewriteInput(${i})`);
+  rewriteInput.focus();
 }
 
 function pushRewrittenSubtask(i) {

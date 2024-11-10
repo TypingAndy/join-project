@@ -26,11 +26,11 @@ function subtaskTemplate(i) {
     <li id="subtaskSingleListContent(${i})" class="taskFormSubtaskListBox">
       <div id="addTasksSubtask(${i})" class="taskFormSubtaskListSingle">
 
-        <div id="taskFormSubtaskTitle(${i})">${subtasks[i]}</div>
+        <div id="taskFormSubtaskTitle(${i})" ondblclick="openRewriteInput(${i})">${subtasks[i]}</div>
         <input id="taskFormSubtaskRewriteInput(${i})" type="text" class="subtaskRewriteInput displayNone">
 
         <div id="subtaskIconBox(${i})" class="subtaskIconBox">
-          <img onclick="renderSubtasksToList(),toggleRewriteInputInsideSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleListMarkerInsideSubtask(${i})" class="img24px" src="../images/icons/pencil_black.png">
+          <img onclick="openRewriteInput(${i})" class="img24px" src="../images/icons/pencil_black.png">
           <div class="taskFormSubtaskDividingLine"></div>
           <img onclick="deleteSubtaskFromList(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/trashcan_black.png">
         </div>
