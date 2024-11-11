@@ -40,22 +40,24 @@ async function fillUserDropdown() {
   }
 }
 
-function addUserToTaskToggle(i) {
+function addUserToTaskToggleCss(i) {
   let check = document.getElementById(`check${i}`);
   let noCheck = document.getElementById(`noCheck${i}`);
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
   let userIcon = document.getElementById(`taskFormUserIcon${i}`);
-  let userDropdown = document.getElementById('userDropdown');
+  let userDropdown = document.getElementById("userDropdown");
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
-
   userContainer.classList.toggle("userDropdownUserContainerBackground");
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
-
   userIcon.classList.toggle("displayNone");
-
   userDropdown.classList.add("maxHeight200");
+}
+
+function clearUserInputInsideTaskFrom() {
+  let userInput = document.getElementById("taskFormUserInput");
+  userInput.value = "";
 }
 
 function userFilterFunction() {
@@ -82,6 +84,13 @@ async function insertUserIconsInsideAssign() {
     userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  let dropdown = document.getElementById("userDropdown");
+  dropdown.addEventListener("mousedown", function (event) {
+    event.preventDefault();
+  });
+});
 
 // date
 
@@ -179,11 +188,11 @@ function renderSubtasksToList() {
 }
 
 function openRewriteInput(i) {
-renderSubtasksToList();
-toggleRewriteInputInsideSubtask(i);
-toggleButtonsInsideSubtask(i);
-toggleListMarkerInsideSubtask(i);
-focusOnInput(i);
+  renderSubtasksToList();
+  toggleRewriteInputInsideSubtask(i);
+  toggleButtonsInsideSubtask(i);
+  toggleListMarkerInsideSubtask(i);
+  focusOnInput(i);
 }
 
 function toggleRewriteInputInsideSubtask(i) {
@@ -221,6 +230,16 @@ function pushRewrittenSubtask(i) {
 function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  let subtaskBox = document.getElementById('taskFormSubtaskList');
+
+  document.addEventListener("mousedown", function (event) {
+    if (!subtaskBox.contains(event.target)) {
+      renderSubtasksToList();
+    }
+  });
+});
 
 // collecting Data
 
