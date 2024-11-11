@@ -15,7 +15,7 @@
     <script src="../templates/add_task_template.js"></script>
     <script src="../templates/task_form_template.js"></script>
   </head>
-  <body onload="fillCategoryDropdown(), fillUserDropdown(), insertUserIconsInsideAssign(), renderSubtasksToList()">
+  <body onload="taskFormOnload()">
     <!-- onload="rednerTaskFormTemplate()" -->
     <div class="joinWrapper">
       <!--header-->
@@ -38,7 +38,7 @@
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Title<span style="color: red">*</span></div>
               <div class="taskFormInputContainer">
-                <input id="taskTitleInput" class="taskFormInput" required type="text" placeholder="Enter a Title" />
+                <input id="taskTitleInput" class="taskFormInput"  type="text" placeholder="Enter a Title" />
               </div>
             </div>
 
@@ -55,7 +55,7 @@
                 <input
                   id="taskFormUserInput"
                   onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow'), handleDropdown(true, 'userDropdown')"
-                  onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown')"
+                  onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown'), clearUserInput(), userFilterFunction()"
                   onkeyup="userFilterFunction()"
                   placeholder="Select contacts to assign"
                   class="taskFormDropdownInput"
@@ -78,22 +78,22 @@
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
               <div class="taskFormInputContainer">
-                <input id="dateInput" onclick="insertMinSelectableDate()" class="taskFormInput" required type="date" min="" />
+                <input id="dateInput" onclick="insertMinSelectableDate()" class="taskFormInput"  type="date" min="" />
               </div>
             </div>
 
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Prio</div>
               <div class="taskFormPrioButtonBox">
-                <div onclick="setTaskPrio('urgent')" class="taskFormPrioButtonUrgent">
+                <div onclick="setTaskPrio('Urgent')" class="taskFormPrioButtonUrgent">
                   <div>Urgent</div>
                   <img class="taskFormPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
                 </div>
-                <div onclick="setTaskPrio('medium')" class="taskFormPrioButtonMedium">
+                <div onclick="setTaskPrio('Medium')" class="taskFormPrioButtonMedium">
                   <div>Medium</div>
                   <img class="taskFormPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
                 </div>
-                <div onclick="setTaskPrio('low')" class="taskFormPrioButtonLow">
+                <div onclick="setTaskPrio('Low')" class="taskFormPrioButtonLow">
                   <div>Low</div>
                   <img class="taskFormPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
                 </div>
@@ -110,7 +110,7 @@
                   onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(false, 'categoryDropdown')"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
-                  required
+                  
                 />
                 <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
               </div>
@@ -124,7 +124,7 @@
               <div class="taskFormLabels">Subtasks</div>
 
               <div id="addSubtask" class="taskFormInputContainer">
-                <input id="taskFormSubtaskInput" onfocus="toggleSubtaskCheckOnFocus(true)" onblur="toggleSubtaskCheckOnFocus(false)" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
+                <input id="taskFormSubtaskInput" onfocus="toggleSubtaskCheckOnFocus(true)" onblur="toggleSubtaskCheckOnFocus(false), clearSubtaskInput()" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
                 <div class="iconWrapper">
                   <img id="plusIcon" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
                   <img id="cancelIcon" class="taskFormSubtaskPlusImage" src="../images/icons/x_black_subtask.png" alt="" style="display: none" />
@@ -137,10 +137,10 @@
 
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-              <button onclick="postTaskData(), window.location.href='board.html'" class="createTaskButton" type="submit">
+              <div onclick="postTaskData('to do')" class="createTaskButton" type="submit">
                 <div>Create Task</div>
                 <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
-              </button>
+              </div>
             </div>
         </form>
       </div>
