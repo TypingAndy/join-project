@@ -1,3 +1,14 @@
+//add task onload function
+
+function taskFormOnload() {
+  fillCategoryDropdown();
+  fillUserDropdown();
+  insertUserIconsInsideAssign();
+  renderSubtasksToList();
+}
+
+// often used functions
+
 function switchArrowInsideDropdown(isFocused, currentImageID) {
   let image = document.getElementById(currentImageID);
 
@@ -85,6 +96,11 @@ async function insertUserIconsInsideAssign() {
   }
 }
 
+function clearUserInput() {
+  let userInput = document.getElementById('taskFormUserInput');
+  userInput.value = "";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   let dropdown = document.getElementById("userDropdown");
   dropdown.addEventListener("mousedown", function (event) {
@@ -111,29 +127,19 @@ function setTaskPrio(priority) {
 }
 
 function setTaskPrioButtonColorSwitch(priority) {
-  buttonUrgent = document.getElementsByClassName("taskFormPrioButtonUrgent")[0];
-  buttonMedium = document.getElementsByClassName("taskFormPrioButtonMedium")[0];
-  buttonLow = document.getElementsByClassName("taskFormPrioButtonLow")[0];
+  let buttons = {
+    Urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
+    Medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
+    Low: document.getElementsByClassName("taskFormPrioButtonLow")[0]
+  };
 
-  if (priority == "urgent") highlightPrioButtonUrgent();
-  if (priority == "medium") highlightPrioButtonMedium();
-  if (priority == "low") highlightPrioButtonLow();
-}
-
-function highlightPrioButtonUrgent() {
-  buttonUrgent.classList.add("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
-  buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
-  buttonLow.classList.remove("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
-}
-function highlightPrioButtonMedium() {
-  buttonMedium.classList.add("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
-  buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
-  buttonLow.classList.remove("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
-}
-function highlightPrioButtonLow() {
-  buttonLow.classList.add("taskFormPrioButtonLowOnClick", "taskFormPrioButtonLowIcon");
-  buttonUrgent.classList.remove("taskFormPrioButtonUrgentOnClick", "taskFormPrioButtonUrgentIcon");
-  buttonMedium.classList.remove("taskFormPrioButtonMediumOnClick", "taskFormPrioButtonMediumIcon");
+  Object.keys(buttons).forEach((prio) => {
+    if (prio === priority) {
+      buttons[prio].classList.add(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+    } else {
+      buttons[prio].classList.remove(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+    }
+  });
 }
 
 // category
@@ -148,8 +154,8 @@ function fillCategoryDropdown() {
 }
 
 function chooseCategory(chosenCategory) {
-  console.log(chosenCategory);
   document.getElementById("taskFormCategoryInput").value = chosenCategory;
+  return chosenCategory;
 }
 
 // subtask
@@ -171,6 +177,11 @@ function toggleSubtaskCheckOnFocus(isFocused) {
     dividingLine.style.display = "none";
     checkIcon.style.display = "none";
   }
+}
+
+function clearSubtaskInput() {
+  let subtaskInput = document.getElementById('taskFormSubtaskInput');
+  subtaskInput.value = "";
 }
 
 function addSubtaskToList() {
@@ -233,7 +244,6 @@ function deleteSubtaskFromList(i) {
 
 document.addEventListener("DOMContentLoaded", () => {
   let subtaskBox = document.getElementById('taskFormSubtaskList');
-
   document.addEventListener("mousedown", function (event) {
     if (!subtaskBox.contains(event.target)) {
       renderSubtasksToList();
@@ -243,10 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // collecting Data
 
-function getNewTaskInputData() {
+function getNewTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("dateInput").value;
+  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -257,7 +268,7 @@ function getNewTaskInputData() {
     taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
-    taskStatus: "to do",
+    taskStatus: taskStatus,
     taskCategory: chosenCategory,
     taskSubtasks: subtasks,
   };
