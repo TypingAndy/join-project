@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/board_popup.css" />
+    <link rel="stylesheet" href="../css/board.css">
   </head>
   <body onload="loadAllTasks()">
     <div class="joinWrapper">
@@ -24,7 +25,7 @@
         <div class="boardWrapper">
           <div class="boardTitleContainer">
             <p>Board</p>
-            <img src="../images/icons/plus_add_task.png" alt="" />
+            <img class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
           </div>
           <div class="inputContainer">
             <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" />
@@ -33,7 +34,7 @@
           <div class="toDoSection">
             <div class="toDoSectionTitleContainer">
               <p>To Do</p>
-              <img onclick="openAddTaskPopup('to do')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('to do')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
@@ -44,21 +45,21 @@
           <div class="inProgressSection">
             <div class="inProgressTitleContainer">
               <p>In progress</p>
-              <img onclick="openAddTaskPopup('in progress')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('in progress')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
-              <img onclick="openAddTaskPopup('await feedback')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('await feedback')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
-              <img onclick="openAddTaskPopup('done')" class="addTaskPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="openAddTaskPopup('done')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
           </div>
@@ -86,9 +87,6 @@
     <script src="../scripts/script.js"></script>
     <script src="../scripts/board.js"></script>
     <script src="../scripts/firebase.js"></script>
-    <script src="../scripts/board_edit_popup.js"></script>
-    <script src="../scripts/board_edit_popup_dropdown.js"></script>
     <script src="../templates/board_templates.js"></script>
-    <script src="../templates/board_edit_template.js"></script>
   </body>
 </html>

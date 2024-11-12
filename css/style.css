@@ -175,96 +175,17 @@ textarea:active {
   z-index: 91;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 .displayNone {
   display: none;
 }
 
-/*----------------------------- add Task AddContact */
 
-.addTaskSubtaskImageBox {
-  display: flex;
-  position: absolute;
-  right: 16px;
-  gap: 8px;
-}
 
-.addTaskSubtaskX {
-  width: 24px;
-  border-radius: 16px;
-}
-
-.addTaskSubtaskX:hover {
-  background-color: #d1d1d1;
-}
-
-.addTaskSubtaskCheck {
-  width: 24px;
-  border-radius: 16px;
-}
-
-.addTaskSubtaskCheck:hover {
-  background-color: #d1d1d1;
-}
-
-.addTaskDropDownCloseButton {
-  position: absolute;
-  right: 13px;
-  top: 12px;
-}
-
-.userNameDropDownSearchbar {
-  height: 48px;
-  width: 100%;
-  font-family: "Inter";
-  font-size: 16px;
-  padding: 0px 3px 0px 3px;
-  border-radius: 10px 10px 0 0;
-  border: solid 1px #d1d1d1;
-  padding-inline: 12px;
-}
-
-.addTaskDropDownSingleUserContainer:hover {
-  background-color: #d1d1d1;
-}
-
-.addTaskContactsDropdownLabel {
-  font-size: 16px;
-}
-
-.addTaskNewBackgroundChecked {
-  background-color: #2a3647 !important;
-  color: white;
-}
-
-.addTaskNewBackgroundChecked:hover {
-  background-color: #091931 !important;
-  color: white;
-}
 
 /* ------------------------- add Task Subtask */
-.addTaskPlusIconSmall {
-  height: 30px;
-}
 
-.taskBoardRewriteSubtaskInput {
-  height: 48px;
-  font-size: 16px;
-  border-top: none;
-  border-left: none;
-  border-bottom: #29abe2 solid 1px;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-.addTaskRewriteSubtaskFlex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.addTaskSubtaskInvisibleBackgroundClicker {
-  background-color: #a7ff635c;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}

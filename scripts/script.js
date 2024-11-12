@@ -11,14 +11,14 @@ let passwordMatch = false;
 //addTaskGlobalArrays
 let taskPrioInput = "";
 let fullNameList = [];
-let addTaskCurrentUsersIds = [];
+let taskFormCurrentUsersIds = []; //is needed
 let userUniqueId = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let subtasks = []; //is needed
 let globalSubtaskId = "";
 
 //boardGlobalArrays
-let convertedTasks = [];
+let convertedTasks = []; //is needed
 let allUnsortedTasks = [];
 let toDoTasks = [];
 let doneTasks = [];
