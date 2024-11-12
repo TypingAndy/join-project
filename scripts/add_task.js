@@ -58,7 +58,7 @@ function addUserToTaskToggleCss(i) {
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
   let userIcon = document.getElementById(`taskFormUserIcon${i}`);
   let userDropdown = document.getElementById("userDropdown");
-  let userInput = document.getElementById('taskFormUserInput');
+  let userInput = document.getElementById("taskFormUserInput");
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
@@ -68,7 +68,6 @@ function addUserToTaskToggleCss(i) {
   userDropdown.classList.add("maxHeight200");
   userInput.classList.add("cursorUnset");
 }
-
 
 function toggleUserInTaskUsers(userIndex) {
   let index = taskFormCurrentUsersIds.indexOf(userIndex);
@@ -174,8 +173,8 @@ function chooseCategory(chosenCategory) {
 // subtask
 
 function focusSubtaskInput() {
- let subtaskInput = document.getElementById('taskFormSubtaskInput');
- subtaskInput.focus();
+  let subtaskInput = document.getElementById("taskFormSubtaskInput");
+  subtaskInput.focus();
 }
 
 function toggleSubtaskCheckOnFocus(isFocused) {
@@ -267,8 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
 
 // collecting Data
 
