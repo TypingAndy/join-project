@@ -66,9 +66,9 @@ async function putNewTaskStatus() {
   });
 }
 
-async function postTaskData() {
+async function postTaskData(taskStatus) {
   try {
-    let createTaskData = getNewTaskInputData();
+    let createTaskData = getNewTaskInputData(taskStatus);
     const response = await fetch(BASE_URL + `/tasks.json`, {
       method: "POST",
       headers: {
@@ -78,11 +78,10 @@ async function postTaskData() {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to post task data');
+      throw new Error("Failed to post task data");
     }
-
   } catch (error) {
-    console.error('Error posting task data:', error);
+    console.error("Error posting task data:", error);
   }
 }
 
