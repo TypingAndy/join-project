@@ -68,12 +68,12 @@ function addUserToTaskToggleCss(i) {
 }
 
 function toggleUserInTaskUsers(userIndex) {
-  let index = addTaskCurrentUsersIds.indexOf(userIndex);
+  let index = taskFormCurrentUsersIds.indexOf(userIndex);
 
   if (index === -1) {
-    addTaskCurrentUsersIds.push(userIndex);
+    taskFormCurrentUsersIds.push(userIndex);
   } else {
-    addTaskCurrentUsersIds.splice(index, 1);
+    taskFormCurrentUsersIds.splice(index, 1);
   }
 }
 
@@ -277,7 +277,7 @@ function getNewTaskInputData(taskStatus) {
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
-    taskAssignedUsersIds: addTaskCurrentUsersIds,
+    taskAssignedUsersIds: taskFormCurrentUsersIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
