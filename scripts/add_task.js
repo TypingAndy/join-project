@@ -58,6 +58,7 @@ function addUserToTaskToggleCss(i) {
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
   let userIcon = document.getElementById(`taskFormUserIcon${i}`);
   let userDropdown = document.getElementById("userDropdown");
+  let userInput = document.getElementById('taskFormUserInput');
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
@@ -65,7 +66,9 @@ function addUserToTaskToggleCss(i) {
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
   userIcon.classList.toggle("displayNone");
   userDropdown.classList.add("maxHeight200");
+  userInput.classList.add("cursorUnset");
 }
+
 
 function toggleUserInTaskUsers(userIndex) {
   let index = taskFormCurrentUsersIds.indexOf(userIndex);

@@ -54,7 +54,7 @@ function rednerTaskFormTemplate() {
 function redirectToBoard() {
   setTimeout(() => {
     window.location.href = "board.html";
-  }, 10000);
+  }, 100);
 }
 
 function editTaskInputData(taskStatus) {

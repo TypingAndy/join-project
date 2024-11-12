@@ -284,6 +284,7 @@
   border-radius: 10px;
   padding: 0 12px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .taskFormDropdownInput:focus {
