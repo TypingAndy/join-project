@@ -179,12 +179,9 @@
   gap: 5px;
 }
 
-
-
 .maxHeight200 {
   max-height: 200px;
 }
-
 
 /* task prioritiy */
 
@@ -205,7 +202,7 @@
   border: solid 1px #d1d1d1;
 }
 
-.taskFormPrioButtonUrgentOnClick {
+.taskFormPrioButtonurgentOnClick {
   color: #ffffff;
   background-color: #ff3d00;
 }
@@ -232,12 +229,12 @@
   cursor: pointer;
 }
 
-.taskFormPrioButtonMediumOnClick {
+.taskFormPrioButtonmediumOnClick {
   color: #ffffff;
   background-color: #ffa800;
 }
 
-.taskFormPrioButtonLow {
+.taskFormPrioButtonlow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -254,7 +251,7 @@
   cursor: pointer;
 }
 
-.taskFormPrioButtonLowOnClick {
+.taskFormPrioButtonlowOnClick {
   color: #ffffff;
   background-color: #7ae229;
 }
@@ -264,15 +261,15 @@
   height: 14.5px;
 }
 
-.taskFormPrioButtonUrgentIcon img {
+.taskFormPrioButtonurgentIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
-.taskFormPrioButtonMediumIcon img {
+.taskFormPrioButtonmediumIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
-.taskFormPrioButtonLowIcon img {
+.taskFormPrioButtonlowIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
