@@ -126,7 +126,7 @@
               <div id="addSubtask" class="taskFormInputContainer">
                 <input id="taskFormSubtaskInput" onfocus="toggleSubtaskCheckOnFocus(true)" onblur="toggleSubtaskCheckOnFocus(false), clearSubtaskInput()" class="taskFormSubtaskInput" type="text" placeholder="Add new subtask" />
                 <div class="iconWrapper">
-                  <img id="plusIcon" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
+                  <img id="plusIcon" onclick="focusSubtaskInput()" class="taskFormSubtaskPlusImage" src="../images/icons/plus_dark.png" alt="" />
                   <img id="cancelIcon" class="taskFormSubtaskPlusImage" src="../images/icons/x_black_subtask.png" alt="" style="display: none" />
                   <div id="dividingLine" class="subtaskDividingLine" style="display: none"></div>
                   <img id="checkIcon" onmousedown="addSubtaskToList(), renderSubtasksToList()" class="taskFormSubtaskPlusImage" src="../images/icons/check_black.png" alt="" style="display: none" />

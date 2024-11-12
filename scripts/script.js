@@ -8,16 +8,10 @@ let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "
 let policyAccepted = false;
 let passwordMatch = false;
 
-
 //addTaskGlobalArrays
 let taskPrioInput = "";
 let fullNameList = [];
-let addTaskCurrentUser = [];
-let taskAssignedUserInitials = [];
-let addTaskAssignedUserColors = [];
-let addTaskAssignedUserFontColors = [];
-let addTaskAssignedUserId = [];
-let addTaskAssignedUserFirebaseIds = [];
+let addTaskCurrentUsersIds = [];
 let userUniqueId = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let subtasks = []; //is needed
@@ -49,37 +43,21 @@ function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
 
-
-
 function rednerTaskFormTemplate() {
   let taskForm = document.getElementById("taskForm");
   taskForm.innerHTML = taskFormTemplate();
 }
 
 
+// navigation
 
-
-
-
-
-
-function addTaskAddSubtaskCancel() {
-  document.getElementById("addSubtaskInput").value = "";
-  document.getElementById("addSubtask").classList.remove("displayNone");
-  document.getElementById("addSubtaskInputBox").classList.add("displayNone");
+function redirectToBoard() {
+  setTimeout(() => {
+    window.location.href = "board.html";
+  }, 10000);
 }
 
-function addTaskAddSubtask() {
-  let subtaskInput = document.getElementById("addSubtaskInput");
-  subtasks.push({ subtask: subtaskInput.value, done: false });
-  globalSubtaskId = 0;
-  subtaskInput.value = "";
-  document.getElementById("addSubtask").classList.remove("displayNone");
-  document.getElementById("addSubtaskInputBox").classList.add("displayNone");
-  addTaskWriteSubtaskBoard();
-}
-
-function editTaskInputData() {
+function editTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("editPopupTitleInput").value;
   let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
   let taskDateInput = document.getElementById("editPopupDateInput").value;
@@ -87,13 +65,9 @@ function editTaskInputData() {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
     taskAssignedUser: addTaskCurrentUser,
-    taskAssignedUserInitials: taskAssignedUserInitials,
-    taskAssignedUserColors: addTaskAssignedUserColors,
-    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
-    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
-    taskStatus: "to do",
+    taskStatus: taskStatus,
     taskCategory: chosenCategory,
     taskSubtasks: subtasks,
   };
