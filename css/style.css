@@ -179,6 +179,10 @@ textarea:active {
   cursor: pointer;
 }
 
+.cursorUnset {
+  cursor: unset;
+}
+
 .displayNone {
   display: none;
 }
