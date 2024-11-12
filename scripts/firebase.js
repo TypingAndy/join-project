@@ -80,7 +80,7 @@ async function postTaskData() {
     if (!response.ok) {
       throw new Error('Failed to post task data');
     }
-    window.location.href = 'board.html';
+
   } catch (error) {
     console.error('Error posting task data:', error);
   }

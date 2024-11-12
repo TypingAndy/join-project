@@ -1,9 +1,9 @@
 //add task onload function
 
 function taskFormOnload() {
-  fillCategoryDropdown();
   fillUserDropdown();
   insertUserIconsInsideAssign();
+  fillCategoryDropdown();
   renderSubtasksToList();
 }
 
@@ -45,6 +45,7 @@ function handleDropdown(isFocused, currentDropdownID) {
 async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   sortedUsers = await sortUserData();
+  console.log(sortedUsers);
 
   for (let i = 0; i < sortedUsers.length; i++) {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
@@ -64,6 +65,16 @@ function addUserToTaskToggleCss(i) {
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
   userIcon.classList.toggle("displayNone");
   userDropdown.classList.add("maxHeight200");
+}
+
+function toggleUserInTaskUsers(userIndex) {
+  let index = addTaskCurrentUsersIds.indexOf(userIndex);
+
+  if (index === -1) {
+    addTaskCurrentUsersIds.push(userIndex);
+  } else {
+    addTaskCurrentUsersIds.splice(index, 1);
+  }
 }
 
 function clearUserInputInsideTaskFrom() {
@@ -97,7 +108,7 @@ async function insertUserIconsInsideAssign() {
 }
 
 function clearUserInput() {
-  let userInput = document.getElementById('taskFormUserInput');
+  let userInput = document.getElementById("taskFormUserInput");
   userInput.value = "";
 }
 
@@ -130,7 +141,7 @@ function setTaskPrioButtonColorSwitch(priority) {
   let buttons = {
     Urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
     Medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
-    Low: document.getElementsByClassName("taskFormPrioButtonLow")[0]
+    Low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
   };
 
   Object.keys(buttons).forEach((prio) => {
@@ -146,7 +157,6 @@ function setTaskPrioButtonColorSwitch(priority) {
 
 function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
-  console.log(categories);
 
   for (let i = 0; i < categories.length; i++) {
     categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
@@ -159,6 +169,11 @@ function chooseCategory(chosenCategory) {
 }
 
 // subtask
+
+function focusSubtaskInput() {
+ let subtaskInput = document.getElementById('taskFormSubtaskInput');
+ subtaskInput.focus();
+}
 
 function toggleSubtaskCheckOnFocus(isFocused) {
   let plusIcon = document.getElementById("plusIcon");
@@ -180,7 +195,7 @@ function toggleSubtaskCheckOnFocus(isFocused) {
 }
 
 function clearSubtaskInput() {
-  let subtaskInput = document.getElementById('taskFormSubtaskInput');
+  let subtaskInput = document.getElementById("taskFormSubtaskInput");
   subtaskInput.value = "";
 }
 
@@ -235,7 +250,6 @@ function focusOnInput(i) {
 function pushRewrittenSubtask(i) {
   let rewrittenSubtask = document.getElementById(`taskFormSubtaskRewriteInput(${i})`).value;
   subtasks.splice(i, 1, rewrittenSubtask);
-  console.log(subtasks);
 }
 
 function deleteSubtaskFromList(i) {
@@ -243,13 +257,15 @@ function deleteSubtaskFromList(i) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let subtaskBox = document.getElementById('taskFormSubtaskList');
+  let subtaskBox = document.getElementById("taskFormSubtaskList");
   document.addEventListener("mousedown", function (event) {
     if (!subtaskBox.contains(event.target)) {
       renderSubtasksToList();
     }
   });
 });
+
+
 
 // collecting Data
 
@@ -261,16 +277,14 @@ function getNewTaskInputData(taskStatus) {
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
-    taskAssignedUser: addTaskCurrentUser,
-    taskAssignedUserInitials: taskAssignedUserInitials,
-    taskAssignedUserColors: addTaskAssignedUserColors,
-    taskAssignedUserFontColors: addTaskAssignedUserFontColors,
-    taskAssignedUserFirebaseIDs: addTaskAssignedUserFirebaseIds,
+    taskAssignedUsersIds: addTaskCurrentUsersIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
     taskCategory: chosenCategory,
     taskSubtasks: subtasks,
   };
+  console.log(createTaskData);
+
   return createTaskData;
 }
