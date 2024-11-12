@@ -43,12 +43,6 @@ function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
 
-function rednerTaskFormTemplate() {
-  let taskForm = document.getElementById("taskForm");
-  taskForm.innerHTML = taskFormTemplate();
-}
-
-
 // navigation
 
 function redirectToBoard() {
@@ -57,19 +51,37 @@ function redirectToBoard() {
   }, 100);
 }
 
-function editTaskInputData(taskStatus) {
-  let taskTitleInput = document.getElementById("editPopupTitleInput").value;
-  let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
-  let taskDateInput = document.getElementById("editPopupDateInput").value;
-  let createTaskData = {
-    taskTitle: taskTitleInput,
-    taskDescription: taskDescriptionInput,
-    taskAssignedUser: addTaskCurrentUser,
-    taskDate: taskDateInput,
-    taskPrio: taskPrioInput,
-    taskStatus: taskStatus,
-    taskCategory: chosenCategory,
-    taskSubtasks: subtasks,
-  };
-  return createTaskData;
+//taskForm render function
+
+function renderTaskFormTemplate(taskStatus, id) {
+  let taskForm = document.getElementById(id);
+  taskForm.innerHTML = taskFormTemplate(taskStatus);
 }
+
+function renderTaskForm(taskStatus, id) {
+  renderTaskFormTemplate(taskStatus, id), fillUserDropdown();
+  insertUserIconsInsideAssign();
+  fillCategoryDropdown();
+  renderSubtasksToList();
+}
+
+
+
+//taskForm edit functions
+
+// function editTaskInputData(taskStatus) {
+//   let taskTitleInput = document.getElementById("editPopupTitleInput").value;
+//   let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
+//   let taskDateInput = document.getElementById("editPopupDateInput").value;
+//   let createTaskData = {
+//     taskTitle: taskTitleInput,
+//     taskDescription: taskDescriptionInput,
+//     taskAssignedUser: addTaskCurrentUser,
+//     taskDate: taskDateInput,
+//     taskPrio: taskPrioInput,
+//     taskStatus: taskStatus,
+//     taskCategory: chosenCategory,
+//     taskSubtasks: subtasks,
+//   };
+//   return createTaskData;
+// }

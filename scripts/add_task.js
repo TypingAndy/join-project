@@ -1,12 +1,3 @@
-//add task onload function
-
-function taskFormOnload() {
-  fillUserDropdown();
-  insertUserIconsInsideAssign();
-  fillCategoryDropdown();
-  renderSubtasksToList();
-}
-
 // often used functions
 
 function switchArrowInsideDropdown(isFocused, currentImageID) {
@@ -98,7 +89,7 @@ function userFilterFunction() {
       userElement.classList.add("displayNone");
     }
   }
-}
+} 
 
 async function insertUserIconsInsideAssign() {
   let sortedUsers = await sortUserData();
@@ -115,11 +106,18 @@ function clearUserInput() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  let dropdown = document.getElementById("userDropdown");
-  dropdown.addEventListener("mousedown", function (event) {
-    event.preventDefault();
-  });
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let dropdown = document.getElementById("userDropdown");
+      if (dropdown) {
+        dropdown.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+        });
+      }
+    }, 100);
+  }
 });
+
 
 // date
 
@@ -263,13 +261,20 @@ function deleteSubtaskFromList(i) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let subtaskBox = document.getElementById("taskFormSubtaskList");
-  document.addEventListener("mousedown", function (event) {
-    if (!subtaskBox.contains(event.target)) {
-      renderSubtasksToList();
-    }
-  });
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let subtaskBox = document.getElementById("taskFormSubtaskList");
+      if (subtaskBox) {
+        document.addEventListener("mousedown", function (event) {
+          if (!subtaskBox.contains(event.target)) {
+            renderSubtasksToList();
+          }
+        });
+      }
+    }, 100);
+  }
 });
+
 
 // collecting Data
 

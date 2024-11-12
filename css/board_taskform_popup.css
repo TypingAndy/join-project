@@ -1,0 +1,36 @@
+.taskFormBoardContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskFormBoard {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.taskFormContainer {
+  width: calc(100% - 24px);
+  height: calc(100% - 24px);
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taskFormBoardExitButton {
+  position: absolute;
+  width: 32px;
+  right: 40px;
+  top: 20px;
+}
