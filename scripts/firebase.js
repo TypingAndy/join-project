@@ -67,14 +67,23 @@ async function putNewTaskStatus() {
 }
 
 async function postTaskData() {
-  let createTaskData = getNewTaskInputData();
-  await fetch(BASE_URL + `/tasks.json`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(createTaskData),
-  });
+  try {
+    let createTaskData = getNewTaskInputData();
+    const response = await fetch(BASE_URL + `/tasks.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(createTaskData),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to post task data');
+    }
+
+  } catch (error) {
+    console.error('Error posting task data:', error);
+  }
 }
 
 async function updateTaskData(currentNumberedID) {
