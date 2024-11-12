@@ -141,18 +141,22 @@ function setTaskPrio(priority) {
 
 function setTaskPrioButtonColorSwitch(priority) {
   let buttons = {
-    Urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
-    Medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
-    Low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
+    urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
+    medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
+    low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
   };
 
   Object.keys(buttons).forEach((prio) => {
     if (prio === priority) {
-      buttons[prio].classList.add(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+      buttons[prio].classList.add(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     } else {
-      buttons[prio].classList.remove(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+      buttons[prio].classList.remove(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     }
   });
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // category
