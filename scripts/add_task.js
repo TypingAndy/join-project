@@ -317,6 +317,5 @@ function getNewTaskInputData(taskStatus) {
     taskSubtasks: subtasks,
   };
   console.log(createTaskData);
-
   return createTaskData;
 }

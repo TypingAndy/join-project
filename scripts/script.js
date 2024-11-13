@@ -3,19 +3,15 @@ let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebaseda
 //signUpGlobalArrays.tst
 let signUpData = {};
 let responseToJson;
-
 let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"]; //is needed
 let policyAccepted = false;
 let passwordMatch = false;
 
 //addTaskGlobalArrays
 let taskPrioInput = "";
-let fullNameList = [];
 let taskFormCurrentUsersIds = []; //is needed
-let userUniqueId = [];
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let subtasks = []; //is needed
-let globalSubtaskId = "";
 
 //boardGlobalArrays
 let convertedTasks = []; //is needed
@@ -39,6 +35,7 @@ function stopPropagation(event) {
   event.stopPropagation();
 }
 
+//is this needed ?????????????????????????????????????????????????????????????????
 function getColorFromUser(i) {
   return sortedUsers[i].color;
 }
@@ -74,8 +71,6 @@ async function fillUserDropdown() {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
   }
 }
-
-
 
 //taskForm edit functions
 
