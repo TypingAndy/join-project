@@ -18,7 +18,7 @@ let subtasks = []; //is needed
 let globalSubtaskId = "";
 
 //boardGlobalArrays
-let convertedTasks = []; //is needed
+let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = [];
 let toDoTasks = [];
 let doneTasks = [];
@@ -64,8 +64,6 @@ function renderTaskForm(taskStatus, id) {
   fillCategoryDropdown();
   renderSubtasksToList();
 }
-
-
 
 //taskForm edit functions
 
