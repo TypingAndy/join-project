@@ -6,104 +6,40 @@ function noTaskTemplate() {
       `;
 }
 
-function toDoTaskTemplate(toDoTasks, i, completedSubtaskCount, taskCardUserHtml) {
-  const subtasksLength = toDoTasks[i].taskSubtasks ? toDoTasks[i].taskSubtasks.length : 0;
+function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate) {
+  const subtasksLength = filteredLokalTasksArray[taskIndex].taskSubtasks ? filteredLokalTasksArray[taskIndex].taskSubtasks.length : 0;
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${toDoTasks[i].numberedTaskID}')" onclick="openBoardTaskPopup(${i}, '${toDoTasks[i].ID}', '${toDoTasks[i].numberedTaskID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].numberedTaskID}')" onclick="openBoardTaskPopup(${taskIndex}, '${filteredLokalTasksArray[taskIndex].ID}', '${filteredLokalTasksArray[taskIndex].numberedTaskID}')">
                   <div class="taskCardCategory">
-                    <p>${toDoTasks[i].taskCategory}</p>
+                    <p>${filteredLokalTasksArray[taskIndex].taskCategory}</p>
                   </div>
-                  <p class="taskCardTitle">${toDoTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${toDoTasks[i].taskDescription}</p>
+                  <p class="taskCardTitle">${filteredLokalTasksArray[taskIndex].taskTitle}</p>
+                  <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>
                   <div class="taskCardSubtasksContainer">
                     <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarToDoTasks${[i]}"></div>
+                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarToDoTasks${[taskIndex]}"></div>
                     </div>
-                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
+                    <p>!!/${filteredLokalTasksArray[taskIndex].taskSubtasks.length} Subtasks</p>
                   </div>
                   <div class="taskCardBottomContainer">
                     <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
+                 ${taskCardAllInitialsTemplate}
                     </div>
-                    <img src="../images/icons/${toDoTasks[i].taskPrio}.png" alt="" />
+                    <img src="../images/icons/${filteredLokalTasksArray[taskIndex].taskPrio}.png" alt="" />
                   </div>
                 </div>
       `;
 }
 
-function inProgressTaskTemplate(inProgressTasks, i, completedSubtaskCount, taskCardUserHtml) {
-  const subtasksLength = inProgressTasks[i].taskSubtasks ? inProgressTasks[i].taskSubtasks.length : 0;
+function taskCardInitialTemplate(users, currentUserID) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${inProgressTasks[i].numberedTaskID}')" onclick="openBoardTaskPopup(${i}, '${inProgressTasks[i].ID}', '${inProgressTasks[i].numberedTaskID}')">
-                  <div class="taskCardCategory">
-                    <p>${inProgressTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${inProgressTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${inProgressTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarInProgressTasks${[i]}"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="../images/icons/${inProgressTasks[i].taskPrio}.png" alt="" />
-                  </div>
+                <div class="taskCardUser" style="background-color: ${users[currentUserID].color};">
+                  <p style="color: ${users[currentUserID].fontColor};">
+                  ${users[currentUserID].initials}
+                  </p>
                 </div>
-      `;
-}
-
-function awaitFeedbackTaskTemplate(awaitFeedbackTasks, i, completedSubtaskCount, taskCardUserHtml) {
-  const subtasksLength = awaitFeedbackTasks[i].taskSubtasks ? awaitFeedbackTasks[i].taskSubtasks.length : 0;
-  return ` 
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${awaitFeedbackTasks[i].numberedTaskID}')" onclick="openBoardTaskPopup(${i}, '${awaitFeedbackTasks[i].ID}', '${awaitFeedbackTasks[i].numberedTaskID}')">
-                  <div class="taskCardCategory">
-                    <p>${awaitFeedbackTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${awaitFeedbackTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${awaitFeedbackTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarAwaitFeedbackTasks${[i]}"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="../images/icons/${awaitFeedbackTasks[i].taskPrio}.png" alt="" />
-                  </div>
-                </div>
-      `;
-}
-
-function doneTaskTemplate(doneTasks, i, completedSubtaskCount, taskCardUserHtml) {
-  const subtasksLength = doneTasks[i].taskSubtasks ? doneTasks[i].taskSubtasks.length : 0;
-  return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${doneTasks[i].numberedTaskID}')" onclick="openBoardTaskPopup(${i}, '${doneTasks[i].ID}', '${doneTasks[i].numberedTaskID}')">
-                  <div class="taskCardCategory">
-                    <p>${doneTasks[i].taskCategory}</p>
-                  </div>
-                  <p class="taskCardTitle">${doneTasks[i].taskTitle}</p>
-                  <p class="taskCardDescription">${doneTasks[i].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarDoneTasks${[i]}"></div>
-                    </div>
-                    <p>${completedSubtaskCount}/${subtasksLength} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardUserHtml}
-                    </div>
-                    <img src="../images/icons/${doneTasks[i].taskPrio}.png" alt="" />
-                  </div>
-                </div>
-      `;
+  
+  `;
 }
 
 function boardTaskPopupTemplate(i, taskID, numberedTaskID) {
