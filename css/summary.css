@@ -96,6 +96,8 @@
   .summaryMidSectionPrioDateBox:hover {
     transition: 125ms;
     scale: 1.1;
+    color: white;
+    background-color: #2a3647;
   }
   
   
@@ -127,13 +129,12 @@
   }
   
   .summaryMidSectionPrio {
-    background-color: #ffffff;
+    background-color: #ffffff00;
     width: 45%;
     border-radius: 20px 0px 0px 20px;
     display: flex;
     justify-content: right;
     align-items: center;
-  
     gap: 18px;
   }
   
@@ -147,7 +148,7 @@
   }
   
   .summaryMidSectionDate {
-    background-color: #ffffff;
+    background-color: #ffffff00;
     width: 55%;
     border-radius: 0px 20px 20px 0px;
     display: flex;
