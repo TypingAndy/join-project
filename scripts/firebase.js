@@ -1,16 +1,3 @@
-// async function loadAllTasks(path = "tasks") {
-//   let isOnBoardPage = window.location.pathname.endsWith("board.html");
-//   let response = await fetch(BASE_URL + path + ".json");
-//   allUnsortedTasks = await response.json();
-//   convertUnsortedTasksToArray();
-//   addFirebaseIDtoConvertedTasksArray();
-//   addSimpleIdToTasks();
-//   sortAllTasks();
-//   if (isOnBoardPage) {
-//     renderTasks();
-//   }
-// }
-
 async function loadTasksObjectFromFirebase() {
   let response = await fetch(BASE_URL + "tasks.json");
   allUnsortedTasks = await response.json();

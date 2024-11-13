@@ -2,7 +2,6 @@ async function createLokalTasksArray() {
   await loadTasksObjectFromFirebase();
   convertUnsortedTasksObjectToArray();
   addFirebaseIDtoLokalTasksArray();
-  console.log(lokalTasksArray);
 }
 
 function convertUnsortedTasksObjectToArray() {
@@ -24,14 +23,16 @@ async function handleSearchInput() {
 
 async function renderTaskCards() {
   await createLokalTasksArray();
-  let filteredLokalTasksArray = filterTasks(); //lokalArray muss dann mit filterTasks() getauscht werden
+  let filteredLokalTasksArray = filterTasks();
   let allUsers = await loadUserDataFromFirebase();
-
+  clearAllTaskCardWrappers();
   for (let taskIndex = 0; taskIndex < filteredLokalTasksArray.length; taskIndex++) {
     let currentElement = getElementByTaskStatus(filteredLokalTasksArray[taskIndex].taskStatus);
     let taskCardAllInitialsTemplate = returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray, allUsers);
+    let subtasksDone = countCompletedSubtasks(filteredLokalTasksArray[taskIndex]);
+    const subtasksArrayLength = filteredLokalTasksArray[taskIndex].taskSubtasks ? filteredLokalTasksArray[taskIndex].taskSubtasks.length : 0;
 
-    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate);
+    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone);
   }
   fillEmptyTaskCategories();
 }
@@ -61,12 +62,20 @@ function fillEmptyTaskCategories() {
   });
 }
 
+function clearAllTaskCardWrappers() {
+  const wrappers = ["inProgressContentWrapper", "toDoSectionContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
+  wrappers.forEach((wrapperId) => {
+    const wrapper = document.getElementById(wrapperId);
+    wrapper.innerHTML = "";
+  });
+}
+
 function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray, allUsers) {
   let taskCardAllInitialsTemplate = "";
   let userIdAmountInCurrentTask = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds.length;
   for (let userIndex = 0; userIndex < userIdAmountInCurrentTask; userIndex++) {
     let currentUserID = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds[userIndex];
-    taskCardAllInitialsTemplate += taskCardInitialTemplate(allUsers, currentUserID);
+    taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(allUsers, currentUserID);
   }
   return taskCardAllInitialsTemplate;
 }
@@ -77,6 +86,16 @@ function clearAllTaskWrappers() {
   containers.forEach((containerId) => {
     document.getElementById(containerId).innerHTML = "";
   });
+}
+
+function countCompletedSubtasks(task) {
+  let completedCount = 0;
+  for (let subtask of task.taskSubtasks) {
+    if (subtask.subtaskDone === true) {
+      completedCount++;
+    }
+  }
+  return completedCount;
 }
 
 function startDragging(id) {
@@ -97,10 +116,11 @@ async function moveTo(taskStatus) {
 
 let popupElement = document.getElementById("boardTaskPopup");
 let popupBackgroundELement = document.getElementById("boardPopupBackground");
-function openBoardTaskPopup(i, taskID, numberedTaskID) {
-  renderBoardTaskPopupContent(i, taskID, numberedTaskID);
-  renderBoardTaskPopupContentUsers(i, numberedTaskID);
-  renderBoardTaskPopupSubtasks(i, numberedTaskID);
+
+function openBoardTaskPopup(taskID) {
+  renderBoardTaskPopupContent(taskID);
+  renderBoardTaskPopupContentUsers(taskID);
+  renderBoardTaskPopupSubtasks(taskID);
   popupElement.style.display = "flex";
   popupBackgroundELement.style.display = "flex";
   popupElement.addEventListener("click", stopPropagation);
@@ -110,43 +130,46 @@ function closeBoardTaskPopup() {
   popupElement.style.display = "none";
   popupBackgroundELement.style.display = "none";
   popupElement.removeEventListener("click", stopPropagation);
-  editPopUpAddUserToTask(currentNumberedID);
-  loadAllTasks();
+  renderTaskCards();
 }
 
-function renderBoardTaskPopupContent(i, taskID, numberedTaskID) {
-  popupElement.innerHTML = boardTaskPopupTemplate(i, taskID, numberedTaskID);
+function renderBoardTaskPopupContent(taskID) {
+  popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
 
-function renderBoardTaskPopupContentUsers(i, numberedTaskID) {
+function renderBoardTaskPopupContentUsers(taskID) {
   let popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
-  for (let usersIndex = 0; usersIndex < convertedTasks[numberedTaskID].taskAssignedUser.length; usersIndex++) {
-    popupUsersElement.innerHTML += popupUserTemplate(usersIndex, i, numberedTaskID);
+  let usersAmount = allUnsortedTasks[taskID].taskAssignedUsersIds.length;
+  let currentUserId = "";
+
+  for (let usersIndex = 0; usersIndex < usersAmount; usersIndex++) {
+    currentUserId = allUnsortedTasks[taskID].taskAssignedUsersIds[usersIndex];
+    popupUsersElement.innerHTML += popupUserTemplate(currentUserId);
   }
 }
 
-function renderBoardTaskPopupSubtasks(i, numberedTaskID) {
+function renderBoardTaskPopupSubtasks(taskID) {
   let popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
   popupSubtasksElement.innerHTML = "";
-  for (let subtasksIndex = 0; subtasksIndex < convertedTasks[numberedTaskID].taskSubtasks.length; subtasksIndex++) {
-    popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, i, numberedTaskID);
-    if (convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].done) {
-      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/checked.png";
+  for (let subtasksIndex = 0; subtasksIndex < allUnsortedTasks[taskID].taskSubtasks.length; subtasksIndex++) {
+    popupSubtasksElement.innerHTML += popupSubtaskTemplate(subtasksIndex, taskID);
+    if (allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone) {
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "../images/icons/checked.png";
     } else {
-      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "./images/icons/unchecked.png";
+      document.getElementById("boardTaskPopupContentSubtaskIcon" + subtasksIndex).src = "../images/icons/unchecked.png";
     }
   }
 }
 
-function boardTaskPopupChangeSubtaskStatus(subtasksIndex, i, taskFirebaseID, numberedTaskID) {
-  convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].done = !convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].done;
-  setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID, numberedTaskID);
-  renderBoardTaskPopupSubtasks(i, numberedTaskID);
+function boardTaskPopupChangeSubtaskStatus(subtasksIndex, taskID) {
+  allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done = !allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done;
+  setSubtaskDonetoTrueOrFalseOnFirebase(subtasksIndex, taskID);
+  renderBoardTaskPopupSubtasks(taskID);
 }
 
-function setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID, numberedTaskID) {
-  let taskStatus = convertedTasks[numberedTaskID].taskSubtasks[subtasksIndex].done;
+function setSubtaskDonetoTrueOrFalseOnFirebase(subtasksIndex, taskID) {
+  let taskStatus = allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done;
   if (taskStatus === true) {
     fetchSubtaskDoneToTrue(subtasksIndex, taskFirebaseID);
   }
