@@ -14,7 +14,7 @@ let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others",
 let subtasks = []; //is needed
 
 //boardGlobalArrays
-let convertedTasks = []; //is needed
+let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = [];
 let toDoTasks = [];
 let doneTasks = [];
@@ -62,6 +62,7 @@ function renderTaskForm(taskStatus, id) {
   renderSubtasksToList();
 }
 
+
 async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   sortedUsers = await sortUserData();
@@ -71,6 +72,9 @@ async function fillUserDropdown() {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
   }
 }
+
+
+
 
 //taskForm edit functions
 

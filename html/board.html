@@ -10,19 +10,16 @@
     <link rel="stylesheet" href="../css/board.css" />
     <link rel="stylesheet" href="../css/board_taskform_popup.css" />
     <link rel="stylesheet" href="../css/task_form.css" />
-
   </head>
 
-  <body onload="loadAllTasks()">
+  <body onload="renderTaskCards()">
     <div class="joinWrapper">
       <header>
         <!--  div for taskFormPopup -->
         <div id="taskFormBoardContainer" class="taskFormBoardContainer displayNone">
           <div class="taskFormContainer">
-            <img id="taskFormBoardExitButton" onclick="toggleBoardTaskForm()" src="../images/icons/x_black_subtask.png" class="taskFormBoardExitButton">
-            <form id="taskFormBoard" class="taskFormBoard">
-
-            </form>
+            <img id="taskFormBoardExitButton" onclick="toggleBoardTaskForm()" src="../images/icons/x_black_subtask.png" class="taskFormBoardExitButton" />
+            <form id="taskFormBoard" class="taskFormBoard"></form>
           </div>
         </div>
         <!--  div for taskFormPopup -->
@@ -43,7 +40,7 @@
             <img class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
           </div>
           <div class="inputContainer">
-            <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" />
+            <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" oninput="handleSearchInput(event)" />
             <img src="../images/icons/search_icon.png" alt="" />
           </div>
           <div class="toDoSection">
@@ -51,11 +48,7 @@
               <p>To Do</p>
               <img onclick="toggleBoardTaskForm(), renderTaskForm('to do', 'taskFormBoard')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
-            <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
-              <div class="noTasksContainer">
-                <p>No tasks to do</p>
-              </div>
-            </div>
+            <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper"></div>
           </div>
           <div class="inProgressSection">
             <div class="inProgressTitleContainer">
