@@ -181,7 +181,7 @@ textarea:active {
 }
 
 .cursorUnset {
-  cursor: unset;
+  cursor: unset !important;
 }
 
 .displayNone {

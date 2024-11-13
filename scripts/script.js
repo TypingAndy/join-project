@@ -65,6 +65,20 @@ function renderTaskForm(taskStatus, id) {
   renderSubtasksToList();
 }
 
+
+async function fillUserDropdown() {
+  let userDropdown = document.getElementById("userDropdown");
+  sortedUsers = await sortUserData();
+  console.log(sortedUsers);
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
+  }
+}
+
+
+
+
 //taskForm edit functions
 
 // function editTaskInputData(taskStatus) {

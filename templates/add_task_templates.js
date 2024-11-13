@@ -1,6 +1,6 @@
 function nameListTemplate(i, sortedUsers) {
   return /*html*/ `
-    <div id="userContainerInsideUserDropdown${i}" onclick="addUserToTaskToggleCss('${i}', '${sortedUsers[i].id}'),toggleUserInTaskUsers('${sortedUsers[i].id}'), clearUserInputInsideTaskFrom()" class="userDropdownUserContainer userDropdownUserContainerBackground">
+    <div id="userContainerInsideUserDropdown${i}" onclick="addUserToTaskToggleCss('${i}', '${sortedUsers[i].id}'),toggleUserInTaskUsersArray('${sortedUsers[i].id}'), clearUserInputInsideTaskFrom()" class="userDropdownUserContainer userDropdownUserContainerBackground">
       <div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>
       <div class="taskFormUserNameAndInitials">
         <div>${sortedUsers[i].name}</div>
@@ -26,7 +26,7 @@ function subtaskTemplate(i) {
     <li id="subtaskSingleListContent(${i})" class="taskFormSubtaskListBox">
       <div id="addTasksSubtask(${i})" class="taskFormSubtaskListSingle">
 
-        <div id="taskFormSubtaskTitle(${i})" ondblclick="openRewriteInput(${i})">${subtasks[i]}</div>
+        <div id="taskFormSubtaskTitle(${i})" ondblclick="openRewriteInput(${i})">${subtasks[i].subtaskName}</div>
         <input id="taskFormSubtaskRewriteInput(${i})" type="text" class="subtaskRewriteInput displayNone">
 
         <div id="subtaskIconBox(${i})" class="subtaskIconBox">
