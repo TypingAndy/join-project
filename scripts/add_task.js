@@ -1,4 +1,19 @@
-// often used functions
+// user assign
+
+//------------// open/close User Dropdown
+
+function openUserDropdown() {
+  switchArrowInsideDropdown(true, "taskFormUserDropdownArrow");
+  handleDropdown(true, "userDropdown");
+  enableCursorPointerOnInput("taskFormUserInput");
+}
+
+function closeUserDropdown() {
+  switchArrowInsideDropdown(false, "taskFormUserDropdownArrow", "userDropdown"), handleDropdown(false, "userDropdown");
+  userFilterFunction();
+  clearUserInputInsideTaskFrom();
+  disableCursorPointerOnInput("taskFormUserInput");
+}
 
 function switchArrowInsideDropdown(isFocused, currentImageID) {
   let image = document.getElementById(currentImageID);
@@ -12,6 +27,21 @@ function switchArrowInsideDropdown(isFocused, currentImageID) {
       image.style.pointerEvents = "none";
     }, 80);
   }
+}
+
+function clearUserInputInsideTaskFrom() {
+  let userInput = document.getElementById("taskFormUserInput");
+  userInput.value = "";
+}
+
+function enableCursorPointerOnInput(dropdownId) {
+  let userInput = document.getElementById(dropdownId);
+  userInput.classList.add("cursorUnset");
+}
+
+function disableCursorPointerOnInput(dropdownId) {
+  let userInput = document.getElementById(dropdownId);
+  userInput.classList.remove("cursorUnset");
 }
 
 function handleDropdown(isFocused, currentDropdownID) {
@@ -31,17 +61,20 @@ function handleDropdown(isFocused, currentDropdownID) {
   }
 }
 
-// user assign
-
-async function fillUserDropdown() {
-  let userDropdown = document.getElementById("userDropdown");
-  sortedUsers = await sortUserData();
-  console.log(sortedUsers);
-
-  for (let i = 0; i < sortedUsers.length; i++) {
-    userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let dropdown = document.getElementById("userDropdown");
+      if (dropdown) {
+        dropdown.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+        });
+      }
+    }, 100);
   }
-}
+});
+
+//------------// toggle Users
 
 function addUserToTaskToggleCss(i) {
   let check = document.getElementById(`check${i}`);
@@ -49,7 +82,6 @@ function addUserToTaskToggleCss(i) {
   let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
   let userIcon = document.getElementById(`taskFormUserIcon${i}`);
   let userDropdown = document.getElementById("userDropdown");
-  let userInput = document.getElementById("taskFormUserInput");
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
@@ -57,10 +89,9 @@ function addUserToTaskToggleCss(i) {
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
   userIcon.classList.toggle("displayNone");
   userDropdown.classList.add("maxHeight200");
-  userInput.classList.add("cursorUnset");
 }
 
-function toggleUserInTaskUsers(userIndex) {
+function toggleUserInTaskUsersArray(userIndex) {
   let index = taskFormCurrentUsersIds.indexOf(userIndex);
 
   if (index === -1) {
@@ -70,9 +101,13 @@ function toggleUserInTaskUsers(userIndex) {
   }
 }
 
-function clearUserInputInsideTaskFrom() {
-  let userInput = document.getElementById("taskFormUserInput");
-  userInput.value = "";
+async function insertUserIconsInsideAssign() {
+  let sortedUsers = await sortUserData();
+  let userIconContainer = document.getElementById("taskFormUserIcon");
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
+  }
 }
 
 function userFilterFunction() {
@@ -89,35 +124,7 @@ function userFilterFunction() {
       userElement.classList.add("displayNone");
     }
   }
-} 
-
-async function insertUserIconsInsideAssign() {
-  let sortedUsers = await sortUserData();
-  let userIconContainer = document.getElementById("taskFormUserIcon");
-
-  for (let i = 0; i < sortedUsers.length; i++) {
-    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
-  }
 }
-
-function clearUserInput() {
-  let userInput = document.getElementById("taskFormUserInput");
-  userInput.value = "";
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.href.endsWith("add_task.html")) {
-    setTimeout(() => {
-      let dropdown = document.getElementById("userDropdown");
-      if (dropdown) {
-        dropdown.addEventListener("mousedown", function (event) {
-          event.preventDefault();
-        });
-      }
-    }, 100);
-  }
-});
-
 
 // date
 
@@ -158,6 +165,18 @@ function capitalize(str) {
 }
 
 // category
+
+function openCategoryDropdown() {
+  switchArrowInsideDropdown(true, "taskFormCategoryDropdownArrrow", "categoryDropdown");
+  handleDropdown(true, "categoryDropdown");
+  enableCursorPointerOnInput("taskFormCategoryInput");
+}
+
+function closeCategoryDropdown() {
+  switchArrowInsideDropdown(false, "taskFormCategoryDropdownArrrow", "categoryDropdown");
+  handleDropdown(false, "categoryDropdown");
+  disableCursorPointerOnInput("taskFormCategoryInput");
+}
 
 function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
@@ -205,8 +224,13 @@ function clearSubtaskInput() {
 
 function addSubtaskToList() {
   let subtaskInput = document.getElementById("taskFormSubtaskInput").value;
-
-  subtasks.push(subtaskInput);
+  let subtaskObjekt = {
+    subtaskName: subtaskInput,
+    subtaskDone: false
+  } 
+  subtasks.push(subtaskObjekt);
+  console.log(subtasks);
+  
 }
 
 function renderSubtasksToList() {
@@ -274,7 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 });
-
 
 // collecting Data
 

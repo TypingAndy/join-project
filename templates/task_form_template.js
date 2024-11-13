@@ -22,8 +22,8 @@ function taskFormTemplate(taskStatus) {
               <div class="taskFormInputContainer">
                 <input
                   id="taskFormUserInput"
-                  onfocus="switchArrowInsideDropdown(true, 'taskFormUserDropdownArrow'), handleDropdown(true, 'userDropdown')"
-                  onblur="switchArrowInsideDropdown(false, 'taskFormUserDropdownArrow', 'userDropdown'), handleDropdown(false, 'userDropdown'), clearUserInput(), userFilterFunction()"
+                  onfocus="openUserDropdown()"
+                  onblur="closeUserDropdown()"
                   onkeyup="userFilterFunction()"
                   placeholder="Select contacts to assign"
                   class="taskFormDropdownInput"
@@ -74,8 +74,8 @@ function taskFormTemplate(taskStatus) {
               <div class="taskFormInputContainer">
                 <input
                   id="taskFormCategoryInput"
-                  onfocus="switchArrowInsideDropdown(true, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(true, 'categoryDropdown')"
-                  onblur="switchArrowInsideDropdown(false, 'taskFormCategoryDropdownArrrow', 'categoryDropdown'), handleDropdown(false, 'categoryDropdown')"
+                  onfocus="openCategoryDropdown()"
+                  onblur="closeCategoryDropdown()"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
                   
