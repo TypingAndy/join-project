@@ -1,12 +1,3 @@
-//add task onload function
-
-function taskFormOnload() {
-  fillUserDropdown();
-  insertUserIconsInsideAssign();
-  fillCategoryDropdown();
-  renderSubtasksToList();
-}
-
 // often used functions
 
 function switchArrowInsideDropdown(isFocused, currentImageID) {
@@ -98,7 +89,7 @@ function userFilterFunction() {
       userElement.classList.add("displayNone");
     }
   }
-}
+} 
 
 async function insertUserIconsInsideAssign() {
   let sortedUsers = await sortUserData();
@@ -115,11 +106,18 @@ function clearUserInput() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  let dropdown = document.getElementById("userDropdown");
-  dropdown.addEventListener("mousedown", function (event) {
-    event.preventDefault();
-  });
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let dropdown = document.getElementById("userDropdown");
+      if (dropdown) {
+        dropdown.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+        });
+      }
+    }, 100);
+  }
 });
+
 
 // date
 
@@ -141,18 +139,22 @@ function setTaskPrio(priority) {
 
 function setTaskPrioButtonColorSwitch(priority) {
   let buttons = {
-    Urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
-    Medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
-    Low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
+    urgent: document.getElementsByClassName("taskFormPrioButtonUrgent")[0],
+    medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
+    low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
   };
 
   Object.keys(buttons).forEach((prio) => {
     if (prio === priority) {
-      buttons[prio].classList.add(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+      buttons[prio].classList.add(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     } else {
-      buttons[prio].classList.remove(`taskFormPrioButton${prio}OnClick`, `taskFormPrioButton${prio}Icon`);
+      buttons[prio].classList.remove(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     }
   });
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // category
@@ -259,13 +261,20 @@ function deleteSubtaskFromList(i) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  let subtaskBox = document.getElementById("taskFormSubtaskList");
-  document.addEventListener("mousedown", function (event) {
-    if (!subtaskBox.contains(event.target)) {
-      renderSubtasksToList();
-    }
-  });
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let subtaskBox = document.getElementById("taskFormSubtaskList");
+      if (subtaskBox) {
+        document.addEventListener("mousedown", function (event) {
+          if (!subtaskBox.contains(event.target)) {
+            renderSubtasksToList();
+          }
+        });
+      }
+    }, 100);
+  }
 });
+
 
 // collecting Data
 

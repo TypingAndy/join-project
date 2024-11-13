@@ -8,10 +8,25 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/board_popup.css" />
     <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/board_taskform_popup.css" />
+    <link rel="stylesheet" href="../css/task_form.css" />
+
   </head>
+
   <body onload="loadAllTasks()">
     <div class="joinWrapper">
       <header>
+        <!--  div for taskFormPopup -->
+        <div id="taskFormBoardContainer" class="taskFormBoardContainer displayNone">
+          <div class="taskFormContainer">
+            <img id="taskFormBoardExitButton" onclick="toggleBoardTaskForm()" src="../images/icons/x_black_subtask.png" class="taskFormBoardExitButton">
+            <form id="taskFormBoard" class="taskFormBoard">
+
+            </form>
+          </div>
+        </div>
+        <!--  div for taskFormPopup -->
+
         <img src="../images/icons/join_logo_black.svg" alt="" />
         <div class="userProfile">
           <p>AB</p>
@@ -34,7 +49,7 @@
           <div class="toDoSection">
             <div class="toDoSectionTitleContainer">
               <p>To Do</p>
-              <img onclick="openAddTaskPopup('to do')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="toggleBoardTaskForm(), renderTaskForm('to do', 'taskFormBoard')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper">
               <div class="noTasksContainer">
@@ -45,21 +60,21 @@
           <div class="inProgressSection">
             <div class="inProgressTitleContainer">
               <p>In progress</p>
-              <img onclick="openAddTaskPopup('in progress')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="toggleBoardTaskForm(), renderTaskForm('in progress', 'taskFormBoard')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
           <div class="awaitFeedbackSection">
             <div class="awaitFeedbackTitleContainer">
               <p>Await feedback</p>
-              <img onclick="openAddTaskPopup('await feedback')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="toggleBoardTaskForm(), renderTaskForm('await feedback', 'taskFormBoard')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
           </div>
           <div class="doneSection">
             <div class="doneTitleContainer">
               <p>Done</p>
-              <img onclick="openAddTaskPopup('done')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
+              <img onclick="toggleBoardTaskForm(), renderTaskForm('done', 'taskFormBoard')" class="boardPlusIconSmall" src="../images/icons/plus_add_task_small.png" alt="" />
             </div>
             <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
           </div>
@@ -88,5 +103,10 @@
     <script src="../scripts/board.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../templates/board_templates.js"></script>
+    <script src="../templates/task_form_template.js"></script>
+    <script src="../templates/add_task_template.js"></script>
+    <script src="../scripts/add_task.js"></script>
+    <script src="../scripts/user_data.js"></script>
+    <script src="../scripts/add_task.js"></script>
   </body>
 </html>

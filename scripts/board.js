@@ -261,3 +261,16 @@ function setSubtaskDonetoTrueOrFalseOnFirebase(i, subtasksIndex, taskFirebaseID,
     fetchSubtaskDoneToFalse(subtasksIndex, taskFirebaseID);
   }
 }
+
+
+
+// render TaskForm
+
+
+function toggleBoardTaskForm() {
+let taskForm = document.getElementById('taskFormBoardContainer');
+taskForm.classList.toggle('displayNone');
+}
+
+
+

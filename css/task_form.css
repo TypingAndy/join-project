@@ -202,7 +202,7 @@
   border: solid 1px #d1d1d1;
 }
 
-.taskFormPrioButtonurgentOnClick {
+.taskFormPrioButtonUrgentOnClick {
   color: #ffffff;
   background-color: #ff3d00;
 }
@@ -229,12 +229,12 @@
   cursor: pointer;
 }
 
-.taskFormPrioButtonmediumOnClick {
+.taskFormPrioButtonMediumOnClick {
   color: #ffffff;
   background-color: #ffa800;
 }
 
-.taskFormPrioButtonlow {
+.taskFormPrioButtonLow {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,7 +251,7 @@
   cursor: pointer;
 }
 
-.taskFormPrioButtonlowOnClick {
+.taskFormPrioButtonLowOnClick {
   color: #ffffff;
   background-color: #7ae229;
 }
@@ -261,15 +261,15 @@
   height: 14.5px;
 }
 
-.taskFormPrioButtonurgentIcon img {
+.taskFormPrioButtonUrgentIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
-.taskFormPrioButtonmediumIcon img {
+.taskFormPrioButtonMediumIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
-.taskFormPrioButtonlowIcon img {
+.taskFormPrioButtonLowIcon img {
   filter: brightness(10000%) saturate(0);
 }
 
