@@ -61,10 +61,11 @@ function handleDropdown(isFocused, currentDropdownID) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.href.endsWith("add_task.html")) {
+document.addEventListener("click", function () {
+  if (window.location.href.endsWith("add_task.html") || document.getElementById("taskFormBoardContainer")) {
     setTimeout(() => {
       let dropdown = document.getElementById("userDropdown");
+
       if (dropdown) {
         dropdown.addEventListener("mousedown", function (event) {
           event.preventDefault();
@@ -73,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 100);
   }
 });
+
+
 
 //------------// toggle Users
 
@@ -284,8 +287,8 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (window.location.href.endsWith("add_task.html")) {
+document.addEventListener("click", () => {
+  if (window.location.href.endsWith("add_task.html") || document.getElementById('taskFormBoardContainer')) {
     setTimeout(() => {
       let subtaskBox = document.getElementById("taskFormSubtaskList");
       if (subtaskBox) {
@@ -317,6 +320,5 @@ function getNewTaskInputData(taskStatus) {
     taskSubtasks: subtasks,
   };
   console.log(createTaskData);
-
   return createTaskData;
 }
