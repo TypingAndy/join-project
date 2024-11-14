@@ -184,3 +184,5 @@ function toggleBoardTaskForm() {
   let taskForm = document.getElementById("taskFormBoardContainer");
   taskForm.classList.toggle("displayNone");
 }
+
+renderTaskFormEdit()
