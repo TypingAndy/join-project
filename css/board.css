@@ -1,6 +1,6 @@
-.boardPlusIconSmall {
-  height: 30px;
-  cursor: pointer;
+.hidden {
+  opacity: 0.2;
+  transition: opacity 0.2s ease;
 }
 
 .drop-zone-active {
@@ -15,11 +15,6 @@
   color: transparent;
 }
 
-.hidden {
-  opacity: 0.2;
-  transition: opacity 0.2s ease;
-}
-
 .taskCard {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -27,4 +22,9 @@
 .taskCard:hover {
   transform: translateY(-2px);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.boardPlusIconSmall {
+  height: 30px;
+  cursor: pointer;
 }
