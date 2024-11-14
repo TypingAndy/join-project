@@ -101,7 +101,10 @@ function handleDragEnd() {
 
 function handleInvalidDrop(event) {
   event.preventDefault();
-  setDraggingStateForCardStyle("landed");
+  const currentCardElement = document.getElementById("taskCard" + currentDraggedElementID);
+  if (currentCardElement) {
+    currentCardElement.classList.remove("hidden");
+  }
 }
 
 function allowDrop(ev) {
@@ -110,12 +113,23 @@ function allowDrop(ev) {
 
 async function moveTo(newTaskStatus) {
   try {
+    const currentCardElement = document.getElementById("taskCard" + currentDraggedElementID);
+    if (currentCardElement) {
+      currentCardElement.remove();
+    }
     await putNewTaskStatus(newTaskStatus);
     await renderTaskCards();
   } catch (error) {
     console.error("Error updating task status:", error);
   } finally {
-    handleDragEnd();
+    const dropZones = document.querySelectorAll("[ondrop]");
+    dropZones.forEach((zone) => {
+      zone.classList.remove("drop-zone-active");
+      const noTaskContainer = zone.querySelector(".noTasksContainer");
+      if (noTaskContainer) {
+        noTaskContainer.classList.remove("no-tasks-dragging");
+      }
+    });
   }
 }
 
