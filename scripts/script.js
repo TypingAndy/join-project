@@ -16,12 +16,7 @@ let subtasks = []; //is needed
 //boardGlobalArrays
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = [];
-let toDoTasks = [];
-let doneTasks = [];
-let inProgressTasks = [];
-let awaitFeedbackTasks = [];
 let currentDraggedElementID;
-let currentNumberedID = "";
 
 //contactGlobalArray
 let allContacts = [];
@@ -62,7 +57,6 @@ function renderTaskForm(taskStatus, id) {
   renderSubtasksToList();
 }
 
-
 async function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   sortedUsers = await sortUserData();
@@ -72,9 +66,6 @@ async function fillUserDropdown() {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
   }
 }
-
-
-
 
 //taskForm edit functions
 

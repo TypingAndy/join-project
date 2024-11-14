@@ -6,7 +6,7 @@ function noTaskTemplate() {
       `;
 }
 
-function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone) {
+function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage) {
   return `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}')">
                   <div class="taskCardCategory">
@@ -16,7 +16,7 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
                   <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>
                   <div class="taskCardSubtasksContainer">
                     <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBarToDoTasks${[taskIndex]}"></div>
+                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBar${[taskIndex]}", style="width: ${subtaskDonePercentage}%"></div>
                     </div>
                     <p>${subtasksDone}/${subtasksArrayLength} Subtasks</p>
                   </div>
