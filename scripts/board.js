@@ -31,8 +31,9 @@ async function renderTaskCards() {
     let taskCardAllInitialsTemplate = returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray, allUsers);
     let subtasksDone = countCompletedSubtasks(filteredLokalTasksArray[taskIndex]);
     const subtasksArrayLength = filteredLokalTasksArray[taskIndex].taskSubtasks ? filteredLokalTasksArray[taskIndex].taskSubtasks.length : 0;
+    let subtaskDonePercentage = calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength);
 
-    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone);
+    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage);
   }
   fillEmptyTaskCategories();
 }
@@ -40,6 +41,10 @@ async function renderTaskCards() {
 function filterTasks() {
   let searchTerm = document.getElementById("findTaskInput").value;
   return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm.toLowerCase()));
+}
+
+function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
+  return (subtasksDone / subtasksArrayLength) * 100;
 }
 
 function getElementByTaskStatus(taskStatus) {
@@ -100,19 +105,26 @@ function countCompletedSubtasks(task) {
 
 function startDragging(id) {
   currentDraggedElementID = id;
-  console.log(currentDraggedElementID);
+  setDraggingStateForCardStyle(id, "floating");
 }
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
-async function moveTo(taskStatus) {
-  convertedTasks[currentDraggedElementID]["taskStatus"] = taskStatus;
-  putNewTaskStatus();
-  sortAllTasks();
-  renderTasks();
+async function moveTo(newTaskStatus) {
+  await putNewTaskStatus(newTaskStatus);
+  renderTaskCards();
+  setDraggingStateForCardStyle(id, "landed");
 }
+
+function setDraggingStateForCardStyle(id, state) {
+  let currentDraggingCardState = state;
+  console.log(currentDraggingCardState);
+  return currentDraggingCardState;
+}
+
+function styleCardBasedOnDraggingState() {}
 
 let popupElement = document.getElementById("boardTaskPopup");
 let popupBackgroundELement = document.getElementById("boardPopupBackground");
