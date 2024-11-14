@@ -46,15 +46,13 @@ async function getNewUserId(response) {
   return data.name;
 }
 
-async function putNewTaskStatus() {
-  let taskID = convertedTasks[currentDraggedElementID].ID;
-  let task = convertedTasks[currentDraggedElementID];
-  await fetch(`${BASE_URL}tasks/${taskID}.json`, {
+async function putNewTaskStatus(newTaskStatus) {
+  await fetch(`${BASE_URL}tasks/${currentDraggedElementID}/taskStatus.json`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(task),
+    body: JSON.stringify(newTaskStatus),
   });
 }
 
