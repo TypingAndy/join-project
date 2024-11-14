@@ -8,7 +8,7 @@ function noTaskTemplate() {
 
 function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}')">
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}')" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" >
                   <div class="taskCardCategory">
                     <p>${filteredLokalTasksArray[taskIndex].taskCategory}</p>
                   </div>
