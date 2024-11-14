@@ -15,7 +15,7 @@ let subtasks = []; //is needed
 
 //boardGlobalArrays
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
-let allUnsortedTasks = [];
+let allUnsortedTasks = []; //is needed
 let currentDraggedElementID;
 
 //contactGlobalArray
