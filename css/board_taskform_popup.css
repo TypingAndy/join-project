@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 600;
+  z-index: 700;
 }
 
 .taskFormBoard {
@@ -17,6 +17,7 @@
   gap: 16px;
   flex-direction: column;
   overflow: scroll;
+
 }
 
 .taskFormContainer {
@@ -27,6 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 800;
 }
 
 .taskFormBoardExitButton {
