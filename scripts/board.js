@@ -260,3 +260,23 @@ function toggleBoardTaskForm() {
 function stopPropagation(event) {
   event.stopPropagation();
 }
+
+function renderTaskFormEdit(taskID) {
+  console.log(allUnsortedTasks[taskID]);
+  let titleAcceptTaskButton = "Ok";
+  let taskStatus = allUnsortedTasks[taskID].taskStatus;
+  let taskForm = document.getElementById("taskFormBoard");
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
+}
+
+function fillTaskFormEdit(taskId) {
+  let titleInput = document.getElementById("taskTitleInput");
+  let descriptionInput = document.getElementById("taskDescriptionInput");
+  let dateInput = document.getElementById("dateInput");
+  let categoryInput = document.getElementById("taskFormCategoryInput");
+
+  titleInput.value = allUnsortedTasks[taskId].taskTitle;
+  descriptionInput.value = allUnsortedTasks[taskId].taskDescription;
+  dateInput.value = allUnsortedTasks[taskId].taskDate;
+  categoryInput.value = allUnsortedTasks[taskId].taskCategory;
+}
