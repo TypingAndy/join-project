@@ -14,6 +14,7 @@ let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others",
 let subtasks = []; //is needed
 
 //boardGlobalArrays
+let unsortedUsers = {};
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
 let currentDraggedElementID;
@@ -47,7 +48,7 @@ function redirectToBoard() {
 
 function renderTaskFormTemplate(taskStatus, id) {
   let taskForm = document.getElementById(id);
-  titleAcceptTaskButton = "Create Task"
+  titleAcceptTaskButton = "Create Task";
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
 }
 
