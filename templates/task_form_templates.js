@@ -1,4 +1,4 @@
-function taskFormTemplate(taskStatus) {
+function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
   return /*html*/ `
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Title<span style="color: red">*</span></div>
@@ -103,7 +103,7 @@ function taskFormTemplate(taskStatus) {
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
               <div onclick="postTaskData('${taskStatus}')" class="createTaskButton" type="submit">
-                <div>Create Task</div>
+                <div>${titleAcceptTaskButton}</div> 
                 <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
               </div>
             </div>

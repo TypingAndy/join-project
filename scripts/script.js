@@ -47,11 +47,13 @@ function redirectToBoard() {
 
 function renderTaskFormTemplate(taskStatus, id) {
   let taskForm = document.getElementById(id);
-  taskForm.innerHTML = taskFormTemplate(taskStatus);
+  titleAcceptTaskButton = "Create Task"
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
 }
 
 function renderTaskForm(taskStatus, id) {
-  renderTaskFormTemplate(taskStatus, id), fillUserDropdown();
+  renderTaskFormTemplate(taskStatus, id);
+  fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
