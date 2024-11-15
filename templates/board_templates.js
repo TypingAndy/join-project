@@ -30,11 +30,11 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
       `;
 }
 
-function taskCardSingleInitialsTemplate(users, currentUserID) {
+function taskCardSingleInitialsTemplate(currentUserID) {
   return `
-                <div class="taskCardUser" style="background-color: ${users[currentUserID].color};">
-                  <p style="color: ${users[currentUserID].fontColor};">
-                  ${users[currentUserID].initials}
+                <div class="taskCardUser" style="background-color: ${unsortedUsers[currentUserID].color};">
+                  <p style="color: ${unsortedUsers[currentUserID].fontColor};">
+                  ${unsortedUsers[currentUserID].initials}
                   </p>
                 </div>
   
@@ -103,7 +103,7 @@ function popupUserTemplate(currentUserId) {
 
 function popupSubtaskTemplate(subtasksIndex, taskID) {
   return `
-        <div class="boardTaskPopupContentSubtask" onclick="boardTaskPopupChangeSubtaskStatus(${subtasksIndex},'${taskID}')">
+        <div class="boardTaskPopupContentSubtask" onclick="toggleSubtaskStatus(${subtasksIndex},'${taskID}')">
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="../images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskName}</p>
         </div>

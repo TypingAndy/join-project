@@ -1,4 +1,60 @@
-let unsortedUsers = {};
+async function createLokalTasksArray() {
+  await loadTasksObjectFromFirebase();
+  convertUnsortedTasksObjectToArray();
+  addFirebaseIDtoLokalTasksArray();
+}
+
+function convertUnsortedTasksObjectToArray() {
+  lokalTasksArray = Object.values(allUnsortedTasks);
+}
+
+function addFirebaseIDtoLokalTasksArray() {
+  lokalTasksArray = lokalTasksArray.map((item, index) => ({
+    ...item,
+    ID: Object.keys(allUnsortedTasks)[index],
+  }));
+}
+
+async function initializeBoard() {
+  await createLokalTasksArray();
+  await loadUserDataFromFirebase();
+  renderTaskCards();
+}
+
+function updateLokalTaskArrayStatus(newTaskStatus) {
+  const task = lokalTasksArray.find((item) => item.ID === currentDraggedElementID);
+  task.taskStatus = newTaskStatus;
+}
+
+async function handleSearchInput() {
+  clearAllTaskWrappers();
+  await renderTaskCards();
+}
+
+async function renderTaskCards() {
+  let filteredLokalTasksArray = filterTasks();
+  clearAllTaskCardWrappers();
+
+  for (let taskIndex = 0; taskIndex < filteredLokalTasksArray.length; taskIndex++) {
+    let currentElement = getElementByTaskStatus(filteredLokalTasksArray[taskIndex].taskStatus);
+    let taskCardAllInitialsTemplate = returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray);
+    let subtasksDone = countCompletedSubtasks(filteredLokalTasksArray[taskIndex]);
+    const subtasksArrayLength = filteredLokalTasksArray[taskIndex].taskSubtasks?.length || 0;
+    let subtaskDonePercentage = calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength);
+
+    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage);
+  }
+  fillEmptyTaskCategories();
+}
+
+function filterTasks() {
+  const searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
+  return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm));
+}
+
+function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
+  return subtasksArrayLength === 0 ? 0 : (subtasksDone / subtasksArrayLength) * 100;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("dragend", handleDragEnd);
@@ -31,55 +87,6 @@ function handleDragLeave(e) {
       noTaskContainer.classList.remove("no-tasks-dragging");
     }
   }
-}
-
-async function createLokalTasksArray() {
-  await loadTasksObjectFromFirebase();
-  convertUnsortedTasksObjectToArray();
-  addFirebaseIDtoLokalTasksArray();
-}
-
-function convertUnsortedTasksObjectToArray() {
-  lokalTasksArray = Object.values(allUnsortedTasks);
-}
-
-function addFirebaseIDtoLokalTasksArray() {
-  lokalTasksArray = lokalTasksArray.map((item, index) => ({
-    ...item,
-    ID: Object.keys(allUnsortedTasks)[index],
-  }));
-}
-
-async function handleSearchInput() {
-  clearAllTaskWrappers();
-  await renderTaskCards();
-}
-
-async function renderTaskCards() {
-  await createLokalTasksArray();
-  let filteredLokalTasksArray = filterTasks();
-  let allUsers = await loadUserDataFromFirebase();
-  clearAllTaskCardWrappers();
-
-  for (let taskIndex = 0; taskIndex < filteredLokalTasksArray.length; taskIndex++) {
-    let currentElement = getElementByTaskStatus(filteredLokalTasksArray[taskIndex].taskStatus);
-    let taskCardAllInitialsTemplate = returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray, allUsers);
-    let subtasksDone = countCompletedSubtasks(filteredLokalTasksArray[taskIndex]);
-    const subtasksArrayLength = filteredLokalTasksArray[taskIndex].taskSubtasks?.length || 0;
-    let subtaskDonePercentage = calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength);
-
-    currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage);
-  }
-  fillEmptyTaskCategories();
-}
-
-function filterTasks() {
-  const searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
-  return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm));
-}
-
-function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
-  return subtasksArrayLength === 0 ? 0 : (subtasksDone / subtasksArrayLength) * 100;
 }
 
 function startDragging(id) {
@@ -117,8 +124,10 @@ async function moveTo(newTaskStatus) {
     if (currentCardElement) {
       currentCardElement.remove();
     }
+    updateLokalTaskArrayStatus(newTaskStatus);
+    renderTaskCards();
     await putNewTaskStatus(newTaskStatus);
-    await renderTaskCards();
+    await createLokalTasksArray();
   } catch (error) {
     console.error("Error updating task status:", error);
   } finally {
@@ -171,13 +180,13 @@ function clearAllTaskCardWrappers() {
   });
 }
 
-function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray, allUsers) {
+function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   let taskCardAllInitialsTemplate = "";
   const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
 
   for (let userIndex = 0; userIndex < userIds.length; userIndex++) {
     const currentUserID = userIds[userIndex];
-    taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(allUsers, currentUserID);
+    taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(currentUserID);
   }
   return taskCardAllInitialsTemplate;
 }
@@ -206,11 +215,13 @@ function openBoardTaskPopup(taskID) {
   popupElement.addEventListener("click", stopPropagation);
 }
 
-function closeBoardTaskPopup() {
-  popupElement.style.display = "none";
-  popupBackgroundElement.style.display = "none";
-  popupElement.removeEventListener("click", stopPropagation);
-  renderTaskCards();
+function closeBoardTaskPopup(event) {
+  if (!event || event.target === popupBackgroundElement) {
+    popupElement.style.display = "none";
+    popupBackgroundElement.style.display = "none";
+    popupElement.removeEventListener("click", stopPropagation);
+    renderTaskCards();
+  }
 }
 
 function renderBoardTaskPopupContent(taskID) {
@@ -238,19 +249,12 @@ function renderBoardTaskPopupSubtasks(taskID) {
   });
 }
 
-function boardTaskPopupChangeSubtaskStatus(subtasksIndex, taskID) {
-  allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done = !allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done;
-  setSubtaskDonetoTrueOrFalseOnFirebase(subtasksIndex, taskID);
-  renderBoardTaskPopupSubtasks(taskID);
-}
+async function toggleSubtaskStatus(subtasksIndex, taskID) {
+  allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone = !allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone;
+  let newSubtaskStatus = allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone;
 
-function setSubtaskDonetoTrueOrFalseOnFirebase(subtasksIndex, taskID) {
-  const taskStatus = allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].done;
-  if (taskStatus) {
-    fetchSubtaskDoneToTrue(subtasksIndex, taskFirebaseID);
-  } else {
-    fetchSubtaskDoneToFalse(subtasksIndex, taskFirebaseID);
-  }
+  renderBoardTaskPopupSubtasks(taskID);
+  await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
 }
 
 function toggleBoardTaskForm() {
