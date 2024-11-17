@@ -25,6 +25,17 @@ async function deleteUserFromFirebase(firebaseId) {
   });
 }
 
+async function toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus) {
+  await fetch(`${BASE_URL}tasks/${taskID}/taskSubtasks/${subtasksIndex}/subtaskDone.json`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newSubtaskStatus),
+  });
+  console.log("subtask toggeled");
+}
+
 async function updateUserInFirebase(firebaseId, updatedUserData) {
   await fetch(BASE_URL + `users/${firebaseId}.json`, {
     method: "PATCH",
