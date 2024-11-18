@@ -83,29 +83,7 @@ document.addEventListener("click", function () {
 
 
 
-function insertUserIconsInsideAssign() {
-  let userIconContainer = document.getElementById("taskFormUserIcon");
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
-  }
-}
-
-function userFilterFunction() {
-  let input = document.getElementById("taskFormUserInput");
-  let filter = input.value.toUpperCase();
-
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
-
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
-    } else {
-      userElement.classList.add("displayNone");
-    }
-  }
-}
 
 // date
 
