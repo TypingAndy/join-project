@@ -79,30 +79,9 @@ document.addEventListener("click", function () {
 
 //------------// toggle Users
 
-function addUserToTaskToggleCss(i) {
-  let check = document.getElementById(`check${i}`);
-  let noCheck = document.getElementById(`noCheck${i}`);
-  let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
-  let userIcon = document.getElementById(`taskFormUserIcon${i}`);
-  let userDropdown = document.getElementById("userDropdown");
 
-  check.classList.toggle("displayNone");
-  noCheck.classList.toggle("displayNone");
-  userContainer.classList.toggle("userDropdownUserContainerBackground");
-  userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
-  userIcon.classList.toggle("displayNone");
-  userDropdown.classList.add("maxHeight200");
-}
 
-function toggleUserInTaskUsersArray(userIndex) {
-  let index = taskFormCurrentUsersIds.indexOf(userIndex);
 
-  if (index === -1) {
-    taskFormCurrentUsersIds.push(userIndex);
-  } else {
-    taskFormCurrentUsersIds.splice(index, 1);
-  }
-}
 
 function insertUserIconsInsideAssign() {
   let userIconContainer = document.getElementById("taskFormUserIcon");

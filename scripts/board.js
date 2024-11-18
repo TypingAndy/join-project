@@ -284,6 +284,24 @@ function fillTaskFormEdit(taskId) {
 
   titleInput.value = allUnsortedTasks[taskId].taskTitle;
   descriptionInput.value = allUnsortedTasks[taskId].taskDescription;
+  toggleTaskCurrentUserInTaskFormEdit(taskId);
   dateInput.value = allUnsortedTasks[taskId].taskDate;
+  setTaskPrio(allUnsortedTasks[taskId].taskPrio);
   categoryInput.value = allUnsortedTasks[taskId].taskCategory;
+  fillSubtaskListInTaskFormEdit(taskId);
+}
+
+function toggleTaskCurrentUserInTaskFormEdit(taskId) {
+  for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
+    toggleUserInTaskForm(i, allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
+  }
+}
+
+function fillSubtaskListInTaskFormEdit(taskId) {
+  let subtaskList = document.getElementById("taskFormSubtaskList");
+  subtaskList.innerHTML = "";
+  subtasks = allUnsortedTasks[taskId].taskSubtasks;
+  for (let i = 0; i < allUnsortedTasks[taskId].taskSubtasks.length; i++) {
+    subtaskList.innerHTML += subtaskTemplate(i);
+  }
 }

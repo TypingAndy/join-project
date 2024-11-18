@@ -8,7 +8,7 @@ let policyAccepted = false;
 let passwordMatch = false;
 
 //addTaskGlobalArrays
-let taskPrioInput = "";
+let taskPrioInput = ""; //is needed
 let taskFormCurrentUsersIds = []; //is needed
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let subtasks = []; //is needed
@@ -66,6 +66,62 @@ function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   for (let i = 0; i < sortedUsers.length; i++) {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
+  }
+}
+
+function toggleUserInTaskForm(i, sortedUsersID) {
+  addUserToTaskToggleCss(i);
+  toggleUserInTaskUsersArray(sortedUsersID);
+  clearUserInputInsideTaskFrom();
+
+}
+
+function addUserToTaskToggleCss(i) {
+  let check = document.getElementById(`check${i}`);
+  let noCheck = document.getElementById(`noCheck${i}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
+  let userIcon = document.getElementById(`taskFormUserIcon${i}`);
+  let userDropdown = document.getElementById("userDropdown");
+
+  check.classList.toggle("displayNone");
+  noCheck.classList.toggle("displayNone");
+  userContainer.classList.toggle("userDropdownUserContainerBackground");
+  userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
+  userIcon.classList.toggle("displayNone");
+  userDropdown.classList.toggle("maxHeight200");
+}
+
+function toggleUserInTaskUsersArray(userIndex) {
+  let index = taskFormCurrentUsersIds.indexOf(userIndex);
+
+  if (index === -1) {
+    taskFormCurrentUsersIds.push(userIndex);
+  } else {
+    taskFormCurrentUsersIds.splice(index, 1);
+  }
+}
+
+function insertUserIconsInsideAssign() {
+  let userIconContainer = document.getElementById("taskFormUserIcon");
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
+  }
+}
+
+function userFilterFunction() {
+  let input = document.getElementById("taskFormUserInput");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let userName = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
   }
 }
 
