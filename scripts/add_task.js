@@ -104,8 +104,7 @@ function toggleUserInTaskUsersArray(userIndex) {
   }
 }
 
-async function insertUserIconsInsideAssign() {
-  let sortedUsers = await sortUserData();
+function insertUserIconsInsideAssign() {
   let userIconContainer = document.getElementById("taskFormUserIcon");
 
   for (let i = 0; i < sortedUsers.length; i++) {

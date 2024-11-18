@@ -86,6 +86,8 @@ async function postTaskData(taskStatus) {
   }
 }
 
+
+//is this needed???????????????????????
 async function updateTaskData(currentNumberedID) {
   let createTaskData = editTaskInputData();
   let taskFirebaseID = convertedTasks[currentNumberedID].ID;
