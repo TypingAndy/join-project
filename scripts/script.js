@@ -14,6 +14,7 @@ let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others",
 let subtasks = []; //is needed
 
 //boardGlobalArrays
+let sortedUsers = []; //is needed
 let unsortedUsers = {};
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
@@ -31,9 +32,9 @@ function stopPropagation(event) {
   event.stopPropagation();
 }
 
-//is this needed ?????????????????????????????????????????????????????????????????
-function getColorFromUser(i) {
-  return sortedUsers[i].color;
+async function fillSortedUsersObject() {
+  sortedUsers = await sortUserData();
+  console.log(sortedUsers);
 }
 
 // navigation
@@ -52,7 +53,8 @@ function renderTaskFormTemplate(taskStatus, id) {
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
 }
 
-function renderTaskForm(taskStatus, id) {
+async function renderTaskForm(taskStatus, id) {
+  await fillSortedUsersObject();
   renderTaskFormTemplate(taskStatus, id);
   fillUserDropdown();
   insertUserIconsInsideAssign();
@@ -60,11 +62,8 @@ function renderTaskForm(taskStatus, id) {
   renderSubtasksToList();
 }
 
-async function fillUserDropdown() {
+function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
-  sortedUsers = await sortUserData();
-  console.log(sortedUsers);
-
   for (let i = 0; i < sortedUsers.length; i++) {
     userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
   }

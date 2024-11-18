@@ -32,6 +32,8 @@ function summaryAddUrgentValue() {
   urgentValue.innerHTML = allUrgentTasksCount;
 }
 
+
+// is this needed????????????????????
 function summaryAddBoardValue() {
   let boardValue = document.getElementById("summaryBoardValue");
   boardValue.innerHTML = convertedTasks.length;

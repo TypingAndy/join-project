@@ -1,5 +1,5 @@
 async function groupUsersByFirstLetter() {
-  const sortedUsers = await sortUserData();
+  sortedUsers = await sortUserData();
   return sortedUsers.reduce((groups, user) => {
     const firstLetter = user.name.charAt(0).toUpperCase();
     if (!groups[firstLetter]) {

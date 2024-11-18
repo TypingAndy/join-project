@@ -266,11 +266,14 @@ function stopPropagation(event) {
 }
 
 function renderTaskFormEdit(taskID) {
-  console.log(allUnsortedTasks[taskID]);
   let titleAcceptTaskButton = "Ok";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
   let taskForm = document.getElementById("taskFormBoard");
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
+  fillUserDropdown();
+  insertUserIconsInsideAssign();
+  fillCategoryDropdown();
+  renderSubtasksToList();
 }
 
 function fillTaskFormEdit(taskId) {
