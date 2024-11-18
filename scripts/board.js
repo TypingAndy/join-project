@@ -3,7 +3,7 @@ async function createLokalTasksArray() {
   convertUnsortedTasksObjectToArray();
   addFirebaseIDtoLokalTasksArray();
 }
-
+// is needed in script cause board use it too
 function convertUnsortedTasksObjectToArray() {
   lokalTasksArray = Object.values(allUnsortedTasks);
 }
