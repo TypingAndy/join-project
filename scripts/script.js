@@ -125,6 +125,22 @@ function userFilterFunction() {
   }
 }
 
+function categoryFilterFunction() {
+  let input = document.getElementById("taskFormCategoryInput");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < categories.length; i++) {
+    let categoriesUpperCase = categories[i].toUpperCase();
+    let categoryElement = document.getElementById(`categoriesDropdown${i}`);
+
+    if (categoriesUpperCase.includes(filter)) {
+      categoryElement.classList.remove("displayNone");
+    } else {
+      categoryElement.classList.add("displayNone");
+    }
+  }
+}
+
 //taskForm edit functions
 
 // function editTaskInputData(taskStatus) {
