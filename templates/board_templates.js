@@ -8,7 +8,10 @@ function noTaskTemplate() {
 
 function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage) {
   return `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}')" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" >
+                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}', event)" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" ontouchstart="startHold(event, '${filteredLokalTasksArray[taskIndex].ID}')" 
+                ontouchmove="checkScroll(event)" 
+                ontouchend="clearHold(event, '${filteredLokalTasksArray[taskIndex].ID}')"
+                style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none;" >
                   <div class="taskCardCategory">
                     <p>${filteredLokalTasksArray[taskIndex].taskCategory}</p>
                   </div>
@@ -28,6 +31,34 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
                   </div>
                 </div>
       `;
+}
+
+function taskCardMoveToTemplate(taskID) {
+  return /*html*/ `
+      <div class="taskCardCategory">
+        <p>Move task to...</p>
+      </div>
+      <p class="taskCardTitle">${allUnsortedTasks[taskID].taskTitle}</p>
+      <div class="moveToWrapper">
+        <div class="taskCardMoveToLinkContainer" onclick="moveTo('to do', '${taskID}'); event.stopPropagation();">
+          <img src="../images/icons/arrow-curve-left-right.png" />
+          <p>To do</p>
+        </div>
+        <div class="taskCardMoveToLinkContainer" onclick="moveTo('in progress', '${taskID}'); event.stopPropagation();">
+          <img src="../images/icons/arrow-curve-left-right.png" />
+          <p>In progress</p>
+        </div>
+        <div class="taskCardMoveToLinkContainer" onclick="moveTo('await feedback', '${taskID}'); event.stopPropagation();">
+          <img src="../images/icons/arrow-curve-left-right.png" />
+          <p>Await feedback</p>
+        </div>
+        <div class="taskCardMoveToLinkContainer" onclick="moveTo('done', '${taskID}'); event.stopPropagation();">
+          <img src="../images/icons/arrow-curve-left-right.png" />
+          <p>Done</p>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function taskCardSingleInitialsTemplate(currentUserID) {
