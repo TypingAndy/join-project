@@ -152,7 +152,7 @@ function editTaskInputData(taskStatus) {
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
-    // taskAssignedUser: addTaskCurrentUser,
+    taskAssignedUsersIds: taskFormCurrentUsersIds,
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
