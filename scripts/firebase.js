@@ -57,8 +57,8 @@ async function getNewUserId(response) {
   return data.name;
 }
 
-async function putNewTaskStatus(newTaskStatus) {
-  await fetch(`${BASE_URL}tasks/${currentDraggedElementID}/taskStatus.json`, {
+async function putNewTaskStatus(newTaskStatus, taskID = currentDraggedElementID) {
+  await fetch(`${BASE_URL}tasks/${taskID}/taskStatus.json`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
