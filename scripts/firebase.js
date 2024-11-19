@@ -87,12 +87,12 @@ async function postTaskData(taskStatus) {
 }
 
 
-//is this needed???????????????????????
-async function updateTaskData(currentNumberedID) {
-  let createTaskData = editTaskInputData();
-  let taskFirebaseID = convertedTasks[currentNumberedID].ID;
+//yes it???????????????????????
+async function updateTaskData(taskStatus, taskID) {
+  let createTaskData = editTaskInputData(taskStatus);
 
-  await fetch(BASE_URL + `/tasks/${taskFirebaseID}.json`, {
+
+  await fetch(BASE_URL + `/tasks/${taskID}.json`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

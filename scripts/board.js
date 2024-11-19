@@ -267,9 +267,11 @@ function stopPropagation(event) {
 
 function renderTaskFormEdit(taskID) {
   let titleAcceptTaskButton = "Ok";
+  let fetchStatus = "PATCH"
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
   let taskForm = document.getElementById("taskFormBoard");
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
+  let postOrPatchFunction = "updateTaskData"
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, taskID, fetchStatus, postOrPatchFunction);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
