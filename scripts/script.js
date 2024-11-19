@@ -50,7 +50,9 @@ function redirectToBoard() {
 function renderTaskFormTemplate(taskStatus, id) {
   let taskForm = document.getElementById(id);
   titleAcceptTaskButton = "Create Task";
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
+  let fetchStatus = "POST";
+  let postOrPatchFunction = "postTaskData"
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, postOrPatchFunction);
 }
 
 async function renderTaskForm(taskStatus, id) {
@@ -129,33 +131,33 @@ function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
   let filter = input.value.toUpperCase();
 
-  for (let i = 0; i < categories.length; i++) {
-    let categoriesUpperCase = categories[i].toUpperCase();
-    let categoryElement = document.getElementById(`categoriesDropdown${i}`);
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let categories = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`categoriesDropdown${i}`);
 
-    if (categoriesUpperCase.includes(filter)) {
-      categoryElement.classList.remove("displayNone");
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
     } else {
-      categoryElement.classList.add("displayNone");
+      userElement.classList.add("displayNone");
     }
   }
 }
 
-//taskForm edit functions
 
-// function editTaskInputData(taskStatus) {
-//   let taskTitleInput = document.getElementById("editPopupTitleInput").value;
-//   let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
-//   let taskDateInput = document.getElementById("editPopupDateInput").value;
-//   let createTaskData = {
-//     taskTitle: taskTitleInput,
-//     taskDescription: taskDescriptionInput,
-//     taskAssignedUser: addTaskCurrentUser,
-//     taskDate: taskDateInput,
-//     taskPrio: taskPrioInput,
-//     taskStatus: taskStatus,
-//     taskCategory: chosenCategory,
-//     taskSubtasks: subtasks,
-//   };
-//   return createTaskData;
-// }
+function editTaskInputData(taskStatus) {
+  let taskTitleInput = document.getElementById("taskTitleInput").value;
+  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
+  let taskDateInput = document.getElementById("dateInput").value;
+  let chosenCategory = document.getElementById("taskFormCategoryInput").value
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    // taskAssignedUser: addTaskCurrentUser,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput,
+    taskStatus: taskStatus,
+    taskCategory: chosenCategory,
+    taskSubtasks: subtasks,
+  };
+  return createTaskData;
+}
