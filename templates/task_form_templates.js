@@ -72,7 +72,8 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
                 <input
                   id="taskFormCategoryInput"
                   onfocus="openCategoryDropdown()"
-                  onblur="closeCategoryDropdown()"
+                  onblur="closeCategoryDropdown(), clearCategoryInsideTaskFrom()"
+                  onkeyup="categoryFilterFunction()"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
                   

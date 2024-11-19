@@ -137,11 +137,16 @@ function closeCategoryDropdown() {
   disableCursorPointerOnInput("taskFormCategoryInput");
 }
 
+function clearCategoryInsideTaskFrom() {
+  let categoryInput = document.getElementById("taskFormCategoryInput");
+  categoryInput.value = "";
+}
+
 function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
 
   for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+    categoryDropdown.innerHTML += /*html*/ `<div id="categoriesDropdown${i}" onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
   }
 }
 
