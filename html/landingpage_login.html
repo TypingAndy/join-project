@@ -6,14 +6,24 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/log_in.css">
+    <link rel="stylesheet" href="../css/log_in.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
+    <script src="../scripts/log_in_opening_animation.js"></script>
   </head>
 
   <body onload="loadUserDataFromFirebase()">
+    <!-- start sequence -->
+
+    <div id="animationBox" class="landingpageBoxStart">
+      <img id="joinLogoWhiteAnimation" class="openingScreenLogoBrightCenter" src="../images/icons/join_logo_white.png" alt="" />
+      <img id="joinLogoDarkAnimation" class="openingScreenLogoDarkCenter" src="../images/icons/join_logo_dark.png" alt="" />
+    </div>
+
+    <!-- start sequence -->
+
     <div class="logInSection">
-      <img class="logInLogo" src="../images/icons/join_logo_dark.png" alt="" />
+   
 
       <div class="logInBoard">
         <div class="logInBoardContentWrapper">

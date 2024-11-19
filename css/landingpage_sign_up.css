@@ -3,18 +3,6 @@ input:focus {
   /* border-color: transparent; */
 }
 
-.landingpageBox {
-  height: 100vh;
-  width: 100vw;
-  background-color: #2a3647;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.landingpageImage {
-  width: 100px;
-}
 
 
 .signUpSection {
