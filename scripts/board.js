@@ -21,8 +21,8 @@ async function initializeBoard() {
   renderTaskCards();
 }
 
-function updateLokalTaskArrayStatus(newTaskStatus) {
-  const task = lokalTasksArray.find((item) => item.ID === currentDraggedElementID);
+function updateLokalTaskArrayStatus(newTaskStatus, taskID = currentDraggedElementID) {
+  const task = lokalTasksArray.find((item) => item.ID === taskID);
   task.taskStatus = newTaskStatus;
 }
 
@@ -47,6 +47,13 @@ async function renderTaskCards() {
   fillEmptyTaskCategories();
 }
 
+function replaceTaskCardWithMoveToTemplate(taskID) {
+  renderTaskCards();
+  console.log(`taskcard${taskID}`);
+
+  document.getElementById(`taskCard${taskID}`).innerHTML = taskCardMoveToTemplate(taskID);
+}
+
 function filterTasks() {
   const searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
   return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm));
@@ -55,6 +62,48 @@ function filterTasks() {
 function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
   return subtasksArrayLength === 0 ? 0 : (subtasksDone / subtasksArrayLength) * 100;
 }
+
+// hold to move logic
+
+function startHold(e, taskID) {
+  touchStartTime = new Date().getTime();
+  isTouchMoving = false;
+
+  setTimeout(() => {
+    document.getElementById(`taskCard${taskID}`).classList.add("growing");
+  }, 100);
+
+  touchTimer = setTimeout(() => {
+    const currentTime = new Date().getTime();
+    if (!isTouchMoving && currentTime - touchStartTime >= 600) {
+      e.preventDefault();
+      replaceTaskCardWithMoveToTemplate(taskID);
+    }
+  }, 700);
+
+  // Prevent context menu
+  window.oncontextmenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  };
+}
+
+function checkScroll(e) {
+  isTouchMoving = true;
+}
+
+function clearHold() {
+  touchStartTime = 0;
+  clearTimeout(touchTimer);
+
+  // Restore context menu after short delay
+  setTimeout(() => {
+    window.oncontextmenu = null;
+  }, 100);
+}
+
+// drag n drop logic
 
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("dragend", handleDragEnd);
@@ -118,15 +167,15 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-async function moveTo(newTaskStatus) {
+async function moveTo(newTaskStatus, taskID = currentDraggedElementID) {
   try {
-    const currentCardElement = document.getElementById("taskCard" + currentDraggedElementID);
+    const currentCardElement = document.getElementById("taskCard" + taskID);
     if (currentCardElement) {
       currentCardElement.remove();
     }
-    updateLokalTaskArrayStatus(newTaskStatus);
+    updateLokalTaskArrayStatus(newTaskStatus, taskID);
     renderTaskCards();
-    await putNewTaskStatus(newTaskStatus);
+    await putNewTaskStatus(newTaskStatus, taskID);
     await createLokalTasksArray();
   } catch (error) {
     console.error("Error updating task status:", error);
