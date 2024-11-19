@@ -82,7 +82,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/signUpPage/person.png");
+  background: url("../images/icons/person_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -96,7 +96,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/signUpPage/mail.png");
+  background: url("../images/icons/mail_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -110,7 +110,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/signUpPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -124,7 +124,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/signUpPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
