@@ -229,23 +229,35 @@
   width: 40px;
 }
 
+.boardTitle {
+  cursor: default;
+}
+
 .inputContainer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 48px;
-  background-color: rgb(255, 255, 255);
+
   border-radius: 10px;
   margin-top: 32px;
-  border: 1px solid rgba(168, 168, 168, 1);
+
+
 }
 
 .inputContainer img {
+  position: absolute;
   width: 32px;
   height: 32px;
   padding: 0 16px;
   border-left: 1px solid rgba(209, 209, 209, 1);
+  right: 0;
+}
+
+.inputContainer img:hover {
+  cursor: pointer;
 }
 
 .findTaskInput {
@@ -253,10 +265,16 @@
   padding: 0;
   padding-left: 16px;
   font-size: 20px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: solid 1px #d1d1d1;
+
 }
 
 .findTaskInput::placeholder {
   color: rgba(209, 209, 209, 1);
+
 }
 
 .toDoSection,
@@ -335,6 +353,7 @@
   padding: 16px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .taskCardCategory {

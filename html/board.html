@@ -36,12 +36,12 @@
       <div class="mainSection">
         <div class="boardWrapper">
           <div class="boardTitleContainer">
-            <p>Board</p>
-            <img class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
+            <p class="boardTitle">Board</p>
+            <img onclick="window.location.href='add_task.html'" class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
           </div>
           <div class="inputContainer">
             <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" oninput="handleSearchInput(event)" />
-            <img src="../images/icons/search_icon.png" alt="" />
+            <img onclick="focusOnSearchBar()" src="../images/icons/search_icon.png" alt="" />
           </div>
           <div class="toDoSection">
             <div class="toDoSectionTitleContainer">
@@ -75,19 +75,19 @@
       </div>
       <nav>
         <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons.png" alt="" />
+          <img src="../images/icons/summary_icon.png" alt="" />
           <p>Summary</p>
         </div>
         <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-1.png" alt="" />
+          <img src="../images/icons/board_icon.png" alt="" />
           <p>Board</p>
         </div>
         <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-2.png" alt="" />
+          <img src="../images/icons/add_task_icon.png" alt="" />
           <p>Add Tasks</p>
         </div>
         <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-          <img src="../images/icons/Menu Icons-3.png" alt="" />
+          <img src="../images/icons/contact_icon.png" alt="" />
           <p>Contacts</p>
         </div>
       </nav>

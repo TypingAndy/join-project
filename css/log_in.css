@@ -47,6 +47,7 @@ input:focus {
   display: flex;
   align-items: center;
   flex-direction: column;
+  cursor: default;
 }
 
 .logInTitle {
@@ -159,8 +160,13 @@ input:focus {
   box-sizing: border-box;
 }
 
+.rememberMe {
+  cursor: default;
+}
+
 .logInCheckImg {
   width: 24px;
+  cursor: pointer;
 }
 
 .blueFont {
@@ -191,6 +197,7 @@ input:focus {
 
 .logInLinks {
   color: #a8a8a8;
+  cursor: pointer;
 }
 
 .logInNoUserSignUpBox {
@@ -203,6 +210,7 @@ input:focus {
 
 .logInNoUserSignUpText {
   font-size: 20px;
+  cursor: default;
 }
 
 .logInNoUserSignUpButton {
@@ -212,6 +220,7 @@ input:focus {
   border-radius: 8px;
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
 }
 
 /* start sequence */

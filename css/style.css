@@ -58,6 +58,7 @@ header img {
   margin-right: 16px;
   border: solid 2px #2a3647;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .mainSection {

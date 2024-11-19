@@ -305,3 +305,10 @@ function fillSubtaskListInTaskFormEdit(taskId) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
 }
+
+
+function focusOnSearchBar() {
+  let inputElement = document.getElementById('findTaskInput');
+
+  inputElement.focus();
+}
