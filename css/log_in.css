@@ -79,7 +79,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/person.png");
+  background: url("../images/icons/person_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -93,7 +93,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/mail.png");
+  background: url("../images/icons/mail_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -107,7 +107,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -121,7 +121,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -225,7 +225,6 @@ input:focus {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-
 }
 
 /* start sequence */
@@ -240,7 +239,6 @@ input:focus {
   align-items: center;
   z-index: 1000;
   transition: 1500ms;
-
 }
 
 .openingScreenLogoBrightCenter {
@@ -279,5 +277,12 @@ input:focus {
   left: 16px;
   top: 0;
   transition: 1500ms;
-  
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.displayNone {
+  display: none;
 }
