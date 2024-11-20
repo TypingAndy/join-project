@@ -306,6 +306,9 @@ async function toggleSubtaskStatus(subtasksIndex, taskID) {
   await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
 }
 
+function toggleBoardTaskForm() {
+  document.getElementById("taskFormBoardContainer").classList.toggle("displayNone");
+}
 
 function stopPropagation(event) {
   event.stopPropagation();
