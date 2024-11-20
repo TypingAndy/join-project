@@ -34,7 +34,6 @@ function stopPropagation(event) {
 
 async function fillSortedUsersObject() {
   sortedUsers = await sortUserData();
-  console.log(sortedUsers);
 }
 
 // navigation
@@ -95,8 +94,6 @@ function addUserToTaskToggleCss(userFirebaseId) {
 function toggleUserInTaskUsersArray(userFirebaseId) {
   let i = taskFormCurrentUsersIds.indexOf(userFirebaseId);
 
-  console.log(i);
-
   if (i === -1) {
     taskFormCurrentUsersIds.push(userFirebaseId);
   } else {
@@ -118,8 +115,8 @@ function userFilterFunction() {
 
   for (let i = 0; i < sortedUsers.length; i++) {
     let userName = sortedUsers[i].name.toUpperCase();
-    let userId = sortedUsers[i].id; // Hol die Firebase-ID
-    let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`); // Klammern eingefügt
+    let userId = sortedUsers[i].id;
+    let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`);
 
     if (userElement) { // Sicherheitsüberprüfung
       if (userName.includes(filter)) {
