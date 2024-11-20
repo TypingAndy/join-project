@@ -49,8 +49,6 @@ async function renderTaskCards() {
 
 function replaceTaskCardWithMoveToTemplate(taskID) {
   renderTaskCards();
-  console.log(`taskcard${taskID}`);
-
   document.getElementById(`taskCard${taskID}`).innerHTML = taskCardMoveToTemplate(taskID);
 }
 
@@ -269,7 +267,7 @@ function openBoardTaskPopup(taskID) {
 }
 
 function createBoardTaskPopupForNewTask(taskStatus) {
-
+  subtasks.splice(0, subtasks.length);
   openBoardTaskPopupForAddTask();
   fillBoardTaskPopupWithAddTask(taskStatus);
 }
@@ -284,10 +282,10 @@ function openBoardTaskPopupForAddTask() {
 }
 
 function fillBoardTaskPopupWithAddTask(taskStatus) {
-  let titleAcceptTaskButton = 'Create Task';
-  let postOrPatchFunction = 'postTaskData';
+  let titleAcceptTaskButton = "Create Task";
+  let postOrPatchFunction = "postTaskData";
   let wrapper = document.getElementById("boardTaskPopupContentWrapper");
-  wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton,  id = "", fetchStatus = "", postOrPatchFunction);
+  wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, (id = ""), (fetchStatus = ""), postOrPatchFunction);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
@@ -304,8 +302,6 @@ function closeBoardTaskPopup(event) {
     renderTaskCards();
   }
 }
-
-
 
 function renderBoardTaskPopupContent(taskID) {
   let popupElement = document.getElementById("boardTaskPopup");
@@ -347,6 +343,7 @@ function stopPropagation(event) {
 }
 
 function renderTaskFormEdit(taskID) {
+  // openBoardTaskPopupForAddTask();
   let titleAcceptTaskButton = "Ok";
   let fetchStatus = "PATCH";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
@@ -357,8 +354,6 @@ function renderTaskFormEdit(taskID) {
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
-  console.log(unsortedUsers);
-  console.log(allUnsortedTasks);
 }
 
 function fillTaskFormEdit(taskId) {
@@ -396,3 +391,32 @@ function focusOnSearchBar() {
 
   inputElement.focus();
 }
+
+document.addEventListener("click", function () {
+  if (document.getElementById("boardTaskPopup")) {
+    setTimeout(() => {
+      let dropdown = document.getElementById("userDropdown");
+
+      if (dropdown) {
+        dropdown.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+        });
+      }
+    }, 100);
+  }
+});
+
+document.addEventListener("click", () => {
+  if (document.getElementById("boardTaskPopup")) {
+    setTimeout(() => {
+      let subtaskBox = document.getElementById("taskFormSubtaskList");
+      if (subtaskBox) {
+        document.addEventListener("mousedown", function (event) {
+          if (!subtaskBox.contains(event.target)) {
+            renderSubtasksToList();
+          }
+        });
+      }
+    }, 100);
+  }
+});

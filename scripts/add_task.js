@@ -181,13 +181,12 @@ function addSubtaskToList() {
     subtaskDone: false
   } 
   subtasks.push(subtaskObjekt);
-  console.log(subtasks);
-  
 }
 
 function renderSubtasksToList() {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
+
   for (let i = 0; i < subtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
@@ -228,9 +227,14 @@ function focusOnInput(i) {
 }
 
 function pushRewrittenSubtask(i) {
-  let rewrittenSubtask = document.getElementById(`taskFormSubtaskRewriteInput(${i})`).value;
+  let rewrittenSubtaskValue = document.getElementById(`taskFormSubtaskRewriteInput(${i})`).value;
+  let rewrittenSubtask = { 
+    subtaskName: rewrittenSubtaskValue, 
+    subtaskDone: false 
+  };
   subtasks.splice(i, 1, rewrittenSubtask);
 }
+
 
 function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
@@ -255,6 +259,5 @@ function getNewTaskInputData(taskStatus) {
     taskCategory: chosenCategory,
     taskSubtasks: subtasks,
   };
-  console.log(createTaskData);
   return createTaskData;
 }
