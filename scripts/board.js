@@ -310,9 +310,6 @@ async function toggleSubtaskStatus(subtasksIndex, taskID) {
   await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
 }
 
-function toggleBoardTaskForm() {
-  document.getElementById("taskFormBoardContainer").classList.toggle("displayNone");
-}
 
 function stopPropagation(event) {
   event.stopPropagation();
@@ -322,7 +319,7 @@ function renderTaskFormEdit(taskID) {
   let titleAcceptTaskButton = "Ok";
   let fetchStatus = "PATCH";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
-  let taskForm = document.getElementById("taskFormBoard");
+  let taskForm = document.getElementById("boardTaskPopupContentWrapper");
   let postOrPatchFunction = "updateTaskData";
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, taskID, fetchStatus, postOrPatchFunction);
   fillUserDropdown();
