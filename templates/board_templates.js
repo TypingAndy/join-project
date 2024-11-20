@@ -112,7 +112,7 @@ function boardTaskPopupTemplate(taskID) {
       <p>Delete</p>
     </div>
     <div class="boardTaskPopupContentBottomLine"></div>
-    <div onclick="toggleBoardTaskForm(), renderTaskFormEdit('${taskID}'), fillTaskFormEdit('${taskID}')" class="boardTaskPopupContentEditContainer">
+    <div onclick="renderTaskFormEdit('${taskID}'), fillTaskFormEdit('${taskID}')" class="boardTaskPopupContentEditContainer">
       <img class="boardTaskPopupEditIcon" src="../images/icons/edit.png" alt="edit" />
       <p>Edit</p>
     </div>
