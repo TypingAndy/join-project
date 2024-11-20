@@ -80,7 +80,7 @@ function toggleUserInTaskForm(userFirebaseId) {
 function addUserToTaskToggleCss(userFirebaseId) {
   let check = document.getElementById(`check${userFirebaseId}`);
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
-  let userContainer = document.getElementById(`userContainerInsideUserDropdown${userFirebaseId}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown(${userFirebaseId})`);
   let userIcon = document.getElementById(`taskFormUserIcon${userFirebaseId}`);
   let userDropdown = document.getElementById("userDropdown");
 
@@ -118,15 +118,22 @@ function userFilterFunction() {
 
   for (let i = 0; i < sortedUsers.length; i++) {
     let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
+    let userId = sortedUsers[i].id; // Hol die Firebase-ID
+    let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`); // Klammern eingefügt
 
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
+    if (userElement) { // Sicherheitsüberprüfung
+      if (userName.includes(filter)) {
+        userElement.classList.remove("displayNone");
+      } else {
+        userElement.classList.add("displayNone");
+      }
     } else {
-      userElement.classList.add("displayNone");
+      console.warn(`Element mit ID userContainerInsideUserDropdown(${userId}) nicht gefunden.`);
     }
   }
 }
+
+
 
 function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
