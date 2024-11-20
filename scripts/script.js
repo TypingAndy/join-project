@@ -47,21 +47,21 @@ function redirectToBoard() {
 
 //taskForm render function
 
-async function renderTaskForm(taskStatus, firebaseUserId) {
+async function renderTaskForm(taskStatus, renderLocation) {
   await fillSortedUsersObject();
-  renderTaskFormTemplate(taskStatus, firebaseUserId);
+  renderTaskFormTemplate(taskStatus, renderLocation);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
 }
 
-function renderTaskFormTemplate(taskStatus, firebaseUserId) {
-  let taskForm = document.getElementById(firebaseUserId);
+function renderTaskFormTemplate(taskStatus, renderLocation) {
+  let taskForm = document.getElementById(renderLocation);
   titleAcceptTaskButton = "Create Task";
   let fetchStatus = "POST";
   let postOrPatchFunction = "postTaskData";
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, firebaseUserId, fetchStatus, postOrPatchFunction);
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, renderLocation, fetchStatus, postOrPatchFunction);
 }
 
 function fillUserDropdown() {

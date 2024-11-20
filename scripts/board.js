@@ -64,14 +64,25 @@ function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
 }
 
 // hold to move logic
-
 function startHold(e, taskID) {
+  // Only prevent context menu, not all default behavior
+  if (e.type === "contextmenu") {
+    e.preventDefault();
+  }
+  window.oncontextmenu = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  };
+
   touchStartTime = new Date().getTime();
   isTouchMoving = false;
 
   setTimeout(() => {
-    document.getElementById(`taskCard${taskID}`).classList.add("growing");
-  }, 100);
+    if (!isTouchMoving) {
+      document.getElementById(`taskCard${taskID}`).classList.add("growing");
+    }
+  }, 200);
 
   touchTimer = setTimeout(() => {
     const currentTime = new Date().getTime();
@@ -80,13 +91,6 @@ function startHold(e, taskID) {
       replaceTaskCardWithMoveToTemplate(taskID);
     }
   }, 700);
-
-  // Prevent context menu
-  window.oncontextmenu = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    return false;
-  };
 }
 
 function checkScroll(e) {
@@ -273,6 +277,11 @@ function closeBoardTaskPopup(event) {
   }
 }
 
+function toggleBoardTaskForm() {
+  popupElement.innerHTML = boardTaskPopupTemplateEmpty();
+  // document.getElementById("boardTaskPopupContentWrapper").innerHTML = taskFormTemplate();
+}
+
 function renderBoardTaskPopupContent(taskID) {
   popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
@@ -304,10 +313,6 @@ async function toggleSubtaskStatus(subtasksIndex, taskID) {
 
   renderBoardTaskPopupSubtasks(taskID);
   await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
-}
-
-function toggleBoardTaskForm() {
-  document.getElementById("taskFormBoardContainer").classList.toggle("displayNone");
 }
 
 function stopPropagation(event) {
