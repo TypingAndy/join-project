@@ -161,3 +161,37 @@ function editTaskInputData(taskStatus) {
   };
   return createTaskData;
 }
+
+
+
+//eventListener
+
+document.addEventListener("click", function () {
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let dropdown = document.getElementById("userDropdown");
+
+      if (dropdown) {
+        dropdown.addEventListener("mousedown", function (event) {
+          event.preventDefault();
+        });
+      }
+    }, 100);
+  }
+});
+
+
+document.addEventListener("click", () => {
+  if (window.location.href.endsWith("add_task.html")) {
+    setTimeout(() => {
+      let subtaskBox = document.getElementById("taskFormSubtaskList");
+      if (subtaskBox) {
+        document.addEventListener("mousedown", function (event) {
+          if (!subtaskBox.contains(event.target)) {
+            renderSubtasksToList();
+          }
+        });
+      }
+    }, 100);
+  }
+});

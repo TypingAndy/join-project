@@ -256,10 +256,10 @@ function countCompletedSubtasks(task) {
   return task.taskSubtasks.reduce((count, subtask) => (subtask.subtaskDone ? count + 1 : count), 0);
 }
 
-let popupElement = document.getElementById("boardTaskPopup");
-let popupBackgroundElement = document.getElementById("boardPopupBackground");
-
 function openBoardTaskPopup(taskID) {
+  let popupBackgroundElement = document.getElementById("boardPopupBackground");
+  let popupElement = document.getElementById("boardTaskPopup");
+
   renderBoardTaskPopupContent(taskID);
   renderBoardTaskPopupContentUsers(taskID);
   renderBoardTaskPopupSubtasks(taskID);
@@ -268,7 +268,21 @@ function openBoardTaskPopup(taskID) {
   popupElement.addEventListener("click", stopPropagation);
 }
 
+function openBoardTaskPopupForAddTask() {
+  let popupBackgroundElement = document.getElementById("boardPopupBackground");
+  let popupElement = document.getElementById("boardTaskPopup");
+
+popupElement.innerHTML = taskFormTemplate();
+
+  popupElement.style.display = "flex";
+  popupBackgroundElement.style.display = "flex";
+  popupElement.addEventListener("click", stopPropagation);
+}
+
 function closeBoardTaskPopup(event) {
+  let popupBackgroundElement = document.getElementById("boardPopupBackground");
+  let popupElement = document.getElementById("boardTaskPopup");
+
   if (!event || event.target === popupBackgroundElement) {
     popupElement.style.display = "none";
     popupBackgroundElement.style.display = "none";
@@ -278,11 +292,15 @@ function closeBoardTaskPopup(event) {
 }
 
 function toggleBoardTaskForm() {
+  let popupElement = document.getElementById("boardTaskPopup");
+
   popupElement.innerHTML = boardTaskPopupTemplateEmpty();
   // document.getElementById("boardTaskPopupContentWrapper").innerHTML = taskFormTemplate();
 }
 
 function renderBoardTaskPopupContent(taskID) {
+  let popupElement = document.getElementById("boardTaskPopup");
+
   popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
 

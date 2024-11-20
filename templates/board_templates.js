@@ -128,6 +128,7 @@ function boardTaskPopupTemplateEmpty() {
 `;
 }
 
+
 function popupUserTemplate(currentUserId) {
   return `
         <div class="boardTaskPopupContentAssignedToUserContainer">
