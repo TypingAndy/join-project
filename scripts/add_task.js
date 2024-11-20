@@ -61,19 +61,7 @@ function handleDropdown(isFocused, currentDropdownID) {
   }
 }
 
-document.addEventListener("click", function () {
-  if (window.location.href.endsWith("add_task.html") || document.getElementById("taskFormBoardContainer")) {
-    setTimeout(() => {
-      let dropdown = document.getElementById("userDropdown");
 
-      if (dropdown) {
-        dropdown.addEventListener("mousedown", function (event) {
-          event.preventDefault();
-        });
-      }
-    }, 100);
-  }
-});
 
 
 
@@ -248,20 +236,7 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
-document.addEventListener("click", () => {
-  if (window.location.href.endsWith("add_task.html") || document.getElementById('taskFormBoardContainer')) {
-    setTimeout(() => {
-      let subtaskBox = document.getElementById("taskFormSubtaskList");
-      if (subtaskBox) {
-        document.addEventListener("mousedown", function (event) {
-          if (!subtaskBox.contains(event.target)) {
-            renderSubtasksToList();
-          }
-        });
-      }
-    }, 100);
-  }
-});
+
 
 // collecting Data
 
