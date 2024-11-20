@@ -268,15 +268,29 @@ function openBoardTaskPopup(taskID) {
   popupElement.addEventListener("click", stopPropagation);
 }
 
+function createBoardTaskPopupForNewTask(taskStatus) {
+
+  openBoardTaskPopupForAddTask();
+  fillBoardTaskPopupWithAddTask(taskStatus);
+}
+
 function openBoardTaskPopupForAddTask() {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
-
-popupElement.innerHTML = taskFormTemplate();
-
+  popupElement.innerHTML = boardTaskPopupTemplateEmpty();
   popupElement.style.display = "flex";
   popupBackgroundElement.style.display = "flex";
   popupElement.addEventListener("click", stopPropagation);
+}
+
+function fillBoardTaskPopupWithAddTask(taskStatus) {
+  let titleAcceptTaskButton = 'Create Task';
+  let postOrPatchFunction = 'postTaskData';
+  let wrapper = document.getElementById("boardTaskPopupContentWrapper");
+  wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton,  id = "", fetchStatus = "", postOrPatchFunction);
+  fillUserDropdown();
+  insertUserIconsInsideAssign();
+  fillCategoryDropdown();
 }
 
 function closeBoardTaskPopup(event) {
@@ -291,12 +305,7 @@ function closeBoardTaskPopup(event) {
   }
 }
 
-function toggleBoardTaskForm() {
-  let popupElement = document.getElementById("boardTaskPopup");
 
-  popupElement.innerHTML = boardTaskPopupTemplateEmpty();
-  // document.getElementById("boardTaskPopupContentWrapper").innerHTML = taskFormTemplate();
-}
 
 function renderBoardTaskPopupContent(taskID) {
   let popupElement = document.getElementById("boardTaskPopup");
