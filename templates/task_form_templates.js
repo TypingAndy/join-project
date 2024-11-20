@@ -103,7 +103,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-              <div onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}')" class="createTaskButton" type="submit">
+              <div onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" class="createTaskButton" type="submit">
                 <div>${titleAcceptTaskButton}</div> 
                 <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
               </div>
@@ -111,21 +111,21 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
     `;
 }
 
-function nameListTemplate(i, sortedUsers) {
+function nameListTemplate(userFirebaseId) {
   return /*html*/ `
-    <div id="userContainerInsideUserDropdown${i}" onclick="toggleUserInTaskForm('${i}', '${sortedUsers[i].id}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
-      <div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>
+    <div id="userContainerInsideUserDropdown${userFirebaseId}" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
+      <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>
       <div class="taskFormUserNameAndInitials">
-        <div>${sortedUsers[i].name}</div>
+        <div>${unsortedUsers[userFirebaseId].name}</div>
       </div>
-      <img id="noCheck${i}" class="img24px" src="../images/icons/unchecked.png" alt="">
-      <img id="check${i}" class="img24px displayNone" src="../images/icons/check_solved_white.png" alt="">
+      <img id="noCheck${userFirebaseId}" class="img24px" src="../images/icons/unchecked.png" alt="">
+      <img id="check${userFirebaseId}" class="img24px displayNone" src="../images/icons/check_solved_white.png" alt="">
     </div>
   `;
 }
 
-function iconTemplate(i, sortedUsers) {
-  return /*html*/ `<div id=taskFormUserIcon${i} class="taskFormUserInitials displayNone" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>`;
+function iconTemplate(userFirebaseId) {
+  return /*html*/ `<div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials displayNone" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>`;
 }
 
 function categoryTemplate(chosenCategory) {
