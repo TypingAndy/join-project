@@ -57,8 +57,8 @@ async function getNewUserId(response) {
   return data.name;
 }
 
-async function putNewTaskStatus(newTaskStatus, taskID = currentDraggedElementID) {
-  await fetch(`${BASE_URL}tasks/${taskID}/taskStatus.json`, {
+async function putNewTaskStatus(newTaskStatus) {
+  await fetch(`${BASE_URL}tasks/${currentDraggedElementID}/taskStatus.json`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -86,11 +86,13 @@ async function postTaskData(taskStatus) {
   }
 }
 
-async function updateTaskData(currentNumberedID) {
-  let createTaskData = editTaskInputData();
-  let taskFirebaseID = convertedTasks[currentNumberedID].ID;
 
-  await fetch(BASE_URL + `/tasks/${taskFirebaseID}.json`, {
+
+async function updateTaskData(taskStatus, taskID) {
+  let createTaskData = editTaskInputData(taskStatus);
+
+
+  await fetch(BASE_URL + `/tasks/${taskID}.json`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

@@ -3,7 +3,7 @@ async function createLokalTasksArray() {
   convertUnsortedTasksObjectToArray();
   addFirebaseIDtoLokalTasksArray();
 }
-
+// is needed in script cause board use it too
 function convertUnsortedTasksObjectToArray() {
   lokalTasksArray = Object.values(allUnsortedTasks);
 }
@@ -319,11 +319,18 @@ function stopPropagation(event) {
 }
 
 function renderTaskFormEdit(taskID) {
-  console.log(allUnsortedTasks[taskID]);
   let titleAcceptTaskButton = "Ok";
+  let fetchStatus = "PATCH";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
   let taskForm = document.getElementById("taskFormBoard");
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
+  let postOrPatchFunction = "updateTaskData";
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, taskID, fetchStatus, postOrPatchFunction);
+  fillUserDropdown();
+  insertUserIconsInsideAssign();
+  fillCategoryDropdown();
+  renderSubtasksToList();
+  console.log(unsortedUsers);
+  console.log(allUnsortedTasks);
 }
 
 function fillTaskFormEdit(taskId) {
@@ -334,6 +341,30 @@ function fillTaskFormEdit(taskId) {
 
   titleInput.value = allUnsortedTasks[taskId].taskTitle;
   descriptionInput.value = allUnsortedTasks[taskId].taskDescription;
+  toggleTaskCurrentUserInTaskFormEdit(taskId);
   dateInput.value = allUnsortedTasks[taskId].taskDate;
+  setTaskPrio(allUnsortedTasks[taskId].taskPrio);
   categoryInput.value = allUnsortedTasks[taskId].taskCategory;
+  fillSubtaskListInTaskFormEdit(taskId);
+}
+
+function toggleTaskCurrentUserInTaskFormEdit(taskId) {
+  for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
+    toggleUserInTaskForm(allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
+  }
+}
+
+function fillSubtaskListInTaskFormEdit(taskId) {
+  let subtaskList = document.getElementById("taskFormSubtaskList");
+  subtaskList.innerHTML = "";
+  subtasks = allUnsortedTasks[taskId].taskSubtasks;
+  for (let i = 0; i < allUnsortedTasks[taskId].taskSubtasks.length; i++) {
+    subtaskList.innerHTML += subtaskTemplate(i);
+  }
+}
+
+function focusOnSearchBar() {
+  let inputElement = document.getElementById("findTaskInput");
+
+  inputElement.focus();
 }

@@ -1,6 +1,9 @@
 let userDataFromFirebase;
 let currentUserIdFromFirebase;
 
+
+// Duplicate declaration of 'unsortedUser' detected; it's already defined globally.
+
 async function sortUserData() {
   let data = await loadUserDataFromFirebase();
   userDataFromFirebase = data;

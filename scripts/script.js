@@ -8,12 +8,13 @@ let policyAccepted = false;
 let passwordMatch = false;
 
 //addTaskGlobalArrays
-let taskPrioInput = "";
+let taskPrioInput = ""; //is needed
 let taskFormCurrentUsersIds = []; //is needed
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let subtasks = []; //is needed
 
 //boardGlobalArrays
+let sortedUsers = []; //is needed
 let unsortedUsers = {};
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
@@ -31,9 +32,9 @@ function stopPropagation(event) {
   event.stopPropagation();
 }
 
-//is this needed ?????????????????????????????????????????????????????????????????
-function getColorFromUser(i) {
-  return sortedUsers[i].color;
+async function fillSortedUsersObject() {
+  sortedUsers = await sortUserData();
+  console.log(sortedUsers);
 }
 
 // navigation
@@ -46,45 +47,117 @@ function redirectToBoard() {
 
 //taskForm render function
 
-function renderTaskFormTemplate(taskStatus, id) {
-  let taskForm = document.getElementById(id);
-  titleAcceptTaskButton = "Create Task";
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton);
-}
-
-function renderTaskForm(taskStatus, id) {
-  renderTaskFormTemplate(taskStatus, id);
+async function renderTaskForm(taskStatus, firebaseUserId) {
+  await fillSortedUsersObject();
+  renderTaskFormTemplate(taskStatus, firebaseUserId);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
 }
 
-async function fillUserDropdown() {
-  let userDropdown = document.getElementById("userDropdown");
-  sortedUsers = await sortUserData();
-  console.log(sortedUsers);
+function renderTaskFormTemplate(taskStatus, firebaseUserId) {
+  let taskForm = document.getElementById(firebaseUserId);
+  titleAcceptTaskButton = "Create Task";
+  let fetchStatus = "POST";
+  let postOrPatchFunction = "postTaskData";
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, firebaseUserId, fetchStatus, postOrPatchFunction);
+}
 
+function fillUserDropdown() {
+  let userDropdown = document.getElementById("userDropdown");
   for (let i = 0; i < sortedUsers.length; i++) {
-    userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
+    userDropdown.innerHTML += nameListTemplate(sortedUsers[i].id);
   }
 }
 
-//taskForm edit functions
+function toggleUserInTaskForm(userFirebaseId) {
+  addUserToTaskToggleCss(userFirebaseId);
+  toggleUserInTaskUsersArray(userFirebaseId);
+  clearUserInputInsideTaskFrom();
+}
 
-// function editTaskInputData(taskStatus) {
-//   let taskTitleInput = document.getElementById("editPopupTitleInput").value;
-//   let taskDescriptionInput = document.getElementById("editPopupDescriptionInput").value;
-//   let taskDateInput = document.getElementById("editPopupDateInput").value;
-//   let createTaskData = {
-//     taskTitle: taskTitleInput,
-//     taskDescription: taskDescriptionInput,
-//     taskAssignedUser: addTaskCurrentUser,
-//     taskDate: taskDateInput,
-//     taskPrio: taskPrioInput,
-//     taskStatus: taskStatus,
-//     taskCategory: chosenCategory,
-//     taskSubtasks: subtasks,
-//   };
-//   return createTaskData;
-// }
+function addUserToTaskToggleCss(userFirebaseId) {
+  let check = document.getElementById(`check${userFirebaseId}`);
+  let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown${userFirebaseId}`);
+  let userIcon = document.getElementById(`taskFormUserIcon${userFirebaseId}`);
+  let userDropdown = document.getElementById("userDropdown");
+
+  check.classList.toggle("displayNone");
+  noCheck.classList.toggle("displayNone");
+  userContainer.classList.toggle("userDropdownUserContainerBackground");
+  userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
+  userIcon.classList.toggle("displayNone");
+  userDropdown.classList.remove("maxHeight200");
+}
+
+function toggleUserInTaskUsersArray(userFirebaseId) {
+  let i = taskFormCurrentUsersIds.indexOf(userFirebaseId);
+
+  console.log(i);
+
+  if (i === -1) {
+    taskFormCurrentUsersIds.push(userFirebaseId);
+  } else {
+    taskFormCurrentUsersIds.splice(i, 1);
+  }
+}
+
+function insertUserIconsInsideAssign() {
+  let userIconContainer = document.getElementById("taskFormUserIcon");
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    userIconContainer.innerHTML += iconTemplate(sortedUsers[i].id);
+  }
+}
+
+function userFilterFunction() {
+  let input = document.getElementById("taskFormUserInput");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let userName = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
+  }
+}
+
+function categoryFilterFunction() {
+  let input = document.getElementById("taskFormCategoryInput");
+  let filter = input.value.toUpperCase();
+
+  for (let i = 0; i < sortedUsers.length; i++) {
+    let categories = sortedUsers[i].name.toUpperCase();
+    let userElement = document.getElementById(`categoriesDropdown${i}`);
+
+    if (userName.includes(filter)) {
+      userElement.classList.remove("displayNone");
+    } else {
+      userElement.classList.add("displayNone");
+    }
+  }
+}
+
+function editTaskInputData(taskStatus) {
+  let taskTitleInput = document.getElementById("taskTitleInput").value;
+  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
+  let taskDateInput = document.getElementById("dateInput").value;
+  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    taskAssignedUsersIds: taskFormCurrentUsersIds,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput,
+    taskStatus: taskStatus,
+    taskCategory: chosenCategory,
+    taskSubtasks: subtasks,
+  };
+  return createTaskData;
+}

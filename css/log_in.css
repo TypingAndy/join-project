@@ -47,6 +47,7 @@ input:focus {
   display: flex;
   align-items: center;
   flex-direction: column;
+  cursor: default;
 }
 
 .logInTitle {
@@ -79,7 +80,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/person.png");
+  background: url("../images/icons/person_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -93,7 +94,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/mail.png");
+  background: url("../images/icons/mail_grey.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -107,7 +108,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -121,7 +122,7 @@ input:focus {
   box-sizing: border-box;
   padding-left: 16px;
   font-size: 20px;
-  background: url("images/mobile/logInPage/lock.png");
+  background: url("../images/icons/lock.png");
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
@@ -159,8 +160,13 @@ input:focus {
   box-sizing: border-box;
 }
 
+.rememberMe {
+  cursor: default;
+}
+
 .logInCheckImg {
   width: 24px;
+  cursor: pointer;
 }
 
 .blueFont {
@@ -191,6 +197,7 @@ input:focus {
 
 .logInLinks {
   color: #a8a8a8;
+  cursor: pointer;
 }
 
 .logInNoUserSignUpBox {
@@ -203,6 +210,7 @@ input:focus {
 
 .logInNoUserSignUpText {
   font-size: 20px;
+  cursor: default;
 }
 
 .logInNoUserSignUpButton {
@@ -212,4 +220,78 @@ input:focus {
   border-radius: 8px;
   font-size: 16px;
   font-weight: 700;
+  cursor: pointer;
+}
+
+/* start sequence */
+
+.landingpageBoxStart {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: #2a3647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* start sequence */
+
+.landingpageBoxAfterAnimation {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: #2a364700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: 1500ms;
+}
+
+.openingScreenLogoBrightCenter {
+  position: absolute;
+  width: 64px;
+  padding: 38px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.openingScreenLogoDarkCenter {
+  position: absolute;
+  width: 64px;
+  padding: 38px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.openingScreenLogoBrightLeftCorner {
+  width: 64px;
+  padding: 38px;
+  position: absolute;
+  left: 16px;
+  top: 0;
+  transition: 1500ms;
+  opacity: 0;
+}
+
+.openingScreenLogoDarkLeftCorner {
+  width: 64px;
+  padding: 38px;
+  position: absolute;
+  left: 16px;
+  top: 0;
+  transition: 1500ms;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.displayNone {
+  display: none;
 }

@@ -1,4 +1,4 @@
-function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
+function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, postOrPatchFunction) {
   return /*html*/ `
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Title<span style="color: red">*</span></div>
@@ -72,7 +72,8 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
                 <input
                   id="taskFormCategoryInput"
                   onfocus="openCategoryDropdown()"
-                  onblur="closeCategoryDropdown()"
+                  onblur="closeCategoryDropdown(), clearCategoryInsideTaskFrom()"
+                  onkeyup="categoryFilterFunction()"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
                   
@@ -102,7 +103,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
 
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-              <div onclick="postTaskData('${taskStatus}')" class="createTaskButton" type="submit">
+              <div onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" class="createTaskButton" type="submit">
                 <div>${titleAcceptTaskButton}</div> 
                 <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
               </div>
@@ -110,21 +111,21 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton) {
     `;
 }
 
-function nameListTemplate(i, sortedUsers) {
+function nameListTemplate(userFirebaseId) {
   return /*html*/ `
-    <div id="userContainerInsideUserDropdown${i}" onclick="addUserToTaskToggleCss('${i}', '${sortedUsers[i].id}'),toggleUserInTaskUsersArray('${sortedUsers[i].id}'), clearUserInputInsideTaskFrom()" class="userDropdownUserContainer userDropdownUserContainerBackground">
-      <div class="taskFormUserInitials" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>
+    <div id="userContainerInsideUserDropdown${userFirebaseId}" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
+      <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>
       <div class="taskFormUserNameAndInitials">
-        <div>${sortedUsers[i].name}</div>
+        <div>${unsortedUsers[userFirebaseId].name}</div>
       </div>
-      <img id="noCheck${i}" class="img24px" src="../images/icons/unchecked.png" alt="">
-      <img id="check${i}" class="img24px displayNone" src="../images/icons/check_solved_white.png" alt="">
+      <img id="noCheck${userFirebaseId}" class="img24px" src="../images/icons/unchecked.png" alt="">
+      <img id="check${userFirebaseId}" class="img24px displayNone" src="../images/icons/check_solved_white.png" alt="">
     </div>
   `;
 }
 
-function iconTemplate(i, sortedUsers) {
-  return /*html*/ `<div id=taskFormUserIcon${i} class="taskFormUserInitials displayNone" style="background-color: ${sortedUsers[i].color};">${sortedUsers[i].initials}</div>`;
+function iconTemplate(userFirebaseId) {
+  return /*html*/ `<div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials displayNone" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>`;
 }
 
 function categoryTemplate(chosenCategory) {

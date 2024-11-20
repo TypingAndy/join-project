@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../privacy_policy.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/privacy_policy.css">
     <script src="../scripts/script.js"></script>
 </head>
 
@@ -21,7 +21,7 @@
     <div class="privacyPolicySection">
             <div class="h1PrivacyPolicyBox">
               <div class="h1PrivacyPolicy">Privacy Policy</div>
-              <img class="imageH1PrivacyPolicyBox" src="images/mobile/helpPage/arrowBlue.png" alt=""/>
+              <img onclick="history.back();" class="imageH1PrivacyPolicyBox" src="../images/icons/arrow_blue.png" alt=""/>
             </div>
       
             <div class="h2PrivacyPolicy">Subtitle</div>
@@ -34,22 +34,22 @@
     </div>
 
     <nav>
-            <div class="navIconBox">
-              <img src="./images/icons/Menu Icons.png" alt="" />
-              <p>Summary</p>
-            </div>
-            <div class="navIconBox">
-              <img src="./images/icons/Menu Icons-1.png" alt="" />
-              <p>Board</p>
-            </div>
-            <div class="navIconBox">
-              <img src="./images/icons/Menu Icons-2.png" alt="" />
-              <p>Add Tasks</p>
-            </div>
-            <div class="navIconBox">
-              <img src="./images/icons/Menu Icons-3.png" alt="" />
-              <p>Contacts</p>
-            </div>
+      <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
+        <img src="../images/icons/summary_icon.png" alt="" />
+        <p>Summary</p>
+      </div>
+      <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
+        <img src="../images/icons/board_icon.png" alt="" />
+        <p>Board</p>
+      </div>
+      <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
+        <img src="../images/icons/add_task_icon.png" alt="" />
+        <p>Add Tasks</p>
+      </div>
+      <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
+        <img src="../images/icons/contact_icon.png" alt="" />
+        <p>Contacts</p>
+      </div>
     </nav>
 </body>
 </html>

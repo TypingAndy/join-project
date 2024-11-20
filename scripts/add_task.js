@@ -79,55 +79,11 @@ document.addEventListener("click", function () {
 
 //------------// toggle Users
 
-function addUserToTaskToggleCss(i) {
-  let check = document.getElementById(`check${i}`);
-  let noCheck = document.getElementById(`noCheck${i}`);
-  let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
-  let userIcon = document.getElementById(`taskFormUserIcon${i}`);
-  let userDropdown = document.getElementById("userDropdown");
 
-  check.classList.toggle("displayNone");
-  noCheck.classList.toggle("displayNone");
-  userContainer.classList.toggle("userDropdownUserContainerBackground");
-  userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
-  userIcon.classList.toggle("displayNone");
-  userDropdown.classList.add("maxHeight200");
-}
 
-function toggleUserInTaskUsersArray(userIndex) {
-  let index = taskFormCurrentUsersIds.indexOf(userIndex);
 
-  if (index === -1) {
-    taskFormCurrentUsersIds.push(userIndex);
-  } else {
-    taskFormCurrentUsersIds.splice(index, 1);
-  }
-}
 
-async function insertUserIconsInsideAssign() {
-  let sortedUsers = await sortUserData();
-  let userIconContainer = document.getElementById("taskFormUserIcon");
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
-  }
-}
-
-function userFilterFunction() {
-  let input = document.getElementById("taskFormUserInput");
-  let filter = input.value.toUpperCase();
-
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
-
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
-    } else {
-      userElement.classList.add("displayNone");
-    }
-  }
-}
 
 // date
 
@@ -181,11 +137,16 @@ function closeCategoryDropdown() {
   disableCursorPointerOnInput("taskFormCategoryInput");
 }
 
+function clearCategoryInsideTaskFrom() {
+  let categoryInput = document.getElementById("taskFormCategoryInput");
+  categoryInput.value = "";
+}
+
 function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
 
   for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+    categoryDropdown.innerHTML += /*html*/ `<div id="categoriesDropdown${i}" onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
   }
 }
 
