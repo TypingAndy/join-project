@@ -277,6 +277,11 @@ function closeBoardTaskPopup(event) {
   }
 }
 
+function toggleBoardTaskForm() {
+  popupElement.innerHTML = boardTaskPopupTemplateEmpty();
+  // document.getElementById("boardTaskPopupContentWrapper").innerHTML = taskFormTemplate();
+}
+
 function renderBoardTaskPopupContent(taskID) {
   popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
@@ -309,7 +314,6 @@ async function toggleSubtaskStatus(subtasksIndex, taskID) {
   renderBoardTaskPopupSubtasks(taskID);
   await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
 }
-
 
 function stopPropagation(event) {
   event.stopPropagation();
