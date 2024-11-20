@@ -121,6 +121,13 @@ function boardTaskPopupTemplate(taskID) {
 `;
 }
 
+function boardTaskPopupTemplateEmpty() {
+  return `  
+  <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
+</div>
+`;
+}
+
 function popupUserTemplate(currentUserId) {
   return `
         <div class="boardTaskPopupContentAssignedToUserContainer">
