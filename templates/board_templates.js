@@ -10,8 +10,8 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
   return `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}', event)" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" ontouchstart="startHold(event, '${filteredLokalTasksArray[taskIndex].ID}')" 
                 ontouchmove="checkScroll(event)" 
-                ontouchend="clearHold(event, '${filteredLokalTasksArray[taskIndex].ID}')"
-                style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none;" >
+                ontouchend="clearHold()"
+                style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none; -webkit-user-select: none;" >
                   <div class="taskCardCategory">
                     <p>${filteredLokalTasksArray[taskIndex].taskCategory}</p>
                   </div>

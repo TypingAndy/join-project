@@ -85,18 +85,19 @@
   80% {
     transform: rotate(2deg);
   }
+
   90% {
     transform: rotate(-2.5deg);
   }
   100% {
-    transform: rotate(3deg);
+    transform: rotate(0deg);
   }
 }
 
 .taskCard.growing {
   transform: scale(50);
   transition: transform 0.1s ease;
-  animation: vibrate 0.5s infinite alternate ease-in-out;
+  animation: vibrate 0.5s alternate ease-in-out forwards;
 }
 
 @media (hover: hover) {
