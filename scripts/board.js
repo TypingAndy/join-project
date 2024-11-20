@@ -316,15 +316,17 @@ function stopPropagation(event) {
 
 function renderTaskFormEdit(taskID) {
   let titleAcceptTaskButton = "Ok";
-  let fetchStatus = "PATCH"
+  let fetchStatus = "PATCH";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
   let taskForm = document.getElementById("taskFormBoard");
-  let postOrPatchFunction = "updateTaskData"
+  let postOrPatchFunction = "updateTaskData";
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, taskID, fetchStatus, postOrPatchFunction);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
+  console.log(unsortedUsers);
+  console.log(allUnsortedTasks);
 }
 
 function fillTaskFormEdit(taskId) {
@@ -344,7 +346,7 @@ function fillTaskFormEdit(taskId) {
 
 function toggleTaskCurrentUserInTaskFormEdit(taskId) {
   for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
-    toggleUserInTaskForm(i, allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
+    toggleUserInTaskForm(allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
   }
 }
 
@@ -357,9 +359,8 @@ function fillSubtaskListInTaskFormEdit(taskId) {
   }
 }
 
-
 function focusOnSearchBar() {
-  let inputElement = document.getElementById('findTaskInput');
+  let inputElement = document.getElementById("findTaskInput");
 
   inputElement.focus();
 }

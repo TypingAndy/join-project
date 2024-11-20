@@ -1,12 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    openingAnimation();
-  }, 1000);
-  setTimeout(() => {
+  let hasVisited = sessionStorage.getItem("hasVisited");
+
+  if (!hasVisited) {
+    setTimeout(() => {
+      openingAnimation();
+    }, 1000);
+    setTimeout(() => {
+      displayNoneAnimationBox();
+      joinLogoVisible();
+    }, 2500);
+
+    sessionStorage.setItem("hasVisited", "true");
+  }
+  else {
     displayNoneAnimationBox();
     joinLogoVisible();
-  }, 2500);
-
+  }
 });
 
 function openingAnimation() {

@@ -47,42 +47,41 @@ function redirectToBoard() {
 
 //taskForm render function
 
-function renderTaskFormTemplate(taskStatus, id) {
-  let taskForm = document.getElementById(id);
-  titleAcceptTaskButton = "Create Task";
-  let fetchStatus = "POST";
-  let postOrPatchFunction = "postTaskData"
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, postOrPatchFunction);
-}
-
-async function renderTaskForm(taskStatus, id) {
+async function renderTaskForm(taskStatus, firebaseUserId) {
   await fillSortedUsersObject();
-  renderTaskFormTemplate(taskStatus, id);
+  renderTaskFormTemplate(taskStatus, firebaseUserId);
   fillUserDropdown();
   insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
 }
 
+function renderTaskFormTemplate(taskStatus, firebaseUserId) {
+  let taskForm = document.getElementById(firebaseUserId);
+  titleAcceptTaskButton = "Create Task";
+  let fetchStatus = "POST";
+  let postOrPatchFunction = "postTaskData";
+  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, firebaseUserId, fetchStatus, postOrPatchFunction);
+}
+
 function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   for (let i = 0; i < sortedUsers.length; i++) {
-    userDropdown.innerHTML += nameListTemplate(i, sortedUsers);
+    userDropdown.innerHTML += nameListTemplate(sortedUsers[i].id);
   }
 }
 
-function toggleUserInTaskForm(i, sortedUsersID) {
-  addUserToTaskToggleCss(i);
-  toggleUserInTaskUsersArray(sortedUsersID);
+function toggleUserInTaskForm(userFirebaseId) {
+  addUserToTaskToggleCss(userFirebaseId);
+  toggleUserInTaskUsersArray(userFirebaseId);
   clearUserInputInsideTaskFrom();
-
 }
 
-function addUserToTaskToggleCss(i) {
-  let check = document.getElementById(`check${i}`);
-  let noCheck = document.getElementById(`noCheck${i}`);
-  let userContainer = document.getElementById(`userContainerInsideUserDropdown${i}`);
-  let userIcon = document.getElementById(`taskFormUserIcon${i}`);
+function addUserToTaskToggleCss(userFirebaseId) {
+  let check = document.getElementById(`check${userFirebaseId}`);
+  let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown${userFirebaseId}`);
+  let userIcon = document.getElementById(`taskFormUserIcon${userFirebaseId}`);
   let userDropdown = document.getElementById("userDropdown");
 
   check.classList.toggle("displayNone");
@@ -90,16 +89,18 @@ function addUserToTaskToggleCss(i) {
   userContainer.classList.toggle("userDropdownUserContainerBackground");
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
   userIcon.classList.toggle("displayNone");
-  userDropdown.classList.toggle("maxHeight200");
+  userDropdown.classList.remove("maxHeight200");
 }
 
-function toggleUserInTaskUsersArray(userIndex) {
-  let index = taskFormCurrentUsersIds.indexOf(userIndex);
+function toggleUserInTaskUsersArray(userFirebaseId) {
+  let i = taskFormCurrentUsersIds.indexOf(userFirebaseId);
 
-  if (index === -1) {
-    taskFormCurrentUsersIds.push(userIndex);
+  console.log(i);
+
+  if (i === -1) {
+    taskFormCurrentUsersIds.push(userFirebaseId);
   } else {
-    taskFormCurrentUsersIds.splice(index, 1);
+    taskFormCurrentUsersIds.splice(i, 1);
   }
 }
 
@@ -107,7 +108,7 @@ function insertUserIconsInsideAssign() {
   let userIconContainer = document.getElementById("taskFormUserIcon");
 
   for (let i = 0; i < sortedUsers.length; i++) {
-    userIconContainer.innerHTML += iconTemplate(i, sortedUsers);
+    userIconContainer.innerHTML += iconTemplate(sortedUsers[i].id);
   }
 }
 
@@ -143,12 +144,11 @@ function categoryFilterFunction() {
   }
 }
 
-
 function editTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("dateInput").value;
-  let chosenCategory = document.getElementById("taskFormCategoryInput").value
+  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
