@@ -144,6 +144,12 @@ input:focus {
   color: #d1d1d1;
 }
 
+.loginFalseMessage {
+  font-size: 13px;
+  color: #FF8190;
+  width: 100%;
+}
+
 .logInCheckOutBoxWrapper {
   display: flex;
   align-items: center;
