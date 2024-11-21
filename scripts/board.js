@@ -409,28 +409,3 @@ document.addEventListener(
   },
   true
 );
-
-
-// document.addEventListener(
-//   "click",
-//   () => {
-//     if (document.getElementById("boardTaskPopup")) {
-//       setTimeout(() => {
-//         let subtaskBox = document.getElementById("taskFormSubtaskList");
-
-//         if (subtaskBox) {
-//           document.addEventListener(
-//             "mousedown",
-//             function (event) {
-//               if (!subtaskBox.contains(event.target)) {
-//                     renderSubtasksToList();
-//               }
-//             },
-//             true
-//           );
-//         }
-//       }, 100);
-//     }
-//   },
-//   true
-// );

@@ -15,20 +15,27 @@
   <body onload="initializeBoard(), fillSortedUsersObject()">
     <div class="joinWrapper">
       <header>
-        <!--  div for taskFormPopup -->
         <div id="taskFormBoardContainer" class="taskFormBoardContainer displayNone">
           <div class="taskFormContainer">
             <img id="taskFormBoardExitButton" onclick="toggleBoardTaskForm()" src="../images/icons/x_black_subtask.png" class="taskFormBoardExitButton" />
             <form id="taskFormBoard" class="taskFormBoard"></form>
           </div>
         </div>
-        <!--  div for taskFormPopup -->
 
         <img src="../images/icons/join_logo_black.svg" alt="" />
-        <div class="userProfile">
-          <p>AB</p>
+        <div>
+          <div id="userPorfileButton" onclick="openSignedUserDropdown()" class="userProfile">
+            <p>AB</p>
+          </div>
+        </div>
+        <div id="userProfileDropdown" class="userProfileDropdown displayNone">
+          <div onclick="window.location.href='help_page.html'" class="userProfileButtons">Help</div>
+          <div onclick="window.location.href='legal_notice.html'" class="userProfileButtons">Legal Notice</div>
+          <div onclick="window.location.href='privacy_policy.html'" class="userProfileButtons">Privacy Policy</div>
+          <div onclick="logOut()" class="userProfileButtons">Log out</div>
         </div>
       </header>
+
       <div class="boardPopupBackground" id="boardPopupBackground" onclick="closeBoardTaskPopup()">
         <div class="boardTaskPopup" id="boardTaskPopup"></div>
       </div>
