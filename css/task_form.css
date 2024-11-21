@@ -1,4 +1,17 @@
 /* multi use */
+.taskFormWrapper {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 180px; */
+  overflow: hidden;
+}
+
+.taskFormMidSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+}
 
 .taskFormSectionBox {
   display: flex;
@@ -389,6 +402,8 @@
 .taskFormCreateTaskButtonBox {
   display: flex;
   justify-content: space-between;
+  padding-top: 18px;
+  box-sizing: border-box;
 }
 
 .taskFormRequiredInfo {
