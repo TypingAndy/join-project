@@ -365,6 +365,7 @@ body {
   background-color: rgba(246, 247, 248, 1);
   box-sizing: border-box;
   padding: 80px 0;
+  z-index: 1;
 }
 
 .contactDetailsContentWrapper {
