@@ -1,5 +1,7 @@
 function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, postOrPatchFunction) {
   return /*html*/ `
+  <div class="taskFormWrapper">
+  <div class="taskFormMidSection">
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Title<span style="color: red">*</span></div>
               <div class="taskFormInputContainer">
@@ -100,7 +102,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               </div>
               <ul class="taskFormSubtaskList" id="taskFormSubtaskList"></ul>
             </div>
-
+</div>
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
               <div onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" class="createTaskButton" type="submit">
@@ -108,6 +110,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
               </div>
             </div>
+            <div>
     `;
 }
 
