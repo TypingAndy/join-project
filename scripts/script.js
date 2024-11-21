@@ -174,7 +174,6 @@ let userProfileDropdown = document.getElementById('userProfileDropdown');
 userProfileDropdown.classList.remove('displayNone');
 }
 
-
 function logOut() {
   window.location.href='landingpage_login.html'
 }
