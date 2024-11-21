@@ -171,14 +171,20 @@ function editTaskInputData(taskStatus) {
 
 function openSignedUserDropdown() {
 let userProfileDropdown = document.getElementById('userProfileDropdown');
-userProfileDropdown.classList.toggle('displayNone');
+userProfileDropdown.classList.remove('displayNone');
 }
 
 function logOut() {
   window.location.href='landingpage_login.html'
 }
 
-
+addEventListener('click', (event) =>  {
+  let userProfileButton = document.getElementById('userPorfileButton');
+  let userProfileDropdown = document.getElementById('userProfileDropdown');
+if (!userProfileButton.contains(event.target)) {
+  userProfileDropdown.classList.add('displayNone')
+}
+});
 
 
 

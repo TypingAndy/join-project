@@ -57,6 +57,7 @@ input:focus {
   font-weight: 700;
   font-size: 47px;
   margin-top: 28px;
+  cursor: default;
 }
 
 .signUpBlueLine {
@@ -185,6 +186,11 @@ input:focus {
   font-weight: 700;
   margin-bottom: 24px;
   opacity: 0.1;
+  cursor: pointer;
+}
+
+.acceptThe {
+  cursor: default;
 }
 
 .signUpLinksBox {
