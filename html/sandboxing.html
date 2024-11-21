@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object.entries</title>
+
+
+<script>
+
+let menschen = {
+    "Arthur": {
+        "alter": 55,
+        "groesse": 88,
+        "gewicht": 85
+    },
+    "Lisa": {
+        "alter": 30,
+        "groesse": 65,
+        "gewicht": 55
+    },
+    "Max": {
+        "alter": 40,
+        "groesse": 80,
+        "gewicht": 75
+    },
+    "Sophia": {
+        "alter": 25,
+        "groesse": 70,
+        "gewicht": 60
+    },
+    "John": {
+        "alter": 35,
+        "groesse": 75,
+        "gewicht": 70
+    }
+};
+
+
+function readJson() {
+Object.entries(menschen).forEach(([key, value]) => {
+document.getElementById('showkey').innerHTML += key;
+Object.entries(value).forEach(([atribute, atrivalue]) => {
+    document.getElementById('showatribute').innerHTML += atribute;
+    document.getElementById('showatrivalue').innerHTML += atrivalue;
+} );
+
+})
+}
+
+</script>
+
+
+</head>
+<body onload="readJson()">
+    <div id="showkey"></div>
+    <div id="showvalue"></div>
+    <div id="showatribute"></div>
+    <div id="showatrivalue"></div>
+</body>
+</html>
