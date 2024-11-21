@@ -1,3 +1,7 @@
+.no-scroll {
+  overflow: hidden;
+}
+
 .hidden {
   opacity: 0.2;
   transition: opacity 0.2s ease;

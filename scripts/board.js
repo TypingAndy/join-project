@@ -264,6 +264,7 @@ function openBoardTaskPopup(taskID) {
   popupElement.style.display = "flex";
   popupBackgroundElement.style.display = "flex";
   popupElement.addEventListener("click", stopPropagation);
+  document.body.classList.add("no-scroll");
 }
 
 function createBoardTaskPopupForNewTask(taskStatus) {
@@ -294,6 +295,7 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
 function closeBoardTaskPopup(event) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
+  document.body.classList.remove("no-scroll");
 
   if (!event || event.target === popupBackgroundElement) {
     popupElement.style.display = "none";
@@ -409,7 +411,6 @@ document.addEventListener(
   },
   true
 );
-
 
 // document.addEventListener(
 //   "click",
