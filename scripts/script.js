@@ -176,6 +176,7 @@ function openSignedUserDropdown() {
 }
 
 function logOut() {
+  localStorage.removeItem("loggedUserInitials");
   window.location.href = "landingpage_login.html";
 }
 
@@ -198,8 +199,7 @@ function renderProfileButtonTemplate() {
 
   if (loggedUserInitials) {
     document.getElementById("profileInitials").innerHTML = loggedUserInitials;
-    localStorage.removeItem("loggedUserInitials");
-  } else {
+   } else {
     document.getElementById("profileInitials").innerHTML = "G";
   }
 }
