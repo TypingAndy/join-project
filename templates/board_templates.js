@@ -1,5 +1,5 @@
 function noTaskTemplate() {
-  return `
+  return /*html*/ `
               <div class="noTasksContainer">
                 <p>No tasks to do</p>
               </div>
@@ -7,7 +7,7 @@ function noTaskTemplate() {
 }
 
 function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage) {
-  return `
+  return /*html*/ `
                 <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}', event)" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" ontouchstart="startHold(event, '${filteredLokalTasksArray[taskIndex].ID}')" 
                 ontouchmove="checkScroll(event)" 
                 ontouchend="clearHold()"
@@ -73,7 +73,7 @@ function taskCardSingleInitialsTemplate(currentUserID) {
 }
 
 function boardTaskPopupTemplate(taskID) {
-  return `  
+  return /*html */ `  
   <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
   <div class="boardTaskPopupContentTop">
     <div class="boardTaskPopupCategoryCard">
@@ -122,14 +122,15 @@ function boardTaskPopupTemplate(taskID) {
 }
 
 function boardTaskPopupTemplateEmpty() {
-  return `  
+  return /*html*/ `  
   <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
 </div>
 `;
 }
 
+
 function popupUserTemplate(currentUserId) {
-  return `
+  return /*html*/ `
         <div class="boardTaskPopupContentAssignedToUserContainer">
           <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${unsortedUsers[currentUserId].color};">
             <p class="boardTaskPopupContentAssignedToUserInitials">${unsortedUsers[currentUserId].initials}</p>
@@ -140,7 +141,7 @@ function popupUserTemplate(currentUserId) {
 }
 
 function popupSubtaskTemplate(subtasksIndex, taskID) {
-  return `
+  return /*html*/ `
         <div class="boardTaskPopupContentSubtask" onclick="toggleSubtaskStatus(${subtasksIndex},'${taskID}')">
           <img class="boardTaskPopupContentSubtaskIcon" id="boardTaskPopupContentSubtaskIcon${subtasksIndex}" src="../images/icons/unchecked.png" alt="" />
           <p class="boardTaskPopupContentSubtaskTitle">${allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskName}</p>

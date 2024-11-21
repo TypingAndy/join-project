@@ -33,7 +33,6 @@ async function toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskSt
     },
     body: JSON.stringify(newSubtaskStatus),
   });
-  console.log("subtask toggeled");
 }
 
 async function updateUserInFirebase(firebaseId, updatedUserData) {

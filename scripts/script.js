@@ -34,7 +34,6 @@ function stopPropagation(event) {
 
 async function fillSortedUsersObject() {
   sortedUsers = await sortUserData();
-  console.log(sortedUsers);
 }
 
 // navigation
@@ -80,7 +79,7 @@ function toggleUserInTaskForm(userFirebaseId) {
 function addUserToTaskToggleCss(userFirebaseId) {
   let check = document.getElementById(`check${userFirebaseId}`);
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
-  let userContainer = document.getElementById(`userContainerInsideUserDropdown${userFirebaseId}`);
+  let userContainer = document.getElementById(`userContainerInsideUserDropdown(${userFirebaseId})`);
   let userIcon = document.getElementById(`taskFormUserIcon${userFirebaseId}`);
   let userDropdown = document.getElementById("userDropdown");
 
@@ -94,8 +93,6 @@ function addUserToTaskToggleCss(userFirebaseId) {
 
 function toggleUserInTaskUsersArray(userFirebaseId) {
   let i = taskFormCurrentUsersIds.indexOf(userFirebaseId);
-
-  console.log(i);
 
   if (i === -1) {
     taskFormCurrentUsersIds.push(userFirebaseId);
@@ -118,15 +115,22 @@ function userFilterFunction() {
 
   for (let i = 0; i < sortedUsers.length; i++) {
     let userName = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`userContainerInsideUserDropdown${i}`);
+    let userId = sortedUsers[i].id;
+    let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`);
 
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
+    if (userElement) { // Sicherheitsüberprüfung
+      if (userName.includes(filter)) {
+        userElement.classList.remove("displayNone");
+      } else {
+        userElement.classList.add("displayNone");
+      }
     } else {
-      userElement.classList.add("displayNone");
+      console.warn(`Element mit ID userContainerInsideUserDropdown(${userId}) nicht gefunden.`);
     }
   }
 }
+
+
 
 function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
@@ -161,3 +165,20 @@ function editTaskInputData(taskStatus) {
   };
   return createTaskData;
 }
+
+
+//open signedUserDropdown
+
+function openSignedUserDropdown() {
+let userProfileDropdown = document.getElementById('userProfileDropdown');
+userProfileDropdown.classList.toggle('displayNone');
+}
+
+function logOut() {
+  window.location.href='landingpage_login.html'
+}
+
+
+
+
+

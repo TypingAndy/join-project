@@ -113,7 +113,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 
 function nameListTemplate(userFirebaseId) {
   return /*html*/ `
-    <div id="userContainerInsideUserDropdown${userFirebaseId}" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
+    <div id="userContainerInsideUserDropdown(${userFirebaseId})" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
       <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>
       <div class="taskFormUserNameAndInitials">
         <div>${unsortedUsers[userFirebaseId].name}</div>
@@ -140,7 +140,7 @@ function subtaskTemplate(i) {
       <div id="addTasksSubtask(${i})" class="taskFormSubtaskListSingle">
 
         <div id="taskFormSubtaskTitle(${i})" ondblclick="openRewriteInput(${i})">${subtasks[i].subtaskName}</div>
-        <input id="taskFormSubtaskRewriteInput(${i})" type="text" class="subtaskRewriteInput displayNone">
+        <input id="taskFormSubtaskRewriteInput(${i})" onblur="renderSubtasksToList()" type="text" class="subtaskRewriteInput displayNone">
 
         <div id="subtaskIconBox(${i})" class="subtaskIconBox">
           <img onclick="openRewriteInput(${i})" class="img24px" src="../images/icons/pencil_black.png">
