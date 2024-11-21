@@ -192,5 +192,23 @@ textarea:active {
 }
 
 
-/* ------------------------- add Task Subtask */
+/* ------------------------- userProfileDropdown */
 
+.userProfileDropdown {
+  position: absolute;
+ background-color: #2A3647;
+ border-radius: 20px 0px 20px 20px;
+ padding: 10px;
+ color: #CDCDCD;
+ right: 16px;
+ top: 80px;
+}
+
+.userProfileButtons {
+padding: 8px 16px;
+}
+
+.userProfileButtons:hover {
+  color: #29abe2;
+  cursor: pointer;
+}
