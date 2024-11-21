@@ -392,31 +392,45 @@ function focusOnSearchBar() {
   inputElement.focus();
 }
 
-document.addEventListener("click", function () {
-  if (document.getElementById("boardTaskPopup")) {
-    setTimeout(() => {
-      let dropdown = document.getElementById("userDropdown");
+document.addEventListener(
+  "click",
+  function () {
+    if (document.getElementById("boardTaskPopup")) {
+      setTimeout(() => {
+        let dropdown = document.getElementById("userDropdown");
 
-      if (dropdown) {
-        dropdown.addEventListener("mousedown", function (event) {
-          event.preventDefault();
-        });
-      }
-    }, 100);
-  }
-});
+        if (dropdown) {
+          dropdown.addEventListener("mousedown", function (event) {
+            event.preventDefault();
+          });
+        }
+      }, 100);
+    }
+  },
+  true
+);
 
-document.addEventListener("click", () => {
-  if (document.getElementById("boardTaskPopup")) {
-    setTimeout(() => {
-      let subtaskBox = document.getElementById("taskFormSubtaskList");
-      if (subtaskBox) {
-        document.addEventListener("mousedown", function (event) {
-          if (!subtaskBox.contains(event.target)) {
-            renderSubtasksToList();
-          }
-        });
-      }
-    }, 100);
-  }
-});
+
+// document.addEventListener(
+//   "click",
+//   () => {
+//     if (document.getElementById("boardTaskPopup")) {
+//       setTimeout(() => {
+//         let subtaskBox = document.getElementById("taskFormSubtaskList");
+
+//         if (subtaskBox) {
+//           document.addEventListener(
+//             "mousedown",
+//             function (event) {
+//               if (!subtaskBox.contains(event.target)) {
+//                     renderSubtasksToList();
+//               }
+//             },
+//             true
+//           );
+//         }
+//       }, 100);
+//     }
+//   },
+//   true
+// );

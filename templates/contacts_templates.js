@@ -1,5 +1,5 @@
 function contactsTemplate(letter, users) {
-  return `
+  return /*html*/ `
     <div class="contactLetterWrapper">
           <div class="contactLetter">${letter}</div>
           <div class="line"></div>
