@@ -118,7 +118,8 @@ function userFilterFunction() {
     let userId = sortedUsers[i].id;
     let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`);
 
-    if (userElement) { // Sicherheitsüberprüfung
+    if (userElement) {
+      // Sicherheitsüberprüfung
       if (userName.includes(filter)) {
         userElement.classList.remove("displayNone");
       } else {
@@ -129,8 +130,6 @@ function userFilterFunction() {
     }
   }
 }
-
-
 
 function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
@@ -166,25 +165,21 @@ function editTaskInputData(taskStatus) {
   return createTaskData;
 }
 
-
 //open signedUserDropdown
 
 function openSignedUserDropdown() {
-let userProfileDropdown = document.getElementById('userProfileDropdown');
-userProfileDropdown.classList.remove('displayNone');
+  let userProfileDropdown = document.getElementById("userProfileDropdown");
+  userProfileDropdown.classList.remove("displayNone");
 }
 
 function logOut() {
-  window.location.href='landingpage_login.html'
+  window.location.href = "landingpage_login.html";
 }
 
-addEventListener('click', (event) =>  {
-  let userProfileButton = document.getElementById('userPorfileButton');
-  let userProfileDropdown = document.getElementById('userProfileDropdown');
-if (!userProfileButton.contains(event.target)) {
-  userProfileDropdown.classList.add('displayNone')
-}
+addEventListener("click", (event) => {
+  let userProfileButton = document.getElementById("userPorfileButton");
+  let userProfileDropdown = document.getElementById("userProfileDropdown");
+  if (!userProfileButton.contains(event.target)) {
+    userProfileDropdown.classList.add("displayNone");
+  }
 });
-
-
-
