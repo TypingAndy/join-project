@@ -13,8 +13,7 @@
     <script src="../scripts/landingpage_log_in.js"></script>
   </head>
 
-  <body onload="loadUserDataFromFirebase();
-  ">
+  <body onload="loadUserDataFromFirebase(), fillInputsAtLoginWithRememberedUser()">
     <!-- start sequence -->
 
     <div id="animationBox" class="landingpageBoxStart">
@@ -41,7 +40,8 @@
           </div>
           <div class="logInCheckOutBoxWrapper">
             <div class="acceptPolicyBox">
-              <img id="logInCheckbox" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
+              <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
+              <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="../images/icons/checked.png" alt="" />
               <div class="rememberMe">Remember me</div>
             </div>
             <div id="logInButton" onclick="checkUserPasswortMatch()" class="logInButton" type="submit">Log in</div>
