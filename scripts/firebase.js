@@ -48,7 +48,9 @@ async function updateUserInFirebase(firebaseId, updatedUserData) {
 async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
   unsortedUsers = await response.json();
+  console.log(unsortedUsers)
   return unsortedUsers;
+  
 }
 
 async function getNewUserId(response) {

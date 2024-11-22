@@ -13,8 +13,9 @@
     <script src="../scripts/contacts.js"></script>
     <script src="../templates/contacts_templates.js"></script>
     <script src="../scripts/user_data.js"></script>
+    <script src="../templates/profile_button_template.js"></script>
   </head>
-  <body onload="renderContacts()">
+  <body onload="renderContacts(), renderProfileButtonTemplate()">
     <div class="contactDetailsSection" id="contactDetailsSection"></div>
     <div class="contactCreatedSuccessfullyPopup" id="contactCreatedSuccessfullyPopup">
       <span>Contact successfully created</span>
@@ -24,9 +25,7 @@
       <header>
         <img src="../images/icons/join_logo_black.svg" alt="" />
         <div>
-          <div id="userPorfileButton" onclick="openSignedUserDropdown()" class="userProfile">
-            <p>AB</p>
-          </div>
+          <div class="profileButtonBox"></div>
 
         </div>
         <div id="userProfileDropdown" class="userProfileDropdown displayNone">

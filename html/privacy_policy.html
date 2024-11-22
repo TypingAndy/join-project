@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/privacy_policy.css">
     <script src="../scripts/script.js"></script>
+    <script src="../templates/profile_button_template.js"></script>
 </head>
 
-<body>
+<body onload="renderProfileButtonTemplate()">
   <header>
     <img src="../images/icons/join_logo_black.svg" alt="" />
     <div>
-      <div id="userPorfileButton" onclick="openSignedUserDropdown()" class="userProfile">
-        <p>AB</p>
-      </div>
+      <div class="profileButtonBox"></div>
 
     </div>
     <div id="userProfileDropdown" class="userProfileDropdown displayNone">

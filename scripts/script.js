@@ -7,6 +7,9 @@ let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "
 let policyAccepted = false;
 let passwordMatch = false;
 
+//logInArrays
+let loggedUserInitials = "G"; //is needed
+
 //addTaskGlobalArrays
 let taskPrioInput = ""; //is needed
 let taskFormCurrentUsersIds = []; //is needed
@@ -15,7 +18,7 @@ let subtasks = []; //is needed
 
 //boardGlobalArrays
 let sortedUsers = []; //is needed
-let unsortedUsers = {};
+let unsortedUsers = {}; //is needed
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
 let currentDraggedElementID;
@@ -173,13 +176,32 @@ function openSignedUserDropdown() {
 }
 
 function logOut() {
+
+  localStorage.removeItem("loggedUserInitials");
+
   window.location.href = "landingpage_login.html";
 }
 
 addEventListener("click", (event) => {
-  let userProfileButton = document.getElementById("userPorfileButton");
-  let userProfileDropdown = document.getElementById("userProfileDropdown");
-  if (!userProfileButton.contains(event.target)) {
-    userProfileDropdown.classList.add("displayNone");
+  if (!window.location.href.includes("landingpage")) {
+    let userProfileButton = document.getElementById("userPorfileButton");
+    let userProfileDropdown = document.getElementById("userProfileDropdown");
+    if (!userProfileButton.contains(event.target)) {
+      userProfileDropdown.classList.add("displayNone");
+    }
   }
 });
+
+//profile Button
+
+function renderProfileButtonTemplate() {
+  let profileButtonBox = document.querySelector(".profileButtonBox");
+  let loggedUserInitials = localStorage.getItem("loggedUserInitials");
+  profileButtonBox.innerHTML = profileButtonTemplate();
+
+  if (loggedUserInitials) {
+    document.getElementById("profileInitials").innerHTML = loggedUserInitials;
+   } else {
+    document.getElementById("profileInitials").innerHTML = "G";
+  }
+}

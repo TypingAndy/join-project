@@ -10,9 +10,10 @@
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/log_in_opening_animation.js"></script>
+    <script src="../scripts/landingpage_log_in.js"></script>
   </head>
 
-  <body onload="loadUserDataFromFirebase()">
+  <body onload="loadUserDataFromFirebase(), fillInputsAtLoginWithRememberedUser()">
     <!-- start sequence -->
 
     <div id="animationBox" class="landingpageBoxStart">
@@ -25,7 +26,7 @@
     <div class="logInSection">
       <img id="afterAnimatioLogo" class="logInLogo invisible" src="../images/icons/join_logo_dark.png" alt="" />
 
-      <div class="logInBoard">
+      <form class="logInBoard">
         <div class="logInBoardContentWrapper">
           <div class="logInTitleWrapper">
             <div class="logInTitle">Log in</div>
@@ -33,22 +34,24 @@
           </div>
 
           <div class="logInInputContainer">
-            <input id="logInMailInput" class="logInInputEmail" placeholder="Email" type="email" />
-            <input id="logInPasswordInput" class="logInInputPassword" placeholder="Password" type="text" />
+            <input id="logInMailInput" oninput="validateLogin()" class="logInInputEmail" placeholder="Email" type="email" />
+            <input id="logInPasswordInput" oninput="validateLogin()" class="logInInputPassword" placeholder="Password" type="text" />
+            <div id="loginFalseMessage" class="loginFalseMessage"></div>
           </div>
           <div class="logInCheckOutBoxWrapper">
             <div class="acceptPolicyBox">
-              <img id="logInCheckbox" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
+              <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
+              <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="../images/icons/checked.png" alt="" />
               <div class="rememberMe">Remember me</div>
             </div>
-            <div id="logInButton" class="logInButton" type="submit">Log in</div>
-            <div onclick="window.location.href='summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
+            <div id="logInButton" onclick="checkUserPasswortMatch()" class="logInButton" type="submit">Log in</div>
+            <div onclick="validateLogin(), addGuestInitialsToProfileButton(), window.location.href='summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
           </div>
         </div>
-      </div>
+      </form>
 
       <div class="logInNoUserSignUpBox">
-        <div class="logInNoUserSignUpText">Not a Join user?</div>
+        <div  class="logInNoUserSignUpText">Not a Join user?</div>
         <div class="logInNoUserSignUpButton" onclick="window.location.href='landingpage_sign_up.html'">Sign up</div>
       </div>
 
