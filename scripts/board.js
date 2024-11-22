@@ -288,7 +288,6 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
   let wrapper = document.getElementById("boardTaskPopupContentWrapper");
   wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, (id = ""), (fetchStatus = ""), postOrPatchFunction);
   fillUserDropdown();
-  insertUserIconsInsideAssign();
   fillCategoryDropdown();
 }
 
@@ -302,6 +301,7 @@ function closeBoardTaskPopup(event) {
     popupBackgroundElement.style.display = "none";
     popupElement.removeEventListener("click", stopPropagation);
     renderTaskCards();
+    toggleUserInTaskUsersArraySpliceAll();
   }
 }
 
@@ -345,7 +345,6 @@ function stopPropagation(event) {
 }
 
 function renderTaskFormEdit(taskID) {
-  // openBoardTaskPopupForAddTask();
   let titleAcceptTaskButton = "Ok";
   let fetchStatus = "PATCH";
   let taskStatus = allUnsortedTasks[taskID].taskStatus;
@@ -353,7 +352,6 @@ function renderTaskFormEdit(taskID) {
   let postOrPatchFunction = "updateTaskData";
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, taskID, fetchStatus, postOrPatchFunction);
   fillUserDropdown();
-  insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
 }

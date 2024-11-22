@@ -53,7 +53,6 @@ async function renderTaskForm(taskStatus, renderLocation) {
   await fillSortedUsersObject();
   renderTaskFormTemplate(taskStatus, renderLocation);
   fillUserDropdown();
-  insertUserIconsInsideAssign();
   fillCategoryDropdown();
   renderSubtasksToList();
 }
@@ -74,23 +73,42 @@ function fillUserDropdown() {
 }
 
 function toggleUserInTaskForm(userFirebaseId) {
-  addUserToTaskToggleCss(userFirebaseId);
   toggleUserInTaskUsersArray(userFirebaseId);
+  addUserToTaskToggleCss(userFirebaseId);
   clearUserInputInsideTaskFrom();
+  renderIconsInTaskForm(userFirebaseId);
 }
+
+function renderIconsInTaskForm() {
+  let userIconContainer = document.getElementById("taskFormUserIcon");
+  let plusUserIcons = document.getElementById("plusUserIcons");
+
+  userIconContainer.innerHTML = "";
+
+  let maxIconsToShow = 4;
+  for (let i = 0; i < taskFormCurrentUsersIds.length && i < maxIconsToShow; i++) {
+    userIconContainer.innerHTML += iconTemplate(taskFormCurrentUsersIds[i]);
+  }
+
+
+  if (taskFormCurrentUsersIds.length <= maxIconsToShow) {
+    plusUserIcons.classList.add('displayNone');
+  } else {
+    plusUserIcons.classList.remove('displayNone');
+  }
+}
+
 
 function addUserToTaskToggleCss(userFirebaseId) {
   let check = document.getElementById(`check${userFirebaseId}`);
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
   let userContainer = document.getElementById(`userContainerInsideUserDropdown(${userFirebaseId})`);
-  let userIcon = document.getElementById(`taskFormUserIcon${userFirebaseId}`);
   let userDropdown = document.getElementById("userDropdown");
 
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
   userContainer.classList.toggle("userDropdownUserContainerBackground");
   userContainer.classList.toggle("userDropdownUserContainerBackgroundToggled");
-  userIcon.classList.toggle("displayNone");
   userDropdown.classList.remove("maxHeight200");
 }
 
@@ -104,12 +122,9 @@ function toggleUserInTaskUsersArray(userFirebaseId) {
   }
 }
 
-function insertUserIconsInsideAssign() {
-  let userIconContainer = document.getElementById("taskFormUserIcon");
+function toggleUserInTaskUsersArraySpliceAll() {
+    taskFormCurrentUsersIds.splice(0 , taskFormCurrentUsersIds.length);
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    userIconContainer.innerHTML += iconTemplate(sortedUsers[i].id);
-  }
 }
 
 function userFilterFunction() {
@@ -199,7 +214,7 @@ function renderProfileButtonTemplate() {
 
   if (loggedUserInitials) {
     document.getElementById("profileInitials").innerHTML = loggedUserInitials;
-   } else {
+  } else {
     document.getElementById("profileInitials").innerHTML = "G";
   }
 }
