@@ -21,11 +21,11 @@ function checkUserPasswortMatch() {
 }
 
 function fillLocalStorageWithRememberedUserData(id) {
-  let loggedUserName = unsortedUsers[id].name;
+  let loggedUserEmail = unsortedUsers[id].email;
   let loggedUserPassword = unsortedUsers[id].password;
 
   if (rememberBoolean) {
-    localStorage.setItem("rememberedUserName", loggedUserName);
+    localStorage.setItem("rememberedUserEmail", loggedUserEmail);
     localStorage.setItem("rememberedUserPassword", loggedUserPassword);
   }
 }
@@ -34,8 +34,9 @@ function fillInputsAtLoginWithRememberedUser() {
   let emailInput = document.getElementById("logInMailInput");
   let passwordInput = document.getElementById("logInPasswordInput");
 
-  emailInput.value = localStorage.getItem("rememberedUserName");
+  emailInput.value = localStorage.getItem("rememberedUserEmail");
   passwordInput.value = localStorage.getItem("rememberedUserPassword");
+  validateLogin();
 }
 
 function validateLogin() {
