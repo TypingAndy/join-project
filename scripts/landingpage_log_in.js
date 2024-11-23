@@ -9,7 +9,7 @@ function checkUserPasswortMatch() {
     if (user.email === emailInput && user.password === passwordInput) {
       userFound = true;
       let loggedUserInitials = unsortedUsers[id].initials;
-      fillLocalStorageWithRememberedUserData(id)
+      fillLocalStorageWithRememberedUserData(id);
       localStorage.setItem("loggedUserInitials", loggedUserInitials);
       window.location.href = "summary.html";
     }

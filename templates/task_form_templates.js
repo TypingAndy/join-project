@@ -26,6 +26,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                   onkeyup="userFilterFunction()"
                   placeholder="Select contacts to assign"
                   class="taskFormDropdownInput"
+                  autocomplete="off"
                 />
                 <img
                   id="taskFormUserDropdownArrow"
@@ -39,7 +40,11 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <div class="taskFormDropdownBox">
                 <div id="userDropdown" class="taskFormDropdownContent"></div>
               </div>
-              <div id="taskFormUserIcon" class="userIconsBox"></div>
+              <div class="userIconsBoxWithPlus">
+                <div id="taskFormUserIcon" class="userIconsBox"></div>
+                <div id="plusUserIcons" class="plusUserIcons displayNone">+</div>
+                <div id="numberUserIcons" class="numberUserIcons">5</div>
+              </div>
             </div>
 
             <div class="taskFormSectionBox">
@@ -78,6 +83,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                   onkeyup="categoryFilterFunction()"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
+                  autocomplete="off"
                   
                 />
                 <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
@@ -128,7 +134,7 @@ function nameListTemplate(userFirebaseId) {
 }
 
 function iconTemplate(userFirebaseId) {
-  return /*html*/ `<div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials displayNone" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>`;
+  return /*html*/ `<div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>`;
 }
 
 function categoryTemplate(chosenCategory) {
