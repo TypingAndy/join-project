@@ -36,7 +36,7 @@ function contactDetailsTemplate(firebaseUserId) {
             <div class="contactDetailsContentTopLabelLine"></div>
           </div>
           <div class="contactDetailsContentTopArrowWrapper">
-            <img onclick="toggleContactDetails(), toggleAddContactButton()" src="../images/icons/arrow-left-line.png" alt="back" />
+            <img  class="contactDetailsContentTopBlueArrow" onclick="toggleContactDetails(), toggleAddContactButton()" src="../images/icons/arrow-left-line.png" alt="back" />
           </div>
         </div>
         <div class="contactDetailsContentMainWrapper">
@@ -72,7 +72,7 @@ function contactPopupTemplate(popupType, firebaseUserId) {
       </div>
     </div>
     <div class="contactPopupTop">
-      <img src="../images/icons/close_white.png" alt="" onclick="toggleContactPopup(), toggleAddContactButton()" />
+      <img class="contactPopupCloseButton" src="../images/icons/contacts_close.svg" alt="" onclick="toggleContactPopup(), toggleAddContactButton()" />
       <div class="contactPopupTopTitleWrapper">
         <span class="contactPopupTitle">Add contact</span>
         <span class="contactPopupTitlePhrase">Tasks are better with a team!</span>
@@ -110,7 +110,7 @@ function contactPopupTemplate(popupType, firebaseUserId) {
       </div>
     </div>
     <div class="contactPopupTop">
-      <img src="../images/icons/close_white.png" alt="" onclick="toggleContactPopup(), toggleAddContactButton()" />
+      <img class="contactPopupCloseButton" src="../images/icons/contacts_close.svg" alt="" onclick="toggleContactPopup(), toggleAddContactButton()" />
       <div class="contactPopupTopTitleWrapper">
         <span class="contactPopupTitle">Edit contact</span>
         <div class="contactPopupTitleLine"></div>
