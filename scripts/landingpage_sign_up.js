@@ -44,3 +44,13 @@ function acceptPrivacyPolicyCheck() {
     img.src = "../images/icons/checked.png";
   }
 }
+
+function showPopup() {
+  const popup = document.querySelector(".signUpSuccessfulPopup");
+  popup.classList.add("active");
+
+  setTimeout(() => {
+    popup.classList.remove("active");
+    window.location.href = "./landingpage_login.html";
+  }, 1500);
+}
