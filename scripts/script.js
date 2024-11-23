@@ -191,7 +191,9 @@ function openSignedUserDropdown() {
 }
 
 function logOut() {
+
   localStorage.removeItem("loggedUserInitials");
+
   window.location.href = "landingpage_login.html";
 }
 
