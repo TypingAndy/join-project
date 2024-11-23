@@ -1,6 +1,21 @@
 .summaryIcons {
     width: 40px;
   }
+
+  .iconButtonToDo {
+    width: 50px;
+    height: 50px;
+    background: url('../images/icons/pencil_white_round.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .iconButtonToDo:hover {
+    background: url('../images/icons/pencil_black.png') no-repeat center center;
+    background-size: contain;
+  }
+  
   
   .summaryMidSectionAmountFontSize {
     font-size: 47px;

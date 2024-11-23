@@ -205,6 +205,13 @@
   align-items: center;
   padding: 10px;
   margin-bottom: 3px;
+  font-size: 14px;
+}
+
+.numberUserIcons {
+  font-size: 14px;
+  margin-left: -10px;
+  margin-bottom: 2px;
 }
 
 .maxHeight200 {

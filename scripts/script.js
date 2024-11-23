@@ -82,7 +82,7 @@ function toggleUserInTaskForm(userFirebaseId) {
 function renderIconsInTaskForm() {
   let userIconContainer = document.getElementById("taskFormUserIcon");
   let plusUserIcons = document.getElementById("plusUserIcons");
-
+  let numberUserIcons = document.getElementById("numberUserIcons");
   userIconContainer.innerHTML = "";
 
   let maxIconsToShow = 4;
@@ -90,11 +90,12 @@ function renderIconsInTaskForm() {
     userIconContainer.innerHTML += iconTemplate(taskFormCurrentUsersIds[i]);
   }
 
-
   if (taskFormCurrentUsersIds.length <= maxIconsToShow) {
-    plusUserIcons.classList.add('displayNone');
+    plusUserIcons.classList.add("displayNone");
+    numberUserIcons.textContent = ""; // Entferne die Anzeige, wenn nicht benötigt
   } else {
-    plusUserIcons.classList.remove('displayNone');
+    plusUserIcons.classList.remove("displayNone");
+    numberUserIcons.textContent = taskFormCurrentUsersIds.length - maxIconsToShow; // Aktualisiere die Anzahl
   }
 }
 
@@ -123,8 +124,7 @@ function toggleUserInTaskUsersArray(userFirebaseId) {
 }
 
 function toggleUserInTaskUsersArraySpliceAll() {
-    taskFormCurrentUsersIds.splice(0 , taskFormCurrentUsersIds.length);
-
+  taskFormCurrentUsersIds.splice(0, taskFormCurrentUsersIds.length);
 }
 
 function userFilterFunction() {

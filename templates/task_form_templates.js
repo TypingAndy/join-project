@@ -43,6 +43,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <div class="userIconsBoxWithPlus">
                 <div id="taskFormUserIcon" class="userIconsBox"></div>
                 <div id="plusUserIcons" class="plusUserIcons displayNone">+</div>
+                <div id="numberUserIcons" class="numberUserIcons">5</div>
               </div>
             </div>
 
