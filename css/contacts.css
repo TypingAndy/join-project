@@ -39,6 +39,7 @@ body {
 .contactLetter {
   font-size: 20px;
   margin-left: 36px;
+  cursor: default;
 }
 
 .contactCard {
@@ -127,6 +128,7 @@ body {
   background-color: rgba(42, 54, 71, 1);
   border-radius: 50%;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .editContactCircleButton img {
@@ -140,6 +142,10 @@ body {
   width: 100%;
   position: fixed;
   z-index: 1000;
+}
+
+.contactPopupCloseButton {
+  cursor: pointer;
 }
 
 .contactPopup {
@@ -224,6 +230,7 @@ body {
   color: white;
   font-size: 47px;
   font-weight: 700;
+  cursor: default;
 }
 
 .contactPopupTitlePhrase {
@@ -327,6 +334,7 @@ body {
   margin-top: 18px;
   padding: 0 12px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .deleteContactButton {
@@ -343,6 +351,7 @@ body {
   padding: 0 12px;
   border: solid rgba(42, 54, 71, 1) 1px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .createContactButton img,
@@ -388,6 +397,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  cursor: default;
 }
 
 .contactDetailsContentTopLabelWrapper span {
@@ -411,6 +421,7 @@ body {
 .contactDetailsContentTopArrowWrapper img {
   height: 32px;
   width: 32px;
+  cursor: pointer;
 }
 
 .contactDetailsContentMainWrapper {
@@ -424,6 +435,7 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
+  cursor: default;
 }
 
 .contactDetailsMainInitialsOuterCircle {
@@ -459,6 +471,7 @@ body {
 .contactDetailsMainContactInformationLabel {
   font-size: 20px;
   font-weight: 400;
+  cursor: default;
 }
 
 .contactDetailsMainEmailLabel,
@@ -466,6 +479,11 @@ body {
   font-size: 16px;
   font-weight: 700;
   margin-top: 4px;
+  cursor: default;
+}
+
+.contactDetailsMainPhone {
+cursor: default;
 }
 
 .contactDetailsMainEmail {

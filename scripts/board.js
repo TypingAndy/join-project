@@ -53,7 +53,7 @@ function replaceTaskCardWithMoveToTemplate(taskID) {
 }
 
 function filterTasks() {
-  const searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
+  let searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
   return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm));
 }
 
@@ -225,7 +225,7 @@ function fillEmptyTaskCategories() {
 }
 
 function clearAllTaskCardWrappers() {
-  const wrappers = ["inProgressContentWrapper", "toDoSectionContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
+  let wrappers = ["inProgressContentWrapper", "toDoSectionContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
   wrappers.forEach((wrapperId) => {
     document.getElementById(wrapperId).innerHTML = "";
   });
