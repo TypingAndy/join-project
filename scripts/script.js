@@ -92,10 +92,10 @@ function renderIconsInTaskForm() {
 
   if (taskFormCurrentUsersIds.length <= maxIconsToShow) {
     plusUserIcons.classList.add("displayNone");
-    numberUserIcons.textContent = ""; // Entferne die Anzeige, wenn nicht benötigt
+    numberUserIcons.textContent = "";
   } else {
     plusUserIcons.classList.remove("displayNone");
-    numberUserIcons.textContent = taskFormCurrentUsersIds.length - maxIconsToShow; // Aktualisiere die Anzahl
+    numberUserIcons.textContent = taskFormCurrentUsersIds.length - maxIconsToShow;
   }
 }
 
@@ -191,9 +191,7 @@ function openSignedUserDropdown() {
 }
 
 function logOut() {
-
   localStorage.removeItem("loggedUserInitials");
-
   window.location.href = "landingpage_login.html";
 }
 
