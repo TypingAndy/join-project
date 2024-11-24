@@ -146,7 +146,7 @@ input:focus {
 
 .loginFalseMessage {
   font-size: 13px;
-  color: #FF8190;
+  color: #ff8190;
   width: 100%;
 }
 
@@ -193,18 +193,31 @@ input:focus {
   opacity: 0.1;
 }
 
+.logInButton:hover {
+  background-color: #29abe2;
+}
+
 .guestLogInButton {
   width: 180px;
   height: 51px;
-  background-color: #2a3647;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #2a3647;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+  border: 1px solid #2a3647;
   font-weight: 700;
   margin-bottom: 24px;
   cursor: pointer;
+  box-sizing: border-box;
+}
+
+.guestLogInButton:hover {
+  border: 2px solid #29abe2;
+  transition: 150ms;
+  color: #29abe2;
+  box-shadow: 0px 2px 4px #a8a8a8;
 }
 
 .logInLinksBox {
@@ -218,6 +231,13 @@ input:focus {
 .logInLinks {
   color: #a8a8a8;
   cursor: pointer;
+  transition: 150ms;
+}
+
+.logInLinks:hover {
+  color: #29abe2;
+  transition: 150ms;
+  font-weight: bold;
 }
 
 .logInNoUserSignUpBox {
@@ -241,6 +261,13 @@ input:focus {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  transition: 150ms;
+}
+
+.logInNoUserSignUpButton:hover {
+  box-shadow: 0px 2px 4px #a8a8a8;
+  transition: 150ms;
+  background-color: #29abe2;
 }
 
 /* start sequence */
