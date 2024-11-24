@@ -188,6 +188,10 @@ textarea:active {
   cursor: unset !important;
 }
 
+textarea {
+  resize: none;
+}
+
 .displayNone {
   display: none;
 }

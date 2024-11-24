@@ -5,7 +5,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Title<span style="color: red">*</span></div>
               <div class="taskFormInputContainer">
-                <input id="taskTitleInput" class="taskFormInput"  type="text" placeholder="Enter a Title" />
+                <input onkeyup="validateTaskForm()", onchange="validateTaskForm()", id="taskTitleInput" class="taskFormInput"  type="text" placeholder="Enter a Title" required/>
               </div>
             </div>
 
@@ -50,7 +50,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
             <div class="taskFormSectionBox">
               <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
               <div class="taskFormInputContainer">
-                <input id="dateInput" onclick="insertMinSelectableDate()" class="taskFormInput"  type="date" min="" />
+                <input id="dateInput" onclick="insertMinSelectableDate()" onchange="validateTaskForm()" class="taskFormInput"  type="date" min="" required/>
               </div>
             </div>
 
@@ -78,12 +78,13 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <div class="taskFormInputContainer">
                 <input
                   id="taskFormCategoryInput"
-                  onfocus="openCategoryDropdown()"
-                  onblur="closeCategoryDropdown(), clearCategoryInsideTaskFrom()"
-                  onkeyup="categoryFilterFunction()"
+                  onfocus="openCategoryDropdown(), validateTaskForm()"
+                  onblur="closeCategoryDropdown(), clearCategoryInsideTaskFrom(), validateTaskForm()"
+                  onkeyup="categoryFilterFunction(), validateTaskForm()"
                   placeholder="Select task category"
                   class="taskFormDropdownInput"
                   autocomplete="off"
+                  required
                   
                 />
                 <img id="taskFormCategoryDropdownArrrow" class="taskFormUserDropdownArrow img24px" src="../images/icons/arrow_drop_down_down.png" alt="" />
@@ -111,10 +112,15 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 </div>
             <div class="taskFormCreateTaskButtonBox">
               <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
-              <div onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" class="createTaskButton" type="submit">
-                <div>${titleAcceptTaskButton}</div> 
-                <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
-              </div>
+              <div 
+  id="createTaskButton" 
+  class="createTaskButton disabled" 
+  onclick="handleCreateTaskClick('${taskStatus}', '${id}', '${fetchStatus}', '${postOrPatchFunction}')" 
+  type="submit"
+>
+  <div>${titleAcceptTaskButton}</div> 
+  <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
+</div>
             </div>
             <div>
     `;
