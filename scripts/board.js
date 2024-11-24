@@ -354,6 +354,7 @@ function renderTaskFormEdit(taskID) {
   fillUserDropdown();
   fillCategoryDropdown();
   renderSubtasksToList();
+  validateTaskForm();
 }
 
 function fillTaskFormEdit(taskId) {
