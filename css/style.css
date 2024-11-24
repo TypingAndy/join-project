@@ -200,8 +200,15 @@ textarea:active {
   border-radius: 20px 0px 20px 20px;
   padding: 10px;
   color: #cdcdcd;
-  right: 16px;
+  right: 0px;
   top: 80px;
+  transition: 500ms;
+
+}
+
+.userProfileDropdownSlider {
+  margin-right: -180px;
+  transition: 500ms;
 }
 
 .userProfileButtons {

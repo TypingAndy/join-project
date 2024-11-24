@@ -187,7 +187,8 @@ function editTaskInputData(taskStatus) {
 
 function openSignedUserDropdown() {
   let userProfileDropdown = document.getElementById("userProfileDropdown");
-  userProfileDropdown.classList.remove("displayNone");
+  userProfileDropdown.classList.remove("userProfileDropdownSlider");
+ 
 }
 
 function logOut() {
@@ -200,7 +201,7 @@ addEventListener("click", (event) => {
     let userProfileButton = document.getElementById("userPorfileButton");
     let userProfileDropdown = document.getElementById("userProfileDropdown");
     if (!userProfileButton.contains(event.target)) {
-      userProfileDropdown.classList.add("displayNone");
+      userProfileDropdown.classList.add("userProfileDropdownSlider");
     }
   }
 });
