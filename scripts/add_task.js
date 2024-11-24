@@ -75,8 +75,16 @@ function getCurrentDate() {
 // priority
 
 function setTaskPrio(priority) {
-  taskPrioInput = priority;
-  setTaskPrioButtonColorSwitch(priority);
+  // Überprüfen, ob der Button bereits der aktuell ausgewählte Button ist
+  if (taskPrioInput === priority) {
+    // Falls ja, deaktiviere den Button
+    taskPrioInput = null;
+    setTaskPrioButtonColorSwitch(null); // Setze alle Buttons auf "nicht ausgewählt"
+  } else {
+    // Andernfalls setze den neuen Button als ausgewählt
+    taskPrioInput = priority;
+    setTaskPrioButtonColorSwitch(priority);
+  }
 }
 
 function setTaskPrioButtonColorSwitch(priority) {
@@ -88,8 +96,10 @@ function setTaskPrioButtonColorSwitch(priority) {
 
   Object.keys(buttons).forEach((prio) => {
     if (prio === priority) {
+      // Wenn der Button die gewählte Priorität hat, füge die aktiven Klassen hinzu
       buttons[prio].classList.add(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     } else {
+      // Andernfalls entferne die aktiven Klassen
       buttons[prio].classList.remove(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
     }
   });
@@ -98,6 +108,7 @@ function setTaskPrioButtonColorSwitch(priority) {
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
 
 // category
 
