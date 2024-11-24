@@ -34,7 +34,7 @@
             <div class="signUpCheckOutBoxWrapper">
               <div class="acceptPolicyBox">
                 <img onclick="acceptPrivacyPolicyCheck(), validateSignUp();" id="checkbox" class="signUpCheckImg" src="../images/icons/unchecked.png" alt="" />
-                <div class="acceptThe" onclick="acceptPrivacyPolicyCheck(), validateSignUp();">I accept the <span onclick="window.location.href='privacy_policy.html'" class="blueFont">Privacy policy</span></div>
+                <div class="acceptThe" onclick="acceptPrivacyPolicyCheck(), validateSignUp();">I accept the <span onclick="window.location.href='privacy_policy_no_nav.html'" class="blueFont">Privacy policy</span></div>
               </div>
               <div id="signUpButton" onclick="postUserDataToFirebase('user'), acceptPrivacyPolicyCheck(), clearSignUpInputField(), showPopup()" class="signUpButton" type="submit">Sign up</div>
             </div>
@@ -43,8 +43,8 @@
       </div>
 
       <div class="signUpLinksBox">
-        <div onclick="window.location.href='privacy_policy.html'" class="signUpLinks">Privacy Policy</div>
-        <div onclick="window.location.href='legal_notice.html'" class="signUpLinks">Legal Notice</div>
+        <div onclick="window.location.href='privacy_policy_no_nav.html'" class="signUpLinks">Privacy Policy</div>
+        <div onclick="window.location.href='legal_notice_no_nav.html'" class="signUpLinks">Legal Notice</div>
       </div>
     </div>
   </body>

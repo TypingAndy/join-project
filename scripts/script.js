@@ -166,22 +166,19 @@ function categoryFilterFunction() {
 }
 
 function validateTaskForm() {
-  setTimeout(() => {
-    let title = document.getElementById("taskTitleInput").value.trim();
-    let dueDate = document.getElementById("dateInput").value.trim();
-    let category = document.getElementById("taskFormCategoryInput").value.trim();
+  let title = document.getElementById("taskTitleInput").value.trim();
+  let dueDate = document.getElementById("dateInput").value.trim();
+  let category = document.getElementById("taskFormCategoryInput").value.trim();
 
-    let allValid = title !== "" && dueDate !== "" && category !== "";
+  let allValid = title !== "" && dueDate !== "" && category !== "";
 
-    let button = document.getElementById("createTaskButton");
-    if (allValid) {
-      button.classList.remove("disabled");
-      button.onclick = () => postOrPatchFunction(taskStatus, id, fetchStatus);
-    } else {
-      button.classList.add("disabled");
-      button.onclick = null; 
-    }
-  }, 50); // Verzögerung von 50 ms
+  let button = document.getElementById("createTaskButton");
+
+  if (allValid) {
+    button.classList.remove("disabled");
+  } else {
+    button.classList.add("disabled");
+  }
 }
 
 

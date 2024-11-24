@@ -370,6 +370,7 @@ function fillTaskFormEdit(taskId) {
   setTaskPrio(allUnsortedTasks[taskId].taskPrio);
   categoryInput.value = allUnsortedTasks[taskId].taskCategory;
   fillSubtaskListInTaskFormEdit(taskId);
+  validateTaskForm();
 }
 
 function toggleTaskCurrentUserInTaskFormEdit(taskId) {
@@ -410,28 +411,3 @@ document.addEventListener(
   },
   true
 );
-
-
-// document.addEventListener(
-//   "click",
-//   () => {
-//     if (document.getElementById("boardTaskPopup")) {
-//       setTimeout(() => {
-//         let subtaskBox = document.getElementById("taskFormSubtaskList");
-
-//         if (subtaskBox) {
-//           document.addEventListener(
-//             "mousedown",
-//             function (event) {
-//               if (!subtaskBox.contains(event.target)) {
-//                     renderSubtasksToList();
-//               }
-//             },
-//             true
-//           );
-//         }
-//       }, 100);
-//     }
-//   },
-//   true
-// );
