@@ -120,3 +120,36 @@ async function handleClickDeleteUser(firebaseId) {
   toggleContactPopup();
   toggleContactDetails();
 }
+
+function validateContactForm() {
+  let name = document.getElementById("addContactNameInput").value.trim();
+  let email = document.getElementById("addContactMailInput").value.trim();
+  let phone = document.getElementById("addContactPhoneInput").value.trim();
+
+  let isEmailValid = validateEmail(email);
+  let allValid = name !== "" && email !== "" && phone !== "" && isEmailValid;
+
+  let button = document.getElementById("createContactButton");
+
+  if (allValid) {
+    button.style.pointerEvents = "auto";
+    button.style.opacity = 1;
+  } else {
+    button.style.pointerEvents = "none";
+    button.style.opacity = 0.5;
+  }
+}
+
+function validatePhoneNumber() {
+  let phoneInput = document.getElementById("addContactPhoneInput");
+  let phoneValue = phoneInput.value.trim();
+
+  phoneValue = phoneValue.replace(/\D/g, "");
+  phoneInput.value = phoneValue;
+}
+
+function validateEmail(email) {
+  if (email && email.includes("@")) {
+    return true;
+  }
+}
