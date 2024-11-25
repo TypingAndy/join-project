@@ -198,6 +198,10 @@ input:focus {
   cursor: pointer;
 }
 
+button {
+  all: unset;
+}
+
 .signUpButton {
   width: 180px;
   height: 51px;
@@ -210,7 +214,6 @@ input:focus {
   font-weight: 700;
   margin-bottom: 24px;
   opacity: 0.1;
-  cursor: pointer;
 }
 
 .acceptThe {

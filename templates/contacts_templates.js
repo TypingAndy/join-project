@@ -104,9 +104,9 @@ function contactPopupTemplate(popupType, firebaseUserId) {
   } else {
     return /*html*/ `
     <div class="contactPopup" id="contactPopup">
-    <div class="userCircleWrapper">
-      <div class="userCircle">
-        <img src="../images/icons/person.png" alt="" />
+    <div class="userCircleWrapper" >
+      <div class="userCircle" style="background-color: ${userDataFromFirebase[firebaseUserId].color}; color: ${userDataFromFirebase[firebaseUserId].fontColor}">
+        <span>${userDataFromFirebase[firebaseUserId].initials}</span>
       </div>
     </div>
     <div class="contactPopupTop">

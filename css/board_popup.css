@@ -8,17 +8,25 @@
   width: 100%;
   z-index: 99999;
 }
+
 .boardTaskPopup {
-  display: none;
-  position: absolute;
+  display: flex;
+  position: fixed;
   justify-content: center;
   align-items: center;
+  right: -100%;
+  top: 88px;
   height: calc(100% - 24px - 88px - 88px);
   width: calc(100% - 24px);
   background-color: #ffffff;
   z-index: 500;
   border-radius: 30px;
   overflow: auto;
+  transition: right 0.3s ease-in-out;
+}
+
+.boardTaskPopup.active {
+  right: 12px;
 }
 
 .boardTaskPopupContentWrapper {
