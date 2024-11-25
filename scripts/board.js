@@ -377,6 +377,7 @@ function fillTaskFormEdit(taskId) {
   setTaskPrio(allUnsortedTasks[taskId].taskPrio);
   categoryInput.value = allUnsortedTasks[taskId].taskCategory;
   fillSubtaskListInTaskFormEdit(taskId);
+  validateTaskForm();
 }
 
 function toggleTaskCurrentUserInTaskFormEdit(taskId) {

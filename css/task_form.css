@@ -459,12 +459,8 @@
   display: none;
 }
 
-
-
-
-
 .createTaskButton.disabled {
-  background-color: #ccc; /* Grauer Hintergrund */
-  pointer-events: none; /* Verhindert Klicks */
-  cursor: not-allowed; /* Zeigt einen blockierten Cursor */
+  background-color: #ccc; 
+  pointer-events: none; 
+  cursor: not-allowed;
 }
