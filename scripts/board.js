@@ -54,7 +54,7 @@ function replaceTaskCardWithMoveToTemplate(taskID) {
 
 function filterTasks() {
   let searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
-  return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm));
+  return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm) || task.taskDescription.toLowerCase().includes(searchTerm));
 }
 
 function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
@@ -63,7 +63,6 @@ function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
 
 // hold to move logic
 function startHold(e, taskID) {
-  // Only prevent context menu, not all default behavior
   if (e.type === "contextmenu") {
     e.preventDefault();
   }
@@ -98,15 +97,12 @@ function checkScroll(e) {
 function clearHold() {
   touchStartTime = 0;
   clearTimeout(touchTimer);
-
-  // Restore context menu after short delay
   setTimeout(() => {
     window.oncontextmenu = null;
   }, 100);
 }
 
 // drag n drop logic
-
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("dragend", handleDragEnd);
   document.addEventListener("drop", handleInvalidDrop);
@@ -196,7 +192,6 @@ async function moveTo(newTaskStatus, taskID = currentDraggedElementID) {
 function setDraggingStateForCardStyle(state) {
   const currentCardElement = document.getElementById("taskCard" + currentDraggedElementID);
   if (!currentCardElement) return;
-
   if (state === "floating") {
     currentCardElement.classList.add("hidden");
   } else {
@@ -234,10 +229,15 @@ function clearAllTaskCardWrappers() {
 function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   let taskCardAllInitialsTemplate = "";
   const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
+  const userMaxLength = 5;
+  const plusNumber = userIds.length - userMaxLength;
 
-  for (let userIndex = 0; userIndex < userIds.length; userIndex++) {
+  for (let userIndex = 0; userIndex < (userIds.length > userMaxLength ? userMaxLength : userIds.length); userIndex++) {
     const currentUserID = userIds[userIndex];
     taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(currentUserID);
+  }
+  if (userIds.length > userMaxLength) {
+    taskCardAllInitialsTemplate += taskCardSingleInitialsPlusTemplate(plusNumber);
   }
   return taskCardAllInitialsTemplate;
 }
@@ -261,8 +261,10 @@ function openBoardTaskPopup(taskID) {
   renderBoardTaskPopupContent(taskID);
   renderBoardTaskPopupContentUsers(taskID);
   renderBoardTaskPopupSubtasks(taskID);
-  popupElement.style.display = "flex";
+
   popupBackgroundElement.style.display = "flex";
+  void popupElement.offsetWidth;
+  popupElement.classList.add("active");
   popupElement.addEventListener("click", stopPropagation);
   document.body.classList.add("no-scroll");
 }
@@ -276,10 +278,13 @@ function createBoardTaskPopupForNewTask(taskStatus) {
 function openBoardTaskPopupForAddTask() {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
+
   popupElement.innerHTML = boardTaskPopupTemplateEmpty();
-  popupElement.style.display = "flex";
   popupBackgroundElement.style.display = "flex";
+  void popupElement.offsetWidth;
+  popupElement.classList.add("active");
   popupElement.addEventListener("click", stopPropagation);
+  document.body.classList.add("no-scroll");
 }
 
 function fillBoardTaskPopupWithAddTask(taskStatus) {
@@ -294,20 +299,22 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
 function closeBoardTaskPopup(event) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
-  document.body.classList.remove("no-scroll");
 
   if (!event || event.target === popupBackgroundElement) {
-    popupElement.style.display = "none";
-    popupBackgroundElement.style.display = "none";
-    popupElement.removeEventListener("click", stopPropagation);
-    renderTaskCards();
-    toggleUserInTaskUsersArraySpliceAll();
+    popupElement.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+
+    setTimeout(() => {
+      popupBackgroundElement.style.display = "none";
+      popupElement.removeEventListener("click", stopPropagation);
+      renderTaskCards();
+      toggleUserInTaskUsersArraySpliceAll();
+    }, 300);
   }
 }
 
 function renderBoardTaskPopupContent(taskID) {
   let popupElement = document.getElementById("boardTaskPopup");
-
   popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
 
@@ -390,7 +397,6 @@ function fillSubtaskListInTaskFormEdit(taskId) {
 
 function focusOnSearchBar() {
   let inputElement = document.getElementById("findTaskInput");
-
   inputElement.focus();
 }
 

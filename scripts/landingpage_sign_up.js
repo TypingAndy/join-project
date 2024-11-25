@@ -9,16 +9,24 @@ function clearSignUpInputField() {
   confirmPasswordInput.value = "";
 }
 
+function clickAcceptPolicy() {
+  acceptPrivacyPolicyCheck();
+  validateSignUp();
+}
+
 function validateSignUp() {
   let button = document.getElementById("signUpButton");
-  let nameValue = document.getElementById("signUpNameInput").value.trim();
-  let emailValue = document.getElementById("signUpMailInput").value.trim();
+  let nameValue = document.getElementById("signUpNameInput").value;
+  let emailValue = document.getElementById("signUpMailInput").value;
+
   if (policyAccepted && passwordMatch && nameValue && emailValue) {
     button.style.opacity = "1";
-    button.disabled = false;
+    button.setAttribute("onclick", "handleSignUpClick()");
+    button.style.cursor = "pointer";
   } else {
     button.style.opacity = "0.1";
-    button.disabled = true;
+    button.removeAttribute("onclick");
+    button.style.cursor = "default";
   }
 }
 
@@ -43,6 +51,13 @@ function acceptPrivacyPolicyCheck() {
   } else {
     img.src = "../images/icons/checked.png";
   }
+}
+
+function handleSignUpClick() {
+  postUserDataToFirebase("user");
+  acceptPrivacyPolicyCheck();
+  clearSignUpInputField();
+  showPopup();
 }
 
 function showPopup() {

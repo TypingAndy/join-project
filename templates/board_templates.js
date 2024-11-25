@@ -27,7 +27,7 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
                     <div class="taskCardUserContainer">
                  ${taskCardAllInitialsTemplate}
                     </div>
-                    <img src="../images/icons/${filteredLokalTasksArray[taskIndex].taskPrio}.png" alt="" />
+                    ${filteredLokalTasksArray[taskIndex].taskPrio ? `<img src="../images/icons/${filteredLokalTasksArray[taskIndex].taskPrio}.png" alt="" />` : ""}
                   </div>
                 </div>
       `;
@@ -35,7 +35,7 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
 
 function taskCardMoveToTemplate(taskID) {
   return /*html*/ `
-      <div class="taskCardCategory">
+      <div class="taskCardMovetoLabel">
         <p>Move task to...</p>
       </div>
       <p class="taskCardTitle">${allUnsortedTasks[taskID].taskTitle}</p>
@@ -68,6 +68,18 @@ function taskCardSingleInitialsTemplate(currentUserID) {
                   ${unsortedUsers[currentUserID].initials}
                   </p>
                 </div>
+  
+  `;
+}
+
+function taskCardSingleInitialsPlusTemplate(plusNumber) {
+  return `
+  
+<div class="taskCardUser" style="background-color: white; border: solid lightgrey 1px; box-sizing: border-box; text-align: center;" >
+    <p style="color: black">
+        +${plusNumber}
+    </p>
+</div>
   
   `;
 }
@@ -128,12 +140,11 @@ function boardTaskPopupTemplateEmpty() {
 `;
 }
 
-
 function popupUserTemplate(currentUserId) {
   return /*html*/ `
         <div class="boardTaskPopupContentAssignedToUserContainer">
-          <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${unsortedUsers[currentUserId].color};">
-            <p class="boardTaskPopupContentAssignedToUserInitials">${unsortedUsers[currentUserId].initials}</p>
+          <div class="boardTaskPopupContentAssignedToUserCircle" style="background-color: ${unsortedUsers[currentUserId].color}">
+            <p class="boardTaskPopupContentAssignedToUserInitials" style="color: ${unsortedUsers[currentUserId].fontColor};" >${unsortedUsers[currentUserId].initials}</p>
           </div>
           <p class="boardTaskPopupContentAssignedToUserLabel">${unsortedUsers[currentUserId].name}</p>
         </div>

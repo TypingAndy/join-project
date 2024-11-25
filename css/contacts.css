@@ -277,6 +277,11 @@ body {
   width: 64px;
 }
 
+.userCircle span {
+  font-size: 46px;
+  font-weight: 500;
+}
+
 .contactPopupBottom form {
   display: flex;
   flex-direction: column;
@@ -483,7 +488,7 @@ body {
 }
 
 .contactDetailsMainPhone {
-cursor: default;
+  cursor: default;
 }
 
 .contactDetailsMainEmail {
