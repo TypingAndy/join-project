@@ -16,9 +16,13 @@ function validateSignUp() {
   if (policyAccepted && passwordMatch && nameValue && emailValue) {
     button.style.opacity = "1";
     button.disabled = false;
+    button.setAttribute("onclick", "handleSignUpClick()");
+    button.style = "cursor: pointer;";
   } else {
     button.style.opacity = "0.1";
     button.disabled = true;
+    button.removeAttribute("onclick");
+    button.style = "cursor: auto;";
   }
 }
 
@@ -43,6 +47,13 @@ function acceptPrivacyPolicyCheck() {
   } else {
     img.src = "../images/icons/checked.png";
   }
+}
+
+function handleSignUpClick() {
+  postUserDataToFirebase("user");
+  acceptPrivacyPolicyCheck();
+  clearSignUpInputField();
+  showPopup();
 }
 
 function showPopup() {

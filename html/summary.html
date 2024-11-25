@@ -6,7 +6,7 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/summary.css">
+    <link rel="stylesheet" href="../css/summary.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/summary.js"></script>
@@ -19,7 +19,6 @@
         <img src="../images/icons/join_logo_black.svg" alt="" />
         <div class="profileButtonBox"></div>
 
-       
         <div id="userProfileDropdown" class="userProfileDropdown userProfileDropdownSlider">
           <div onclick="window.location.href='help_page.html'" class="userProfileButtons">Help</div>
           <div onclick="window.location.href='legal_notice.html'" class="userProfileButtons">Legal Notice</div>
@@ -27,62 +26,62 @@
           <div onclick="logOut()" class="userProfileButtons">Log out</div>
         </div>
       </header>
-
-      <div class="summaryHeaderBox">
-        <div class="summaryHeaderFont">Join 360</div>
-        <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
-        <div class="summaryHeaderBlueLine"></div>
-      </div>
-
-      <div class="summaryMidSectionWrapper">
-        <div class="summaryMidSectionDoDoneBox">
-          <div onclick="window.location.href='board.html'" class="summaryMidSectionToDo">
-            <div class="iconButtonToDo"></div>
-            <div>
-              <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
-              <div class="summaryMidSectionStandartFontSize">To-do</div>
-            </div>
-          </div>
-          <div onclick="window.location.href='board.html'" class="summaryMidSectionDone">
-            <div class="iconButtonDone"></div>
-            <div>
-              <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
-              <div class="summaryMidSectionStandartFontSize">Done</div>
-            </div>
-          </div>
+      <div class="summaryContentWrapper">
+        <div class="summaryHeaderBox">
+          <div class="summaryHeaderFont">Join 360</div>
+          <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
+          <div class="summaryHeaderBlueLine"></div>
         </div>
-
-        <div onclick="window.location.href='board.html'" class="summaryMidSectionPrioDateBox">
-          <div class="summaryMidSectionPrio">
-            <img class="summaryIcons" src="../images/icons/urgent_white-arrow.png" />
-            <div>
-              <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
-              <div class="summaryMidSectionStandartFontSize">Urgent</div>
+        <div class="summaryMidSectionWrapper">
+          <div class="summaryMidSectionDoDoneBox">
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionToDo">
+              <div class="iconButtonToDo"></div>
+              <div>
+                <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
+                <div class="summaryMidSectionStandartFontSize">To-do</div>
+              </div>
+            </div>
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionDone">
+              <div class="iconButtonDone"></div>
+              <div>
+                <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Done</div>
+              </div>
             </div>
           </div>
 
-          <div class="summaryMidSectionPrioDateDividingLine"></div>
+          <div onclick="window.location.href='board.html'" class="summaryMidSectionPrioDateBox">
+            <div class="summaryMidSectionPrio">
+              <img class="summaryIcons" src="../images/icons/urgent_white-arrow.png" />
+              <div>
+                <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Urgent</div>
+              </div>
+            </div>
 
-          <div class="summaryMidSectionDate">
-            <div id="summaryDate"><b>September 16, 2044</b></div>
-            <div>Upcoming Deadline</div>
-          </div>
-        </div>
+            <div class="summaryMidSectionPrioDateDividingLine"></div>
 
-        <div class="summaryMidSectionBoardProgressFreebackBox">
-          <div onclick="window.location.href='board.html'" class="summaryMidSectionBoard">
-            <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
-            <div class="summaryMidSectionStandartFontSize">Tasks in<br />Board</div>
-          </div>
-
-          <div onclick="window.location.href='board.html'" class="summaryMidSectionProgress">
-            <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
-            <div class="summaryMidSectionStandartFontSize">Tasks in<br />Progress</div>
+            <div class="summaryMidSectionDate">
+              <div id="summaryDate"><b>September 16, 2044</b></div>
+              <div>Upcoming Deadline</div>
+            </div>
           </div>
 
-          <div onclick="window.location.href='board.html'" class="summaryMidSectionFeedback">
-            <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
-            <div class="summaryMidSectionStandartFontSize">Await<br />Feedback</div>
+          <div class="summaryMidSectionBoardProgressFreebackBox">
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionBoard">
+              <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
+              <div class="summaryMidSectionStandartFontSize">Tasks in<br />Board</div>
+            </div>
+
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionProgress">
+              <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
+              <div class="summaryMidSectionStandartFontSize">Tasks in<br />Progress</div>
+            </div>
+
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionFeedback">
+              <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
+              <div class="summaryMidSectionStandartFontSize">Await<br />Feedback</div>
+            </div>
           </div>
         </div>
       </div>
