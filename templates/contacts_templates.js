@@ -80,24 +80,25 @@ function contactPopupTemplate(popupType, firebaseUserId) {
       </div>
     </div>
     <div class="contactPopupBottom">
-      <form action="">
-        <div class="nameInputWrapper">
-          <input class="addContactNameInput" id="addContactNameInput" type="text" placeholder="Name" />
-          <img src="../images/icons/person_grey.png" alt="" />
-        </div>
-        <div class="mailInputWrapper">
-          <input class="addContactMailInput" id="addContactMailInput" type="text" placeholder="Email" />
-          <img src="../images/icons/mail_grey.png" alt="" />
-        </div>
-        <div class="phoneInputWrapper">
-          <input class="addContactPhoneInput" id="addContactPhoneInput" type="text" placeholder="Phone" />
-          <img src="../images/icons/callgrey.png" alt="" />
-        </div>
-        <div class="createContactButton" onclick="handleCreateContactsButtonClick()">
-          <span>Create Contact</span>
-          <img src="../images/icons/check_white.png" alt="" />
-        </div>
-      </form>
+    <form action="">
+  <div class="nameInputWrapper">
+    <input class="addContactNameInput" onkeyup="validateContactForm()" id="addContactNameInput" type="text" placeholder="Name" required />
+    <img src="../images/icons/person_grey.png" alt="" />
+  </div>
+  <div class="mailInputWrapper">
+    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail()" id="addContactMailInput" type="text" placeholder="Email" required/>
+    <img src="../images/icons/mail_grey.png" alt="" />
+  </div>
+  <div class="phoneInputWrapper">
+    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" id="addContactPhoneInput" type="tel" placeholder="Phone" required/>
+    <img src="../images/icons/callgrey.png" alt="" />
+  </div>
+  <div id="createContactButton" class="createContactButton" onclick="handleCreateContactsButtonClick()" style="pointer-events: none; opacity: 0.5;">
+    <span>Create Contact</span>
+    <img src="../images/icons/check_white.png" alt="" />
+  </div>
+</form>
+
     </div>
   </div>
 `;

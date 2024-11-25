@@ -61,18 +61,6 @@ function handleDropdown(isFocused, currentDropdownID) {
   }
 }
 
-
-
-
-
-//------------// toggle Users
-
-
-
-
-
-
-
 // date
 
 function insertMinSelectableDate() {
@@ -87,8 +75,13 @@ function getCurrentDate() {
 // priority
 
 function setTaskPrio(priority) {
-  taskPrioInput = priority;
-  setTaskPrioButtonColorSwitch(priority);
+  if (taskPrioInput === priority) {
+    taskPrioInput = null;
+    setTaskPrioButtonColorSwitch(null);
+  } else {
+    taskPrioInput = priority;
+    setTaskPrioButtonColorSwitch(priority);
+  }
 }
 
 function setTaskPrioButtonColorSwitch(priority) {
@@ -140,6 +133,7 @@ function fillCategoryDropdown() {
 
 function chooseCategory(chosenCategory) {
   document.getElementById("taskFormCategoryInput").value = chosenCategory;
+  validateTaskForm();
   return chosenCategory;
 }
 
@@ -178,8 +172,8 @@ function addSubtaskToList() {
   let subtaskInput = document.getElementById("taskFormSubtaskInput").value;
   let subtaskObjekt = {
     subtaskName: subtaskInput,
-    subtaskDone: false
-  } 
+    subtaskDone: false,
+  };
   subtasks.push(subtaskObjekt);
 }
 
@@ -228,19 +222,16 @@ function focusOnInput(i) {
 
 function pushRewrittenSubtask(i) {
   let rewrittenSubtaskValue = document.getElementById(`taskFormSubtaskRewriteInput(${i})`).value;
-  let rewrittenSubtask = { 
-    subtaskName: rewrittenSubtaskValue, 
-    subtaskDone: false 
+  let rewrittenSubtask = {
+    subtaskName: rewrittenSubtaskValue,
+    subtaskDone: false,
   };
   subtasks.splice(i, 1, rewrittenSubtask);
 }
 
-
 function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
-
-
 
 // collecting Data
 
@@ -262,9 +253,7 @@ function getNewTaskInputData(taskStatus) {
   return createTaskData;
 }
 
-
 //listener
-
 
 document.addEventListener("click", function () {
   if (window.location.href.endsWith("add_task.html")) {
@@ -279,7 +268,6 @@ document.addEventListener("click", function () {
     }, 100);
   }
 });
-
 
 document.addEventListener("click", () => {
   if (window.location.href.endsWith("add_task.html")) {
