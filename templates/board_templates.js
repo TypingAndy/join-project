@@ -12,8 +12,8 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
                 ontouchmove="checkScroll(event)" 
                 ontouchend="clearHold()"
                 style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none; -webkit-user-select: none;" >
-                  <div class="taskCardCategory">
-                    <p>${filteredLokalTasksArray[taskIndex].taskCategory}</p>
+                  <div class="taskCardCategory" style="background-color: ${filteredLokalTasksArray[taskIndex].taskCategory.color};">
+                    <p>${filteredLokalTasksArray[taskIndex].taskCategory.category}</p>
                   </div>
                   <p class="taskCardTitle">${filteredLokalTasksArray[taskIndex].taskTitle}</p>
                   <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>

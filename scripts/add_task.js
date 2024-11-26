@@ -127,14 +127,21 @@ function fillCategoryDropdown() {
   let categoryDropdown = document.getElementById("categoryDropdown");
 
   for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div id="categoriesDropdown${i}" onclick="chooseCategory('${categories[i]}')" class="categorieList">${categories[i]}</div>`;
+    categoryDropdown.innerHTML += /*html*/ `<div id="categoriesDropdown${i}" onclick="chooseCategory('${categories[i]}', '${categoriesColors[i]}')" class="categorieList">${categories[i]}</div>`;
   }
 }
 
-function chooseCategory(chosenCategory) {
+function chooseCategory(chosenCategory, chosenCategoryColor) {
   document.getElementById("taskFormCategoryInput").value = chosenCategory;
+  categoryData = {
+    category: chosenCategory,
+    color: chosenCategoryColor,
+  };
+
+
+
   validateTaskForm();
-  return chosenCategory;
+  return categoryData;
 }
 
 // subtask
@@ -239,7 +246,7 @@ function getNewTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("dateInput").value;
-  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
+  console.log(categoryData);
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,
@@ -247,7 +254,8 @@ function getNewTaskInputData(taskStatus) {
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
-    taskCategory: chosenCategory,
+  
+    taskCategory: categoryData,
     taskSubtasks: subtasks,
   };
   return createTaskData;
