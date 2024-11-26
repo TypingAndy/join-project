@@ -379,7 +379,7 @@ function fillTaskFormEdit(taskId) {
   toggleTaskCurrentUserInTaskFormEdit(taskId);
   dateInput.value = allUnsortedTasks[taskId].taskDate;
   setTaskPrio(allUnsortedTasks[taskId].taskPrio);
-  categoryInput.value = allUnsortedTasks[taskId].taskCategory;
+  categoryInput.value = allUnsortedTasks[taskId].taskCategory.category;
   fillSubtaskListInTaskFormEdit(taskId);
   validateTaskForm();
 }
@@ -397,6 +397,23 @@ function fillSubtaskListInTaskFormEdit(taskId) {
   for (let i = 0; i < allUnsortedTasks[taskId].taskSubtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
+}
+
+function editTaskInputData(taskStatus) {
+  let taskTitleInput = document.getElementById("taskTitleInput").value;
+  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
+  let taskDateInput = document.getElementById("dateInput").value;
+  let createTaskData = {
+    taskTitle: taskTitleInput,
+    taskDescription: taskDescriptionInput,
+    taskAssignedUsersIds: taskFormCurrentUsersIds,
+    taskDate: taskDateInput,
+    taskPrio: taskPrioInput,
+    taskStatus: taskStatus,
+    taskCategory: categoryData,
+    taskSubtasks: subtasks,
+  };
+  return createTaskData;
 }
 
 function focusOnSearchBar() {

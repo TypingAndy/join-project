@@ -15,6 +15,7 @@ let taskPrioInput = ""; //is needed
 let taskFormCurrentUsersIds = []; //is needed
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
 let categoriesColors = ["#0038FF", "#FF7A00", "#FF4646", "#FFC701", "#FC71FF", "#1FD7C1", "#9327FF"]; //is needed
+let categoryData;
 let subtasks = []; //is needed
 
 //boardGlobalArrays
@@ -181,8 +182,6 @@ function validateTaskForm() {
     button.classList.add("disabled");
   }
 }
-
-
 
 function editTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
