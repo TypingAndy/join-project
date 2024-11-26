@@ -228,6 +228,10 @@ function clearAllTaskCardWrappers() {
 
 function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   let taskCardAllInitialsTemplate = "";
+
+  if (!filteredLokalTasksArray[taskIndex].taskAssignedUsersIds) {
+    return "";
+  }
   const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
   const userMaxLength = 5;
   const plusNumber = userIds.length - userMaxLength;
