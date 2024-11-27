@@ -102,7 +102,7 @@ async function updateTaskData(taskStatus, taskID) {
   });
 }
 
-async function deleteTask(taskID) {
+async function deleteTaskFromFirebase(taskID) {
   await fetch(`${BASE_URL}tasks/${taskID}.json`, {
     method: "DELETE",
     headers: {

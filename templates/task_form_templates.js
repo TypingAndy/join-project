@@ -160,7 +160,7 @@ function subtaskTemplate(i) {
         <div id="subtaskRewriteIconBox(${i})" class="subtaskRewriteIconBox displayNone">
           <img onclick="toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px"  src="../images/icons/x_black_subtask.png">
           <div class="taskFormSubtaskDividingLine"></div>
-          <img onclick="pushRewrittenSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/check_black.png">
+          <img onmousedown="pushRewrittenSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/check_black.png">
         </div>
 
       </div>
