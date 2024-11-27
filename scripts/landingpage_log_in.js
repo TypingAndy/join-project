@@ -9,8 +9,10 @@ function checkUserPasswortMatch() {
     if (user.email === emailInput && user.password === passwordInput) {
       userFound = true;
       let loggedUserInitials = unsortedUsers[id].initials;
+      let loggedUserFirebaseId = id;
       fillLocalStorageWithRememberedUserData(id);
       localStorage.setItem("loggedUserInitials", loggedUserInitials);
+      localStorage.setItem("loggedUserFirebaseId", loggedUserFirebaseId);
       window.location.href = "summary.html";
     }
   });

@@ -9,6 +9,7 @@ let passwordMatch = false;
 
 //logInArrays
 let loggedUserInitials = "G"; //is needed
+let loggedUserId; 
 
 //addTaskGlobalArrays
 let taskPrioInput = ""; //is needed
