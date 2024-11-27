@@ -14,6 +14,8 @@ let loggedUserInitials = "G"; //is needed
 let taskPrioInput = ""; //is needed
 let taskFormCurrentUsersIds = []; //is needed
 let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
+let categoriesColors = ["#0038FF", "#FF7A00", "#FF4646", "#FFC701", "#FC71FF", "#1FD7C1", "#9327FF"]; //is needed
+let categoryData;
 let subtasks = []; //is needed
 
 //boardGlobalArrays
@@ -153,14 +155,14 @@ function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
   let filter = input.value.toUpperCase();
 
-  for (let i = 0; i < sortedUsers.length; i++) {
-    let categories = sortedUsers[i].name.toUpperCase();
-    let userElement = document.getElementById(`categoriesDropdown${i}`);
+  for (let i = 0; i < categories.length; i++) {
+    let categoriesUpperCase = categories[i].toUpperCase();
+    let categorieElement = document.getElementById(`categoriesDropdown${i}`);
 
-    if (userName.includes(filter)) {
-      userElement.classList.remove("displayNone");
+    if (categoriesUpperCase.includes(filter)) {
+      categorieElement.classList.remove("displayNone");
     } else {
-      userElement.classList.add("displayNone");
+      categorieElement.classList.add("displayNone");
     }
   }
 }
@@ -182,24 +184,6 @@ function validateTaskForm() {
 }
 
 
-
-function editTaskInputData(taskStatus) {
-  let taskTitleInput = document.getElementById("taskTitleInput").value;
-  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("dateInput").value;
-  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
-  let createTaskData = {
-    taskTitle: taskTitleInput,
-    taskDescription: taskDescriptionInput,
-    taskAssignedUsersIds: taskFormCurrentUsersIds,
-    taskDate: taskDateInput,
-    taskPrio: taskPrioInput,
-    taskStatus: taskStatus,
-    taskCategory: chosenCategory,
-    taskSubtasks: subtasks,
-  };
-  return createTaskData;
-}
 
 //open signedUserDropdown
 
