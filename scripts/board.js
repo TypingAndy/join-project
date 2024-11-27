@@ -447,3 +447,13 @@ document.addEventListener(
   },
   true
 );
+
+
+
+
+//delete task funktion
+
+function deleteTask(taskFirebaseID) {
+  deleteTaskFromFirebase(taskFirebaseID);
+  redirectToBoard();
+}
