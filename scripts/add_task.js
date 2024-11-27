@@ -191,10 +191,16 @@ function renderSubtasksToList() {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
 
+ 
+  if (!subtasks) {
+      return; 
+  }
+
   for (let i = 0; i < subtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
 }
+
 
 function openRewriteInput(i) {
   renderSubtasksToList();
