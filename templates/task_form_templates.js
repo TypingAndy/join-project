@@ -78,9 +78,9 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                   <div class="taskFormInputContainer">
                     <input
                       id="taskFormCategoryInput"
-                      onfocus="openCategoryDropdown(), validateTaskForm()"
-                      onblur="closeCategoryDropdown(), clearCategoryInsideTaskFrom(), validateTaskForm()"
-                      onkeyup="categoryFilterFunction(), validateTaskForm()"
+                      onfocus="openCategoryDropdown()"
+                      onblur="closeCategoryDropdown()"
+                      onkeyup="categoryFilterFunction()"
                       placeholder="Select task category"
                       class="taskFormDropdownInput"
                       autocomplete="off"
@@ -109,7 +109,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 </div>
               </div>
                <div class="taskFormCreateTaskButtonBox">
-                  <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is requiered</div>
+                  <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is required</div>
                   <div id="createTaskButton" class="createTaskButton disabled" onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" type="submit">
                     <div>${titleAcceptTaskButton}</div> 
                     <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />

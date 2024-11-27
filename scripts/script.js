@@ -9,7 +9,6 @@ let passwordMatch = false;
 
 //logInArrays
 let loggedUserInitials = "G"; //is needed
-let loggedUserId; 
 
 //addTaskGlobalArrays
 let taskPrioInput = ""; //is needed
@@ -166,6 +165,7 @@ function categoryFilterFunction() {
       categorieElement.classList.add("displayNone");
     }
   }
+  validateTaskForm();
 }
 
 function validateTaskForm() {

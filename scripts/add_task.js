@@ -110,12 +110,15 @@ function openCategoryDropdown() {
   switchArrowInsideDropdown(true, "taskFormCategoryDropdownArrrow", "categoryDropdown");
   handleDropdown(true, "categoryDropdown");
   enableCursorPointerOnInput("taskFormCategoryInput");
+  validateTaskForm();
 }
 
 function closeCategoryDropdown() {
   switchArrowInsideDropdown(false, "taskFormCategoryDropdownArrrow", "categoryDropdown");
   handleDropdown(false, "categoryDropdown");
   disableCursorPointerOnInput("taskFormCategoryInput");
+  clearCategoryInsideTaskFrom();
+  validateTaskForm();
 }
 
 function clearCategoryInsideTaskFrom() {

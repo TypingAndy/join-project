@@ -8,11 +8,7 @@ function checkUserPasswortMatch() {
   Object.entries(unsortedUsers).forEach(([id, user]) => {
     if (user.email === emailInput && user.password === passwordInput) {
       userFound = true;
-      let loggedUserInitials = unsortedUsers[id].initials;
-      let loggedUserFirebaseId = id;
       fillLocalStorageWithRememberedUserData(id);
-      localStorage.setItem("loggedUserInitials", loggedUserInitials);
-      localStorage.setItem("loggedUserFirebaseId", loggedUserFirebaseId);
       window.location.href = "summary.html";
     }
   });
@@ -25,11 +21,16 @@ function checkUserPasswortMatch() {
 function fillLocalStorageWithRememberedUserData(id) {
   let loggedUserEmail = unsortedUsers[id].email;
   let loggedUserPassword = unsortedUsers[id].password;
+  let loggedUserInitials = unsortedUsers[id].initials;
+  let loggedUserFirebaseId = id;
 
   if (rememberBoolean) {
     localStorage.setItem("rememberedUserEmail", loggedUserEmail);
     localStorage.setItem("rememberedUserPassword", loggedUserPassword);
   }
+
+  localStorage.setItem("loggedUserInitials", loggedUserInitials);
+  localStorage.setItem("loggedUserFirebaseId", loggedUserFirebaseId);
 }
 
 function fillInputsAtLoginWithRememberedUser() {
