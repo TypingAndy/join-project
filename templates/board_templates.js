@@ -88,8 +88,8 @@ function boardTaskPopupTemplate(taskID) {
   return /*html */ `  
   <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
   <div class="boardTaskPopupContentTop">
-    <div class="boardTaskPopupCategoryCard">
-      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${allUnsortedTasks[taskID].taskCategory}</p>
+    <div class="boardTaskPopupCategoryCard" style="background-color: ${allUnsortedTasks[taskID].taskCategory.color}" >
+      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${allUnsortedTasks[taskID].taskCategory.category}</p>
     </div>
     <img class="boardTaskPopupContentClose" src="../images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
   </div>
