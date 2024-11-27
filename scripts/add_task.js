@@ -141,8 +141,6 @@ function chooseCategory(chosenCategory, chosenCategoryColor) {
     color: chosenCategoryColor,
   };
 
-
-
   validateTaskForm();
   return categoryData;
 }
@@ -190,17 +188,13 @@ function addSubtaskToList() {
 function renderSubtasksToList() {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
-
- 
   if (!subtasks) {
-      return; 
+    return;
   }
-
   for (let i = 0; i < subtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
 }
-
 
 function openRewriteInput(i) {
   renderSubtasksToList();
@@ -263,7 +257,7 @@ function getNewTaskInputData(taskStatus) {
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
-  
+
     taskCategory: categoryData,
     taskSubtasks: subtasks,
   };
