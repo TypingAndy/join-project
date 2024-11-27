@@ -19,23 +19,3 @@
 
 
 
-function fillCategoryDropdown() {
-  let categoryDropdown = document.getElementById("categoryDropdown");
-
-  for (let i = 0; i < categories.length; i++) {
-    categoryDropdown.innerHTML += /*html*/ `<div id="categoriesDropdown${i}" onclick="chooseCategory('${categories[i]}', '${categoriesColors[i]}')" class="categorieList">${categories[i]}</div>`;
-  }
-}
-
-function chooseCategory(chosenCategory, chosenCategoryColor) {
-  document.getElementById("taskFormCategoryInput").value = chosenCategory;
-  let categoryData = {
-    category: chosenCategory,
-    color: chosenCategoryColor,
-  };
-
-  console.log(categoryData);
-
-  validateTaskForm();
-  return categoryData;
-}

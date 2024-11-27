@@ -183,23 +183,7 @@ function validateTaskForm() {
   }
 }
 
-function editTaskInputData(taskStatus) {
-  let taskTitleInput = document.getElementById("taskTitleInput").value;
-  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("dateInput").value;
-  let chosenCategory = document.getElementById("taskFormCategoryInput").value;
-  let createTaskData = {
-    taskTitle: taskTitleInput,
-    taskDescription: taskDescriptionInput,
-    taskAssignedUsersIds: taskFormCurrentUsersIds,
-    taskDate: taskDateInput,
-    taskPrio: taskPrioInput,
-    taskStatus: taskStatus,
-    taskCategory: chosenCategory,
-    taskSubtasks: subtasks,
-  };
-  return createTaskData;
-}
+
 
 //open signedUserDropdown
 
