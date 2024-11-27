@@ -408,6 +408,11 @@ function fillSubtaskListInTaskFormEdit(taskId) {
   }
 }
 
+function deleteTask(taskFirebaseID) {
+  deleteTaskFromFirebase(taskFirebaseID);
+  redirectToBoard();
+}
+
 function editTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
@@ -449,11 +454,3 @@ document.addEventListener(
 );
 
 
-
-
-//delete task funktion
-
-function deleteTask(taskFirebaseID) {
-  deleteTaskFromFirebase(taskFirebaseID);
-  redirectToBoard();
-}

@@ -115,7 +115,14 @@ async function handleClickSaveContact(firebaseId) {
 }
 
 async function handleClickDeleteUser(firebaseId) {
+  let loggedUserFirebaseID = localStorage.getItem("loggedUserFirebaseId");
+
   await deleteUserFromFirebase(firebaseId);
+
+  if (firebaseId === loggedUserFirebaseID) {
+    logOut();
+  }
+
   await renderContacts();
   toggleContactPopup();
   toggleContactDetails();
