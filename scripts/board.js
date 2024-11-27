@@ -402,18 +402,27 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
 function fillSubtaskListInTaskFormEdit(taskId) {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
-
-  if (!allUnsortedTasks[taskId].taskSubtasks) {
-    return; 
-  }
-
-  let subtasks = allUnsortedTasks[taskId].taskSubtasks;
-  for (let i = 0; i < subtasks.length; i++) {
+  subtasks = allUnsortedTasks[taskId].taskSubtasks;
+  for (let i = 0; i < allUnsortedTasks[taskId].taskSubtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
 }
 
+// function fillSubtaskListInTaskFormEdit(taskId) {
+//   let subtaskList = document.getElementById("taskFormSubtaskList");
+//   subtaskList.innerHTML = "";
 
+
+//   if (!allUnsortedTasks[taskId] || !allUnsortedTasks[taskId].taskSubtasks || allUnsortedTasks[taskId].taskSubtasks.length === 0) {
+//     return; 
+//   }
+
+
+//   let subtasks = allUnsortedTasks[taskId].taskSubtasks;
+//   for (let i = 0; i < subtasks.length; i++) {
+//     subtaskList.innerHTML += subtaskTemplate(i);
+//   }
+// }
 
 function deleteTask(taskFirebaseID) {
   deleteTaskFromFirebase(taskFirebaseID);
