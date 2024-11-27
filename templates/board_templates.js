@@ -40,19 +40,19 @@ function taskCardMoveToTemplate(taskID) {
       </div>
       <p class="taskCardTitle">${allUnsortedTasks[taskID].taskTitle}</p>
       <div class="moveToWrapper">
-        <div class="taskCardMoveToLinkContainer" onclick="moveTo('to do', '${taskID}'); event.stopPropagation();">
+        <div class="taskCardMoveToLinkContainer" onclick="handleMoveToClick('to do', '${taskID}'); event.stopPropagation();">
           <img src="../images/icons/arrow-curve-left-right.png" />
           <p>To do</p>
         </div>
-        <div class="taskCardMoveToLinkContainer" onclick="moveTo('in progress', '${taskID}'); event.stopPropagation();">
+        <div class="taskCardMoveToLinkContainer" onclick="handleMoveToClick('in progress', '${taskID}'); event.stopPropagation();">
           <img src="../images/icons/arrow-curve-left-right.png" />
           <p>In progress</p>
         </div>
-        <div class="taskCardMoveToLinkContainer" onclick="moveTo('await feedback', '${taskID}'); event.stopPropagation();">
+        <div class="taskCardMoveToLinkContainer" onclick="handleMoveToClick('await feedback', '${taskID}'); event.stopPropagation();">
           <img src="../images/icons/arrow-curve-left-right.png" />
           <p>Await feedback</p>
         </div>
-        <div class="taskCardMoveToLinkContainer" onclick="moveTo('done', '${taskID}'); event.stopPropagation();">
+        <div class="taskCardMoveToLinkContainer" onclick="handleMoveToClick('done', '${taskID}'); event.stopPropagation();">
           <img src="../images/icons/arrow-curve-left-right.png" />
           <p>Done</p>
         </div>

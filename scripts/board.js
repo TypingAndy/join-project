@@ -141,6 +141,15 @@ function startDragging(id) {
   setDraggingStateForCardStyle("floating");
 }
 
+function handleMoveToClick(newTaskStatus, taskID) {
+  setCurrentDraggedElementID(taskID);
+  moveTo(newTaskStatus, taskID);
+}
+
+function setCurrentDraggedElementID(taskID) {
+  currentDraggedElementID = taskID;
+}
+
 function handleDragEnd() {
   const dropZones = document.querySelectorAll("[ondrop]");
   dropZones.forEach((zone) => {
