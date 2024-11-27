@@ -13,7 +13,7 @@
     <script src="../scripts/board.js"></script>
     <script src="../templates/profile_button_template.js"></script>
   </head>
-  <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate()">
+  <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate(), showWelcomeScreen()">
     <div class="summaryWrapper">
       <header>
         <img src="../images/icons/join_logo_black.svg" alt="" />
@@ -27,6 +27,10 @@
         </div>
       </header>
       <div class="summaryContentWrapper">
+        <div class="welcomeScreen">
+          <div class="welcomeDayTime">Good Morning</div>
+          <div class="welcomeName">David</div> 
+        </div>
         <div class="summaryHeaderBox">
           <div class="summaryHeaderFont">Join 360</div>
           <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
