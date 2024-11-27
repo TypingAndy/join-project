@@ -335,10 +335,13 @@ function renderBoardTaskPopupContentUsers(taskID) {
   const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
   const userIds = allUnsortedTasks[taskID].taskAssignedUsersIds;
+if (userIds) {
+  
 
   userIds.forEach((userId) => {
     popupUsersElement.innerHTML += popupUserTemplate(userId);
   });
+}
 }
 
 function renderBoardTaskPopupSubtasks(taskID) {
@@ -394,20 +397,21 @@ function fillTaskFormEdit(taskId) {
 }
 
 function toggleTaskCurrentUserInTaskFormEdit(taskId) {
-  for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
-    toggleUserInTaskForm(allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
+  if (allUnsortedTasks[taskId].taskAssignedUsersIds) {
+    for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
+      toggleUserInTaskForm(allUnsortedTasks[taskId].taskAssignedUsersIds[i]);
+    }
   }
 }
+
 
 function fillSubtaskListInTaskFormEdit(taskId) {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
-
   let task = allUnsortedTasks[taskId];
   if (!task.taskSubtasks) {
     return;
   }
-
   subtasks = task.taskSubtasks;
   for (let i = 0; i < subtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
