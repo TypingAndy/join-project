@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/contacts.css" />
     <link rel="stylesheet" href="../css/contact_create.css" />
+    <link rel="stylesheet" href="../css/task_form.css" />
     <script src="../scripts/script.js"></script>
     <script src="../scripts/firebase.js"></script>
     <script src="../scripts/contacts.js"></script>
@@ -41,22 +42,32 @@
       </div>
 
       <nav>
-        <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-          <img src="../images/icons/summary_icon.png" alt="" />
-          <p>Summary</p>
+        <img class="navJoinLogo" src="../images/icons/join_logo_white.png" alt="">
+  
+        <div class="navLinkContainer">
+          <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
+            <img src="../images/icons/summary_icon.png" alt="" />
+            <p>Summary</p>
+          </div>
+          <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
+            <img src="../images/icons/board_icon.png" alt="" />
+            <p>Board</p>
+          </div>
+          <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
+            <img src="../images/icons/add_task_icon.png" alt="" />
+            <p>Add Tasks</p>
+          </div>
+          <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
+            <img src="../images/icons/contact_icon.png" alt="" />
+            <p>Contacts</p>
+          </div>
         </div>
-        <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-          <img src="../images/icons/board_icon.png" alt="" />
-          <p>Board</p>
+  
+        <div class="legalContainer">
+          <div>Privacy Policy</div>
+          <div>Legal notice</div>
         </div>
-        <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-          <img src="../images/icons/add_task_icon.png" alt="" />
-          <p>Add Tasks</p>
-        </div>
-        <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-          <img src="../images/icons/contact_icon.png" alt="" />
-          <p>Contacts</p>
-        </div>
+      
       </nav>
     </div>
     <div class="addContactCircleButton" id="addContactButton" onclick="toggleContactPopup(null, 'add'), toggleAddContactButton()">
