@@ -13,7 +13,7 @@
     <script src="../scripts/board.js"></script>
     <script src="../templates/profile_button_template.js"></script>
   </head>
-  <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate(), showWelcomeScreen()">
+  <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate(), showWelcomeScreen(), setWelcomeScreenName(), setWelcomeScreenDayTime()">
     <div class="summaryWrapper">
       <header>
         <img src="../images/icons/join_logo_black.svg" alt="" />
@@ -28,8 +28,8 @@
       </header>
       <div class="summaryContentWrapper">
         <div class="welcomeScreen">
-          <div class="welcomeDayTime">Good Morning</div>
-          <div class="welcomeName">David</div> 
+          <div id="welcomeDayTime" class="welcomeDayTime">Good Morning</div>
+          <div id="welcomeName" class="welcomeName">David</div> 
         </div>
         <div class="summaryHeaderBox">
           <div class="summaryHeaderFont">Join 360</div>

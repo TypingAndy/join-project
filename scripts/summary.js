@@ -17,11 +17,11 @@ async function summaryAddAllValuesToBoard() {
 }
 
 function sortTasksToStatus() {
-  let counts = countTaskStatuses();
+  let counts = countTaskStatus();
   updateTaskSummaryUI(counts);
 }
 
-function countTaskStatuses() {
+function countTaskStatus() {
   let counts = {
     toDo: 0,
     done: 0,
@@ -40,7 +40,6 @@ function countTaskStatuses() {
       counts.inProgress += 1;
     }
   }
-
   return counts;
 }
 
@@ -76,6 +75,8 @@ function renderAmountOfUrgentTasksInSummary() {
   urgentAmount.innerHTML = countNumberOfUrgentTasks();
 }
 
+//Urgent Task Date
+
 function summaryAddUrgentDateValue() {
   let urgentDateValue = document.getElementById("summaryDate");
   urgentDateValue.innerHTML = `<b>${filterLowestDate()}</b>`;
@@ -91,18 +92,41 @@ function filterLowestDate() {
   return allDates[0];
 }
 
+//Welcome Screen
 
 function showWelcomeScreen() {
-  // Prüfen, ob die vorherige Seite die Login-Seite war
-  if (document.referrer.includes('landingpage_login.html')) {
-    // Wenn die vorherige Seite die Login-Seite war, den Begrüßungsbildschirm anzeigen
+  if (document.referrer.includes("landingpage_login.html")) {
     setTimeout(() => {
-      document.querySelector('.welcomeScreen').style.display = 'none';
-    }, 2000); // Entfernt nach 2 Sekunden
+      document.querySelector(".welcomeScreen").style.display = "none";
+    }, 2000);
   } else {
-    // Andernfalls, den Begrüßungsbildschirm sofort ausblenden
-    document.querySelector('.welcomeScreen').style.display = 'none';
+    document.querySelector(".welcomeScreen").style.display = "none";
   }
 }
 
+function setWelcomeScreenDayTime() {
+  let dayTime = document.getElementById("welcomeDayTime");
+  let hours = new Date().getHours();
+  let greeting;
 
+  if (hours >= 5 && hours < 12) {
+    greeting = "Good Morning";
+  } else if (hours >= 12 && hours < 18) {
+    greeting = "Good Afternoon";
+  } else if (hours >= 18 && hours < 22) {
+    greeting = "Good Evening";
+  } else {
+    greeting = "Hello";
+  }
+
+  dayTime.innerHTML = greeting;
+}
+
+function setWelcomeScreenName() {
+  let name = document.getElementById("welcomeName");
+  let nameFromStorage = localStorage.getItem("loggedUserName");
+
+  if (nameFromStorage) {
+    name.innerHTML = nameFromStorage.split(" ")[0];
+  }
+}

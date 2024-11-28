@@ -23,6 +23,7 @@ function fillLocalStorageWithRememberedUserData(id) {
   let loggedUserPassword = unsortedUsers[id].password;
   let loggedUserInitials = unsortedUsers[id].initials;
   let loggedUserFirebaseId = id;
+  let loggedUserName = unsortedUsers[id].name;
 
   if (rememberBoolean) {
     localStorage.setItem("rememberedUserEmail", loggedUserEmail);
@@ -31,6 +32,7 @@ function fillLocalStorageWithRememberedUserData(id) {
 
   localStorage.setItem("loggedUserInitials", loggedUserInitials);
   localStorage.setItem("loggedUserFirebaseId", loggedUserFirebaseId);
+  localStorage.setItem("loggedUserName", loggedUserName);
 }
 
 function fillInputsAtLoginWithRememberedUser() {
