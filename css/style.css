@@ -62,17 +62,6 @@ header img {
   cursor: pointer;
 }
 
-.mainSection {
-  margin-top: 80px;
-  margin-bottom: 80px;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-  /* height: calc(100% - 1500px); */
-  width: 100%;
-  background-color: rgba(246, 247, 248, 1);
-}
-
 .testContent {
   height: 300px;
   width: 100%;
@@ -224,6 +213,22 @@ textarea {
   cursor: pointer;
 }
 
+
+@media (min-width: 1024px) {
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    background-color: #2a3647;
+    width: 232px;
+    height: 100%;
+    left: 0;
+    z-index: 99999;
+  }
+}
+
 /* taskCreatetModal */
 
 .modalFullScreenContainer {
@@ -261,4 +266,5 @@ textarea {
 .taskCreatedModalImg {
   width: 22px;
 }
+
 
