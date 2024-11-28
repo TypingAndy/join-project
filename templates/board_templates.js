@@ -87,49 +87,49 @@ function taskCardSingleInitialsPlusTemplate(plusNumber) {
 function boardTaskPopupTemplate(taskID) {
   return /*html */ `  
   <div class="boardTaskPopupContentWrapper" id="boardTaskPopupContentWrapper">
-  <div class="boardTaskPopupContentTop">
-    <div class="boardTaskPopupCategoryCard" style="background-color: ${allUnsortedTasks[taskID].taskCategory.color}" >
-      <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${allUnsortedTasks[taskID].taskCategory.category}</p>
+    <div class="boardTaskPopupContentTop">
+      <div class="boardTaskPopupCategoryCard" style="background-color: ${allUnsortedTasks[taskID].taskCategory.color}" >
+        <p class="boardTaskPopupCategoryLabel" id="boardTaskPopupCategoryLabel">${allUnsortedTasks[taskID].taskCategory.category}</p>
+      </div>
+      <img class="boardTaskPopupContentClose" src="../images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
     </div>
-    <img class="boardTaskPopupContentClose" src="../images/icons/close.png" alt="close" onclick="closeBoardTaskPopup()" />
-  </div>
-  <div class="boardTaskPopupContentCenter">
-    <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${allUnsortedTasks[taskID].taskTitle}</p>
-    <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">${allUnsortedTasks[taskID].taskDescription}</p>
-    <div class="boardTaskPopupContentDateWrapper">
-      <p class="boardTaskPopupContentDateLabel">Due date:</p>
-      <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">${allUnsortedTasks[taskID].taskDate}</p>
-    </div>
-    <div class="boardTaskPopupContentPrioWrapper">
-      <p class="boardTaskPopupContentPrioLabel">Priority:</p>
-      <div class="boardTaskPopupContentPrioOutputWrapper">
-        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${allUnsortedTasks[taskID].taskPrio}</p>
-        <img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="../images/icons/${allUnsortedTasks[taskID].taskPrio}.png" alt="medium prio" />
+    <div class="boardTaskPopupContentCenter">
+      <p class="boardTaskPopupContentTitle" id="boardTaskPopupContentTitle">${allUnsortedTasks[taskID].taskTitle}</p>
+      <p class="boardTaskPopupContentDescription" id="boardTaskPopupContentDescription">${allUnsortedTasks[taskID].taskDescription}</p>
+      <div class="boardTaskPopupContentDateWrapper">
+        <p class="boardTaskPopupContentDateLabel">Due date:</p>
+        <p class="boardTaskPopupContentDate" id="boardTaskPopupContentDate">${allUnsortedTasks[taskID].taskDate}</p>
+      </div>
+      <div class="boardTaskPopupContentPrioWrapper">
+        <p class="boardTaskPopupContentPrioLabel">Priority:</p>
+        <div class="boardTaskPopupContentPrioOutputWrapper">
+        <p class="boardTaskPopupContentPrioValue" id="boardTaskPopupContentPrioValue">${allUnsortedTasks[taskID].taskPrio ? allUnsortedTasks[taskID].taskPrio : "none"}</p>
+          ${allUnsortedTasks[taskID].taskPrio ? `<img class="boardTaskPopupContentPrioIcon" id="boardTaskPopupContentPrioIcon" src="../images/icons/${allUnsortedTasks[taskID].taskPrio}.png" alt="medium prio" />` : ""}
+        </div>
+      </div>
+      <div class="boardTaskPopupContentAssignedToWrapper">
+        <p class="boardTaskPopupContentAssignedToLabel">Assigned To:</p>
+        <div class="boardTaskPopupContentAssignedToUserWrapper" id="boardTaskPopupContentAssignedToUserWrapper">
+        </div>
+      </div>
+      <div class="boardTaskPopupContentSubtasksWrapper">
+        <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
+        <div class="boardTaskPopupContentSubtasksList" id="boardTaskPopupContentSubtasksList">
+        </div>
       </div>
     </div>
-    <div class="boardTaskPopupContentAssignedToWrapper">
-      <p class="boardTaskPopupContentAssignedToLabel">Assigned To:</p>
-      <div class="boardTaskPopupContentAssignedToUserWrapper" id="boardTaskPopupContentAssignedToUserWrapper">
+    <div class="boardTaskPopupContentBottom">
+      <div id="boardTaskPopupContentDeleteContainer" onclick="deleteTask('${taskID}')" class="boardTaskPopupContentDeleteContainer">
+        <img class="boardTaskPopupDeleteIcon" src="../images/icons/trashcan_black.png" alt="delete" />
+        <p>Delete</p>
       </div>
-    </div>
-    <div class="boardTaskPopupContentSubtasksWrapper">
-      <p class="boardTaskPopupContentSubtasksLabel">Subtasks:</p>
-      <div class="boardTaskPopupContentSubtasksList" id="boardTaskPopupContentSubtasksList">
+      <div class="boardTaskPopupContentBottomLine"></div>
+      <div onclick="renderTaskFormEdit('${taskID}'), fillTaskFormEdit('${taskID}')" class="boardTaskPopupContentEditContainer">
+        <img class="boardTaskPopupEditIcon" src="../images/icons/edit.png" alt="edit" />
+        <p>Edit</p>
       </div>
     </div>
   </div>
-  <div class="boardTaskPopupContentBottom">
-    <div id="boardTaskPopupContentDeleteContainer" onclick="deleteTask('${taskID}')" class="boardTaskPopupContentDeleteContainer">
-      <img class="boardTaskPopupDeleteIcon" src="../images/icons/trashcan_black.png" alt="delete" />
-      <p>Delete</p>
-    </div>
-    <div class="boardTaskPopupContentBottomLine"></div>
-    <div onclick="renderTaskFormEdit('${taskID}'), fillTaskFormEdit('${taskID}')" class="boardTaskPopupContentEditContainer">
-      <img class="boardTaskPopupEditIcon" src="../images/icons/edit.png" alt="edit" />
-      <p>Edit</p>
-    </div>
-  </div>
-</div>
 `;
 }
 
