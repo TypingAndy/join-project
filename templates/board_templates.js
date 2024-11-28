@@ -35,8 +35,11 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
 
 function taskCardMoveToTemplate(taskID) {
   return /*html*/ `
+  <div class="moveToTopSection">
       <div class="taskCardMovetoLabel">
         <p>Move task to...</p>
+      </div>
+      <img onclick="renderTaskCards(); event.stopPropagation()" class="moveToBackImage" src="../images/icons/arrow-left-line.png" />
       </div>
       <p class="taskCardTitle">${allUnsortedTasks[taskID].taskTitle}</p>
       <div class="moveToWrapper">
