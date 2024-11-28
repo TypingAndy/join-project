@@ -90,3 +90,19 @@ function filterLowestDate() {
   allDates.sort((a, b) => new Date(a) - new Date(b));
   return allDates[0];
 }
+
+
+function showWelcomeScreen() {
+  // Prüfen, ob die vorherige Seite die Login-Seite war
+  if (document.referrer.includes('landingpage_login.html')) {
+    // Wenn die vorherige Seite die Login-Seite war, den Begrüßungsbildschirm anzeigen
+    setTimeout(() => {
+      document.querySelector('.welcomeScreen').style.display = 'none';
+    }, 2000); // Entfernt nach 2 Sekunden
+  } else {
+    // Andernfalls, den Begrüßungsbildschirm sofort ausblenden
+    document.querySelector('.welcomeScreen').style.display = 'none';
+  }
+}
+
+

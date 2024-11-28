@@ -70,10 +70,25 @@
   width: 24px;
 }
 
+
+
+/* Muss für mobile auf   background-image: url("../images/icons/plus_add_task_small.png"); geändert werden */
 .boardPlusIconSmall {
   height: 30px;
-  cursor: pointer;
+  width: 30px;
+  cursor: pointer; 
+  background-image: url("../images/icons/plus_add_task_dark.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-sizing: border-box;
 }
+
+.boardPlusIconSmall:hover {
+  background-image: url("../images/icons/plus_add_task_blue.svg");
+}
+
+
 
 @keyframes vibrate {
   0% {

@@ -110,12 +110,15 @@ function openCategoryDropdown() {
   switchArrowInsideDropdown(true, "taskFormCategoryDropdownArrrow", "categoryDropdown");
   handleDropdown(true, "categoryDropdown");
   enableCursorPointerOnInput("taskFormCategoryInput");
+  validateTaskForm();
 }
 
 function closeCategoryDropdown() {
   switchArrowInsideDropdown(false, "taskFormCategoryDropdownArrrow", "categoryDropdown");
   handleDropdown(false, "categoryDropdown");
   disableCursorPointerOnInput("taskFormCategoryInput");
+  clearCategoryInsideTaskFrom();
+  validateTaskForm();
 }
 
 function clearCategoryInsideTaskFrom() {
@@ -137,8 +140,6 @@ function chooseCategory(chosenCategory, chosenCategoryColor) {
     category: chosenCategory,
     color: chosenCategoryColor,
   };
-
-
 
   validateTaskForm();
   return categoryData;
@@ -187,7 +188,9 @@ function addSubtaskToList() {
 function renderSubtasksToList() {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
-
+  if (!subtasks) {
+    return;
+  }
   for (let i = 0; i < subtasks.length; i++) {
     subtaskList.innerHTML += subtaskTemplate(i);
   }
@@ -254,7 +257,7 @@ function getNewTaskInputData(taskStatus) {
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
-  
+
     taskCategory: categoryData,
     taskSubtasks: subtasks,
   };
