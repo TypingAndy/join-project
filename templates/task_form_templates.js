@@ -110,7 +110,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               </div>
                <div class="taskFormCreateTaskButtonBox">
                   <div class="taskFormRequiredInfo"><span style="color: red">*</span>This field is required</div>
-                  <div id="createTaskButton" class="createTaskButton disabled" onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), redirectToBoard()" type="submit">
+                  <div id="createTaskButton" class="createTaskButton disabled" onclick="${postOrPatchFunction}('${taskStatus}', '${id}', '${fetchStatus}'), createTaskAllNeededFunctions()" type="submit">
                     <div>${titleAcceptTaskButton}</div> 
                     <img class="createTaskButtonCheckImage" src="../images/icons/check_white.png" alt="" />
                    </div>

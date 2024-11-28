@@ -5,10 +5,11 @@ function checkUserPasswortMatch() {
   let passwordInput = document.getElementById("logInPasswordInput").value;
   let userFound = false;
 
-  Object.entries(unsortedUsers).forEach(([id, user]) => {
+  Object.entries(unsortedUsers).forEach(([firebaseId, user]) => {
     if (user.email === emailInput && user.password === passwordInput) {
       userFound = true;
-      fillLocalStorageWithRememberedUserData(id);
+      fillLocalStorageWithRememberedUserData(firebaseId);
+      fillStorageWithUserData(firebaseId)
       window.location.href = "summary.html";
     }
   });
@@ -18,19 +19,29 @@ function checkUserPasswortMatch() {
   }
 }
 
-function fillLocalStorageWithRememberedUserData(id) {
-  let loggedUserEmail = unsortedUsers[id].email;
-  let loggedUserPassword = unsortedUsers[id].password;
-  let loggedUserInitials = unsortedUsers[id].initials;
-  let loggedUserFirebaseId = id;
+function fillLocalStorageWithRememberedUserData(firebaseId) {
+  let loggedUserEmail = unsortedUsers[firebaseId].email;
+  let loggedUserPassword = unsortedUsers[firebaseId].password;
 
   if (rememberBoolean) {
     localStorage.setItem("rememberedUserEmail", loggedUserEmail);
     localStorage.setItem("rememberedUserPassword", loggedUserPassword);
   }
+}
 
+function fillStorageWithUserData(firebaseId) {
+  let loggedUserInitials = unsortedUsers[firebaseId].initials;
+  let loggedUserFirebaseId = firebaseId;
+  let loggedUserName = unsortedUsers[firebaseId].name;
   localStorage.setItem("loggedUserInitials", loggedUserInitials);
   localStorage.setItem("loggedUserFirebaseId", loggedUserFirebaseId);
+  localStorage.setItem("loggedUserName", loggedUserName);
+}
+
+function deleteStorage() {
+  localStorage.removeItem("loggedUserInitials");
+  localStorage.removeItem("loggedUserFirebaseId");
+  localStorage.removeItem("loggedUserName");
 }
 
 function fillInputsAtLoginWithRememberedUser() {
@@ -68,3 +79,4 @@ function toggleLoginRememberMe(remember) {
     document.getElementById("logInCheckbox").classList.remove("displayNone");
   }
 }
+
