@@ -133,23 +133,21 @@ async function removeUserFromAllTasks(userId) {
 
   for (let taskId in allUnsortedTasks) {
     const task = allUnsortedTasks[taskId];
-    if (task.taskAssignedUsersIds && Array.isArray(task.taskAssignedUsersIds)) {
-      if (task.taskAssignedUsersIds.includes(userId)) {
-        const updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
+    if (task.taskAssignedUsersIds.includes(userId)) {
+      const updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
 
-        if (updatedUserIds.length > 0) {
-          await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedUserIds),
-          });
-        } else {
-          await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-            method: "DELETE",
-          });
-        }
+      if (updatedUserIds.length > 0) {
+        await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUserIds),
+        });
+      } else {
+        await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
+          method: "DELETE",
+        });
       }
     }
   }
