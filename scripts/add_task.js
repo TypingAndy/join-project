@@ -243,6 +243,25 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
+//create Task modal
+
+function createTaskAllNeededFunctions() {
+  showCreateTaskModal();
+  setTimeout(() => {
+    redirectToBoard();
+  }, 1500);
+}
+
+function showCreateTaskModal() {
+  let modalBackground = document.getElementById("modalFullScreenContainer");
+  let modal = document.getElementById("taskCreatedModal");
+  
+  modalBackground.style.display = "block"; 
+  setTimeout(() => {
+    modal.classList.add("taskCreatedModalShow");
+  }, 10);
+}
+
 // collecting Data
 
 function getNewTaskInputData(taskStatus) {
