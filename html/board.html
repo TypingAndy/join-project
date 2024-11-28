@@ -37,44 +37,53 @@
       <div class="boardPopupBackground" id="boardPopupBackground" onclick="closeBoardTaskPopup()">
         <div class="boardTaskPopup" id="boardTaskPopup"></div>
       </div>
-
       <div class="mainSection">
         <div class="boardWrapper">
-          <div class="boardTitleContainer">
-            <p class="boardTitle">Board</p>
-            <img onclick="window.location.href='add_task.html'" class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
-          </div>
-          <div class="inputContainer">
-            <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" oninput="handleSearchInput(event)" />
-            <img onclick="focusOnSearchBar()" src="../images/icons/search_icon.png" alt="" />
-          </div>
-          <div id="toDoSection" class="toDoSection">
-            <div class="toDoSectionTitleContainer">
-              <p>To Do</p>
-              <div onclick="createBoardTaskPopupForNewTask('to do'),   openBoardTaskPopupForAddTaskSlider();" class="boardPlusIconSmall" alt=""></div>
+          <div class="titleAndInputWrapper">
+            <div class="boardTitleContainer">
+              <p class="boardTitle">Board</p>
+              <img onclick="window.location.href='add_task.html'" class="cursorPointer" src="../images/icons/plus_add_task.png" alt="" />
             </div>
-            <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper"></div>
-          </div>
-          <div id="inProgressSection" class="inProgressSection">
-            <div class="inProgressTitleContainer">
-              <p>In progress</p>
-              <div onclick="createBoardTaskPopupForNewTask('in progress')" class="boardPlusIconSmall" alt="" ></div>
+            <div class="inputAndButtonWrapper">
+              <div class="inputContainer">
+                <input id="findTaskInput" class="findTaskInput" type="text" placeholder="Find Task" oninput="handleSearchInput(event)" />
+                <img onclick="focusOnSearchBar()" src="../images/icons/search_icon.png" alt="" />
+              </div>
+              <div class="addTaskInputButton cursorPointer">
+                <p>Add task</p>
+                <img src="../images/icons/plus_white.png" alt="" />
+              </div>
             </div>
-            <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
           </div>
-          <div id="awaitFeedbackSection" class="awaitFeedbackSection">
-            <div class="awaitFeedbackTitleContainer">
-              <p>Await feedback</p>
-              <div onclick="createBoardTaskPopupForNewTask('await feedback')" class="boardPlusIconSmall"></div>
+          <div class="sectionWrapper">
+            <div id="toDoSection" class="toDoSection">
+              <div class="toDoSectionTitleContainer">
+                <p>To Do</p>
+                <div onclick="createBoardTaskPopupForNewTask('to do'),   openBoardTaskPopupForAddTaskSlider();" class="boardPlusIconSmall" alt=""></div>
+              </div>
+              <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper"></div>
             </div>
-            <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
-          </div>
-          <div id="doneSection" class="doneSection">
-            <div class="doneTitleContainer">
-              <p>Done</p>
-              <div onclick="createBoardTaskPopupForNewTask('done')" class="boardPlusIconSmall"></div>
+            <div id="inProgressSection" class="inProgressSection">
+              <div class="inProgressTitleContainer">
+                <p>In progress</p>
+                <div onclick="createBoardTaskPopupForNewTask('in progress')" class="boardPlusIconSmall" alt=""></div>
+              </div>
+              <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
             </div>
-            <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
+            <div id="awaitFeedbackSection" class="awaitFeedbackSection">
+              <div class="awaitFeedbackTitleContainer">
+                <p>Await feedback</p>
+                <div onclick="createBoardTaskPopupForNewTask('await feedback')" class="boardPlusIconSmall"></div>
+              </div>
+              <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
+            </div>
+            <div id="doneSection" class="doneSection">
+              <div class="doneTitleContainer">
+                <p>Done</p>
+                <div onclick="createBoardTaskPopupForNewTask('done')" class="boardPlusIconSmall"></div>
+              </div>
+              <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
+            </div>
           </div>
         </div>
       </div>
