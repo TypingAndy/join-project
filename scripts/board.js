@@ -335,13 +335,11 @@ function renderBoardTaskPopupContentUsers(taskID) {
   const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
   const userIds = allUnsortedTasks[taskID].taskAssignedUsersIds;
-if (userIds) {
-  
-
-  userIds.forEach((userId) => {
-    popupUsersElement.innerHTML += popupUserTemplate(userId);
-  });
-}
+  if (userIds) {
+    userIds.forEach((userId) => {
+      popupUsersElement.innerHTML += popupUserTemplate(userId);
+    });
+  }
 }
 
 function renderBoardTaskPopupSubtasks(taskID) {
@@ -403,7 +401,6 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
     }
   }
 }
-
 
 function fillSubtaskListInTaskFormEdit(taskId) {
   let subtaskList = document.getElementById("taskFormSubtaskList");

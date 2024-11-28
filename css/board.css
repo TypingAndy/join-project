@@ -25,18 +25,27 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
+.moveToTopSection {
+  display: flex;
+  justify-content: space-between;
+}
+
 .taskCardMovetoLabel {
   display: inline-flex;
   align-items: center;
   height: 27px;
   width: fit-content;
-  /* background-color: rgba(0, 56, 255, 1); */
   color: rgb(0, 0, 0);
   border-radius: 10px;
   font-size: 16px;
   padding: 2px 16px;
   margin-bottom: 20px;
   border: 1px solid;
+}
+
+.moveToBackImage {
+  height: 32px;
+  width: 32px;
 }
 
 .taskCard:hover {
@@ -70,13 +79,11 @@
   width: 24px;
 }
 
-
-
 /* Muss für mobile auf   background-image: url("../images/icons/plus_add_task_small.png"); geändert werden */
 .boardPlusIconSmall {
   height: 30px;
   width: 30px;
-  cursor: pointer; 
+  cursor: pointer;
   background-image: url("../images/icons/plus_add_task_dark.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -87,8 +94,6 @@
 .boardPlusIconSmall:hover {
   background-image: url("../images/icons/plus_add_task_blue.svg");
 }
-
-
 
 @keyframes vibrate {
   0% {
