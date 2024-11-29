@@ -211,4 +211,9 @@
   .boardTaskPopupContentWrapper {
     padding: 24px 8px;
   }
+
+  .boardTaskPopup {
+    min-width: 420px;
+    width: auto;
+  }
 }
