@@ -242,7 +242,7 @@ function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
     return "";
   }
   const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
-  const userMaxLength = 5;
+  const userMaxLength = 4;
   const plusNumber = userIds.length - userMaxLength;
 
   for (let userIndex = 0; userIndex < (userIds.length > userMaxLength ? userMaxLength : userIds.length); userIndex++) {
