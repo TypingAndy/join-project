@@ -387,7 +387,7 @@ input:focus {
     position: absolute;
     top: 0;
     left: 0;
-    width: 64px;
+    width: 100px;
     padding: 38px;
   }
 
@@ -408,7 +408,16 @@ input:focus {
     padding: 0px 0 60px 0;
   }
 
-  .logInLinks {
-    padding-top: 80px;
-  }
+
+
+
+  .logInButton {
+font-size: 21px;
+  } 
+.guestLogInButton {
+  font-size: 21px;
+}
+
+
+
 }
