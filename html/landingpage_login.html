@@ -40,13 +40,15 @@
             <div id="loginFalseMessage" class="loginFalseMessage"></div>
           </div>
           <div class="logInCheckOutBoxWrapper">
-            <div class="acceptPolicyBox">
-              <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
-              <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="../images/icons/checked.png" alt="" />
-              <div class="rememberMe">Remember me</div>
+             <div class="acceptPolicyBox">
+                <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
+                <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="../images/icons/checked.png" alt="" />
+                <div class="rememberMe">Remember me</div>
+              </div>
+            <div class="loginButtons">
+              <div id="logInButton" onclick="checkUserPasswortMatch()" class="logInButton" type="submit">Log in</div>
+              <div onclick="validateLogin(), window.location.href='summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
             </div>
-            <div id="logInButton" onclick="checkUserPasswortMatch()" class="logInButton" type="submit">Log in</div>
-            <div onclick="validateLogin(), window.location.href='summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
           </div>
         </div>
       </form>

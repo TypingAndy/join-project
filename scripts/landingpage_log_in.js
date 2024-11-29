@@ -59,15 +59,18 @@ function validateLogin() {
   let passwordValue = document.getElementById("logInPasswordInput").value.trim();
 
   if (passwordValue && emailValue) {
+    button.classList.add("enabled"); 
+    button.style.opacity = "1"; 
     button.style.cursor = "pointer";
-    button.style.opacity = "1";
-    button.disabled = false;
+    button.style.pointerEvents = "auto";
   } else {
+    button.classList.remove("enabled"); 
     button.style.opacity = "0.1";
-    button.disabled = true;
-    button.style.cursor = "default";
+    button.style.cursor = "default"; 
+    button.style.pointerEvents = "none"; 
   }
 }
+
 
 function toggleLoginRememberMe(remember) {
   rememberBoolean = remember;
