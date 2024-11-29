@@ -16,15 +16,16 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
           <div class="taskFormLabels">Title<span style="color: red">*</span></div>
           <div class="taskFormInputContainer">
             <input 
-              onkeyup="validateTaskForm()" 
+              onkeyup="validateTaskForm(), validateTaskTitleInput()" 
               onchange="validateTaskForm()" 
+              onblur=" validateTaskTitleInput()"
               id="taskTitleInput" 
               class="taskFormInput" 
               type="text" 
               placeholder="Enter a Title" 
-              required
-            />
+                     />
           </div>
+          <div id="requiredTitleInfo" class="requiredInfo displayNone">This field is required</div>
         </div>
         
 
@@ -85,13 +86,14 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <input 
                 id="dateInput" 
                 onclick="insertMinSelectableDate()" 
-                onchange="validateTaskForm()" 
+                onchange="validateTaskForm(), validateTaskDateInput()" 
+                onblur= "validateTaskDateInput()"
                 class="taskFormInput datePlaceholder" 
                 type="date" 
                 min="" 
-                required
-              />
+                />
             </div>
+            <div id="requiredDateInfo" class="requiredInfo displayNone">This field is required</div>
           </div>
 
           <!-- Priority Section -->
@@ -120,12 +122,14 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <input
                 id="taskFormCategoryInput"
                 onfocus="openCategoryDropdown()"
-                onblur="closeCategoryDropdown()"
-                onkeyup="categoryFilterFunction()"
+                onblur="closeCategoryDropdown(), validateTaskCategoryInput()"
+                onkeyup="categoryFilterFunction(), validateTaskCategoryInput()"
+          
+        
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
                 autocomplete="off"
-                required
+              
               />
               <img 
                 id="taskFormCategoryDropdownArrrow" 
@@ -141,6 +145,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 class="taskFormDropdownContent"
               ></div>
             </div>
+            <div id="requiredCategoryInfo" class="requiredInfo displayNone">This field is required</div>
           </div>
           
           <!-- Subtasks Section -->
@@ -215,7 +220,6 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
     </div>
   `;
 }
-
 
 function nameListTemplate(userFirebaseId) {
   return /*html*/ `

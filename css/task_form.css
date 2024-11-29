@@ -1,3 +1,5 @@
+/* nav Bar */
+
 .navJoinLogo {
   display: none;
 }
@@ -51,6 +53,9 @@
   display: none;
 }
 
+
+/* task Form */
+
 .taskFormWrapper {
   display: flex;
   flex-direction: column;
@@ -66,7 +71,7 @@
 .addTaskLeftSection {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .addTaskSectionDividingLine {
@@ -76,10 +81,11 @@
 .addTaskRightSection {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .taskFormSectionBox {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -110,7 +116,14 @@
 
 .taskFormInput::placeholder {
   font-size: 16px;
-  color: #d1d1d1;
+
+}
+
+.requiredInfo {
+  color: #FF8190;
+  font-size: 12px;
+  position: absolute;
+  bottom: -18px;
 }
 
 .taskFormUserDropdownArrow {
@@ -574,6 +587,7 @@
 
   .addTaskLeftSection {
     width: 440px;
+    gap: 26px;
   }
 
   /* input section */
@@ -629,6 +643,7 @@
 
   .addTaskRightSection {
     width: 440px;
+    gap: 26px;
   }
 
   /* prio section */
@@ -774,6 +789,26 @@
     justify-content: flex-start;
     gap: 8px;
     font-size: 16px;
+
+  }
+
+  .navLegalPrivacyPolicy {
     color: #a8a8a8;
+  }
+
+  .navLegalPrivacyPolicy:hover {
+    color:#29abe2;
+    scale: 1.02;
+    cursor: pointer;
+  }
+
+  .navLegalLegalNotice {
+    color: #a8a8a8;
+  }
+
+  .navLegalLegalNotice:hover {
+    color:#29abe2;
+    scale: 1.02;
+    cursor: pointer;
   }
 }
