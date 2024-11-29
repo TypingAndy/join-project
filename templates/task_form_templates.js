@@ -22,7 +22,8 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               id="taskTitleInput" 
               class="taskFormInput" 
               type="text" 
-              placeholder="Enter a Title" 
+              placeholder="Enter a Title"
+              autocomplete="off"  
                      />
           </div>
           <div id="requiredTitleInfo" class="requiredInfo displayNone">This field is required</div>
@@ -83,15 +84,15 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
             <div class="taskFormInputContainer">
-              <input 
-                id="dateInput" 
-                onclick="insertMinSelectableDate()" 
-                onchange="validateTaskForm(), validateInput('dateInput', 'requiredDateInfo')" 
-                onblur="validateInput('dateInput', 'requiredDateInfo')" 
-                class="taskFormInput datePlaceholder" 
-                type="date" 
-                min="" 
-                />
+            <input 
+    id="dateInput" 
+    onclick="insertMinSelectableDate()" 
+    onchange="validateTaskForm(), validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
+    onblur="validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
+    class="taskFormInput datePlaceholder empty" 
+    type="date" 
+    min="" 
+/>
             </div>
             <div id="requiredDateInfo" class="requiredInfo displayNone">This field is required</div>
           </div>
@@ -122,10 +123,8 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <input
                 id="taskFormCategoryInput"
                 onfocus="openCategoryDropdown()"
-                onblur="closeCategoryDropdown(), validateInput('taskFormCategoryInput', 'requiredCategoryInfo')"
-                onkeyup="categoryFilterFunction(), validateTaskCategoryInput()"
-          
-        
+                onblur="closeCategoryDropdown()"
+                onkeyup="categoryFilterFunction()"
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
                 autocomplete="off"
@@ -159,6 +158,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 class="taskFormSubtaskInput" 
                 type="text" 
                 placeholder="Add new subtask" 
+                autocomplete="off" 
               />
               <div class="iconWrapper">
                 <img 
