@@ -16,9 +16,9 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
           <div class="taskFormLabels">Title<span style="color: red">*</span></div>
           <div class="taskFormInputContainer">
             <input 
-              onkeyup="validateTaskForm(), validateTaskTitleInput()" 
+              onkeyup="validateTaskForm(), validateInput('taskTitleInput', 'requiredTitleInfo')" 
               onchange="validateTaskForm()" 
-              onblur=" validateTaskTitleInput()"
+              onblur="validateInput('taskTitleInput', 'requiredTitleInfo')"
               id="taskTitleInput" 
               class="taskFormInput" 
               type="text" 
@@ -86,8 +86,8 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <input 
                 id="dateInput" 
                 onclick="insertMinSelectableDate()" 
-                onchange="validateTaskForm(), validateTaskDateInput()" 
-                onblur= "validateTaskDateInput()"
+                onchange="validateTaskForm(), validateInput('dateInput', 'requiredDateInfo')" 
+                onblur="validateInput('dateInput', 'requiredDateInfo')" 
                 class="taskFormInput datePlaceholder" 
                 type="date" 
                 min="" 
@@ -122,7 +122,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
               <input
                 id="taskFormCategoryInput"
                 onfocus="openCategoryDropdown()"
-                onblur="closeCategoryDropdown(), validateTaskCategoryInput()"
+                onblur="closeCategoryDropdown(), validateInput('taskFormCategoryInput', 'requiredCategoryInfo')"
                 onkeyup="categoryFilterFunction(), validateTaskCategoryInput()"
           
         
@@ -201,7 +201,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 
         <div class="addTaskButtonBox">
 
-          <div class="addTaskClearButton">
+          <div onclick="clearTaskForm()" class="addTaskClearButton">
             <div>Clear</div>
             <div class="createTaskButtonClearImage"></div>
           </div>
