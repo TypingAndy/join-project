@@ -82,15 +82,15 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <div class="contactPopupBottom">
     <form action="">
   <div class="nameInputWrapper">
-    <input class="addContactNameInput" onkeyup="validateContactForm()" id="addContactNameInput" type="text" placeholder="Name" required />
+    <input class="addContactNameInput" onkeyup="validateContactForm()" id="addContactNameInput" type="text" placeholder="Name"/>
     <img src="../images/icons/person_grey.png" alt="" />
   </div>
   <div class="mailInputWrapper">
-    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail()" id="addContactMailInput" type="text" placeholder="Email" required/>
+    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail()" id="addContactMailInput" type="text" placeholder="Email"/>
     <img src="../images/icons/mail_grey.png" alt="" />
   </div>
   <div class="phoneInputWrapper">
-    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" id="addContactPhoneInput" type="tel" placeholder="Phone" required/>
+    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
     <img src="../images/icons/callgrey.png" alt="" />
   </div>
   <div id="createContactButton" class="createContactButton" onclick="handleCreateContactsButtonClick()" style="pointer-events: none; opacity: 0.5;">
@@ -128,7 +128,7 @@ function contactPopupTemplate(popupType, firebaseUserId) {
           <img src="../images/icons/mail_grey.png" alt="" />
         </div>
         <div class="phoneInputWrapper">
-          <input class="addContactPhoneInput" id="editContactPhoneInput" type="text" value="${userDataFromFirebase[firebaseUserId].phone}" />
+        <input class="addContactPhoneInput" id="editContactPhoneInput" type="tel" value="${userDataFromFirebase[firebaseUserId].phone}" placeholder="Phone" oninput="allowOnlyNumbers(this)"/>
           <img src="../images/icons/callgrey.png" alt="" />
         </div>
         <div class="editContactButtonWrapper">

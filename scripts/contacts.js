@@ -185,3 +185,7 @@ function validateEmail(email) {
     return true;
   }
 }
+
+function allowOnlyNumbers(input) {
+  input.value = input.value.replace(/[^0-9]/g, "");
+}
