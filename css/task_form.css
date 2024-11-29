@@ -53,7 +53,6 @@
   display: none;
 }
 
-
 /* task Form */
 
 .taskFormWrapper {
@@ -117,11 +116,10 @@
 
 .taskFormInput::placeholder {
   font-size: 16px;
-
 }
 
 .requiredInfo {
-  color: #FF8190;
+  color: #ff8190;
   font-size: 12px;
   position: absolute;
   bottom: -16px;
@@ -575,6 +573,7 @@ input:not(.empty) {
 @media (min-width: 1024px) {
   .taskFormWrapper {
     overflow: unset;
+    padding: 0 32px;
   }
 
   .taskFormHeader {
@@ -785,8 +784,6 @@ input:not(.empty) {
     border-radius: 0;
   }
 
-
-
   .navLinkContainer {
     position: unset;
     display: flex;
@@ -806,7 +803,6 @@ input:not(.empty) {
     justify-content: flex-start;
     gap: 8px;
     font-size: 16px;
-
   }
 
   .navLegalPrivacyPolicy {
@@ -814,7 +810,7 @@ input:not(.empty) {
   }
 
   .navLegalPrivacyPolicy:hover {
-    color:#29abe2;
+    color: #29abe2;
     scale: 1.02;
     cursor: pointer;
   }
@@ -824,7 +820,7 @@ input:not(.empty) {
   }
 
   .navLegalLegalNotice:hover {
-    color:#29abe2;
+    color: #29abe2;
     scale: 1.02;
     cursor: pointer;
   }
