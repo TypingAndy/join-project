@@ -214,6 +214,17 @@ button {
   font-weight: 700;
   margin-bottom: 24px;
   opacity: 0.1;
+  cursor: default; /* Default cursor for disabled state */
+  pointer-events: none; /* Prevent interaction when disabled */
+}
+
+/* Only apply hover effect when the button is enabled */
+.signUpButton.enabled:hover {
+  background-color: #29abe2;
+  transition: 150ms;
+  box-shadow: 0px 2px 4px #a8a8a8;
+  cursor: pointer;
+  pointer-events: auto; /* Allow interaction */
 }
 
 .acceptThe {
@@ -222,7 +233,6 @@ button {
 
 .signUpLinksBox {
   display: flex;
-  height: 160px;
   justify-content: center;
   gap: 40px;
   padding-top: 40px;
@@ -231,4 +241,65 @@ button {
 .signUpLinks {
   color: #a8a8a8;
   cursor: pointer;
+  transition: 150ms;
+}
+
+.signUpLinks:hover {
+  color: #29abe2;
+  transition: 150ms;
+  scale: 1.03;
+}
+
+@media (min-width: 1024px) {
+  .signUpTitle {
+    font-size: 61px;
+  }
+
+  .signUpButton {
+    font-size: 21px;
+    width: 126px;
+    height: 55px;
+  }
+
+  .signUpBoard {
+    margin-top: 160px;
+    height: 720px;
+  }
+
+  .signUpSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signUpLogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+  }
+
+  .signUpInputContainer {
+    width: 422px;
+  }
+
+  .signUpBoardContentWrapper {
+    width: 598px;
+    height: 630px;
+    display: flex;
+    margin-top: 40px;
+  }
+
+  .signUpCheckOutBoxWrapper {
+    margin-top: 40px;
+  }
+
+  .signUpInputContainer {
+    margin-top: 10px;
+  }
+
+  .arrowLeftBlue {
+    margin-top: 48px;
+    margin-left: 48px;
+  }
 }

@@ -16,17 +16,19 @@ function clickAcceptPolicy() {
 
 function validateSignUp() {
   let button = document.getElementById("signUpButton");
-  let nameValue = document.getElementById("signUpNameInput").value;
-  let emailValue = document.getElementById("signUpMailInput").value;
+  let nameValue = document.getElementById("signUpNameInput").value.trim();
+  let emailValue = document.getElementById("signUpMailInput").value.trim();
 
   if (policyAccepted && passwordMatch && nameValue && emailValue) {
+    button.classList.add("enabled");
     button.style.opacity = "1";
     button.setAttribute("onclick", "handleSignUpClick()");
-    button.style.cursor = "pointer";
+    button.style.pointerEvents = "auto";
   } else {
+    button.classList.remove("enabled"); 
     button.style.opacity = "0.1";
     button.removeAttribute("onclick");
-    button.style.cursor = "default";
+    button.style.pointerEvents = "none";
   }
 }
 
