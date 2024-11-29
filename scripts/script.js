@@ -165,7 +165,6 @@ function categoryFilterFunction() {
       categorieElement.classList.add("displayNone");
     }
   }
-  validateTaskForm();
 }
 
 function validateTaskForm() {
