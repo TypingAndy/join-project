@@ -125,7 +125,6 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 onfocus="openCategoryDropdown()"
                 onblur="closeCategoryDropdown()"
                 onkeyup="categoryFilterFunction()"
-                onchange="validateTaskForm('taskFormCategoryInput', 'requiredCategoryInfo')"
                 placeholder="Select task category"
                 class="taskFormDropdownInput"
                 autocomplete="off"
