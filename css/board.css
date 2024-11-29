@@ -233,15 +233,15 @@
 }
 
 .taskCardCategory {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  height: 27px;
+  /* height: 27px; */
   width: fit-content;
   background-color: rgba(0, 56, 255, 1);
   color: white;
   border-radius: 10px;
   font-size: 16px;
-  padding: 2px 16px;
+  padding: 6px 16px;
   margin-bottom: 20px;
 }
 
@@ -279,6 +279,7 @@
   height: 16px;
   font-size: 12px;
   margin-bottom: 20px;
+  gap: 8px;
 }
 
 .taskCardSubtaskBarWrapper {
@@ -456,8 +457,8 @@
 
 @media (min-width: 1024px) {
   .mainSection {
-    margin-left: 224px; /* Added this to account for the navbar width */
-    width: calc(100% - 224px); /* Adjusted width to account for navbar */
+    margin-left: 220px; /* Added this to account for the navbar width */
+    width: calc(100% - 220px);
   }
   .boardWrapper {
     padding: 0 48px;
@@ -476,6 +477,13 @@
     /* margin-bottom: 100px; */
   }
 
+  .toDoSection,
+  .inProgressSection,
+  .awaitFeedbackSection,
+  .doneSection {
+    min-width: 170px;
+  }
+
   .toDoSectionContentWrapper,
   .inProgressContentWrapper,
   .awaitFeedbackContentWrapper,
@@ -489,6 +497,19 @@
     gap: 16px;
   }
 
+  .toDoSectionTitleContainer,
+  .inProgressTitleContainer,
+  .awaitFeedbackTitleContainer,
+  .doneTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(42, 54, 71, 1);
+  }
+
   .boardTitleContainer img {
     display: none;
     width: 40px;
@@ -496,5 +517,23 @@
 
   .addTaskInputButton {
     display: flex;
+  }
+}
+
+@media (min-width: 1150px) {
+  .toDoSectionTitleContainer,
+  .inProgressTitleContainer,
+  .awaitFeedbackTitleContainer,
+  .doneTitleContainer {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 1350px) {
+  .toDoSectionTitleContainer,
+  .inProgressTitleContainer,
+  .awaitFeedbackTitleContainer,
+  .doneTitleContainer {
+    font-size: 28px;
   }
 }
