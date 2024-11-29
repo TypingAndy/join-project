@@ -135,13 +135,16 @@ function fillCategoryDropdown() {
 }
 
 function chooseCategory(chosenCategory, chosenCategoryColor) {
-  document.getElementById("taskFormCategoryInput").value = chosenCategory;
+  let inputElement = document.getElementById("taskFormCategoryInput");
+  inputElement.value = chosenCategory;
+
   categoryData = {
     category: chosenCategory,
     color: chosenCategoryColor,
   };
 
-  validateTaskForm();
+  validateTaskCategoryInput();
+
   return categoryData;
 }
 
@@ -243,6 +246,42 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
+// required inputs
+
+function validateTaskTitleInput() {
+  let inputElement = document.getElementById("taskTitleInput");
+  let requiredInfoElement = document.getElementById("requiredTitleInfo");
+
+  if (inputElement.value.trim() === "") {
+    requiredInfoElement.classList.remove("displayNone");
+  } else {
+    requiredInfoElement.classList.add("displayNone");
+  }
+}
+
+function validateTaskDateInput() {
+  let inputElement = document.getElementById("dateInput");
+  let requiredInfoElement = document.getElementById("requiredDateInfo");
+
+  if (inputElement.value.trim() === "") {
+    requiredInfoElement.classList.remove("displayNone");
+  } else {
+    requiredInfoElement.classList.add("displayNone");
+  }
+}
+
+function validateTaskCategoryInput() {
+  let inputElement = document.getElementById('taskFormCategoryInput');
+  let requiredInfoElement = document.getElementById('requiredCategoryInfo');
+
+  if (inputElement.value.trim() === '') {
+    requiredInfoElement.classList.remove('displayNone');
+  } else {
+    requiredInfoElement.classList.add('displayNone');
+  }
+}
+
+
 //create Task modal
 
 function createTaskAllNeededFunctions() {
@@ -255,8 +294,8 @@ function createTaskAllNeededFunctions() {
 function showCreateTaskModal() {
   let modalBackground = document.getElementById("modalFullScreenContainer");
   let modal = document.getElementById("taskCreatedModal");
-  
-  modalBackground.style.display = "block"; 
+
+  modalBackground.style.display = "block";
   setTimeout(() => {
     modal.classList.add("taskCreatedModalShow");
   }, 10);
