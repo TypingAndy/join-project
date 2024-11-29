@@ -106,6 +106,7 @@ function showWelcomeScreen() {
 
 function setWelcomeScreenDayTime() {
   let dayTime = document.getElementById("welcomeDayTime");
+  let dayTimeDesktop = document.getElementById("welcomeDayTimeDesktop");
   let hours = new Date().getHours();
   let greeting;
 
@@ -120,13 +121,16 @@ function setWelcomeScreenDayTime() {
   }
 
   dayTime.innerHTML = greeting;
+  dayTimeDesktop.innerHTML = greeting;
 }
 
 function setWelcomeScreenName() {
   let name = document.getElementById("welcomeName");
+  let nameDesktop = document.getElementById("welcomeNameDesktop");
   let nameFromStorage = localStorage.getItem("loggedUserName");
 
   if (nameFromStorage) {
     name.innerHTML = nameFromStorage.split(" ")[0];
+    nameDesktop.innerHTML = nameFromStorage.split(" ")[0];
   }
 }
