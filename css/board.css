@@ -518,6 +518,10 @@
   .addTaskInputButton {
     display: flex;
   }
+
+  .navLinkContainer{
+
+  }
 }
 
 @media (min-width: 1150px) {

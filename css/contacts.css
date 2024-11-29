@@ -70,6 +70,7 @@ body {
 .contactInfos {
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .contactName {
