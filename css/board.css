@@ -474,7 +474,6 @@
     flex-direction: row;
     width: 100%;
     gap: 18px;
-    /* margin-bottom: 100px; */
   }
 
   .toDoSection,
@@ -505,9 +504,10 @@
     justify-content: space-between;
     align-items: center;
     font-family: Inter;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
+    margin: 0 10px;
   }
 
   .boardTitleContainer img {
@@ -519,8 +519,8 @@
     display: flex;
   }
 
-  .navLinkContainer{
-
+  .taskCard {
+    max-width: none;
   }
 }
 
@@ -529,11 +529,11 @@
   .inProgressTitleContainer,
   .awaitFeedbackTitleContainer,
   .doneTitleContainer {
-    font-size: 22px;
+    font-size: 19px;
   }
 }
 
-@media (min-width: 1350px) {
+@media (min-width: 1390px) {
   .toDoSectionTitleContainer,
   .inProgressTitleContainer,
   .awaitFeedbackTitleContainer,
