@@ -6,36 +6,36 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  z-index: 99999;
+  z-index: 9999999;
 }
 
 .boardTaskPopup {
   display: flex;
-  position: fixed;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 100px; /* nav height */
   right: -100%;
-  top: 88px;
-  height: calc(100% - 24px - 88px - 88px);
-  width: calc(100% - 24px);
-  background-color: #ffffff;
-  z-index: 500;
-  border-radius: 30px;
-  overflow: auto;
-  transition: right 0.3s ease-in-out;
+  height: calc(100vh - 230px); /* viewport height minus nav + footer */
+  width: min(80vw, 600px); /* responsive width with max size */
+  padding: 18px;
+  background: white;
+  border-radius: 8px;
+  transition: right 0.3s ease;
 }
 
 .boardTaskPopup.active {
-  right: 12px;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .boardTaskPopupContentWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #ffffff6a;
   width: calc(100% - 40px);
-  height: calc(100% - 64px);
+  height: 100%;
   box-sizing: border-box;
   border-radius: 30px;
   gap: 16px;
@@ -200,4 +200,15 @@
 
 .boardTaskEditPopup {
   width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .boardTaskPopup.active {
+    right: calc(50% - 128px); /* shift starting point left by 200px */
+    transform: translateX(50%); /* this still centers it, then the calc above moves it right */
+  }
+
+  .boardTaskPopupContentWrapper {
+    padding: 24px 8px;
+  }
 }
