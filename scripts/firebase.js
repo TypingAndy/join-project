@@ -48,9 +48,7 @@ async function updateUserInFirebase(firebaseId, updatedUserData) {
 async function loadUserDataFromFirebase() {
   let response = await fetch(BASE_URL + "users" + ".json");
   unsortedUsers = await response.json();
-  console.log(unsortedUsers)
   return unsortedUsers;
-  
 }
 
 async function getNewUserId(response) {
@@ -87,11 +85,8 @@ async function postTaskData(taskStatus) {
   }
 }
 
-
-
 async function updateTaskData(taskStatus, taskID) {
   let createTaskData = editTaskInputData(taskStatus);
-
 
   await fetch(BASE_URL + `/tasks/${taskID}.json`, {
     method: "PATCH",

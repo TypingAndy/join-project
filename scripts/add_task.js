@@ -135,15 +135,16 @@ function fillCategoryDropdown() {
 }
 
 function chooseCategory(chosenCategory, chosenCategoryColor) {
-  let inputElement = document.getElementById("taskFormCategoryInput");
+  const inputElement = document.getElementById("taskFormCategoryInput");
+
   inputElement.value = chosenCategory;
 
-  categoryData = {
+  const categoryData = {
     category: chosenCategory,
     color: chosenCategoryColor,
   };
 
-  validateTaskCategoryInput();
+  validateInput("taskFormCategoryInput", "requiredCategoryInfo");
 
   return categoryData;
 }
@@ -246,22 +247,11 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
-// required inputs
+// task Form inputs
 
-function validateTaskTitleInput() {
-  let inputElement = document.getElementById("taskTitleInput");
-  let requiredInfoElement = document.getElementById("requiredTitleInfo");
-
-  if (inputElement.value.trim() === "") {
-    requiredInfoElement.classList.remove("displayNone");
-  } else {
-    requiredInfoElement.classList.add("displayNone");
-  }
-}
-
-function validateTaskDateInput() {
-  let inputElement = document.getElementById("dateInput");
-  let requiredInfoElement = document.getElementById("requiredDateInfo");
+function validateInput(inputId, requiredInfoId) {
+  let inputElement = document.getElementById(inputId);
+  let requiredInfoElement = document.getElementById(requiredInfoId);
 
   if (inputElement.value.trim() === "") {
     requiredInfoElement.classList.remove("displayNone");
@@ -270,17 +260,9 @@ function validateTaskDateInput() {
   }
 }
 
-function validateTaskCategoryInput() {
-  let inputElement = document.getElementById('taskFormCategoryInput');
-  let requiredInfoElement = document.getElementById('requiredCategoryInfo');
-
-  if (inputElement.value.trim() === '') {
-    requiredInfoElement.classList.remove('displayNone');
-  } else {
-    requiredInfoElement.classList.add('displayNone');
-  }
+function clearTaskForm() {
+  renderTaskForm('to do', 'taskFormAddTask')
 }
-
 
 //create Task modal
 
@@ -307,7 +289,6 @@ function getNewTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
   let taskDateInput = document.getElementById("dateInput").value;
-  console.log(categoryData);
   let createTaskData = {
     taskTitle: taskTitleInput,
     taskDescription: taskDescriptionInput,

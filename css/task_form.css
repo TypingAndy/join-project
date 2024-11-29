@@ -71,7 +71,7 @@
 .addTaskLeftSection {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .addTaskSectionDividingLine {
@@ -81,7 +81,7 @@
 .addTaskRightSection {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .taskFormSectionBox {
@@ -112,6 +112,7 @@
   padding: 0 12px;
   font-size: 16px;
   font-family: "Inter";
+  box-sizing: border-box;
 }
 
 .taskFormInput::placeholder {
@@ -123,7 +124,7 @@
   color: #FF8190;
   font-size: 12px;
   position: absolute;
-  bottom: -18px;
+  bottom: -16px;
 }
 
 .taskFormUserDropdownArrow {
