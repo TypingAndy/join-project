@@ -6,9 +6,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
           <div class="taskFormHeader">Add Task</div>
         </div>
 
-
       <div class="taskFormMidSection">
-
 
       <div class="addTaskLeftSection">
         <!-- Title Section -->
@@ -29,8 +27,6 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
           <div id="requiredTitleInfo" class="requiredInfo displayNone">This field is required</div>
         </div>
         
-
-     
           <!-- Description Section -->
           <div class="taskFormSectionBox">
             <div class="taskFormLabels">Description</div>

@@ -280,7 +280,10 @@ function checkInputValue() {
 //create Task modal
 
 function createTaskAllNeededFunctions() {
-  showCreateTaskModal();
+  if (window.location.href.endsWith("add_task.html")) {
+    showCreateTaskModal();
+  }
+
   setTimeout(() => {
     redirectToBoard();
   }, 1500);
