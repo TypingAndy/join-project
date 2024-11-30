@@ -90,8 +90,8 @@ body {
 }
 
 .contactMail:hover {
-scale: 1.01;
-text-shadow: 1px 1px 1px rgba(0, 123, 238, 0.404);
+  scale: 1.01;
+  text-shadow: 1px 1px 1px rgba(0, 123, 238, 0.404);
 }
 
 .line {
