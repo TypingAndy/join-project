@@ -137,16 +137,15 @@ function chooseCategory(chosenCategory, chosenCategoryColor) {
 
   inputElement.value = chosenCategory;
 
-  let categoryData = {
+  categoryData = {
     category: chosenCategory,
     color: chosenCategoryColor,
   };
 
-  validateTaskForm('taskFormCategoryInput', 'requiredCategoryInfo')
+  validateTaskForm("taskFormCategoryInput", "requiredCategoryInfo");
 
   return categoryData;
 }
-
 
 // subtask
 
