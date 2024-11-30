@@ -49,3 +49,12 @@
     gap: 35px;
   }
   
+
+  @media (min-width: 1024px) {
+    .legalNoticeSidebarWrapper{
+      display: flex;
+    }
+    .helpPageSection{
+      margin-left: 232px;
+    }
+  }
