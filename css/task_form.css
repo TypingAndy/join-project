@@ -573,7 +573,7 @@ input:not(.empty) {
 @media (min-width: 1024px) {
   .taskFormWrapper {
     overflow: unset;
-    padding: 0 32px;
+   
   }
 
   .taskFormHeader {
