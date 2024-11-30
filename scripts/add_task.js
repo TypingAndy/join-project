@@ -285,10 +285,11 @@ function createTaskAllNeededFunctions() {
     setTimeout(() => {
       redirectToBoard();
     }, 1500);
+  } else {
+    redirectToBoard();
   }
-
-  redirectToBoard();
 }
+
 
 function showCreateTaskModal() {
   let modalBackground = document.getElementById("modalFullScreenContainer");
