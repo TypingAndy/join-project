@@ -282,11 +282,12 @@ function checkInputValue() {
 function createTaskAllNeededFunctions() {
   if (window.location.href.endsWith("add_task.html")) {
     showCreateTaskModal();
+    setTimeout(() => {
+      redirectToBoard();
+    }, 1500);
   }
 
-  setTimeout(() => {
-    redirectToBoard();
-  }, 1500);
+  redirectToBoard();
 }
 
 function showCreateTaskModal() {
