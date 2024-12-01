@@ -89,8 +89,18 @@ function filterLowestDate() {
   }
 
   allDates.sort((a, b) => new Date(a) - new Date(b));
-  return allDates[0];
+  return formatDate(allDates[0]);
 }
+
+function formatDate(dateString) {
+  let date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
 
 //Welcome Screen
 

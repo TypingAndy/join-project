@@ -15,11 +15,8 @@
     <script src="../templates/profile_button_template.js"></script>
   </head>
 
-
   <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate(), showWelcomeScreen(), setWelcomeScreenName(), setWelcomeScreenDayTime()">
-
     <div class="summaryWrapper">
-
       <header>
         <img src="../images/icons/join_logo_black.svg" alt="" />
         <div class="headerTitle">Kanban Project Management Tool</div>
@@ -37,130 +34,113 @@
         </div>
       </header>
 
-    
-        <div class="welcomeScreen">
-          <div id="welcomeDayTime" class="welcomeDayTime"></div>
-          <div id="welcomeName" class="welcomeName"></div>
-        </div>
-  
+      <div class="welcomeScreen">
+        <div id="welcomeDayTime" class="welcomeDayTime"></div>
+        <div id="welcomeName" class="welcomeName"></div>
+      </div>
 
       <div class="summaryMainScreenWrapper">
+        <div class="summaryTitleContainer">
+          <div class="summaryHeaderBox">
+            <div class="summaryHeaderFont">Join 360</div>
+            <div class="summaryHeaderBlueLineDesktop"></div>
+            <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
+            <div class="summaryHeaderBlueLineMobile"></div>
+          </div>
+        </div>
 
-          <div class="summaryTitleContainer">
-            <div class="summaryHeaderBox">
-              <div class="summaryHeaderFont">Join 360</div>
-              <div class="summaryHeaderBlueLineDesktop"></div>
-              <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
-              <div class="summaryHeaderBlueLineMobile"></div>
+        <div class="summaryMainScreenWithGreeting">
+          <div class="summaryMidSectionWrapper">
+            <div class="summaryMidSectionDoDoneBox">
+              <div onclick="window.location.href='board.html'" class="summaryMidSectionToDo">
+                <div class="iconButtonToDo"></div>
+                <div>
+                  <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
+                  <div class="summaryMidSectionStandartFontSize">To-do</div>
+                </div>
+              </div>
+              <div onclick="window.location.href='board.html'" class="summaryMidSectionDone">
+                <div class="iconButtonDone"></div>
+                <div>
+                  <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
+                  <div class="summaryMidSectionStandartFontSize">Done</div>
+                </div>
+              </div>
+            </div>
+
+            <div onclick="window.location.href='board.html'" class="summaryMidSectionPrioDateBox">
+              <div class="summaryMidSectionPrio">
+                <img class="summaryIcons" src="../images/icons/urgent_white-arrow.png" />
+                <div>
+                  <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
+                  <div class="summaryMidSectionStandartFontSize">Urgent</div>
+                </div>
+              </div>
+
+              <div class="summaryMidSectionPrioDateDividingLine"></div>
+
+              <div class="summaryMidSectionDate">
+                <div id="summaryDate" class="summaryDate"><b></b></div>
+                <div class="summaryDeadline">Upcoming Deadline</div>
+              </div>
+            </div>
+
+            <div class="summaryMidSectionBoardProgressFreebackBox">
+              <div onclick="window.location.href='board.html'" class="summaryMidSectionBoard">
+                <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Tasks in<br />Board</div>
+              </div>
+
+              <div onclick="window.location.href='board.html'" class="summaryMidSectionProgress">
+                <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Tasks in<br />Progress</div>
+              </div>
+
+              <div onclick="window.location.href='board.html'" class="summaryMidSectionFeedback">
+                <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
+                <div class="summaryMidSectionStandartFontSize">Await<br />Feedback</div>
+              </div>
             </div>
           </div>
 
-          <div class="summaryMainScreenWithGreeting">
-
-            <div class="summaryMidSectionWrapper">
-        
-                <div class="summaryMidSectionDoDoneBox">
-                    <div onclick="window.location.href='board.html'" class="summaryMidSectionToDo">
-                        <div class="iconButtonToDo"></div>
-                        <div>
-                            <div id="summaryToDoValue" class="summaryMidSectionAmountFontSize">1</div>
-                            <div class="summaryMidSectionStandartFontSize">To-do</div>
-                        </div>
-                    </div>
-                    <div onclick="window.location.href='board.html'" class="summaryMidSectionDone">
-                        <div class="iconButtonDone"></div>
-                        <div>
-                            <div id="summaryDoneValue" class="summaryMidSectionAmountFontSize">0</div>
-                            <div class="summaryMidSectionStandartFontSize">Done</div>
-                        </div>
-                    </div>
-                </div>
-        
-                <div onclick="window.location.href='board.html'" class="summaryMidSectionPrioDateBox">
-                    <div class="summaryMidSectionPrio">
-                        <img class="summaryIcons" src="../images/icons/urgent_white-arrow.png" />
-                        <div>
-                            <div id="summaryUrgentValue" class="summaryMidSectionAmountFontSize">0</div>
-                            <div class="summaryMidSectionStandartFontSize">Urgent</div>
-                        </div>
-                    </div>
-        
-                    <div class="summaryMidSectionPrioDateDividingLine"></div>
-        
-                    <div class="summaryMidSectionDate">
-                        <div id="summaryDate" class="summaryDate"><b></b></div>
-                        <div class="summaryDeadline">Upcoming Deadline</div>
-                    </div>
-                </div>
-        
-                <div class="summaryMidSectionBoardProgressFreebackBox">
-                    <div onclick="window.location.href='board.html'" class="summaryMidSectionBoard">
-                        <div id="summaryBoardValue" class="summaryMidSectionAmountFontSize">0</div>
-                        <div class="summaryMidSectionStandartFontSize">Tasks in<br />Board</div>
-                    </div>
-        
-                    <div onclick="window.location.href='board.html'" class="summaryMidSectionProgress">
-                        <div id="summaryProgressValue" class="summaryMidSectionAmountFontSize">0</div>
-                        <div class="summaryMidSectionStandartFontSize">Tasks in<br />Progress</div>
-                    </div>
-        
-                    <div onclick="window.location.href='board.html'" class="summaryMidSectionFeedback">
-                        <div id="summaryFeedbackValue" class="summaryMidSectionAmountFontSize">0</div>
-                        <div class="summaryMidSectionStandartFontSize">Await<br />Feedback</div>
-                    </div>
-                </div>
-        
-            </div>
-
-            <div class="welcomeScreenDesktop">
-              <div id="welcomeDayTimeDesktop" class="welcomeDayTimeDesktop"></div>
-              <div id="welcomeNameDesktop" class="welcomeNameDesktop"></div>
-            </div>
+          <div class="welcomeScreenDesktop">
+            <div id="welcomeDayTimeDesktop" class="welcomeDayTimeDesktop"></div>
+            <div id="welcomeNameDesktop" class="welcomeNameDesktop"></div>
+          </div>
         </div>
-
-
-
       </div>
 
       <nav>
         <img class="navJoinLogo" src="../images/icons/join_logo_white.png" alt="" />
-    
+
         <div class="navLinkContainer">
-            <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
-                <img src="../images/icons/summary_icon.png" alt="" />
-                <p>Summary</p>
-            </div>
-    
-            <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
-                <img src="../images/icons/board_icon.png" alt="" />
-                <p>Board</p>
-            </div>
-    
-            <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
-                <img src="../images/icons/add_task_icon.png" alt="" />
-                <p>Add Tasks</p>
-            </div>
-    
-            <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
-                <img src="../images/icons/contact_icon.png" alt="" />
-                <p>Contacts</p>
-            </div>
+          <div onclick="window.location.href='summary.html'" id="summaryLink" class="navIconBox">
+            <img class="navImg" src="../images/icons/summary_icon.png" alt="" />
+            <p>Summary</p>
+          </div>
+
+          <div onclick="window.location.href='board.html'" id="boardLink" class="navIconBox">
+            <img class="navImg" src="../images/icons/board_icon.png" alt="" />
+            <p>Board</p>
+          </div>
+
+          <div onclick="window.location.href='add_task.html'" id="addTaskLink" class="navIconBox">
+            <img class="navImg" src="../images/icons/add_task_icon.png" alt="" />
+            <p>Add Tasks</p>
+          </div>
+
+          <div onclick="window.location.href='contacts.html'" id="contactsLink" class="navIconBox">
+            <img class="navImg" src="../images/icons/contact_icon.png" alt="" />
+            <p>Contacts</p>
+          </div>
         </div>
-    
+
         <div class="legalContainer">
-            <div onclick="window.location.href='privacy_policy.html'" class="navLegalPrivacyPolicy">
-                Privacy Policy
-            </div>
-    
-            <div onclick="window.location.href='legal_notice.html'" class="navLegalLegalNotice">
-                Legal notice
-            </div>
+          <div onclick="window.location.href='privacy_policy.html'" class="navLegalPrivacyPolicy">Privacy Policy</div>
+
+          <div onclick="window.location.href='legal_notice.html'" class="navLegalLegalNotice">Legal notice</div>
         </div>
       </nav>
-
     </div>
-
   </body>
-
-
 </html>
