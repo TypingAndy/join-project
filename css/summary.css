@@ -109,7 +109,6 @@
 }
 
 .summaryMainScreenWrapper {
-
   width: calc(100% - 32px);
   max-width: 500px;
   margin: 0 16px;
@@ -118,7 +117,6 @@
   margin-top: -16%;
   gap: 8%;
 }
-
 
 .welcomeScreenDesktop {
   display: none;
@@ -343,25 +341,88 @@
   .welcomeScreenDesktop {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    min-width: 300px;
   }
 
   .welcomeDayTimeDesktop {
-    font-size: 36px;
+    font-size: 47px;
     color: #2a3647;
   }
 
   .welcomeNameDesktop {
-    font-size: 47px;
+    font-size: 64px;
     font-weight: 700;
     color: #29abe2;
   }
 
-  .summaryMainScreenWrapper{
+  .summaryMainScreenWrapper {
     margin-left: 232px;
     margin-right: 0;
     max-width: 1200px;
     width: 70%;
     margin-top: unset;
+  }
+
+  .summaryHeaderBox {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .summaryHeaderFont {
+    font-size: 61px;
+  }
+
+  .summarySubHeaderFont {
+    font-size: 27px;
+  }
+
+  .summaryHeaderBlueLineDesktop {
+    display: flex;
+    background-color: #29abe2;
+    height: 60px;
+    width: 3px;
+  }
+
+  .summaryHeaderBlueLineMobile {
+    display: none;
+  }
+
+  .summaryMidSectionAmountFontSize {
+    font-size: 64px;
+  }
+
+  .iconButtonToDo {
+    width: 69px;
+    height: 69px;
+  }
+
+  .iconButtonDone {
+    width: 69px;
+    height: 69px;
+  }
+
+  .summaryIcons {
+    width: 69px;
+    height: 69px;
+  }
+
+  .summaryMidSectionStandartFontSize {
+    font-size: 20px;
+  }
+
+  .summaryDate {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .summaryDeadline {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .summaryMidSectionDate {
+    align-items: center;
   }
 }
