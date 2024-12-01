@@ -111,11 +111,11 @@ function setWelcomeScreenDayTime() {
   let greeting;
 
   if (hours >= 5 && hours < 12) {
-    greeting = "Good Morning";
+    greeting = "Good morning,";
   } else if (hours >= 12 && hours < 18) {
-    greeting = "Good Afternoon";
+    greeting = "Good afternoon,";
   } else if (hours >= 18 && hours < 22) {
-    greeting = "Good Evening";
+    greeting = "Good evening,";
   } else {
     greeting = "Hello";
   }

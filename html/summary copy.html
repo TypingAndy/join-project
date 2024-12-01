@@ -16,7 +16,10 @@
   </head>
 
 
+
+
   <body onload="summaryAddAllValuesToBoard(), renderProfileButtonTemplate(), showWelcomeScreen(), setWelcomeScreenName(), setWelcomeScreenDayTime()">
+
 
     <div class="summaryWrapper">
 
@@ -37,23 +40,15 @@
         </div>
       </header>
 
-    
-        <div class="welcomeScreen">
-          <div id="welcomeDayTime" class="welcomeDayTime"></div>
-          <div id="welcomeName" class="welcomeName"></div>
-        </div>
-  
-
       <div class="summaryMainScreenWrapper">
 
-          <div class="summaryTitleContainer">
-            <div class="summaryHeaderBox">
-              <div class="summaryHeaderFont">Join 360</div>
-              <div class="summaryHeaderBlueLineDesktop"></div>
-              <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
-              <div class="summaryHeaderBlueLineMobile"></div>
-            </div>
+        <div class="summaryTitleContainer">
+          <div class="summaryHeaderBox">
+            <div class="summaryHeaderFont">Join 360</div>
+            <div class="summarySubHeaderFont">Key Metrics at a Glance</div>
+            <div class="summaryHeaderBlueLine"></div>
           </div>
+        </div>
 
           <div class="summaryMainScreenWithGreeting">
 
@@ -122,6 +117,13 @@
 
       </div>
 
+      <div class="summaryContentWrapper">
+        <div class="welcomeScreen">
+          <div id="welcomeDayTime" class="welcomeDayTime"></div>
+          <div id="welcomeName" class="welcomeName"></div>
+        </div>
+    </div>
+
       <nav>
         <img class="navJoinLogo" src="../images/icons/join_logo_white.png" alt="" />
     
@@ -157,10 +159,12 @@
             </div>
         </div>
       </nav>
+    
+
+
 
     </div>
 
   </body>
-
 
 </html>
