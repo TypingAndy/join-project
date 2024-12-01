@@ -74,8 +74,9 @@ header img {
 }
 
 .headerTitle {
+  position: absolute;
   font-size: 24px;
-  margin-right: 10%;
+  margin-left: 300px;
   display: none;
 }
 
@@ -98,6 +99,13 @@ header img {
 
 .helpButtonModal {
   display: flex;
+}
+
+nav {
+  height: 80px;
+  width: 100%;
+  bottom: 0;
+  position: fixed;
 }
 /*----------------------------- multi-usage */
 

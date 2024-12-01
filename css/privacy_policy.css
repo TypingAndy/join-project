@@ -49,5 +49,12 @@
 
   .privacyPolicySection {
     margin-left: 232px;
+    padding: 120px;
+  }
+
+  .subtitleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
 }

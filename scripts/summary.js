@@ -89,8 +89,18 @@ function filterLowestDate() {
   }
 
   allDates.sort((a, b) => new Date(a) - new Date(b));
-  return allDates[0];
+  return formatDate(allDates[0]);
 }
+
+function formatDate(dateString) {
+  let date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
 
 //Welcome Screen
 
@@ -111,11 +121,11 @@ function setWelcomeScreenDayTime() {
   let greeting;
 
   if (hours >= 5 && hours < 12) {
-    greeting = "Good Morning";
+    greeting = "Good morning,";
   } else if (hours >= 12 && hours < 18) {
-    greeting = "Good Afternoon";
+    greeting = "Good afternoon,";
   } else if (hours >= 18 && hours < 22) {
-    greeting = "Good Evening";
+    greeting = "Good evening,";
   } else {
     greeting = "Hello";
   }

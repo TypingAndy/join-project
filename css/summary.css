@@ -22,7 +22,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 100px;
   height: 104px;
   left: 16px;
 }
@@ -36,11 +35,15 @@
   font-size: 20px;
 }
 
-.summaryHeaderBlueLine {
+.summaryHeaderBlueLineMobile {
   background-color: #29abe2;
   height: 3px;
   width: 90px;
   border-radius: 3px;
+}
+
+.summaryHeaderBlueLineDesktop {
+  display: none;
 }
 
 .summaryContentWrapper {
@@ -98,6 +101,23 @@
   color: #29abe2;
 }
 
+.summaryMainScreenWithGreeting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.summaryMainScreenWrapper {
+  width: calc(100% - 32px);
+  max-width: 500px;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  margin-top: -16%;
+  gap: 8%;
+}
+
 .welcomeScreenDesktop {
   display: none;
 }
@@ -105,10 +125,11 @@
 .summaryWrapper {
   background-color: #f4f4f4;
   height: 100vh;
-  width: 100vw;
-  /* display: flex; */
-  justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .summaryMidSectionWrapper {
@@ -320,42 +341,88 @@
   .welcomeScreenDesktop {
     display: flex;
     flex-direction: column;
-    width: 440px;
+    min-width: 300px;
   }
 
   .welcomeDayTimeDesktop {
-    font-size: 36px;
+    font-size: 47px;
     color: #2a3647;
   }
 
   .welcomeNameDesktop {
-    font-size: 47px;
+    font-size: 64px;
     font-weight: 700;
     color: #29abe2;
   }
-  .summaryHeaderBox {
-    margin-top: 0;
-  }
 
-  .summaryWithGreeting {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .summaryContentWrapper {
-    max-width: 1000px;
+  .summaryMainScreenWrapper {
     margin-left: 232px;
-    margin-top: 120px;
+    margin-right: 0;
+    max-width: 1200px;
+    width: 70%;
+    margin-top: unset;
   }
 
-  .summaryWrapper {
-    background-color: #f4f4f4;
-    height: 100vh;
-    width: 100vw;
+  .summaryHeaderBox {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .summaryHeaderFont {
+    font-size: 61px;
+  }
+
+  .summarySubHeaderFont {
+    font-size: 27px;
+  }
+
+  .summaryHeaderBlueLineDesktop {
     display: flex;
-    justify-content: center;
+    background-color: #29abe2;
+    height: 60px;
+    width: 3px;
+  }
+
+  .summaryHeaderBlueLineMobile {
+    display: none;
+  }
+
+  .summaryMidSectionAmountFontSize {
+    font-size: 64px;
+  }
+
+  .iconButtonToDo {
+    width: 69px;
+    height: 69px;
+  }
+
+  .iconButtonDone {
+    width: 69px;
+    height: 69px;
+  }
+
+  .summaryIcons {
+    width: 69px;
+    height: 69px;
+  }
+
+  .summaryMidSectionStandartFontSize {
+    font-size: 20px;
+  }
+
+  .summaryDate {
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .summaryDeadline {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .summaryMidSectionDate {
     align-items: center;
   }
 }
