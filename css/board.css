@@ -181,7 +181,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
+  width: 95%;
   height: 48px;
   background-color: rgba(231, 231, 231, 1);
   color: rgba(168, 168, 168, 1);
@@ -488,6 +488,7 @@
   }
   .boardWrapper {
     padding: 0 48px;
+    height: 100vh;
   }
 
   .titleAndInputWrapper {
@@ -500,6 +501,7 @@
     flex-direction: row;
     width: 100%;
     gap: 0px;
+    height: 100%;
   }
 
   .toDoSection,
@@ -520,6 +522,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 16px;
+    height: 100%;
   }
 
   .toDoSectionTitleContainer,

@@ -121,7 +121,7 @@ async function handleClickSaveContact(firebaseId) {
 
 async function handleClickDeleteUser(firebaseId) {
   let loggedUserFirebaseID = localStorage.getItem("loggedUserFirebaseId");
-
+  clearUserDetailsOnDesktop();
   await deleteUserFromFirebase(firebaseId);
   await removeUserFromAllTasks(firebaseId);
   if (firebaseId === loggedUserFirebaseID) {
@@ -133,12 +133,19 @@ async function handleClickDeleteUser(firebaseId) {
   toggleContactDetails();
 }
 
+function clearUserDetailsOnDesktop() {
+  const contactDetailsElement = document.getElementById("contactDetailsSection");
+  if (window.innerWidth >= 1024) {
+    contactDetailsElement.innerHTML = emptyContactDetails();
+  }
+}
+
 async function removeUserFromAllTasks(userId) {
   await loadTasksObjectFromFirebase();
 
   for (let taskId in allUnsortedTasks) {
     const task = allUnsortedTasks[taskId];
-    if (task.taskAssignedUsersIds.includes(userId)) {
+    if (task.taskAssignedUsersIds && task.taskAssignedUsersIds.includes(userId)) {
       const updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
 
       if (updatedUserIds.length > 0) {
