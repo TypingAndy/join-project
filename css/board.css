@@ -69,7 +69,6 @@
 
 .inputAndButtonWrapper {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 100%;
@@ -152,7 +151,6 @@
 .awaitFeedbackSection {
   display: flex;
   flex-direction: column;
-  /* margin: 9px; */
   width: 100%;
   margin-top: 24px;
 }
@@ -160,7 +158,6 @@
 .doneSection {
   display: flex;
   flex-direction: column;
-  /* margin: 9px; */
   width: 100%;
   margin-top: 24px;
   margin-bottom: 80px;
@@ -199,11 +196,12 @@
 .doneContentWrapper {
   display: flex;
   margin-top: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 14px;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   gap: 16px;
+  padding: 8px 4px;
 }
 
 .toDoSectionContentWrapper::-webkit-scrollbar,
@@ -216,7 +214,7 @@
 .taskCard {
   display: flex;
   flex-direction: column;
-  width: 93%;
+  width: 90%;
   max-width: 240px;
   /* height: fit-content; */
   background-color: rgb(255, 255, 255);
@@ -232,10 +230,31 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
+.taskCartdCategoryWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+}
+
+.taskCardHold {
+  display: flex;
+  border-radius: 6px;
+  min-width: 80px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0);
+  font-size: 12px;
+  gap: 8px;
+}
+
+.taskCardHold img {
+  height: 20px;
+  width: 20px;
+}
+
 .taskCardCategory {
   display: flex;
-  align-items: center;
-  /* height: 27px; */
+
   width: fit-content;
   background-color: rgba(0, 56, 255, 1);
   color: white;
@@ -456,8 +475,15 @@
 }
 
 @media (min-width: 1024px) {
+  .taskCardHold {
+    display: none;
+  }
+
+  .boardPlusIconSmall {
+    margin-right: 0px;
+  }
   .mainSection {
-    margin-left: 220px; /* Added this to account for the navbar width */
+    margin-left: 220px;
     width: calc(100% - 220px);
   }
   .boardWrapper {
@@ -473,7 +499,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 18px;
+    gap: 0px;
   }
 
   .toDoSection,
@@ -532,12 +558,21 @@
     font-size: 19px;
   }
 }
+@media (min-width: 1350px) {
+  .boardPlusIconSmall {
+    margin-right: 10px;
+  }
+}
 
 @media (min-width: 1390px) {
   .toDoSectionTitleContainer,
   .inProgressTitleContainer,
   .awaitFeedbackTitleContainer,
   .doneTitleContainer {
-    font-size: 28px;
+    font-size: 26px;
+  }
+
+  .boardPlusIconSmall {
+    margin-right: 14px;
   }
 }

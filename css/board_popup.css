@@ -212,7 +212,7 @@
 
 @media (min-width: 1024px) {
   .boardTaskPopup.active {
-    right: calc(50% - 128px);
+    right: calc(50% - 118px);
     transform: translateX(50%);
   }
 
