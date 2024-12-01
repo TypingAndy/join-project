@@ -41,12 +41,12 @@
   .helpPageHowToUseNumbers {
     font-weight: bold;
     font-size: 27px;
+    width: 20px;
   }
   
   .helpPageGuideBoxes {
     display: flex;
-    justify-content: space-between;
-    gap: 35px;
+      gap: 35px;
   }
   
 
@@ -56,5 +56,6 @@
     }
     .helpPageSection{
       margin-left: 232px;
+      padding: 120px;
     }
   }

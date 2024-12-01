@@ -182,8 +182,6 @@
 }
 
 .taskForm {
-  max-width: 900px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -573,7 +571,7 @@ input:not(.empty) {
 @media (min-width: 1024px) {
   .taskFormWrapper {
     overflow: unset;
-    width: 100%;
+   
   }
 
   .taskFormHeader {
@@ -836,6 +834,47 @@ input:not(.empty) {
 
   .addTaskLeftSection {
     width: 440px;
+    gap: 26px;
+  }
+
+  .taskFormPrioButtonImage {
+    width: 20px;
+  }
+
+  .taskFormPrioButtonBox {
+    font-size: 20px;
+  }
+}
+
+
+@media (min-width: 1600px) {
+  .addTaskRightSection {
+    width: 590px;
+    gap: 26px;
+  }
+
+  .addTaskLeftSection {
+    width: 590px;
+    gap: 26px;
+  }
+
+  .taskFormPrioButtonImage {
+    width: 20px;
+  }
+
+  .taskFormPrioButtonBox {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .addTaskRightSection {
+    width: 640px;
+    gap: 26px;
+  }
+
+  .addTaskLeftSection {
+    width: 640px;
     gap: 26px;
   }
 
