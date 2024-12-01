@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  top: 12%;
+  margin-top: 100px;
   height: 104px;
   left: 16px;
 }
@@ -47,6 +47,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
   height: calc(100vh - 200px);
   width: 100%;
   max-width: 600px;
@@ -54,6 +55,7 @@
   padding: 0 32px;
   margin-left: 0;
   margin-top: 0;
+  margin: 0 auto;
 }
 
 .welcomeScreen {
@@ -104,7 +106,7 @@
   background-color: #f4f4f4;
   height: 100vh;
   width: 100vw;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
@@ -331,6 +333,9 @@
     font-weight: 700;
     color: #29abe2;
   }
+  .summaryHeaderBox {
+    margin-top: 0;
+  }
 
   .summaryWithGreeting {
     display: flex;
@@ -354,5 +359,3 @@
     align-items: center;
   }
 }
-
-
