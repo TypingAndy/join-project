@@ -6,6 +6,7 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/help_page.css" />
+    <link rel="stylesheet" href="../css/task_form.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../scripts/script.js"></script>
     <script src="../templates/profile_button_template.js"></script>
@@ -24,6 +25,9 @@
         <div onclick="logOut()" class="userProfileButtons">Log out</div>
       </div>
     </header>
+
+
+    <div class="legalNoticeSidebarWrapper">
 
     <div class="helpPageSection">
       <div class="h1HelpBox">
@@ -147,10 +151,18 @@
       </div>
 
       <div class="legalContainer">
-        <div>Privacy Policy</div>
-        <div>Legal notice</div>
+        <div onclick="window.location.href='privacy_policy.html'" class="navLegalPrivacyPolicy">Privacy Policy</div>
+        <div onclick="window.location.href='legal_notice.html'" class="navLegalLegalNotice">Legal notice</div>
       </div>
-    
+
     </nav>
+
+
+  </div>
+
+
+
+
+
   </body>
 </html>

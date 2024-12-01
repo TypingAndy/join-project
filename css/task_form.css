@@ -112,7 +112,7 @@
   font-size: 16px;
   font-family: "Inter";
   box-sizing: border-box;
-}
+ }
 
 .taskFormInput::placeholder {
   font-size: 16px;
@@ -303,6 +303,15 @@
   color: #d1d1d1;
 }
 
+input.empty {
+  color: #d1d1d1;
+}
+
+/* Farbe für eingegebenes Datum */
+input:not(.empty) {
+  color: black;
+}
+
 /* task prioritiy */
 
 .taskFormPrioButtonBox {
@@ -455,6 +464,11 @@
   cursor: pointer;
 }
 
+.taskFormSubtaskList {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 .taskFormSubtaskListBox {
   position: relative;
   height: 48px;
@@ -559,7 +573,7 @@
 @media (min-width: 1024px) {
   .taskFormWrapper {
     overflow: unset;
-    padding: 0 32px;
+   
   }
 
   .taskFormHeader {
@@ -610,6 +624,7 @@
 
   .taskFormDescriptionTextArea {
     padding: 12px 21px 12px 21px;
+    font-size: 20px;
   }
 
   .taskFormDescriptionTextArea::placeholder {
@@ -692,6 +707,7 @@
 
   .taskFormSubtaskInput {
     padding: 12px 21px 12px 21px;
+    font-size: 20px;
   }
 
   .taskFormSubtaskInput::placeholder {

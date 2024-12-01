@@ -6,6 +6,7 @@
     <title>Join</title>
     <link rel="icon" type="image/x-icon" href="./images/icons/join_logo_black.png" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/task_form.css" />
     <link rel="stylesheet" href="../css/privacy_policy.css">
     <script src="../scripts/script.js"></script>
     <script src="../templates/profile_button_template.js"></script>
@@ -26,6 +27,7 @@
     </div>
   </header>
 
+  <div class="privacyPolicyWrapper">
     <div class="privacyPolicySection">
             <div class="h1PrivacyPolicyBox">
               <div class="h1PrivacyPolicy">Privacy Policy</div>
@@ -42,6 +44,7 @@
     </div>
 
     <nav>
+      
       <img class="navJoinLogo" src="../images/icons/join_logo_white.png" alt="">
 
       <div class="navLinkContainer">
@@ -64,11 +67,13 @@
       </div>
 
       <div class="legalContainer">
-        <div>Privacy Policy</div>
-        <div>Legal notice</div>
+        <div onclick="window.location.href='privacy_policy.html'" class="navLegalPrivacyPolicy">Privacy Policy</div>
+        <div onclick="window.location.href='legal_notice.html'" class="navLegalLegalNotice">Legal notice</div>
       </div>
-    
+
     </nav>
+
+  </div>
 </body>
 </html>
 

@@ -23,24 +23,25 @@
       <!--header-->
       <header>
         <img src="../images/icons/join_logo_black.svg" alt="" />
-        <div>
-          <div class="profileButtonBox"></div>
-        </div>
-        <div id="userProfileDropdown" class="userProfileDropdown userProfileDropdownSlider">
-          <div onclick="window.location.href='help_page.html'" class="userProfileButtons">Help</div>
-          <div onclick="window.location.href='legal_notice.html'" class="userProfileButtons">Legal Notice</div>
-          <div onclick="window.location.href='privacy_policy.html'" class="userProfileButtons">Privacy Policy</div>
-          <div onclick="logOut()" class="userProfileButtons">Log out</div>
+        <div class="headerTitle">Kanban Project Management Tool</div>
+        <div class="headerRightSide">
+          <img onclick="window.location.href='help_page.html'" class="helpImg" src="../images/icons/help.png" alt="">
+          <div>
+            <div class="profileButtonBox"></div>
+          </div>
+          <div id="userProfileDropdown" class="userProfileDropdown userProfileDropdownSlider">
+            <div onclick="window.location.href='help_page.html'" class="userProfileButtons helpButtonModal">Help</div>
+            <div onclick="window.location.href='legal_notice.html'" class="userProfileButtons">Legal Notice</div>
+            <div onclick="window.location.href='privacy_policy.html'" class="userProfileButtons">Privacy Policy</div>
+            <div onclick="logOut()" class="userProfileButtons">Log out</div>
+          </div>
         </div>
       </header>
-
       <!--addTaskSection-->
       <div class="taskFormSection">
-
         <form id="taskFormAddTask" class="taskForm" action="">
           <!-- rednerTaskFormTemplate -->
         </form>
-
       </div>
 
     <!--Navbar-->

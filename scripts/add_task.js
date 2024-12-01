@@ -110,7 +110,6 @@ function openCategoryDropdown() {
   switchArrowInsideDropdown(true, "taskFormCategoryDropdownArrrow", "categoryDropdown");
   handleDropdown(true, "categoryDropdown");
   enableCursorPointerOnInput("taskFormCategoryInput");
-  validateTaskForm();
 }
 
 function closeCategoryDropdown() {
@@ -118,7 +117,6 @@ function closeCategoryDropdown() {
   handleDropdown(false, "categoryDropdown");
   disableCursorPointerOnInput("taskFormCategoryInput");
   clearCategoryInsideTaskFrom();
-  validateTaskForm();
 }
 
 function clearCategoryInsideTaskFrom() {
@@ -135,16 +133,16 @@ function fillCategoryDropdown() {
 }
 
 function chooseCategory(chosenCategory, chosenCategoryColor) {
-  const inputElement = document.getElementById("taskFormCategoryInput");
+  let inputElement = document.getElementById("taskFormCategoryInput");
 
   inputElement.value = chosenCategory;
 
-  const categoryData = {
+  categoryData = {
     category: chosenCategory,
     color: chosenCategoryColor,
   };
 
-  validateInput("taskFormCategoryInput", "requiredCategoryInfo");
+  validateTaskForm("taskFormCategoryInput", "requiredCategoryInfo");
 
   return categoryData;
 }
@@ -247,6 +245,10 @@ function deleteSubtaskFromList(i) {
   subtasks.splice(i, 1);
 }
 
+function deleteAllSubtaskFromList() {
+  subtasks.splice(0, subtasks.length);
+}
+
 // task Form inputs
 
 function validateInput(inputId, requiredInfoId) {
@@ -261,17 +263,33 @@ function validateInput(inputId, requiredInfoId) {
 }
 
 function clearTaskForm() {
-  renderTaskForm('to do', 'taskFormAddTask')
+  renderTaskForm("to do", "taskFormAddTask");
+  deleteAllSubtaskFromList();
+  renderSubtasksToList();
+}
+
+function checkInputValue() {
+  let input = document.getElementById("dateInput");
+  if (input.value) {
+    input.classList.remove("empty");
+  } else {
+    input.classList.add("empty");
+  }
 }
 
 //create Task modal
 
 function createTaskAllNeededFunctions() {
-  showCreateTaskModal();
-  setTimeout(() => {
+  if (window.location.href.endsWith("add_task.html")) {
+    showCreateTaskModal();
+    setTimeout(() => {
+      redirectToBoard();
+    }, 1500);
+  } else {
     redirectToBoard();
-  }, 1500);
+  }
 }
+
 
 function showCreateTaskModal() {
   let modalBackground = document.getElementById("modalFullScreenContainer");
@@ -296,7 +314,6 @@ function getNewTaskInputData(taskStatus) {
     taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
-
     taskCategory: categoryData,
     taskSubtasks: subtasks,
   };
@@ -319,17 +336,17 @@ document.addEventListener("click", function () {
   }
 });
 
-document.addEventListener("click", () => {
-  if (window.location.href.endsWith("add_task.html")) {
-    setTimeout(() => {
-      let subtaskBox = document.getElementById("taskFormSubtaskList");
-      if (subtaskBox) {
-        document.addEventListener("mousedown", function (event) {
-          if (!subtaskBox.contains(event.target)) {
-            renderSubtasksToList();
-          }
-        });
-      }
-    }, 100);
-  }
-});
+// document.addEventListener("click", () => {
+//   if (window.location.href.endsWith("add_task.html")) {
+//     setTimeout(() => {
+//       let subtaskBox = document.getElementById("taskFormSubtaskList");
+//       if (subtaskBox) {
+//         document.addEventListener("mousedown", function (event) {
+//           if (!subtaskBox.contains(event.target)) {
+//             renderSubtasksToList();
+//           }
+//         });
+//       }
+//     }, 100);
+//   }
+// });

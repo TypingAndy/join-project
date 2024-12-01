@@ -101,7 +101,6 @@ function renderIconsInTaskForm() {
   }
 }
 
-
 function addUserToTaskToggleCss(userFirebaseId) {
   let check = document.getElementById(`check${userFirebaseId}`);
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
@@ -165,7 +164,6 @@ function categoryFilterFunction() {
       categorieElement.classList.add("displayNone");
     }
   }
-  validateTaskForm();
 }
 
 function validateTaskForm() {
@@ -184,14 +182,11 @@ function validateTaskForm() {
   }
 }
 
-
-
 //open signedUserDropdown
 
 function openSignedUserDropdown() {
   let userProfileDropdown = document.getElementById("userProfileDropdown");
   userProfileDropdown.classList.remove("userProfileDropdownSlider");
- 
 }
 
 function logOut() {
