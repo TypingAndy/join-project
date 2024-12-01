@@ -16,6 +16,7 @@ body {
   margin-bottom: 80px;
   padding-top: 24px;
   width: 100%;
+  height: 100%;
   background-color: white;
   overflow-y: auto;
 }
@@ -370,10 +371,14 @@ body {
   font-weight: 700;
   border-radius: 10px;
   height: 51px;
-  margin-top: 18px;
+  /* margin-top: 18px; */
   padding: 0 12px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+.saveContactButton {
+  margin-top: 18px;
 }
 
 .deleteContactButton {
@@ -502,9 +507,32 @@ body {
   font-weight: 400;
 }
 
+.contactDetailsMainContactNameWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .contactDetailsMainContactName {
   font-size: 36px;
   font-weight: 700;
+}
+
+.contactDetailsDeleteEditWrapper {
+  display: none;
+  gap: 18px;
+}
+
+.contactDetailsDeleteEdit,
+.contactDetailsDelete {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  /* width: 100%; */
+}
+.contactDetailsDeleteEditWrapper img {
+  height: 24px;
+  width: 24px;
 }
 
 .contactDetailsMainContactInformationLabel {
@@ -530,22 +558,87 @@ body {
   text-decoration: none;
 }
 
+.contactButtonsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cancelContactButton {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 51px;
+  padding: 4px 8px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.cancelContactButton img {
+  height: 24px;
+  width: 24px;
+}
+
+.cancelContactButton {
+  font-size: 18px;
+}
+
 @media (min-width: 1024px) {
+  .contactDetailsDeleteEditWrapper {
+    display: flex;
+  }
+
+  .contactPopupCloseButton {
+    display: none;
+  }
+
+  .cancelContactButton {
+    display: flex;
+  }
+  .createContactButton {
+    font-size: 18px;
+  }
   .contactsInitWrapper {
     display: flex;
   }
   .contactPopup {
     display: flex;
     flex-direction: row;
-    width: 800px;
-    height: calc(100% - 170px);
-    /* max-width: 400px; */
-    margin: 0 16px;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    transform: translateY(120%);
-    transition: transform 0.3s ease-out;
+    width: 100%;
+    height: 50vh;
+    max-width: 750px;
+    transform: translate(115px, 0); /* This maintains any vertical positioning while moving it right */
+  }
+
+  .contactPopup.show {
+    transform: translateY(0) translateX(115px);
+  }
+
+  .contactPopupTop {
+    height: 100%;
+    width: 50%;
+  }
+
+  .contactPopupBottom {
+    height: 100%;
+    width: 50%;
+    padding-left: 20%;
+  }
+
+  .userCircleWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translate(-45%, -40%) scale(1);
+    width: 126px;
+    height: 126px;
+    background-color: rgb(255, 255, 255);
+    z-index: 500;
   }
 
   .contactsMainSection {
@@ -557,6 +650,7 @@ body {
     padding-top: 24px;
     margin-left: 232px;
     width: 30%;
+    height: 100%;
     min-width: 400px;
     max-width: 660px;
     background-color: white;

@@ -46,7 +46,13 @@ function contactDetailsTemplate(firebaseUserId) {
               <div class="contactDetailsMainInitials">${userDataFromFirebase[firebaseUserId].initials}</div>
             </div>
             </div>
+            <div class="contactDetailsMainContactNameWrapper">
             <div class="contactDetailsMainContactName">${userDataFromFirebase[firebaseUserId].name}</div>
+            <div class="contactDetailsDeleteEditWrapper">
+            <div class="contactDetailsDeleteEdit" onclick="toggleContactPopup(null, 'edit', '${firebaseUserId}')"><p>Edit</p><img src="../images/icons/pencil_black.png" /></div>
+            <div class="contactDetailsDelete" onclick=" handleClickDeleteUser('${firebaseUserId}')"><p>Delete</p><img src="../images/icons/trashcan_black.png" /></div>
+            </div>
+            </div>
           </div>
           <span class="contactDetailsMainContactInformationLabel">Contact Information</span>
           <span class="contactDetailsMainEmailLabel">Email</span>
@@ -93,9 +99,16 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
     <img src="../images/icons/callgrey.png" alt="" />
   </div>
+  <div class="contactButtonsWrapper">
+
+  <div id="cancelContactButton" class="cancelContactButton" onclick="toggleContactPopup(), toggleAddContactButton()" style="cursor: pointer">
+  <span>Cancel</span>
+  <img src="../images/icons/close.png" alt="" />
+</div>
   <div id="createContactButton" class="createContactButton" onclick="handleCreateContactsButtonClick()" style="pointer-events: none; opacity: 0.5;">
     <span>Create Contact</span>
     <img src="../images/icons/check_white.png" alt="" />
+  </div>
   </div>
 </form>
 
@@ -148,4 +161,20 @@ function contactPopupTemplate(popupType, firebaseUserId) {
 
 `;
   }
+}
+
+function emptyContactDetails() {
+  return `
+  <div class="contactDetailsContentWrapper" id="contactDetailsContentWrapper">
+  <div class="contactDetailsContentTop">
+    <div class="contactDetailsContentTopLabelWrapper">
+      <span>Contacts</span>
+      <p>Better with a team</p>
+      <p></p>
+      <div class="contactDetailsContentTopLabelLine"></div>
+    </div>
+  </div>
+</div>
+  
+  `;
 }
