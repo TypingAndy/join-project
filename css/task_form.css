@@ -112,7 +112,7 @@
   font-size: 16px;
   font-family: "Inter";
   box-sizing: border-box;
- }
+}
 
 .taskFormInput::placeholder {
   font-size: 16px;
@@ -184,6 +184,8 @@
 }
 
 .taskForm {
+  max-width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -573,7 +575,7 @@ input:not(.empty) {
 @media (min-width: 1024px) {
   .taskFormWrapper {
     overflow: unset;
-   
+    width: 100%;
   }
 
   .taskFormHeader {
@@ -590,6 +592,7 @@ input:not(.empty) {
     justify-content: center;
     align-items: center;
     height: 100%;
+    padding: 0 64px;
   }
 
   .taskFormMidSection {
@@ -600,7 +603,7 @@ input:not(.empty) {
   }
 
   .addTaskLeftSection {
-    width: 440px;
+    width: 330px;
     gap: 26px;
   }
 
@@ -657,7 +660,7 @@ input:not(.empty) {
   }
 
   .addTaskRightSection {
-    width: 440px;
+    width: 330px;
     gap: 26px;
   }
 
@@ -666,7 +669,7 @@ input:not(.empty) {
   .taskFormPrioButtonBox {
     display: flex;
     justify-content: space-between;
-    gap: 16px;
+    gap: 4px;
   }
 
   .taskFormPrioButtonUrgent {
@@ -685,11 +688,11 @@ input:not(.empty) {
   }
 
   .taskFormPrioButtonImage {
-    width: 20px;
+    width: 16px;
   }
 
   .taskFormPrioButtonBox {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   /* category Section */
@@ -789,6 +792,7 @@ input:not(.empty) {
     display: flex;
     flex-direction: column;
     margin-bottom: 320px;
+    gap: 12px;
   }
 
   .navIconBox img {
@@ -823,5 +827,25 @@ input:not(.empty) {
     color: #29abe2;
     scale: 1.02;
     cursor: pointer;
+  }
+}
+
+@media (min-width: 1300px) {
+  .addTaskRightSection {
+    width: 440px;
+    gap: 26px;
+  }
+
+  .addTaskLeftSection {
+    width: 440px;
+    gap: 26px;
+  }
+
+  .taskFormPrioButtonImage {
+    width: 20px;
+  }
+
+  .taskFormPrioButtonBox {
+    font-size: 20px;
   }
 }

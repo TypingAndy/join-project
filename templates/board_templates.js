@@ -8,28 +8,42 @@ function noTaskTemplate() {
 
 function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage) {
   return /*html*/ `
-                <div class="taskCard" draggable="true" ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}', event)" id="taskCard${filteredLokalTasksArray[taskIndex].ID}" ontouchstart="startHold(event, '${filteredLokalTasksArray[taskIndex].ID}')" 
-                ontouchmove="checkScroll(event)" 
-                ontouchend="clearHold()"
-                style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none; -webkit-user-select: none;" >
-                  <div class="taskCardCategory" style="background-color: ${filteredLokalTasksArray[taskIndex].taskCategory.color};">
-                    <p>${filteredLokalTasksArray[taskIndex].taskCategory.category}</p>
-                  </div>
-                  <p class="taskCardTitle">${filteredLokalTasksArray[taskIndex].taskTitle}</p>
-                  <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>
-                  <div class="taskCardSubtasksContainer">
-                    <div class="taskCardSubtaskBarWrapper">
-                      <div class="taskCardSubtaskBar" id="taskCardSubtaskBar${[taskIndex]}", style="width: ${subtaskDonePercentage}%"></div>
-                    </div>
-                    <p>${subtasksDone}/${subtasksArrayLength} Subtasks</p>
-                  </div>
-                  <div class="taskCardBottomContainer">
-                    <div class="taskCardUserContainer">
-                 ${taskCardAllInitialsTemplate}
-                    </div>
-                    ${filteredLokalTasksArray[taskIndex].taskPrio ? `<img src="../images/icons/${filteredLokalTasksArray[taskIndex].taskPrio}.png" alt="" />` : ""}
-                  </div>
-                </div>
+  <div class="taskCard" draggable="true" 
+  ondragstart="startDragging('${filteredLokalTasksArray[taskIndex].ID}')" 
+  onclick="openBoardTaskPopup('${filteredLokalTasksArray[taskIndex].ID}', event)" 
+  id="taskCard${filteredLokalTasksArray[taskIndex].ID}" 
+  ontouchstart="startHold(event, '${filteredLokalTasksArray[taskIndex].ID}')" 
+  ontouchmove="checkScroll(event)" 
+  ontouchend="clearHold()"
+  style="touch-action: manipulation; user-select: none; -webkit-touch-callout: none; -webkit-user-select: none;">
+ 
+ <div class="taskCartdCategoryWrapper">
+     <div class="taskCardCategory" style="background-color: ${filteredLokalTasksArray[taskIndex].taskCategory.color};">
+         <p>${filteredLokalTasksArray[taskIndex].taskCategory.category}</p>
+     </div>
+     <div class="taskCardHold">
+         <img src="../images/icons/fingerprint.png"/>
+         <p>Hold to </br> move </p>
+     </div>
+ </div>
+
+ <div>
+     <p class="taskCardTitle">${filteredLokalTasksArray[taskIndex].taskTitle}</p>
+     <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>
+     <div class="taskCardSubtasksContainer">
+         <div class="taskCardSubtaskBarWrapper">
+             <div class="taskCardSubtaskBar" id="taskCardSubtaskBar${[taskIndex]}" style="width: ${subtaskDonePercentage}%"></div>
+         </div>
+         <p>${subtasksDone}/${subtasksArrayLength} Subtasks</p>
+     </div>
+     <div class="taskCardBottomContainer">
+         <div class="taskCardUserContainer">
+             ${taskCardAllInitialsTemplate}
+         </div>
+         ${filteredLokalTasksArray[taskIndex].taskPrio ? `<img src="../images/icons/${filteredLokalTasksArray[taskIndex].taskPrio}.png" alt="" />` : ""}
+     </div>
+ </div>
+</div>
       `;
 }
 

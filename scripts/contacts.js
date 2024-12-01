@@ -13,7 +13,7 @@ async function groupUsersByFirstLetter() {
 async function renderContacts() {
   const groupedUsers = await groupUsersByFirstLetter();
   let contactsMainSectionElement = document.getElementById("contactsMainSection");
-  contactsMainSectionElement.innerHTML = "";
+  contactsMainSectionElement.innerHTML = '<div class="newContactWrapperDesktop"><div class="newContactButtonDesktop" onclick="toggleContactPopup(null, \'add\')">Add new contact</div></div>';
   Object.entries(groupedUsers).forEach(([letter, users]) => {
     contactsMainSectionElement.innerHTML += contactsTemplate(letter, users);
   });
@@ -74,12 +74,17 @@ async function handleCreateContactsButtonClick() {
 function toggleContactDetails(firebaseUserId) {
   const contactDetailsElement = document.getElementById("contactDetailsSection");
 
-  if (contactDetailsElement.style.display !== "flex") {
+  if (window.innerWidth >= 1024) {
     contactDetailsElement.style.display = "flex";
     contactDetailsElement.innerHTML = contactDetailsTemplate(firebaseUserId);
   } else {
-    contactDetailsElement.style.display = "none";
-    contactDetailsElement.innerHTML = "";
+    if (contactDetailsElement.style.display !== "flex") {
+      contactDetailsElement.style.display = "flex";
+      contactDetailsElement.innerHTML = contactDetailsTemplate(firebaseUserId);
+    } else {
+      contactDetailsElement.style.display = "none";
+      contactDetailsElement.innerHTML = "";
+    }
   }
 }
 
