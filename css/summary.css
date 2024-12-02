@@ -429,12 +429,12 @@
 
 @media (min-width: 1280px) {
   .summaryMainScreenWrapper {
-    width: 60%;
+    width: 50%;
   }
 }
 
-@media (min-width: 1680px) {
+@media (min-width: 600px) {
   .summaryMainScreenWrapper {
-    width: 65%;
+    width: 40%;
   }
 }
