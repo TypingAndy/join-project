@@ -20,7 +20,7 @@
   width: min(80vw, 600px); /* responsive width with max size */
   padding: 18px;
   background: white;
-  border-radius: 8px;
+  border-radius: 30px;
   transition: right 0.3s ease;
 }
 
