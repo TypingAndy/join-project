@@ -6,6 +6,10 @@ let awaitFeedbackTasks = [];
 
 let allUrgentTasks = [];
 
+/**
+ * Loads tasks from Firebase, processes them, and updates the UI.
+ * It includes loading tasks, converting them to an array, sorting, and updating urgent task information.
+ */
 async function summaryAddAllValuesToBoard() {
   await loadTasksObjectFromFirebase();
   convertUnsortedTasksObjectToArray();
@@ -16,11 +20,18 @@ async function summaryAddAllValuesToBoard() {
   summaryAddUrgentDateValue();
 }
 
+/**
+ * Sorts tasks by their status and updates the UI with the task count values.
+ */
 function sortTasksToStatus() {
   let counts = countTaskStatus();
   updateTaskSummaryUI(counts);
 }
 
+/**
+ * Counts the number of tasks based on their status.
+ * @returns {Object} An object containing the count of tasks for each status.
+ */
 function countTaskStatus() {
   let counts = {
     toDo: 0,
@@ -43,6 +54,10 @@ function countTaskStatus() {
   return counts;
 }
 
+/**
+ * Updates the UI with the count values for each task status.
+ * @param {Object} counts - An object containing the count values for each status.
+ */
 function updateTaskSummaryUI(counts) {
   let toDoValue = document.getElementById("summaryToDoValue");
   let doneValue = document.getElementById("summaryDoneValue");
@@ -57,6 +72,9 @@ function updateTaskSummaryUI(counts) {
   summaryValue.innerHTML = counts.toDo + counts.done + counts.awaitFeedback + counts.inProgress;
 }
 
+/**
+ * Adds all urgent tasks to the global `allUrgentTasks` array.
+ */
 function pushUrgentTasks() {
   for (let i = 0; i < lokalTasksArray.length; i++) {
     if (lokalTasksArray[i].taskPrio == "urgent" && lokalTasksArray[i].taskStatus !== "done") {
@@ -65,23 +83,35 @@ function pushUrgentTasks() {
   }
 }
 
+/**
+ * Returns the number of urgent tasks.
+ * @returns {number} The number of urgent tasks.
+ */
 function countNumberOfUrgentTasks() {
   let numberOfUrgentTasks = allUrgentTasks.length;
   return numberOfUrgentTasks;
 }
 
+/**
+ * Displays the number of urgent tasks in the UI.
+ */
 function renderAmountOfUrgentTasksInSummary() {
   let urgentAmount = document.getElementById("summaryUrgentValue");
   urgentAmount.innerHTML = countNumberOfUrgentTasks();
 }
 
-//Urgent Task Date
-
+/**
+ * Adds the earliest date of any urgent task to the UI.
+ */
 function summaryAddUrgentDateValue() {
   let urgentDateValue = document.getElementById("summaryDate");
   urgentDateValue.innerHTML = `<b>${filterLowestDate()}</b>`;
 }
 
+/**
+ * Finds the earliest date among all urgent tasks.
+ * @returns {string} The earliest date formatted as a readable string.
+ */
 function filterLowestDate() {
   let allDates = [];
   for (let i = 0; i < allUrgentTasks.length; i++) {
@@ -92,6 +122,11 @@ function filterLowestDate() {
   return formatDate(allDates[0]);
 }
 
+/**
+ * Formats a date string into a readable date format.
+ * @param {string} dateString - A date string in ISO format.
+ * @returns {string} The formatted date.
+ */
 function formatDate(dateString) {
   let date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
@@ -101,9 +136,9 @@ function formatDate(dateString) {
   });
 }
 
-
-//Welcome Screen
-
+/**
+ * Displays a welcome screen based on the previous page.
+ */
 function showWelcomeScreen() {
   if (document.referrer.includes("landingpage_login.html")) {
     setTimeout(() => {
@@ -114,6 +149,9 @@ function showWelcomeScreen() {
   }
 }
 
+/**
+ * Adjusts the greeting message based on the time of day.
+ */
 function setWelcomeScreenDayTime() {
   let dayTime = document.getElementById("welcomeDayTime");
   let dayTimeDesktop = document.getElementById("welcomeDayTimeDesktop");
@@ -134,6 +172,9 @@ function setWelcomeScreenDayTime() {
   dayTimeDesktop.innerHTML = greeting;
 }
 
+/**
+ * Displays the name of the currently logged-in user.
+ */
 function setWelcomeScreenName() {
   let name = document.getElementById("welcomeName");
   let nameDesktop = document.getElementById("welcomeNameDesktop");
