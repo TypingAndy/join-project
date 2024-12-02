@@ -105,7 +105,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10%;
+  gap: 20px;
 }
 
 .summaryMainScreenWrapper {
@@ -115,7 +115,7 @@
   display: flex;
   flex-direction: column;
   margin-top: -16%;
-  gap: 8%;
+  gap: 24px;
 }
 
 .welcomeScreenDesktop {
@@ -137,6 +137,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 400px;
   aspect-ratio: 1 / 1;
   gap: 16px;
 }
@@ -334,6 +335,16 @@
 }
 
 @media (min-width: 1024px) {
+  .summaryMidSectionWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+    aspect-ratio: 1 / 1;
+    gap: 16px;
+  }
+
   .welcomeScreen {
     display: none;
   }
@@ -409,7 +420,7 @@
   }
 
   .summaryMidSectionStandartFontSize {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .summaryDate {
@@ -424,5 +435,19 @@
 
   .summaryMidSectionDate {
     align-items: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .summaryMidSectionStandartFontSize {
+    font-size: 10px;
+  }
+
+  .summaryMidSectionAmountFontSize {
+    font-size: 28px;
+  }
+
+  .summaryMidSectionDate {
+    font-size: 14px;
   }
 }

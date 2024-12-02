@@ -181,7 +181,8 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  width: 100%;
+  margin-top: 0;
+  width: 95%;
   height: 48px;
   background-color: rgba(231, 231, 231, 1);
   color: rgba(168, 168, 168, 1);
@@ -233,14 +234,16 @@
 .taskCartdCategoryWrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   gap: 12px;
+  margin-bottom: 18px;
 }
 
 .taskCardHold {
-  display: flex;
+  display: none;
   border-radius: 6px;
-  min-width: 80px;
+  align-items: center;
   padding: 4px;
   background: rgba(255, 255, 255, 0);
   font-size: 12px;
@@ -248,20 +251,19 @@
 }
 
 .taskCardHold img {
-  height: 20px;
-  width: 20px;
+  height: 26px;
+  width: 26px;
 }
 
 .taskCardCategory {
   display: flex;
-
   width: fit-content;
   background-color: rgba(0, 56, 255, 1);
   color: white;
   border-radius: 10px;
   font-size: 16px;
   padding: 6px 16px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .taskCardTitle {
@@ -475,8 +477,23 @@
 }
 
 @media (min-width: 1024px) {
+  .noTasksContainer {
+    margin-top: 8px;
+  }
+
+  .taskCartdCategoryWrapper {
+    justify-content: space-between;
+    gap: 0;
+  }
   .taskCardHold {
-    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    font-size: 10px;
+    gap: 0;
+  }
+
+  .taskCardHold img {
+    transform: scale(0.75);
   }
 
   .boardPlusIconSmall {
@@ -488,6 +505,7 @@
   }
   .boardWrapper {
     padding: 0 48px;
+    height: 100vh;
   }
 
   .titleAndInputWrapper {
@@ -500,6 +518,7 @@
     flex-direction: row;
     width: 100%;
     gap: 0px;
+    height: 100%;
   }
 
   .toDoSection,
@@ -520,6 +539,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     gap: 16px;
+    height: 100%;
   }
 
   .toDoSectionTitleContainer,
@@ -551,6 +571,23 @@
 }
 
 @media (min-width: 1150px) {
+  .taskCartdCategoryWrapper {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .taskCardHold {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .taskCardHold img {
+    transform: scale(1.2);
+  }
+
   .toDoSectionTitleContainer,
   .inProgressTitleContainer,
   .awaitFeedbackTitleContainer,
@@ -558,6 +595,21 @@
     font-size: 19px;
   }
 }
+
+@media (min-width: 1300px) {
+  .taskCardHold {
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .taskCardHold img {
+    height: 30px;
+    width: 30px;
+  }
+}
+
 @media (min-width: 1350px) {
   .boardPlusIconSmall {
     margin-right: 10px;
@@ -574,5 +626,11 @@
 
   .boardPlusIconSmall {
     margin-right: 14px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .taskCardHold {
+    display: flex;
   }
 }
