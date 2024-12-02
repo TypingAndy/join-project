@@ -1,13 +1,23 @@
+/**
+ * Creates the local tasks array by loading tasks from Firebase, converting them to an array, and adding Firebase IDs.
+ * @returns {Promise<void>} A promise indicating that the process is complete.
+ */
 async function createLokalTasksArray() {
   await loadTasksObjectFromFirebase();
   convertUnsortedTasksObjectToArray();
   addFirebaseIDtoLokalTasksArray();
 }
-// is needed in script cause board use it too
+
+/**
+ * Converts the unsorted tasks object into an array.
+ */
 function convertUnsortedTasksObjectToArray() {
   lokalTasksArray = Object.values(allUnsortedTasks);
 }
 
+/**
+ * Adds the Firebase ID to the tasks in the local array.
+ */
 function addFirebaseIDtoLokalTasksArray() {
   lokalTasksArray = lokalTasksArray.map((item, index) => ({
     ...item,
@@ -15,22 +25,39 @@ function addFirebaseIDtoLokalTasksArray() {
   }));
 }
 
+/**
+ * Initializes the board by creating the local tasks array and loading user data from Firebase.
+ * @returns {Promise<void>} A promise indicating that the process is complete.
+ */
 async function initializeBoard() {
   await createLokalTasksArray();
   await loadUserDataFromFirebase();
   renderTaskCards();
 }
 
+/**
+ * Updates the status of a task in the local tasks array.
+ * @param {string} newTaskStatus - The new status of the task (e.g., "to do", "in progress").
+ * @param {string} [taskID=currentDraggedElementID] - The ID of the task to update. Defaults to the currently dragged element ID.
+ */
 function updateLokalTaskArrayStatus(newTaskStatus, taskID = currentDraggedElementID) {
   const task = lokalTasksArray.find((item) => item.ID === taskID);
   task.taskStatus = newTaskStatus;
 }
 
+/**
+ * Handles the search input and renders the filtered tasks.
+ * @returns {Promise<void>} A promise indicating that the process is complete.
+ */
 async function handleSearchInput() {
   clearAllTaskWrappers();
   await renderTaskCards();
 }
 
+/**
+ * Renders task cards based on the filtered local tasks array.
+ * @returns {Promise<void>} A promise indicating that the process is complete.
+ */
 async function renderTaskCards() {
   let filteredLokalTasksArray = filterTasks();
   clearAllTaskCardWrappers();
@@ -47,20 +74,39 @@ async function renderTaskCards() {
   fillEmptyTaskCategories();
 }
 
+/**
+ * Replaces the task card with a "Move To" template to move it to another location.
+ * @param {string} taskID - The ID of the task whose card should be replaced.
+ */
 function replaceTaskCardWithMoveToTemplate(taskID) {
   renderTaskCards();
   document.getElementById(`taskCard${taskID}`).innerHTML = taskCardMoveToTemplate(taskID);
 }
 
+/**
+ * Filters the local tasks array based on the search term.
+ * @returns {Array} A filtered array of tasks that include the search term.
+ */
 function filterTasks() {
   let searchTerm = document.getElementById("findTaskInput").value.toLowerCase();
   return lokalTasksArray.filter((task) => task.taskTitle.toLowerCase().includes(searchTerm) || task.taskDescription.toLowerCase().includes(searchTerm));
 }
 
+/**
+ * Calculates the percentage of completed subtasks.
+ * @param {number} subtasksDone - The number of completed subtasks.
+ * @param {number} subtasksArrayLength - The total length of the subtasks array.
+ * @returns {number} The percentage of completed subtasks.
+ */
 function calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength) {
   return subtasksArrayLength === 0 ? 0 : (subtasksDone / subtasksArrayLength) * 100;
 }
 
+/**
+ * Returns the HTML element corresponding to the task's status.
+ * @param {string} taskStatus - The status of the task (e.g., "to do", "in progress").
+ * @returns {HTMLElement} The element corresponding to the given status.
+ */
 function getElementByTaskStatus(taskStatus) {
   const statusElements = {
     "to do": "toDoSectionContentWrapper",
@@ -71,6 +117,9 @@ function getElementByTaskStatus(taskStatus) {
   return document.getElementById(statusElements[taskStatus]);
 }
 
+/**
+ * Fills empty task categories with a default message if no tasks are present.
+ */
 function fillEmptyTaskCategories() {
   const wrappers = ["inProgressContentWrapper", "toDoSectionContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
   wrappers.forEach((wrapperId) => {
@@ -81,6 +130,9 @@ function fillEmptyTaskCategories() {
   });
 }
 
+/**
+ * Clears the content of all task card wrappers.
+ */
 function clearAllTaskCardWrappers() {
   let wrappers = ["inProgressContentWrapper", "toDoSectionContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
   wrappers.forEach((wrapperId) => {
@@ -88,6 +140,13 @@ function clearAllTaskCardWrappers() {
   });
 }
 
+/**
+ * Returns the user initials for the task cards based on the assigned user IDs.
+ * If there are more than 4 users, it shows a "+" indicating additional users.
+ * @param {number} taskIndex - The index of the task in the filtered tasks array.
+ * @param {Array} filteredLokalTasksArray - The array of tasks to which the task belongs.
+ * @returns {string} A string of user initials, with a "+" if there are more than 4 users.
+ */
 function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   let taskCardAllInitialsTemplate = "";
 
@@ -108,6 +167,9 @@ function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   return taskCardAllInitialsTemplate;
 }
 
+/**
+ * Clears the content of all task wrappers on the board.
+ */
 function clearAllTaskWrappers() {
   const containers = ["toDoSectionContentWrapper", "inProgressContentWrapper", "awaitFeedbackContentWrapper", "doneContentWrapper"];
   containers.forEach((containerId) => {
@@ -115,11 +177,20 @@ function clearAllTaskWrappers() {
   });
 }
 
+/**
+ * Counts the number of completed subtasks for a given task.
+ * @param {Object} task - The task object to check for completed subtasks.
+ * @returns {number} The number of completed subtasks.
+ */
 function countCompletedSubtasks(task) {
   if (!task.taskSubtasks) return 0;
   return task.taskSubtasks.reduce((count, subtask) => (subtask.subtaskDone ? count + 1 : count), 0);
 }
 
+/**
+ * Opens the board task popup and displays the content, users, and subtasks for a given task.
+ * @param {string} taskID - The ID of the task to display in the popup.
+ */
 function openBoardTaskPopup(taskID) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
@@ -135,12 +206,19 @@ function openBoardTaskPopup(taskID) {
   document.body.classList.add("no-scroll");
 }
 
+/**
+ * Creates a new board task popup for adding a task and pre-fills it with default data.
+ * @param {string} taskStatus - The status of the task to be created.
+ */
 function createBoardTaskPopupForNewTask(taskStatus) {
   subtasks.splice(0, subtasks.length);
   openBoardTaskPopupForAddTask();
   fillBoardTaskPopupWithAddTask(taskStatus);
 }
 
+/**
+ * Opens the board task popup for adding a new task with an empty template.
+ */
 function openBoardTaskPopupForAddTask() {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
@@ -153,6 +231,10 @@ function openBoardTaskPopupForAddTask() {
   document.body.classList.add("no-scroll");
 }
 
+/**
+ * Fills the task popup with the form to add a new task, including the task status and dropdown options.
+ * @param {string} taskStatus - The status of the task to be created.
+ */
 function fillBoardTaskPopupWithAddTask(taskStatus) {
   let titleAcceptTaskButton = "Create Task";
   let postOrPatchFunction = "postTaskData";
@@ -162,6 +244,10 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
   fillCategoryDropdown();
 }
 
+/**
+ * Closes the task popup when clicking on the background or cancel button.
+ * @param {Event} [event] - The event that triggered the close action (optional).
+ */
 function closeBoardTaskPopup(event) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
@@ -179,11 +265,19 @@ function closeBoardTaskPopup(event) {
   }
 }
 
+/**
+ * Renders the content for the task popup based on the provided task ID.
+ * @param {string} taskID - The ID of the task to render the popup for.
+ */
 function renderBoardTaskPopupContent(taskID) {
   let popupElement = document.getElementById("boardTaskPopup");
   popupElement.innerHTML = boardTaskPopupTemplate(taskID);
 }
 
+/**
+ * Renders the users assigned to the task inside the popup.
+ * @param {string} taskID - The ID of the task whose assigned users should be rendered.
+ */
 function renderBoardTaskPopupContentUsers(taskID) {
   const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
@@ -195,6 +289,10 @@ function renderBoardTaskPopupContentUsers(taskID) {
   }
 }
 
+/**
+ * Renders the subtasks of a task inside the task popup.
+ * @param {string} taskID - The ID of the task whose subtasks should be rendered.
+ */
 function renderBoardTaskPopupSubtasks(taskID) {
   const popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
   popupSubtasksElement.innerHTML = "";
@@ -206,6 +304,12 @@ function renderBoardTaskPopupSubtasks(taskID) {
   });
 }
 
+/**
+ * Toggles the completion status of a subtask by updating its status in the `allUnsortedTasks` object.
+ * Also updates the Firebase data and re-renders the subtasks in the task popup.
+ * @param {number} subtasksIndex - The index of the subtask within the task.
+ * @param {string} taskID - The ID of the task containing the subtask.
+ */
 async function toggleSubtaskStatus(subtasksIndex, taskID) {
   allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone = !allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone;
   let newSubtaskStatus = allUnsortedTasks[taskID].taskSubtasks[subtasksIndex].subtaskDone;
@@ -214,10 +318,18 @@ async function toggleSubtaskStatus(subtasksIndex, taskID) {
   await toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskStatus);
 }
 
+/**
+ * Stops the event propagation to prevent other event listeners from being triggered.
+ * @param {Event} event - The event that triggered this function.
+ */
 function stopPropagation(event) {
   event.stopPropagation();
 }
 
+/**
+ * Renders the task form in the task popup for editing an existing task.
+ * @param {string} taskID - The ID of the task to be edited.
+ */
 function renderTaskFormEdit(taskID) {
   let titleAcceptTaskButton = "Ok";
   let fetchStatus = "PATCH";
@@ -231,6 +343,10 @@ function renderTaskFormEdit(taskID) {
   validateTaskForm();
 }
 
+/**
+ * Fills the task form with the current data of the task for editing.
+ * @param {string} taskId - The ID of the task to fill the form with.
+ */
 function fillTaskFormEdit(taskId) {
   let titleInput = document.getElementById("taskTitleInput");
   let descriptionInput = document.getElementById("taskDescriptionInput");
@@ -247,6 +363,10 @@ function fillTaskFormEdit(taskId) {
   validateTaskForm();
 }
 
+/**
+ * Toggles the assignment of users in the task form for editing a task.
+ * @param {string} taskId - The ID of the task whose users should be toggled in the form.
+ */
 function toggleTaskCurrentUserInTaskFormEdit(taskId) {
   if (allUnsortedTasks[taskId].taskAssignedUsersIds) {
     for (let i = 0; i < allUnsortedTasks[taskId].taskAssignedUsersIds.length; i++) {
@@ -255,6 +375,10 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
   }
 }
 
+/**
+ * Fills the list of subtasks in the task form for editing a task.
+ * @param {string} taskId - The ID of the task whose subtasks should be filled in the form.
+ */
 function fillSubtaskListInTaskFormEdit(taskId) {
   let subtaskList = document.getElementById("taskFormSubtaskList");
   subtaskList.innerHTML = "";
@@ -268,11 +392,20 @@ function fillSubtaskListInTaskFormEdit(taskId) {
   }
 }
 
+/**
+ * Deletes a task from Firebase and redirects to the board.
+ * @param {string} taskFirebaseID - The Firebase ID of the task to be deleted.
+ */
 function deleteTask(taskFirebaseID) {
   deleteTaskFromFirebase(taskFirebaseID);
   redirectToBoard();
 }
 
+/**
+ * Creates a task data object from the form inputs, which can be used to either create or update a task.
+ * @param {string} taskStatus - The status of the task being created or updated.
+ * @returns {Object} The task data object.
+ */
 function editTaskInputData(taskStatus) {
   let taskTitleInput = document.getElementById("taskTitleInput").value;
   let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
@@ -290,11 +423,18 @@ function editTaskInputData(taskStatus) {
   return createTaskData;
 }
 
+/**
+ * Focuses the cursor on the task search input field.
+ */
 function focusOnSearchBar() {
   let inputElement = document.getElementById("findTaskInput");
   inputElement.focus();
 }
 
+/**
+ * Prevents default behavior for a dropdown element when clicked on within a task popup.
+ * Ensures that the dropdown behaves as intended within the context of a task popup.
+ */
 document.addEventListener(
   "click",
   function () {

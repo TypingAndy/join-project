@@ -1,3 +1,10 @@
+/**
+ * Generates the HTML template for displaying contacts grouped by a specific letter.
+ * 
+ * @param {string} letter - The letter by which the contacts are grouped.
+ * @param {Array} users - An array of user objects to display in the contact list.
+ * @returns {string} The HTML string for the contact list grouped by the given letter.
+ */
 function contactsTemplate(letter, users) {
   return /*html*/ `
     <div class="contactLetterWrapper">
@@ -20,11 +27,15 @@ function contactsTemplate(letter, users) {
             )
             .join("")}
         </div>
-    
-    
-    `;
+  `;
 }
 
+/**
+ * Generates the HTML template for displaying detailed information of a contact.
+ * 
+ * @param {string} firebaseUserId - The ID of the user whose details are to be displayed.
+ * @returns {string} The HTML string for the contact details.
+ */
 function contactDetailsTemplate(firebaseUserId) {
   return /*html*/ `
         <div class="contactDetailsContentWrapper" id="contactDetailsContentWrapper">
@@ -64,10 +75,16 @@ function contactDetailsTemplate(firebaseUserId) {
         <img src="../images/icons/edit_vert.png" alt="" />
       </div>
       </div>
-  
   `;
 }
 
+/**
+ * Generates the HTML template for the contact popup (either for adding or editing a contact).
+ * 
+ * @param {string} popupType - Specifies the type of popup ("add" or "edit").
+ * @param {string} firebaseUserId - The ID of the user to edit (only needed for 'edit' type).
+ * @returns {string} The HTML string for the contact popup template.
+ */
 function contactPopupTemplate(popupType, firebaseUserId) {
   if (popupType === "add") {
     return /*html*/ `
@@ -114,7 +131,7 @@ function contactPopupTemplate(popupType, firebaseUserId) {
 
     </div>
   </div>
-`;
+` ;
   } else {
     return /*html*/ `
     <div class="contactPopup" id="contactPopup">
@@ -157,12 +174,15 @@ function contactPopupTemplate(popupType, firebaseUserId) {
       </form>
     </div>
   </div>
-
-
-`;
+` ;
   }
 }
 
+/**
+ * Generates an empty contact details template (when no contact is selected).
+ * 
+ * @returns {string} The HTML string for the empty contact details.
+ */
 function emptyContactDetails() {
   return `
   <div class="contactDetailsContentWrapper" id="contactDetailsContentWrapper">
@@ -175,6 +195,5 @@ function emptyContactDetails() {
     </div>
   </div>
 </div>
-  
   `;
 }
