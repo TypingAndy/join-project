@@ -33,6 +33,16 @@ async function initializeBoard() {
   await createLokalTasksArray();
   await loadUserDataFromFirebase();
   renderTaskCards();
+  highlightBoardInNavbar();
+}
+
+/**
+ * Highlights the Board NavLink
+ */
+
+function highlightBoardInNavbar() {
+  let navLink = document.getElementById('boardLink');
+  navLink.classList.add('currentNavLinkBackground');
 }
 
 /**

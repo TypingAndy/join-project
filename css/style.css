@@ -107,6 +107,10 @@ nav {
   bottom: 0;
   position: fixed;
 }
+
+.currentNavLinkBackground {
+  background-color: #091931;
+  }
 /*----------------------------- multi-usage */
 
 input {

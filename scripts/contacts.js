@@ -17,6 +17,15 @@ async function groupUsersByFirstLetter() {
 }
 
 /**
+ * Highlights the Contact NavLink
+ */
+
+function highlightContactInNavbar() {
+  let navLink = document.getElementById('contactsLink');
+  navLink.classList.add('currentNavLinkBackground');
+}
+
+/**
  * Renders the list of contacts by grouping users and displaying them in a specific format.
  * It adds a button to add new contacts and iterates over grouped users to render each group.
  *
@@ -29,6 +38,7 @@ async function renderContacts() {
   Object.entries(groupedUsers).forEach(([letter, users]) => {
     contactsMainSectionElement.innerHTML += contactsTemplate(letter, users);
   });
+  highlightContactInNavbar();
 }
 
 /**
