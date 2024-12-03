@@ -30,7 +30,10 @@
               <input id="signUpNameInput" class="signUpInputName" placeholder="Name" autocomplete="off" type="text" oninput="validateSignUp()" />
               <input id="signUpMailInput" class="signUpInputEmail" placeholder="Email" type="email" oninput="validateSignUp()" required />
               <input id="signUpPasswordInput" class="signUpInputPassword" placeholder="Password" type="password" />
-              <input id="signUpConfirmPasswordInput" oninput="checkMatchingPasswords(), validateSignUp()" class="signUpInputConfirmPassword" placeholder="Confirm Password" type="password" />
+              <div class="passwordConfirmContainer">
+                <input id="signUpConfirmPasswordInput" oninput="checkMatchingPasswords(), validateSignUp()" class="signUpInputConfirmPassword" placeholder="Confirm Password" type="password" />
+                <div id="passwordDontMatchText" class="passwordDontMatchText displayNone">Your passwords don't match. Please try again.</div>
+              </div>
             </div>
             <div class="signUpCheckOutBoxWrapper">
               <div class="acceptPolicyBox">

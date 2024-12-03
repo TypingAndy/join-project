@@ -51,9 +51,11 @@ function checkMatchingPasswords() {
   passwordMatch = passwordValue === confirmPassword;
 
   if (!passwordMatch && confirmPassword !== "") {
-    document.getElementById("signUpConfirmPasswordInput").style.border = "solid #ff2727 1px";
+    document.getElementById("signUpConfirmPasswordInput").style.border = "solid #FF8190 1px";
+    document.getElementById("passwordDontMatchText").classList.remove('displayNone');
   } else {
     document.getElementById("signUpConfirmPasswordInput").style.border = "solid #d1d1d1 1px";
+    document.getElementById("passwordDontMatchText").classList.add('displayNone');
   }
 }
 
