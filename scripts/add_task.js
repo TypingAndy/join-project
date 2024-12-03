@@ -461,7 +461,7 @@ function getNewTaskInputData(taskStatus) {
  * Sets an event listener for clicks to ensure that dropdowns in "add_task.html" work correctly.
  */
 document.addEventListener("click", function () {
-  if (window.location.href.endsWith("add_task.html")) {
+  if (window.location.href.includes("add_task.html")) {
     setTimeout(() => {
       let dropdown = document.getElementById("userDropdown");
 
