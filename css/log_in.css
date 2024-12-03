@@ -115,6 +115,11 @@ input:focus {
   background-position: calc(100% - 16px);
 }
 
+.logInPasswordContainer {
+  width: 100%;
+  position: relative;
+}
+
 .logInInputConfirmPassword {
   width: 100%;
   height: 50px;
@@ -146,6 +151,7 @@ input:focus {
 }
 
 .loginFalseMessage {
+  position: absolute;
   font-size: 13px;
   color: #ff8190;
   width: 100%;
