@@ -224,7 +224,8 @@
   .boardTaskPopup {
     min-width: 420px;
     width: auto;
-
+min-height: 700px;
+max-height: 800px;
     top: 160px;
   }
 
