@@ -223,8 +223,9 @@
   .boardTaskPopup {
     min-width: 420px;
     width: auto;
-    top: 20px;
-    height: calc(100vh - 80px);
+
+    top: 160px;
+ 
   }
 
   .boardPopupBackground {
