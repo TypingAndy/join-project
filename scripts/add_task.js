@@ -1,4 +1,11 @@
-// user assign
+/**
+ * Highlights the AddTask NavLink
+ */
+
+function highlightAddTaskInNavbar() {
+  let navLink = document.getElementById('addTaskLink');
+  navLink.classList.add('currentNavLinkBackground');
+}
 
 //------------// open/close User Dropdown
 

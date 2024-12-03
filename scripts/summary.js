@@ -7,6 +7,14 @@ let awaitFeedbackTasks = [];
 let allUrgentTasks = [];
 
 /**
+ * Highlights the Summary NavLink
+ */
+function highlightSummaryInNavbar() {
+  let navLink = document.getElementById('summaryLink');
+  navLink.classList.add('currentNavLinkBackground');
+}
+
+/**
  * Loads tasks from Firebase, processes them, and updates the UI.
  * It includes loading tasks, converting them to an array, sorting, and updating urgent task information.
  */
@@ -18,6 +26,7 @@ async function summaryAddAllValuesToBoard() {
   countNumberOfUrgentTasks();
   renderAmountOfUrgentTasksInSummary();
   summaryAddUrgentDateValue();
+  highlightSummaryInNavbar();
 }
 
 /**

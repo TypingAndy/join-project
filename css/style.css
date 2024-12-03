@@ -130,6 +130,10 @@ nav {
   position: fixed;
   z-index: 999;
 }
+
+.currentNavLinkBackground {
+  background-color: #091931;
+  }
 /*----------------------------- multi-usage */
 
 input {

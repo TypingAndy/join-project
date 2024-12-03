@@ -77,6 +77,7 @@ async function renderTaskForm(taskStatus, renderLocation) {
   fillUserDropdown();
   fillCategoryDropdown();
   renderSubtasksToList();
+  highlightAddTaskInNavbar();
 }
 
 /**
