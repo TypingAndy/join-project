@@ -22,7 +22,7 @@
   background: white;
   border-radius: 30px;
   transition: right 0.3s ease;
-}
+ }
 
 .boardTaskPopup.active {
   right: 50%;

@@ -498,6 +498,7 @@
 
   .boardPlusIconSmall {
     margin-right: 0px;
+    background-image: url("../images/icons/plus_add_task_small.png");
   }
   .mainSection {
     margin-left: 220px;
