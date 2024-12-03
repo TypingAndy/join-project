@@ -341,7 +341,7 @@
   .welcomeScreenDesktop {
     display: flex;
     flex-direction: column;
-    min-width: 300px;
+    min-width: 350px;
   }
 
   .welcomeDayTimeDesktop {
@@ -428,7 +428,7 @@
 
 @media (max-width: 1600px) {
   .summaryMainScreenWrapper {
-    max-width: 850px;
+    max-width: 900px;
     width: 70%;
   }
 }

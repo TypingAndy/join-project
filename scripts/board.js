@@ -381,12 +381,19 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
  */
 
 function hideTaskFormHeader() {
-  if (window.location.pathname.includes('board.html')) {
-    document.querySelectorAll('.taskFormHeader').forEach(el => {
-      el.style.display = 'none';
+  if (window.location.pathname.includes("board.html")) {
+    // Verstecke die Elemente mit der Klasse "taskFormHeader"
+    document.querySelectorAll(".taskFormHeader").forEach((el) => {
+      el.style.display = "none";
+    });
+    
+    // Setze die Höhe der Elemente mit der Klasse "taskFormHeaderBox" auf 0
+    document.querySelectorAll(".taskFormHeaderBox").forEach((el) => {
+      el.style.height = "0";
     });
   }
 }
+
 
 
 /**
@@ -467,8 +474,4 @@ document.addEventListener(
   true
 );
 
-
-
 // Funktion aufrufen
-
-
