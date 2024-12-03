@@ -48,6 +48,22 @@ function toggleAddContactButton(event) {
   addContactButtonElement.style.display = addContactButtonElement.style.display === "none" ? "flex" : "none";
 }
 
+function selectContactCard(userID) {
+  if (selectedCardId) {
+    let previousCard = document.getElementById(selectedCardId);
+    if (previousCard) {
+      previousCard.style.backgroundColor = "";
+      previousCard.style.color = "";
+    }
+  }
+
+  let cardElement = document.getElementById(userID);
+  cardElement.style.backgroundColor = "rgba(42, 54, 71, 1)";
+  cardElement.style.color = "white";
+
+  selectedCardId = userID;
+}
+
 /**
  * Toggles the visibility of the contact popup for adding or editing contacts.
  *
