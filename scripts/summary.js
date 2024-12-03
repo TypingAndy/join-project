@@ -173,7 +173,7 @@ function setWelcomeScreenDayTime() {
 }
 
 /**
- * Displays the name of the currently logged-in user.
+ * Displays Guest if no user is logged.
  */
 function setWelcomeScreenName() {
   let name = document.getElementById("welcomeName");
@@ -181,7 +181,14 @@ function setWelcomeScreenName() {
   let nameFromStorage = localStorage.getItem("loggedUserName");
 
   if (nameFromStorage) {
+    // Set the first name if available
     name.innerHTML = nameFromStorage.split(" ")[0];
     nameDesktop.innerHTML = nameFromStorage.split(" ")[0];
+  } else {
+    // Fallback to "Guest"
+    name.innerHTML = "Guest";
+    nameDesktop.innerHTML = "Guest";
   }
 }
+
+
