@@ -31,6 +31,7 @@ let allContacts = [];
 let contactIndices = [];
 let renderedContact = [];
 let contactId;
+let selectedCardId = null;
 
 //often Used functions
 
