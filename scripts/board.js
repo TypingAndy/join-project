@@ -361,6 +361,7 @@ function fillTaskFormEdit(taskId) {
   categoryInput.value = allUnsortedTasks[taskId].taskCategory.category;
   fillSubtaskListInTaskFormEdit(taskId);
   validateTaskForm();
+  hideTaskFormHeader();
 }
 
 /**
@@ -374,6 +375,19 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
     }
   }
 }
+
+/**
+ * Hides AddTask title in Edit Task Form.
+ */
+
+function hideTaskFormHeader() {
+  if (window.location.pathname.includes('board.html')) {
+    document.querySelectorAll('.taskFormHeader').forEach(el => {
+      el.style.display = 'none';
+    });
+  }
+}
+
 
 /**
  * Fills the list of subtasks in the task form for editing a task.
@@ -452,3 +466,9 @@ document.addEventListener(
   },
   true
 );
+
+
+
+// Funktion aufrufen
+
+
