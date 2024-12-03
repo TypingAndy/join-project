@@ -1,3 +1,16 @@
+/**
+ * Generates an HTML template for a task form, which includes sections for task title, description, assigned user, due date, priority, category, and subtasks.
+ * This form also includes input fields, dropdowns, and buttons for managing the task's information.
+ * The form is intended for creating or updating tasks, and the layout adapts based on provided parameters.
+ *
+ * @param {string} taskStatus - The current status of the task (e.g., "in progress", "completed").
+ * @param {string} titleAcceptTaskButton - The text for the submit button (e.g., "Create Task" or "Accept Task").
+ * @param {string} id - The unique identifier for the task (used in form submission or updates).
+ * @param {string} fetchStatus - The status indicating whether to fetch or update task data.
+ * @param {string} postOrPatchFunction - The function to call when creating or updating the task (e.g., POST or PATCH).
+ * @returns {string} The generated HTML string for the task form, including the input fields and associated buttons.
+ */
+
 function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, postOrPatchFunction) {
   return /*html*/ `
     <div class="taskFormWrapper">
@@ -81,14 +94,14 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
             <div class="taskFormLabels">Due date<span style="color: red">*</span></div>
             <div class="taskFormInputContainer">
             <input 
-    id="dateInput" 
-    onclick="insertMinSelectableDate()" 
-    onchange="validateTaskForm(), validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
-    onblur="validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
-    class="taskFormInput datePlaceholder empty" 
-    type="date" 
-    min="" 
-/>
+              id="dateInput" 
+              onclick="insertMinSelectableDate()" 
+              onchange="validateTaskForm(), validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
+              onblur="validateInput('dateInput', 'requiredDateInfo'); checkInputValue()" 
+              class="taskFormInput datePlaceholder empty" 
+              type="date" 
+              min="" 
+          />
             </div>
             <div id="requiredDateInfo" class="requiredInfo displayNone">This field is required</div>
           </div>
@@ -217,6 +230,13 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
   `;
 }
 
+/**
+ * Generates an HTML template for displaying a user in a dropdown list, including their initials, name, and check/uncheck icons.
+ * This template is used to show users that can be assigned to tasks in the task form.
+ *
+ * @param {string} userFirebaseId - The unique identifier of the user in Firebase.
+ * @returns {string} The HTML string representing the user item in the dropdown list.
+ */
 function nameListTemplate(userFirebaseId) {
   return /*html*/ `
     <div id="userContainerInsideUserDropdown(${userFirebaseId})" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
@@ -230,16 +250,41 @@ function nameListTemplate(userFirebaseId) {
   `;
 }
 
+/**
+ * Generates an HTML template for displaying a user's initials as a task assignee icon.
+ * This is used to show the user’s icon (initials in a circle) in various parts of the UI, such as on the task form.
+ *
+ * @param {string} userFirebaseId - The unique identifier of the user in Firebase.
+ * @returns {string} The HTML string representing the user's icon with initials.
+ */
 function iconTemplate(userFirebaseId) {
-  return /*html*/ `<div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>`;
+  return /*html*/ `
+    <div id=taskFormUserIcon${userFirebaseId} class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">
+      ${unsortedUsers[userFirebaseId].initials}
+    </div>
+  `;
 }
 
+/**
+ * Generates an HTML template for displaying a chosen category.
+ * This is used to show the selected task category in the task form.
+ *
+ * @param {string} chosenCategory - The name of the chosen category for the task.
+ * @returns {string} The HTML string representing the category.
+ */
 function categoryTemplate(chosenCategory) {
   return /*html*/ `
       <div class="fontInboxAlign">${chosenCategory}</div>
     `;
 }
 
+/**
+ * Generates an HTML template for displaying a single subtask in a list.
+ * This template includes the subtask title, edit and delete icons, and the option to rewrite the subtask name.
+ *
+ * @param {number} i - The index of the subtask in the list.
+ * @returns {string} The HTML string representing a subtask item with its edit and delete options.
+ */
 function subtaskTemplate(i) {
   return /*html*/ `
     <li id="subtaskSingleListContent(${i})" class="taskFormSubtaskListBox">
@@ -262,5 +307,5 @@ function subtaskTemplate(i) {
 
       </div>
     </li>
-    `;
+  `;
 }

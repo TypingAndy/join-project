@@ -33,24 +33,42 @@ let contactId;
 
 //often Used functions
 
+/**
+ * Stops the propagation of the current event, preventing it from bubbling up the DOM.
+ * 
+ * @param {Event} event - The event object that triggered the propagation.
+ */
 function stopPropagation(event) {
   event.stopPropagation();
 }
 
+/**
+ * Asynchronously fills the sorted users object by fetching and sorting user data.
+ */
 async function fillSortedUsersObject() {
   sortedUsers = await sortUserData();
 }
 
-// navigation
+// Navigation
 
+/**
+ * Redirects the user to the "board.html" page after a brief delay.
+ */
 function redirectToBoard() {
   setTimeout(() => {
     window.location.href = "board.html";
   }, 100);
 }
 
-//taskForm render function
+// Task Form Render Functions
 
+/**
+ * Renders the task form by fetching sorted user data, rendering the task form template, 
+ * and filling dropdowns for users, categories, and subtasks.
+ * 
+ * @param {string} taskStatus - The status of the task to be rendered.
+ * @param {string} renderLocation - The location where the task form should be rendered.
+ */
 async function renderTaskForm(taskStatus, renderLocation) {
   await fillSortedUsersObject();
   renderTaskFormTemplate(taskStatus, renderLocation);
@@ -59,6 +77,12 @@ async function renderTaskForm(taskStatus, renderLocation) {
   renderSubtasksToList();
 }
 
+/**
+ * Renders the task form template with the provided task status and render location.
+ * 
+ * @param {string} taskStatus - The status of the task (e.g., "To Do", "In Progress").
+ * @param {string} renderLocation - The DOM element ID where the form should be rendered.
+ */
 function renderTaskFormTemplate(taskStatus, renderLocation) {
   let taskForm = document.getElementById(renderLocation);
   titleAcceptTaskButton = "Create Task";
@@ -67,6 +91,9 @@ function renderTaskFormTemplate(taskStatus, renderLocation) {
   taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, renderLocation, fetchStatus, postOrPatchFunction);
 }
 
+/**
+ * Fills the user dropdown by populating it with user options based on the sorted users array.
+ */
 function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
   for (let i = 0; i < sortedUsers.length; i++) {
@@ -74,6 +101,11 @@ function fillUserDropdown() {
   }
 }
 
+/**
+ * Toggles the user in the task form by updating the task users array and altering the CSS.
+ * 
+ * @param {string} userFirebaseId - The Firebase ID of the user to be toggled in the task form.
+ */
 function toggleUserInTaskForm(userFirebaseId) {
   toggleUserInTaskUsersArray(userFirebaseId);
   addUserToTaskToggleCss(userFirebaseId);
@@ -81,6 +113,9 @@ function toggleUserInTaskForm(userFirebaseId) {
   renderIconsInTaskForm(userFirebaseId);
 }
 
+/**
+ * Renders the user icons in the task form, showing a maximum of 4 user icons.
+ */
 function renderIconsInTaskForm() {
   let userIconContainer = document.getElementById("taskFormUserIcon");
   let plusUserIcons = document.getElementById("plusUserIcons");
@@ -101,6 +136,11 @@ function renderIconsInTaskForm() {
   }
 }
 
+/**
+ * Toggles the CSS classes for the user in the task form to mark them as added or removed.
+ * 
+ * @param {string} userFirebaseId - The Firebase ID of the user whose CSS should be toggled.
+ */
 function addUserToTaskToggleCss(userFirebaseId) {
   let check = document.getElementById(`check${userFirebaseId}`);
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
@@ -114,6 +154,11 @@ function addUserToTaskToggleCss(userFirebaseId) {
   userDropdown.classList.remove("maxHeight200");
 }
 
+/**
+ * Toggles the presence of a user in the task users array.
+ * 
+ * @param {string} userFirebaseId - The Firebase ID of the user to be added or removed.
+ */
 function toggleUserInTaskUsersArray(userFirebaseId) {
   let i = taskFormCurrentUsersIds.indexOf(userFirebaseId);
 
@@ -124,10 +169,18 @@ function toggleUserInTaskUsersArray(userFirebaseId) {
   }
 }
 
+/**
+ * Clears all users from the task users array.
+ */
 function toggleUserInTaskUsersArraySpliceAll() {
   taskFormCurrentUsersIds.splice(0, taskFormCurrentUsersIds.length);
 }
 
+/**
+ * Filters the users based on the input value in the task form user input field.
+ * 
+ * @param {Event} event - The input event triggered by the user in the user input field.
+ */
 function userFilterFunction() {
   let input = document.getElementById("taskFormUserInput");
   let filter = input.value.toUpperCase();
@@ -150,6 +203,11 @@ function userFilterFunction() {
   }
 }
 
+/**
+ * Filters the categories based on the input value in the task form category input field.
+ * 
+ * @param {Event} event - The input event triggered by the user in the category input field.
+ */
 function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
   let filter = input.value.toUpperCase();
@@ -166,6 +224,9 @@ function categoryFilterFunction() {
   }
 }
 
+/**
+ * Validates the task form to ensure that all required fields are filled.
+ */
 function validateTaskForm() {
   let title = document.getElementById("taskTitleInput").value.trim();
   let dueDate = document.getElementById("dateInput").value.trim();
@@ -182,18 +243,29 @@ function validateTaskForm() {
   }
 }
 
-//open signedUserDropdown
+// Open Signed User Dropdown
 
+/**
+ * Opens the signed-in user dropdown by removing the sliding class.
+ */
 function openSignedUserDropdown() {
   let userProfileDropdown = document.getElementById("userProfileDropdown");
   userProfileDropdown.classList.remove("userProfileDropdownSlider");
 }
 
+/**
+ * Logs the user out by removing their information from localStorage and redirecting to the login page.
+ */
 function logOut() {
   localStorage.removeItem("loggedUserInitials");
   window.location.href = "landingpage_login.html";
 }
 
+/**
+ * Event listener for clicking outside the user profile dropdown to close it.
+ * 
+ * @param {Event} event - The click event on the document.
+ */
 addEventListener("click", (event) => {
   if (!window.location.href.includes("landingpage")) {
     let userProfileButton = document.getElementById("userPorfileButton");
@@ -204,8 +276,11 @@ addEventListener("click", (event) => {
   }
 });
 
-//profile Button
+// Profile Button
 
+/**
+ * Renders the profile button template and sets the user initials based on the logged-in user.
+ */
 function renderProfileButtonTemplate() {
   let profileButtonBox = document.querySelector(".profileButtonBox");
   let loggedUserInitials = localStorage.getItem("loggedUserInitials");
