@@ -206,6 +206,15 @@ function openBoardTaskPopup(taskID) {
   document.body.classList.add("no-scroll");
 }
 
+function handleAddTaskPlusClicks(newGlobalTaskStatus) {
+  globalTaskStatus = newGlobalTaskStatus;
+  if (window.innerWidth >= 1024) {
+    createBoardTaskPopupForNewTask(globalTaskStatus);
+  } else {
+    window.location.href = `add_task.html?status=${newGlobalTaskStatus}`;
+  }
+}
+
 /**
  * Creates a new board task popup for adding a task and pre-fills it with default data.
  * @param {string} taskStatus - The status of the task to be created.
@@ -386,15 +395,13 @@ function hideTaskFormHeader() {
     document.querySelectorAll(".taskFormHeader").forEach((el) => {
       el.style.display = "none";
     });
-    
+
     // Setze die Höhe der Elemente mit der Klasse "taskFormHeaderBox" auf 0
     document.querySelectorAll(".taskFormHeaderBox").forEach((el) => {
       el.style.height = "0";
     });
   }
 }
-
-
 
 /**
  * Fills the list of subtasks in the task form for editing a task.

@@ -63,28 +63,28 @@
             <div id="toDoSection" class="toDoSection">
               <div class="toDoSectionTitleContainer">
                 <p>To Do</p>
-                <div onclick="createBoardTaskPopupForNewTask('to do')" class="boardPlusIconSmall" alt=""></div>
+                <div onclick="handleAddTaskPlusClicks('to do')" class="boardPlusIconSmall" alt=""></div>
               </div>
               <div id="toDoSectionContentWrapper" ondrop="moveTo('to do')" ondragover="allowDrop(event)" class="toDoSectionContentWrapper"></div>
             </div>
             <div id="inProgressSection" class="inProgressSection">
               <div class="inProgressTitleContainer">
                 <p>In progress</p>
-                <div onclick="createBoardTaskPopupForNewTask('in progress')" class="boardPlusIconSmall" alt=""></div>
+                <div onclick="handleAddTaskPlusClicks('in progress')" class="boardPlusIconSmall" alt=""></div>
               </div>
               <div id="inProgressContentWrapper" ondrop="moveTo('in progress')" ondragover="allowDrop(event)" class="inProgressContentWrapper"></div>
             </div>
             <div id="awaitFeedbackSection" class="awaitFeedbackSection">
               <div class="awaitFeedbackTitleContainer">
                 <p>Await feedback</p>
-                <div onclick="createBoardTaskPopupForNewTask('await feedback')" class="boardPlusIconSmall"></div>
+                <div onclick="handleAddTaskPlusClicks('await feedback')" class="boardPlusIconSmall"></div>
               </div>
               <div id="awaitFeedbackContentWrapper" ondrop="moveTo('await feedback')" ondragover="allowDrop(event)" class="awaitFeedbackContentWrapper"></div>
             </div>
             <div id="doneSection" class="doneSection">
               <div class="doneTitleContainer">
                 <p>Done</p>
-                <div onclick="createBoardTaskPopupForNewTask('done')" class="boardPlusIconSmall"></div>
+                <div onclick="handleAddTaskPlusClicks('done')" class="boardPlusIconSmall"></div>
               </div>
               <div id="doneContentWrapper" ondrop="moveTo('done')" ondragover="allowDrop(event)" class="doneContentWrapper"></div>
             </div>

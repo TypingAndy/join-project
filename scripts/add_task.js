@@ -152,7 +152,6 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-
 // category
 
 /**
@@ -318,7 +317,6 @@ function toggleButtonsInsideSubtask(i) {
   rewriteIconBox.classList.toggle("displayNone");
 }
 
-
 /**
  * Toggles the visibility of the marker for a specific subtask.
  * @param {number} i - The index of the subtask.
@@ -387,7 +385,7 @@ function validateInput(inputId, requiredInfoId) {
  * Resets the task form to its default state and removes all subtasks.
  */
 function clearTaskForm() {
-  renderTaskForm("to do", "taskFormAddTask");
+  renderTaskForm(globalTaskStatus || "to do", "taskFormAddTask");
   deleteAllSubtaskFromList();
   renderSubtasksToList();
 }

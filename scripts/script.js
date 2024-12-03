@@ -24,6 +24,7 @@ let unsortedUsers = {}; //is needed
 let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
 let currentDraggedElementID;
+let globalTaskStatus = new URLSearchParams(window.location.search).get("status") || "to do";
 
 //contactGlobalArray
 let allContacts = [];
@@ -35,7 +36,7 @@ let contactId;
 
 /**
  * Stops the propagation of the current event, preventing it from bubbling up the DOM.
- * 
+ *
  * @param {Event} event - The event object that triggered the propagation.
  */
 function stopPropagation(event) {
@@ -63,9 +64,9 @@ function redirectToBoard() {
 // Task Form Render Functions
 
 /**
- * Renders the task form by fetching sorted user data, rendering the task form template, 
+ * Renders the task form by fetching sorted user data, rendering the task form template,
  * and filling dropdowns for users, categories, and subtasks.
- * 
+ *
  * @param {string} taskStatus - The status of the task to be rendered.
  * @param {string} renderLocation - The location where the task form should be rendered.
  */
@@ -79,7 +80,7 @@ async function renderTaskForm(taskStatus, renderLocation) {
 
 /**
  * Renders the task form template with the provided task status and render location.
- * 
+ *
  * @param {string} taskStatus - The status of the task (e.g., "To Do", "In Progress").
  * @param {string} renderLocation - The DOM element ID where the form should be rendered.
  */
@@ -103,7 +104,7 @@ function fillUserDropdown() {
 
 /**
  * Toggles the user in the task form by updating the task users array and altering the CSS.
- * 
+ *
  * @param {string} userFirebaseId - The Firebase ID of the user to be toggled in the task form.
  */
 function toggleUserInTaskForm(userFirebaseId) {
@@ -138,7 +139,7 @@ function renderIconsInTaskForm() {
 
 /**
  * Toggles the CSS classes for the user in the task form to mark them as added or removed.
- * 
+ *
  * @param {string} userFirebaseId - The Firebase ID of the user whose CSS should be toggled.
  */
 function addUserToTaskToggleCss(userFirebaseId) {
@@ -156,7 +157,7 @@ function addUserToTaskToggleCss(userFirebaseId) {
 
 /**
  * Toggles the presence of a user in the task users array.
- * 
+ *
  * @param {string} userFirebaseId - The Firebase ID of the user to be added or removed.
  */
 function toggleUserInTaskUsersArray(userFirebaseId) {
@@ -178,7 +179,7 @@ function toggleUserInTaskUsersArraySpliceAll() {
 
 /**
  * Filters the users based on the input value in the task form user input field.
- * 
+ *
  * @param {Event} event - The input event triggered by the user in the user input field.
  */
 function userFilterFunction() {
@@ -205,7 +206,7 @@ function userFilterFunction() {
 
 /**
  * Filters the categories based on the input value in the task form category input field.
- * 
+ *
  * @param {Event} event - The input event triggered by the user in the category input field.
  */
 function categoryFilterFunction() {
@@ -263,7 +264,7 @@ function logOut() {
 
 /**
  * Event listener for clicking outside the user profile dropdown to close it.
- * 
+ *
  * @param {Event} event - The click event on the document.
  */
 addEventListener("click", (event) => {

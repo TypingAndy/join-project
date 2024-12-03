@@ -506,7 +506,7 @@
   }
   .boardWrapper {
     padding: 0 48px;
-    height: 100vh;
+    height: 100%;
   }
 
   .titleAndInputWrapper {
