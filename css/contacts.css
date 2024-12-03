@@ -19,6 +19,8 @@ body {
   height: 100%;
   background-color: white;
   overflow-y: auto;
+  box-shadow: 1.902113032590307px 0.6180339887498948px 4px -3px rgba(0, 0, 0, 0.196), 2.8531695488854605px 0.9270509831248421px 6px -2px rgba(0, 0, 0, 0.147), 3.804226065180614px 1.2360679774997896px 8px -1.5px rgba(0, 0, 0, 0.098), 5.706339097770921px 1.8541019662496843px 12px 0px rgba(0, 0, 0, 0.06125), 7.608452130361228px 2.472135954999579px 16px 2px rgba(0, 0, 0, 0.03675), 11.412678195541842px 3.7082039324993685px 24px 4px rgba(0, 0, 0, 0.01225),
+    -0.9510565162951536px -0.3090169943749473px 6px -3px #ffffff00, -1.4265847744427305px -0.46352549156242095px 9px -2px #ffffff00, -1.9021130325903073px -0.6180339887498946px 12px -1.5px #ffffff00, -2.853169548885461px -0.9270509831248419px 18px 0px #ffffff00, -3.8042260651806146px -1.2360679774997891px 24px 2px #ffffff00, -5.706339097770922px -1.8541019662496838px 36px 4px #ffffff00;
 }
 
 .contactsInitWrapper {
@@ -422,7 +424,7 @@ body {
   /* align-items: center; */
   width: 100%;
   height: 100%;
-  padding: 32px 24px;
+  padding: 32px 32px;
   gap: 32px;
 }
 
@@ -646,7 +648,7 @@ body {
     margin-left: 232px;
     width: 30%;
     height: 100%;
-    min-width: 400px;
+    min-width: 420px;
     max-width: 660px;
     background-color: white;
     overflow-y: auto;

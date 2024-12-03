@@ -1,6 +1,6 @@
 /**
  * Generates the HTML template for displaying contacts grouped by a specific letter.
- * 
+ *
  * @param {string} letter - The letter by which the contacts are grouped.
  * @param {Array} users - An array of user objects to display in the contact list.
  * @returns {string} The HTML string for the contact list grouped by the given letter.
@@ -14,13 +14,14 @@ function contactsTemplate(letter, users) {
             .map(
               (user) =>
                 `
-            <div class="contactCard" onclick="toggleContactDetails('${user.id}'), toggleAddContactButton()">
+            <div class="contactCard" id='${user.id}' onclick="toggleContactDetails('${user.id}'), toggleAddContactButton(), selectContactCard('${user.id}')">
               <div class="contactCardInitialsCircle" style="background-color: ${user.color}">
                 <span class="initials" style="color:${user.fontColor} ">${user.initials}</span>
               </div>
               <div class="contactInfos">
                 <span class="contactName">${user.name}</span>
                 <a class="contactMail">${user.email}</a>
+
               </div>
             </div>
           `
@@ -32,7 +33,7 @@ function contactsTemplate(letter, users) {
 
 /**
  * Generates the HTML template for displaying detailed information of a contact.
- * 
+ *
  * @param {string} firebaseUserId - The ID of the user whose details are to be displayed.
  * @returns {string} The HTML string for the contact details.
  */
@@ -80,7 +81,7 @@ function contactDetailsTemplate(firebaseUserId) {
 
 /**
  * Generates the HTML template for the contact popup (either for adding or editing a contact).
- * 
+ *
  * @param {string} popupType - Specifies the type of popup ("add" or "edit").
  * @param {string} firebaseUserId - The ID of the user to edit (only needed for 'edit' type).
  * @returns {string} The HTML string for the contact popup template.
@@ -131,7 +132,7 @@ function contactPopupTemplate(popupType, firebaseUserId) {
 
     </div>
   </div>
-` ;
+`;
   } else {
     return /*html*/ `
     <div class="contactPopup" id="contactPopup">
@@ -174,13 +175,13 @@ function contactPopupTemplate(popupType, firebaseUserId) {
       </form>
     </div>
   </div>
-` ;
+`;
   }
 }
 
 /**
  * Generates an empty contact details template (when no contact is selected).
- * 
+ *
  * @returns {string} The HTML string for the empty contact details.
  */
 function emptyContactDetails() {

@@ -1,3 +1,25 @@
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.8);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) transparent;
+}
+
 @font-face {
   font-family: "OpenSans";
   src: url("../fonts/OpenSans.ttf");
@@ -106,6 +128,7 @@ nav {
   width: 100%;
   bottom: 0;
   position: fixed;
+  z-index: 999;
 }
 
 .currentNavLinkBackground {
