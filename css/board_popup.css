@@ -22,7 +22,7 @@
   background: white;
   border-radius: 30px;
   transition: right 0.3s ease;
- }
+}
 
 .boardTaskPopup.active {
   right: 50%;
@@ -72,6 +72,7 @@
 }
 .boardTaskPopupContentClose {
   width: 32px;
+  cursor: pointer;
 }
 
 .boardTaskPopupContentTitle {
@@ -225,7 +226,6 @@
     width: auto;
 
     top: 160px;
- 
   }
 
   .boardPopupBackground {
