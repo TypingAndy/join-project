@@ -12,7 +12,9 @@ async function createLokalTasksArray() {
  * Converts the unsorted tasks object into an array.
  */
 function convertUnsortedTasksObjectToArray() {
-  lokalTasksArray = Object.values(allUnsortedTasks);
+  if (allUnsortedTasks) {
+    lokalTasksArray = Object.values(allUnsortedTasks);
+  }
 }
 
 /**
