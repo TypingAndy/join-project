@@ -25,6 +25,7 @@ let lokalTasksArray = []; //is needed. renamed from convertedTasks
 let allUnsortedTasks = []; //is needed
 let currentDraggedElementID;
 let globalTaskStatus = new URLSearchParams(window.location.search).get("status") || "to do";
+let globalRenderLocation;
 
 //contactGlobalArray
 let allContacts = [];
@@ -62,6 +63,21 @@ function redirectToBoard() {
   }, 100);
 }
 
+
+/**
+ * Defines the Location where the taskForm should render in
+ */
+function setGlobalRenderLocation() {
+  if (window.location.href.includes('board.html')) {
+    globalRenderLocation = 'boardTaskPopup';
+  }
+
+  if (window.location.href.includes('add_task.html')) {
+    globalRenderLocation = 'taskFormAddTask';
+  }
+}
+
+
 // Task Form Render Functions
 
 /**
@@ -91,11 +107,11 @@ function renderTaskFormTemplate(taskStatus, renderLocation) {
   titleAcceptTaskButton = "Create Task";
   let fetchStatus = "POST";
   let postOrPatchFunction = "postTaskData";
-  taskForm.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, renderLocation, fetchStatus, postOrPatchFunction);
+  taskForm.innerHTML = taskFormTemplate(globalTaskStatus, titleAcceptTaskButton, renderLocation, fetchStatus, postOrPatchFunction);
 }
 
 /**
- * Fills the user dropdown by populating it with user options based on the sorted users array.
+ * Fills the user dropdown by populating it with user based on the sorted users array.
  */
 function fillUserDropdown() {
   let userDropdown = document.getElementById("userDropdown");
