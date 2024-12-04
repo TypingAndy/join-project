@@ -61,7 +61,7 @@ body {
 .contactLetterWrapper {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 64px);
+  width: calc(100% - 40px);
   max-width: 352px;
   gap: 20px;
   margin-bottom: 28px;
@@ -434,7 +434,7 @@ body {
   /* align-items: center; */
   width: 100%;
   height: 100%;
-  padding: 32px 32px;
+  padding: 32px 40px;
   gap: 32px;
 }
 
@@ -713,7 +713,7 @@ body {
 
 @media (max-width: 360px) {
   .contactCard {
-    padding: 0 6px;
+    padding: 6px 6px;
   }
 
   .contactLetter {

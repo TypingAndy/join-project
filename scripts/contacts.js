@@ -127,12 +127,19 @@ function clearAddContactsInputData() {
  * @returns {Promise<void>} A promise that resolves when the contact is created and the UI is updated.
  */
 async function handleCreateContactsButtonClick() {
-  await postUserDataToFirebase("contact");
-  await renderContacts();
-  clearAddContactsInputData();
-  toggleContactPopup();
-  toggleContactDetails(currentUserIdFromFirebase);
-  showContactCreatedSuccessfullyPopup();
+  const newUserId = await postUserDataToFirebase("contact");
+
+  if (newUserId) {
+    await renderContacts();
+    clearAddContactsInputData();
+    toggleContactPopup();
+
+    selectContactCard(newUserId);
+    toggleContactDetails(newUserId);
+    showContactCreatedSuccessfullyPopup();
+  } else {
+    console.error("Failed to create new contact");
+  }
 }
 
 /**
@@ -215,8 +222,10 @@ async function handleClickDeleteUser(firebaseId) {
   }
 
   await renderContacts();
-  toggleContactPopup();
-  toggleContactDetails();
+  if (window.innerWidth < 1024) {
+    toggleContactPopup();
+    toggleContactDetails();
+  }
 }
 
 /**
