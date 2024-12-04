@@ -52,10 +52,10 @@ function checkMatchingPasswords() {
 
   if (!passwordMatch && confirmPassword !== "") {
     document.getElementById("signUpConfirmPasswordInput").style.border = "solid #FF8190 1px";
-    document.getElementById("passwordDontMatchText").classList.remove('displayNone');
+    document.getElementById("passwordDontMatchText").classList.remove("displayNone");
   } else {
     document.getElementById("signUpConfirmPasswordInput").style.border = "solid #d1d1d1 1px";
-    document.getElementById("passwordDontMatchText").classList.add('displayNone');
+    document.getElementById("passwordDontMatchText").classList.add("displayNone");
   }
 }
 
@@ -84,10 +84,11 @@ function handleSignUpClick() {
   acceptPrivacyPolicyCheck();
   clearSignUpInputField();
   showPopup();
+  returnToLogin();
 }
 
 /**
- * Displays a popup upon successful registration and redirects to the login page after a short time.
+ * Displays a popup upon successful registration after a short time.
  */
 function showPopup() {
   const popup = document.querySelector(".signUpSuccessfulPopup");
@@ -95,6 +96,14 @@ function showPopup() {
 
   setTimeout(() => {
     popup.classList.remove("active");
-    window.location.href = "./landingpage_login.html";
+  }, 1500);
+}
+
+/**
+ * Redirects to the login page after a short time.
+ */
+function returnToLogin() {
+  setTimeout(() => {
+    window.location.href = "../index.html";
   }, 1500);
 }

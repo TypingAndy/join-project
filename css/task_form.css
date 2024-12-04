@@ -575,6 +575,10 @@ input:not(.empty) {
     overflow: unset;
   }
 
+  .taskFormSubtaskList {
+    max-height: 100px;
+   }
+
   .taskFormHeader {
     font-size: 61px;
   }
