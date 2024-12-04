@@ -106,19 +106,19 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <div class="contactPopupBottom">
     <form action="">
   <div class="nameInputWrapper">
-    <input class="addContactNameInput" onkeyup="validateContactForm()" onblur="showNameIsNotCorrectReminder()" id="addContactNameInput" type="text" placeholder="Name"/>
+    <input class="addContactNameInput" onkeyup="validateContactForm(), showNameIsNotCorrectReminder()" id="addContactNameInput" type="text" placeholder="Name"/>
     <img src="../images/icons/person_grey.png" alt="" />
-    <div id="wrongNameFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong name input.</div>
+    <div id="wrongNameFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Name is missing.</div>
   </div>
   <div class="mailInputWrapper">
-    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail(), showEmailIsNotCorrectReminder()" id="addContactMailInput" type="text" placeholder="Email"/>
+    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail(), showEmailIsNotCorrectReminder()" onblur=" validateEmail(), showEmailIsNotCorrectReminder()" id="addContactMailInput" type="text" placeholder="Email"/>
     <img src="../images/icons/mail_grey.png" alt="" />
     <div id="wrongEmailFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong email input.</div>
   </div>
   <div class="phoneInputWrapper">
-    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" oninput="allowOnlyNumbers(this)" onblur="showPhonenumberIsNotCorrectReminder()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
+    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber(), showPhonenumberIsNotCorrectReminder()" oninput="allowOnlyNumbers(this)" onblur="showPhonenumberIsNotCorrectReminder()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
     <img src="../images/icons/callgrey.png" alt="" />
-    <div id="wrongPhoneFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong phonenumber input.</div>
+    <div id="wrongPhoneFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Phonenumber is missing.</div>
   </div>
   <div class="contactButtonsWrapper">
 
@@ -154,16 +154,19 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <div class="contactPopupBottom">
       <form action="">
         <div class="nameInputWrapper">
-          <input class="addContactNameInput" id="editContactNameInput" type="text" value="${userDataFromFirebase[firebaseUserId].name}" />
+          <input class="addContactNameInput" id="editContactNameInput" onkeyup="showNameIsNotCorrectReminder()" type="text" value="${userDataFromFirebase[firebaseUserId].name}" />
           <img src="../images/icons/person_grey.png" alt="" />
+          <div id="wrongNameFeedbackEditContact" class="wrongEntrieFeedbackAddContact displayNone">Name is missing.</div>
         </div>
         <div class="mailInputWrapper">
-          <input class="addContactMailInput" id="editContactMailInput" type="text" value="${userDataFromFirebase[firebaseUserId].email}" />
+          <input class="addContactMailInput" id="editContactMailInput" onkeyup="showEmailIsNotCorrectReminder()" type="text" value="${userDataFromFirebase[firebaseUserId].email}" />
           <img src="../images/icons/mail_grey.png" alt="" />
+          <div id="wrongEmailFeedbackEditContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong email input.</div>
         </div>
         <div class="phoneInputWrapper">
-        <input class="addContactPhoneInput" id="editContactPhoneInput" type="tel" value="${userDataFromFirebase[firebaseUserId].phone}" placeholder="Phone" oninput="allowOnlyNumbers(this)"/>
+        <input class="addContactPhoneInput" id="editContactPhoneInput" onkeyup="showPhonenumberIsNotCorrectReminder()" type="tel" value="${userDataFromFirebase[firebaseUserId].phone}" placeholder="Phone" oninput="allowOnlyNumbers(this)"/>
           <img src="../images/icons/callgrey.png" alt="" />
+          <div id="wrongPhoneFeedbackEditContact" class="wrongEntrieFeedbackAddContact displayNone">Phonenumber is missing.</div>
         </div>
         <div class="editContactButtonWrapper">
         <div class="deleteContactButton" onclick=" handleClickDeleteUser('${firebaseUserId}')">

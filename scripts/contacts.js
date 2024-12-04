@@ -279,16 +279,21 @@ function validateContactForm() {
 }
 
 /**
- * Validates the phone number input, removing any non-numeric characters.
+ * Displays or hides a feedback reminder if the name input is empty.
  *
- * @returns {void} This function does not return a value. It modifies the phone input field.
+ * The function checks the name input field for adding or editing a contact.
+ * If the field is empty, it removes the "displayNone" class to show the feedback message.
+ * Otherwise, it adds the "displayNone" class to hide the feedback.
  */
-function validatePhoneNumber() {
-  let phoneInput = document.getElementById("addContactPhoneInput");
-  let phoneValue = phoneInput.value.trim();
+function showNameIsNotCorrectReminder() {
+  let nameInput = document.getElementById("addContactNameInput") || document.getElementById("editContactNameInput");
+  let feedbackElement = document.getElementById("wrongNameFeedbackAddContact") || document.getElementById("wrongNameFeedbackEditContact");
 
-  phoneValue = phoneValue.replace(/\D/g, "");
-  phoneInput.value = phoneValue;
+  if (nameInput.value.trim() === "") {
+    feedbackElement.classList.remove("displayNone");
+  } else {
+    feedbackElement.classList.add("displayNone");
+  }
 }
 
 /**
@@ -306,12 +311,56 @@ function validateEmail(email) {
   return emailRegex.test(email);
 }
 
-function showNameIsNotCorrectReminder() {
-  id = "wrongNameFeedbackAddContact";
+/**
+ * Displays or hides a feedback reminder if the entered email is not valid.
+ *
+ * The function checks the validity of the email entered in the input field for adding
+ * or editing a contact. If the email is invalid, it removes the "displayNone" class
+ * from the feedback element to show the reminder. If the email is valid, it adds the
+ * "displayNone" class to hide the reminder.
+ */
+function showEmailIsNotCorrectReminder() {
+  let emailInput = document.getElementById("addContactMailInput") || document.getElementById("editContactMailInput");
+  let feedbackElement = document.getElementById("wrongEmailFeedbackAddContact") || document.getElementById("wrongEmailFeedbackEditContact");
+
+  let email = emailInput.value.trim();
+
+  if (validateEmail(email)) {
+    feedbackElement.classList.add("displayNone");
+  } else {
+    feedbackElement.classList.remove("displayNone");
+  }
 }
 
+/**
+ * Validates the phone number input, removing any non-numeric characters.
+ *
+ * @returns {void} This function does not return a value. It modifies the phone input field.
+ */
+function validatePhoneNumber() {
+  let phoneInput = document.getElementById("addContactPhoneInput");
+  let phoneValue = phoneInput.value.trim();
+
+  phoneValue = phoneValue.replace(/\D/g, "");
+  phoneInput.value = phoneValue;
+}
+
+/**
+ * Displays or hides a feedback reminder if the phone number input is empty.
+ *
+ * The function checks the phone number input field for adding or editing a contact.
+ * If the field is empty, it removes the "displayNone" class to show the feedback message.
+ * Otherwise, it adds the "displayNone" class to hide the feedback.
+ */
 function showPhonenumberIsNotCorrectReminder() {
-  id = "wrongPhoneFeedbackAddContact";
+  let phoneInput = document.getElementById("addContactPhoneInput") || document.getElementById("editContactPhoneInput");
+  let feedbackElement = document.getElementById("wrongPhoneFeedbackAddContact") || document.getElementById("wrongPhoneFeedbackEditContact");
+
+  if (phoneInput.value.trim() === "") {
+    feedbackElement.classList.remove("displayNone");
+  } else {
+    feedbackElement.classList.add("displayNone");
+  }
 }
 
 /**
