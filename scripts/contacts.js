@@ -293,6 +293,8 @@ function validateContactForm() {
   }
 }
 
+
+
 /**
  * Validates the phone number input, removing any non-numeric characters.
  *
@@ -307,15 +309,29 @@ function validatePhoneNumber() {
 }
 
 /**
- * Validates an email address by checking if it contains the "@" symbol.
+ * Validates an email address by checking if it follows a standard email format
+ * and contains a valid top-level domain (TLD).
  *
  * @param {string} email - The email address to validate.
  * @returns {boolean} True if the email is valid, false otherwise.
  */
 function validateEmail(email) {
-  if (email && email.includes("@")) {
-    return true;
+  if (!email) {
+    return false;
   }
+
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+
+  return emailRegex.test(email);
+}
+
+function showNameIsNotCorrectReminder() {
+id="wrongNameFeedbackAddContact"
+}
+
+
+function showPhonenumberIsNotCorrectReminder() {
+id="wrongPhoneFeedbackAddContact"
 }
 
 /**
