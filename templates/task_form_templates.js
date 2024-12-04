@@ -167,7 +167,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 class="taskFormSubtaskInput" 
                 type="text" 
                 placeholder="Add new subtask" 
-                autocomplete="off" 
+                autocomplete="off"
               />
               <div class="iconWrapper">
                 <img 

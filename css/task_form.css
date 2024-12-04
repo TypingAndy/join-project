@@ -437,6 +437,7 @@ input:not(.empty) {
   border: solid 1px #d1d1d1;
   background-color: #ffffff;
   padding: 0 12px;
+  padding: 0px 100px 0px 12px;
   font-size: 16px;
 }
 
@@ -605,6 +606,8 @@ input:not(.empty) {
     justify-content: center;
     flex-direction: unset;
     gap: 32px;
+    overflow-y: unset;
+    
   }
 
   .addTaskLeftSection {
@@ -714,7 +717,7 @@ input:not(.empty) {
   }
 
   .taskFormSubtaskInput {
-    padding: 12px 21px 12px 21px;
+    padding: 12px 100px 12px 21px;
     font-size: 20px;
   }
 

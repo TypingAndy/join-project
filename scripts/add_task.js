@@ -1,4 +1,11 @@
-// user assign
+/**
+ * Highlights the AddTask NavLink
+ */
+
+function highlightAddTaskInNavbar() {
+  let navLink = document.getElementById('addTaskLink');
+  navLink.classList.add('currentNavLinkBackground');
+}
 
 //------------// open/close User Dropdown
 
@@ -385,7 +392,8 @@ function validateInput(inputId, requiredInfoId) {
  * Resets the task form to its default state and removes all subtasks.
  */
 function clearTaskForm() {
-  renderTaskForm(globalTaskStatus || "to do", "taskFormAddTask");
+  setGlobalRenderLocation();
+  renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
   deleteAllSubtaskFromList();
   renderSubtasksToList();
 }

@@ -373,6 +373,7 @@ input:focus {
   .logInBoard {
     height: 50%;
     width: 50%;
+    max-width: 650px;
     border-radius: 30px;
     position: relative;
     display: flex;

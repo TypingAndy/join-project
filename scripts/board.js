@@ -12,7 +12,9 @@ async function createLokalTasksArray() {
  * Converts the unsorted tasks object into an array.
  */
 function convertUnsortedTasksObjectToArray() {
-  lokalTasksArray = Object.values(allUnsortedTasks);
+  if (allUnsortedTasks) {
+    lokalTasksArray = Object.values(allUnsortedTasks);
+  }
 }
 
 /**
@@ -33,6 +35,16 @@ async function initializeBoard() {
   await createLokalTasksArray();
   await loadUserDataFromFirebase();
   renderTaskCards();
+  highlightBoardInNavbar();
+}
+
+/**
+ * Highlights the Board NavLink
+ */
+
+function highlightBoardInNavbar() {
+  let navLink = document.getElementById('boardLink');
+  navLink.classList.add('currentNavLinkBackground');
 }
 
 /**

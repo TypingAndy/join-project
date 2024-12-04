@@ -20,7 +20,8 @@ function contactsTemplate(letter, users) {
               </div>
               <div class="contactInfos">
                 <span class="contactName">${user.name}</span>
-                <a href='${user.email}' class="contactMail">${user.email}</a>
+                <a class="contactMail">${user.email}</a>
+
               </div>
             </div>
           `
