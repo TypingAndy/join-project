@@ -33,10 +33,12 @@ async function postUserDataToFirebase(userType) {
       throw new Error("Failed to post user data");
     }
 
-    currentUserIdFromFirebase = (await response.json()).name;
-    return response;
+    const responseData = await response.json();
+    currentUserIdFromFirebase = responseData.name;
+    return currentUserIdFromFirebase;
   } catch (error) {
     console.error("Error posting user data to Firebase:", error);
+    return undefined;
   }
 }
 
