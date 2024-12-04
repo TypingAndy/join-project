@@ -69,8 +69,9 @@ function redirectToBoard() {
  */
 function setGlobalRenderLocation() {
   if (window.location.href.includes('board.html')) {
-    globalRenderLocation = 'boardTaskPopup';
+    globalRenderLocation = 'boardTaskPopupContentWrapper';
   }
+
 
   if (window.location.href.includes('add_task.html')) {
     globalRenderLocation = 'taskFormAddTask';
@@ -93,7 +94,7 @@ async function renderTaskForm(taskStatus, renderLocation) {
   fillUserDropdown();
   fillCategoryDropdown();
   renderSubtasksToList();
-  highlightAddTaskInNavbar();
+
 }
 
 /**
@@ -277,7 +278,7 @@ function openSignedUserDropdown() {
  */
 function logOut() {
   localStorage.removeItem("loggedUserInitials");
-  window.location.href = "landingpage_login.html";
+  window.location.href = "../index.html";
 }
 
 /**

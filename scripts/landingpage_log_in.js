@@ -18,7 +18,7 @@ function checkUserPasswortMatch() {
       userFound = true;
       fillLocalStorageWithRememberedUserData(firebaseId);
       fillStorageWithUserData(firebaseId);
-      window.location.href = "summary.html";
+      window.location.href = "html/summary.html";
     }
   });
 

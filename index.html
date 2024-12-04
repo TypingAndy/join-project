@@ -4,28 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/task_form.css" />
-    <link rel="stylesheet" href="../css/log_in.css" />
-    <script src="../scripts/script.js"></script>
-    <script src="../scripts/firebase.js"></script>
-    <script src="../scripts/log_in_opening_animation.js"></script>
-    <script src="../scripts/landingpage_log_in.js"></script>
+    <link rel="icon" type="image/x-icon" href="images/icons/join_logo_dark.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/task_form.css" />
+    <link rel="stylesheet" href="css/log_in.css" />
+    <script src="scripts/script.js"></script>
+    <script src="scripts/firebase.js"></script>
+    <script src="scripts/log_in_opening_animation.js"></script>
+    <script src="scripts/landingpage_log_in.js"></script>
   </head>
 
   <body onload=" deleteStorage() ,loadUserDataFromFirebase(), fillInputsAtLoginWithRememberedUser()">
     <!-- start sequence -->
 
     <div id="animationBox" class="landingpageBoxStart">
-      <img id="joinLogoWhiteAnimation" class="openingScreenLogoBrightCenter" src="../images/icons/join_logo_white.png" alt="" />
-      <img id="joinLogoDarkAnimation" class="openingScreenLogoDarkCenter" src="../images/icons/join_logo_dark.png" alt="" />
+      <img id="joinLogoWhiteAnimation" class="openingScreenLogoBrightCenter" src="images/icons/join_logo_white.png" alt="" />
+      <img id="joinLogoDarkAnimation" class="openingScreenLogoDarkCenter" src="images/icons/join_logo_dark.png" alt="" />
     </div>
 
     <!-- start sequence -->
 
     <div class="logInSection">
-      <img id="afterAnimatioLogo" class="logInLogo invisible" src="../images/icons/join_logo_dark.png" alt="" />
+      <img id="afterAnimatioLogo" class="logInLogo invisible" src="images/icons/join_logo_dark.png" alt="" />
 
       <form class="logInBoard">
         <div class="logInBoardContentWrapper">
@@ -43,13 +43,13 @@
           </div>
           <div class="logInCheckOutBoxWrapper">
              <div class="acceptPolicyBox">
-                <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="../images/icons/unchecked.png" alt="" />
-                <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="../images/icons/checked.png" alt="" />
+                <img id="logInCheckbox" onclick="toggleLoginRememberMe(true)" class="logInCheckImg" src="images/icons/unchecked.png" alt="" />
+                <img id="logInUncheckbox" onclick="toggleLoginRememberMe(false)" class="logInCheckImg displayNone" src="images/icons/checked.png" alt="" />
                 <div class="rememberMe">Remember me</div>
               </div>
             <div class="loginButtons">
               <div id="logInButton" onclick="checkUserPasswortMatch()" class="logInButton" type="submit">Log in</div>
-              <div onclick="validateLogin(), window.location.href='summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
+              <div onclick="validateLogin(), window.location.href='html/summary.html'" id="logInButton" class="guestLogInButton" type="submit">Guest Log in</div>
             </div>
           </div>
         </div>
@@ -57,12 +57,12 @@
 
       <div class="logInNoUserSignUpBox">
         <div  class="logInNoUserSignUpText">Not a Join user?</div>
-        <div class="logInNoUserSignUpButton" onclick="window.location.href='landingpage_sign_up.html'">Sign up</div>
+        <div class="logInNoUserSignUpButton" onclick="window.location.href='html/landingpage_sign_up.html'">Sign up</div>
       </div>
 
       <div class="logInLinksBox">
-        <div class="logInLinks" onclick="window.location.href='privacy_policy_no_nav.html'">Privacy Policy</div>
-        <div class="logInLinks" onclick="window.location.href='legal_notice_no_nav.html'">Legal Notice</div>
+        <div class="logInLinks" onclick="window.location.href='html/privacy_policy_no_nav.html'">Privacy Policy</div>
+        <div class="logInLinks" onclick="window.location.href='html/legal_notice_no_nav.html'">Legal Notice</div>
       </div>
     </div>
   </body>

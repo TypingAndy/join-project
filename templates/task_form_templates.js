@@ -164,6 +164,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
                 id="taskFormSubtaskInput" 
                 onfocus="toggleSubtaskCheckOnFocus(true)" 
                 onblur="toggleSubtaskCheckOnFocus(false), clearSubtaskInput()" 
+                onkeydown="if (event.key === 'Enter') addSubtaskToList(), renderSubtasksToList(), clearSubtaskInput()"
                 class="taskFormSubtaskInput" 
                 type="text" 
                 placeholder="Add new subtask" 
