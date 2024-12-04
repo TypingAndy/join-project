@@ -1,6 +1,6 @@
 /**
  * Generates the HTML template for displaying a message when there are no tasks.
- * 
+ *
  * @returns {string} The HTML string for the "No tasks to do" message.
  */
 function noTaskTemplate() {
@@ -13,7 +13,7 @@ function noTaskTemplate() {
 
 /**
  * Generates the HTML template for a task card with specific task details.
- * 
+ *
  * @param {number} taskIndex - The index of the task in the filtered task array.
  * @param {Array} filteredLokalTasksArray - The array of filtered tasks.
  * @param {string} taskCardAllInitialsTemplate - The template for the task card initials.
@@ -46,12 +46,18 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
  <div>
      <p class="taskCardTitle">${filteredLokalTasksArray[taskIndex].taskTitle}</p>
      <p class="taskCardDescription">${filteredLokalTasksArray[taskIndex].taskDescription}</p>
+     ${
+       subtasksArrayLength > 0
+         ? `
      <div class="taskCardSubtasksContainer">
          <div class="taskCardSubtaskBarWrapper">
              <div class="taskCardSubtaskBar" id="taskCardSubtaskBar${[taskIndex]}" style="width: ${subtaskDonePercentage}%"></div>
          </div>
          <p>${subtasksDone}/${subtasksArrayLength} Subtasks</p>
      </div>
+     `
+         : ""
+     }
      <div class="taskCardBottomContainer">
          <div class="taskCardUserContainer">
              ${taskCardAllInitialsTemplate}
@@ -65,7 +71,7 @@ function taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitial
 
 /**
  * Generates the HTML template for moving a task to another category.
- * 
+ *
  * @param {string} taskID - The ID of the task to move.
  * @returns {string} The HTML string for the task move-to template.
  */
@@ -102,7 +108,7 @@ function taskCardMoveToTemplate(taskID) {
 
 /**
  * Generates the HTML template for a task card with a single user's initials.
- * 
+ *
  * @param {string} currentUserID - The ID of the current user.
  * @returns {string} The HTML string for the user's initials on the task card.
  */
@@ -118,7 +124,7 @@ function taskCardSingleInitialsTemplate(currentUserID) {
 
 /**
  * Generates the HTML template for displaying additional task card users when there are more than one.
- * 
+ *
  * @param {number} plusNumber - The number of additional users.
  * @returns {string} The HTML string for the plus number on the task card.
  */
@@ -136,7 +142,7 @@ function taskCardSingleInitialsPlusTemplate(plusNumber) {
 
 /**
  * Generates the HTML template for displaying a task popup with detailed information.
- * 
+ *
  * @param {string} taskID - The ID of the task to display in the popup.
  * @returns {string} The HTML string for the task popup template.
  */
@@ -191,7 +197,7 @@ function boardTaskPopupTemplate(taskID) {
 
 /**
  * Generates an empty task popup template (for when no task is selected).
- * 
+ *
  * @returns {string} The HTML string for the empty task popup template.
  */
 function boardTaskPopupTemplateEmpty() {
@@ -203,7 +209,7 @@ function boardTaskPopupTemplateEmpty() {
 
 /**
  * Generates the HTML template for displaying a user's details in a task popup.
- * 
+ *
  * @param {string} currentUserId - The ID of the current user.
  * @returns {string} The HTML string for the user's details in the popup.
  */
@@ -220,7 +226,7 @@ function popupUserTemplate(currentUserId) {
 
 /**
  * Generates the HTML template for a subtask in the task popup.
- * 
+ *
  * @param {number} subtasksIndex - The index of the subtask in the task's subtasks array.
  * @param {string} taskID - The ID of the task that the subtask belongs to.
  * @returns {string} The HTML string for the subtask in the task popup.

@@ -25,7 +25,6 @@
   gap: 8px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   background-color: rgba(246, 247, 248, 1);
 }

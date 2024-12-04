@@ -12,7 +12,6 @@ function checkUserPasswortMatch() {
   let emailInput = document.getElementById("logInMailInput").value;
   let passwordInput = document.getElementById("logInPasswordInput").value;
   let userFound = false;
-
   Object.entries(unsortedUsers).forEach(([firebaseId, user]) => {
     if (user.email === emailInput && user.password === passwordInput) {
       userFound = true;
@@ -21,7 +20,6 @@ function checkUserPasswortMatch() {
       window.location.href = "html/summary.html";
     }
   });
-
   if (!userFound) {
     document.getElementById("loginFalseMessage").innerHTML = "Check your email and password. Please try again.";
   }
@@ -85,7 +83,6 @@ function validateLogin() {
   let button = document.getElementById("logInButton");
   let emailValue = document.getElementById("logInMailInput").value.trim();
   let passwordValue = document.getElementById("logInPasswordInput").value.trim();
-
   if (passwordValue && emailValue) {
     button.classList.add("enabled");
     button.style.opacity = "1";

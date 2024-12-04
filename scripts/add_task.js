@@ -3,11 +3,9 @@
  */
 
 function highlightAddTaskInNavbar() {
-  let navLink = document.getElementById('addTaskLink');
-  navLink.classList.add('currentNavLinkBackground');
+  let navLink = document.getElementById("addTaskLink");
+  navLink.classList.add("currentNavLinkBackground");
 }
-
-//------------// open/close User Dropdown
 
 /**
  * Opens the user dropdown menu and activates the associated UI elements.
@@ -81,7 +79,6 @@ function disableCursorPointerOnInput(dropdownId) {
  */
 function handleDropdown(isFocused, currentDropdownID) {
   let dropdown = document.getElementById(currentDropdownID);
-
   if (isFocused) {
     dropdown.style.maxHeight = "200px";
     dropdown.style.border = "2px #29abe2 solid";
@@ -95,8 +92,6 @@ function handleDropdown(isFocused, currentDropdownID) {
     }, 80);
   }
 }
-
-// date
 
 /**
  * Sets the minimum selectable date for the date input field to the current date.
@@ -113,8 +108,6 @@ function getCurrentDate() {
   let currentDate = new Date().toISOString().split("T")[0];
   return currentDate;
 }
-
-// priority
 
 /**
  * Sets the priority of a task and changes the appearance of the buttons based on the selection.
@@ -140,7 +133,6 @@ function setTaskPrioButtonColorSwitch(priority) {
     medium: document.getElementsByClassName("taskFormPrioButtonMedium")[0],
     low: document.getElementsByClassName("taskFormPrioButtonLow")[0],
   };
-
   Object.keys(buttons).forEach((prio) => {
     if (prio === priority) {
       buttons[prio].classList.add(`taskFormPrioButton${capitalize(prio)}OnClick`, `taskFormPrioButton${capitalize(prio)}Icon`);
@@ -158,8 +150,6 @@ function setTaskPrioButtonColorSwitch(priority) {
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
-// category
 
 /**
  * Opens the category dropdown menu, displays it, and activates the associated UI elements.
@@ -220,8 +210,6 @@ function chooseCategory(chosenCategory, chosenCategoryColor) {
   return categoryData;
 }
 
-// subtask
-
 /**
  * Sets focus on the subtask input field.
  */
@@ -235,22 +223,13 @@ function focusSubtaskInput() {
  * @param {boolean} isFocused - Indicates whether the input field is focused.
  */
 function toggleSubtaskCheckOnFocus(isFocused) {
-  let plusIcon = document.getElementById("plusIcon");
-  let cancelIcon = document.getElementById("cancelIcon");
-  let dividingLine = document.getElementById("dividingLine");
-  let checkIcon = document.getElementById("checkIcon");
+  const display = isFocused ? "none" : "inline";
+  const oppositeDisplay = isFocused ? "inline" : "none";
 
-  if (isFocused) {
-    plusIcon.style.display = "none";
-    cancelIcon.style.display = "inline";
-    dividingLine.style.display = "inline";
-    checkIcon.style.display = "inline";
-  } else {
-    plusIcon.style.display = "inline";
-    cancelIcon.style.display = "none";
-    dividingLine.style.display = "none";
-    checkIcon.style.display = "none";
-  }
+  document.getElementById("plusIcon").style.display = display;
+  document.getElementById("cancelIcon").style.display = oppositeDisplay;
+  document.getElementById("dividingLine").style.display = oppositeDisplay;
+  document.getElementById("checkIcon").style.display = oppositeDisplay;
 }
 
 /**
@@ -370,8 +349,6 @@ function deleteAllSubtaskFromList() {
   subtasks.splice(0, subtasks.length);
 }
 
-// task Form inputs
-
 /**
  * Validates an input field and shows an error message if the field is empty.
  * @param {string} inputId - The ID of the input field to be validated.
@@ -395,7 +372,6 @@ function clearTaskForm() {
   renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
   deleteAllSubtaskFromList();
   renderSubtasksToList();
-  
 }
 
 /**
@@ -409,8 +385,6 @@ function checkInputValue() {
     input.classList.add("empty");
   }
 }
-
-//create Task modal
 
 /**
  * Executes all necessary functions to create a task, including displaying a modal and redirecting.
@@ -439,8 +413,6 @@ function showCreateTaskModal() {
   }, 10);
 }
 
-// collecting Data
-
 /**
  * Collects all the necessary input data from the form to create a new task.
  * @param {string} taskStatus - The status of the task to be used during creation.
@@ -462,8 +434,6 @@ function getNewTaskInputData(taskStatus) {
   };
   return createTaskData;
 }
-
-//listener
 
 /**
  * Sets an event listener for clicks to ensure that dropdowns in "add_task.html" work correctly.
