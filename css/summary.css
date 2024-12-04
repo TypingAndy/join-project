@@ -433,6 +433,10 @@
 }
 
 @media (min-width: 1280px) {
+  .summaryWrapper {
+    align-items: flex-start;
+  }
+
   .welcomeScreen {
     display: none;
   }
@@ -465,7 +469,7 @@
   }
 
   .summaryMainScreenWrapper {
-    margin-left: 232px;
+    margin-left: 400px;
     margin-right: 0;
     max-width: 1100px;
     margin-top: unset;

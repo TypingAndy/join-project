@@ -66,11 +66,9 @@ function selectContactCard(userID) {
       previousCard.style.color = "";
     }
   }
-
   let cardElement = document.getElementById(userID);
   cardElement.style.backgroundColor = "rgba(42, 54, 71, 1)";
   cardElement.style.color = "white";
-
   selectedCardId = userID;
 }
 
@@ -128,17 +126,13 @@ function clearAddContactsInputData() {
  */
 async function handleCreateContactsButtonClick() {
   const newUserId = await postUserDataToFirebase("contact");
-
   if (newUserId) {
     await renderContacts();
     clearAddContactsInputData();
     toggleContactPopup();
-
     selectContactCard(newUserId);
     toggleContactDetails(newUserId);
     showContactCreatedSuccessfullyPopup();
-  } else {
-    console.error("Failed to create new contact");
   }
 }
 
@@ -149,7 +143,6 @@ async function handleCreateContactsButtonClick() {
  */
 function toggleContactDetails(firebaseUserId) {
   const contactDetailsElement = document.getElementById("contactDetailsSection");
-
   if (window.innerWidth >= 1024) {
     contactDetailsElement.style.display = "flex";
     contactDetailsElement.innerHTML = contactDetailsTemplate(firebaseUserId);
@@ -171,13 +164,10 @@ function showContactCreatedSuccessfullyPopup() {
   const contactCreatedSuccessfullyElement = document.getElementById("contactCreatedSuccessfullyPopup");
   if (contactCreatedSuccessfullyElement) {
     contactCreatedSuccessfullyElement.style.display = "flex";
-
     setTimeout(() => {
       contactCreatedSuccessfullyElement.style.bottom = "150px";
-
       setTimeout(() => {
         contactCreatedSuccessfullyElement.style.bottom = "-150px";
-
         setTimeout(() => {
           contactCreatedSuccessfullyElement.style.display = "none";
         }, 300);
@@ -246,12 +236,10 @@ function clearUserDetailsOnDesktop() {
  */
 async function removeUserFromAllTasks(userId) {
   await loadTasksObjectFromFirebase();
-
   for (let taskId in allUnsortedTasks) {
     const task = allUnsortedTasks[taskId];
     if (task.taskAssignedUsersIds && task.taskAssignedUsersIds.includes(userId)) {
       const updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
-
       if (updatedUserIds.length > 0) {
         await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
           method: "PUT",
@@ -278,12 +266,9 @@ function validateContactForm() {
   let name = document.getElementById("addContactNameInput").value.trim();
   let email = document.getElementById("addContactMailInput").value.trim();
   let phone = document.getElementById("addContactPhoneInput").value.trim();
-
   let isEmailValid = validateEmail(email);
   let allValid = name !== "" && email !== "" && phone !== "" && isEmailValid;
-
   let button = document.getElementById("createContactButton");
-
   if (allValid) {
     button.style.pointerEvents = "auto";
     button.style.opacity = 1;
@@ -292,8 +277,6 @@ function validateContactForm() {
     button.style.opacity = 0.5;
   }
 }
-
-
 
 /**
  * Validates the phone number input, removing any non-numeric characters.
@@ -319,19 +302,16 @@ function validateEmail(email) {
   if (!email) {
     return false;
   }
-
   let emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
-
   return emailRegex.test(email);
 }
 
 function showNameIsNotCorrectReminder() {
-id="wrongNameFeedbackAddContact"
+  id = "wrongNameFeedbackAddContact";
 }
 
-
 function showPhonenumberIsNotCorrectReminder() {
-id="wrongPhoneFeedbackAddContact"
+  id = "wrongPhoneFeedbackAddContact";
 }
 
 /**
