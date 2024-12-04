@@ -106,16 +106,19 @@ function contactPopupTemplate(popupType, firebaseUserId) {
     <div class="contactPopupBottom">
     <form action="">
   <div class="nameInputWrapper">
-    <input class="addContactNameInput" onkeyup="validateContactForm()" id="addContactNameInput" type="text" placeholder="Name"/>
+    <input class="addContactNameInput" onkeyup="validateContactForm()" onblur="showNameIsNotCorrectReminder()" id="addContactNameInput" type="text" placeholder="Name"/>
     <img src="../images/icons/person_grey.png" alt="" />
+    <div id="wrongNameFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong name input.</div>
   </div>
   <div class="mailInputWrapper">
-    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail()" id="addContactMailInput" type="text" placeholder="Email"/>
+    <input class="addContactMailInput" onkeyup="validateContactForm(), validateEmail()" onblur=" validateEmail(), showEmailIsNotCorrectReminder()" id="addContactMailInput" type="text" placeholder="Email"/>
     <img src="../images/icons/mail_grey.png" alt="" />
+    <div id="wrongEmailFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong email input.</div>
   </div>
   <div class="phoneInputWrapper">
-    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
+    <input class="addContactPhoneInput" onkeyup="validateContactForm(), validatePhoneNumber()" oninput="allowOnlyNumbers(this)" onblur="showPhonenumberIsNotCorrectReminder()" id="addContactPhoneInput" type="tel" placeholder="Phone"/>
     <img src="../images/icons/callgrey.png" alt="" />
+    <div id="wrongPhoneFeedbackAddContact" class="wrongEntrieFeedbackAddContact displayNone">Wrong phonenumber input.</div>
   </div>
   <div class="contactButtonsWrapper">
 
