@@ -293,6 +293,13 @@ function validateContactForm() {
   }
 }
 
+/**
+ * Displays or hides a feedback reminder if the name input is empty.
+ *
+ * The function checks the name input field for adding or editing a contact.
+ * If the field is empty, it removes the "displayNone" class to show the feedback message.
+ * Otherwise, it adds the "displayNone" class to hide the feedback.
+ */
 function showNameIsNotCorrectReminder() {
   let nameInput = document.getElementById("addContactNameInput") || document.getElementById("editContactNameInput");
   let feedbackElement = document.getElementById("wrongNameFeedbackAddContact") || document.getElementById("wrongNameFeedbackEditContact");
@@ -323,10 +330,10 @@ function validateEmail(email) {
 
 /**
  * Displays or hides a feedback reminder if the entered email is not valid.
- * 
- * The function checks the validity of the email entered in the input field for adding 
- * or editing a contact. If the email is invalid, it removes the "displayNone" class 
- * from the feedback element to show the reminder. If the email is valid, it adds the 
+ *
+ * The function checks the validity of the email entered in the input field for adding
+ * or editing a contact. If the email is invalid, it removes the "displayNone" class
+ * from the feedback element to show the reminder. If the email is valid, it adds the
  * "displayNone" class to hide the reminder.
  */
 function showEmailIsNotCorrectReminder() {
@@ -342,7 +349,6 @@ function showEmailIsNotCorrectReminder() {
   }
 }
 
-
 /**
  * Validates the phone number input, removing any non-numeric characters.
  *
@@ -356,6 +362,13 @@ function validatePhoneNumber() {
   phoneInput.value = phoneValue;
 }
 
+/**
+ * Displays or hides a feedback reminder if the phone number input is empty.
+ *
+ * The function checks the phone number input field for adding or editing a contact.
+ * If the field is empty, it removes the "displayNone" class to show the feedback message.
+ * Otherwise, it adds the "displayNone" class to hide the feedback.
+ */
 function showPhonenumberIsNotCorrectReminder() {
   let phoneInput = document.getElementById("addContactPhoneInput") || document.getElementById("editContactPhoneInput");
   let feedbackElement = document.getElementById("wrongPhoneFeedbackAddContact") || document.getElementById("wrongPhoneFeedbackEditContact");
