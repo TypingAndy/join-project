@@ -392,10 +392,10 @@ function validateInput(inputId, requiredInfoId) {
  * Resets the task form to its default state and removes all subtasks.
  */
 function clearTaskForm() {
-  setGlobalRenderLocation();
   renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
   deleteAllSubtaskFromList();
   renderSubtasksToList();
+  
 }
 
 /**

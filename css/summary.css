@@ -7,9 +7,6 @@
   width: 40px;
 }
 
-
-
-
 .summaryMidSectionAmountFontSize {
   font-size: 47px;
   font-weight: 600;
@@ -348,6 +345,115 @@
   }
 
   .welcomeDayTimeDesktop {
+    font-size: 40px;
+    color: #2a3647;
+  }
+
+  .welcomeNameDesktop {
+    font-size: 50px;
+    font-weight: 700;
+    color: #29abe2;
+  }
+
+  .summaryMainScreenWrapper {
+    margin-left: 232px;
+    margin-right: 0;
+    max-width: 1100px;
+    margin-top: unset;
+  }
+
+  .summaryHeaderBox {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .summaryHeaderFont {
+    font-size: 48px;
+  }
+
+  .summarySubHeaderFont {
+    font-size: 22px;
+  }
+
+  .summaryHeaderBlueLineDesktop {
+    display: flex;
+    background-color: #29abe2;
+    height: 52px;
+    width: 2px;
+  }
+
+  .summaryHeaderBlueLineMobile {
+    display: none;
+  }
+
+  .summaryMidSectionAmountFontSize {
+    font-size: 52px;
+  }
+
+  .summaryMainScreenWithGreeting {
+    gap: 14px;
+  }
+
+  .iconButtonDone,
+  .summaryIcons,
+  .iconButtonToDo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .summaryMidSectionStandartFontSize {
+    font-size: 16px;
+  }
+
+  .summaryDate {
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  .summaryDeadline {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .summaryMidSectionDate {
+    align-items: center;
+  }
+
+  .summaryMidSectionDoDoneBox,
+  .summaryMidSectionBoardProgressFreebackBox,
+  .summaryMidSectionWrapper {
+    gap: 12px;
+  }
+
+  .summaryDate {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .welcomeScreen {
+    display: none;
+  }
+
+  .summaryMidSectionDoDoneBox,
+  .summaryMidSectionBoardProgressFreebackBox,
+  .summaryMidSectionWrapper {
+    gap: 22px;
+  }
+
+  .summaryMainScreenWithGreeting {
+    gap: 80px;
+  }
+
+  .welcomeScreenDesktop {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+  }
+
+  .welcomeDayTimeDesktop {
     font-size: 47px;
     color: #2a3647;
   }
@@ -441,5 +547,82 @@
     max-width: 600px;
     width: 40%;
     padding-top: 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .summaryMidSectionAmountFontSize {
+    font-size: 32px;
+  }
+
+  .summaryDate {
+    font-size: 14px;
+  }
+
+  .summaryDeadline {
+    font-size: 15px;
+  }
+
+  .iconButtonToDo,
+  .iconButtonDone,
+  .summaryIcons {
+    width: 36px;
+  }
+
+  .summaryMidSectionDoDoneBox,
+  .summaryMidSectionBoardProgressFreebackBox,
+  .summaryMidSectionWrapper {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 440px) {
+  .summaryMidSectionAmountFontSize {
+    font-size: 24px;
+  }
+
+  .summaryDate {
+    font-size: 12px;
+  }
+
+  .summaryDeadline {
+    font-size: 13px;
+  }
+
+  .iconButtonToDo,
+  .iconButtonDone,
+  .summaryIcons {
+    width: 32px;
+  }
+
+  .summaryMidSectionDoDoneBox,
+  .summaryMidSectionBoardProgressFreebackBox,
+  .summaryMidSectionWrapper {
+    gap: 9px;
+  }
+
+  .summaryMidSectionStandartFontSize {
+    font-size: 12px;
+  }
+
+  .summaryMidSectionPrioDateBox {
+    gap: 20px;
+  }
+
+  .summaryMidSectionDate {
+    gap: 0px;
+  }
+
+  .summaryMidSectionToDo,
+  .summaryMidSectionDone,
+  .summaryMidSectionBoard,
+  .summaryMidSectionProgress,
+  .summaryMidSectionFeedback,
+  .summaryMidSectionPrioDateBox {
+    border-radius: 12px;
+  }
+
+  .summaryMidSectionBoard {
+    gap: 0px;
   }
 }

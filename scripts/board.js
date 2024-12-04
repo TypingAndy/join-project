@@ -38,6 +38,8 @@ async function initializeBoard() {
   highlightBoardInNavbar();
 }
 
+
+
 /**
  * Highlights the Board NavLink
  */
@@ -365,6 +367,16 @@ function renderTaskFormEdit(taskID) {
 }
 
 /**
+ * Resets the task form in Edit to its default state and removes all subtasks.
+ */
+function clearTaskFormEdit() {
+  renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
+  deleteAllSubtaskFromList();
+  renderSubtasksToList();
+  
+}
+
+/**
  * Fills the task form with the current data of the task for editing.
  * @param {string} taskId - The ID of the task to fill the form with.
  */
@@ -402,7 +414,7 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
  */
 
 function hideTaskFormHeader() {
-  if (window.location.pathname.includes("board.html")) {
+  if (window.location.pathname.includes("board.html" )) {
     // Verstecke die Elemente mit der Klasse "taskFormHeader"
     document.querySelectorAll(".taskFormHeader").forEach((el) => {
       el.style.display = "none";

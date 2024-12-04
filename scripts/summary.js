@@ -149,7 +149,7 @@ function formatDate(dateString) {
  * Displays a welcome screen based on the previous page.
  */
 function showWelcomeScreen() {
-  if (document.referrer.includes("landingpage_login.html")) {
+  if (document.referrer.includes("index.html")) {
     setTimeout(() => {
       document.querySelector(".welcomeScreen").style.display = "none";
     }, 2000);
