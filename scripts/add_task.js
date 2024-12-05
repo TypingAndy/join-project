@@ -371,7 +371,11 @@ function validateInput(inputId, requiredInfoId) {
 function clearTaskForm() {
   renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
   deleteAllSubtaskFromList();
-  renderSubtasksToList();
+  deleteAssignedUsersFormArray();
+}
+
+function deleteAssignedUsersFormArray() {
+  taskFormCurrentUsersIds = [];
 }
 
 /**

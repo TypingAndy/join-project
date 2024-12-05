@@ -211,7 +211,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 
         <div class="addTaskButtonBox">
 
-          <div onclick="clearTaskForm()" class="addTaskClearButton">
+          <div id="clearButton" onclick="clearTaskForm()" class="addTaskClearButton">
             <div>Clear</div>
             <div class="createTaskButtonClearImage"></div>
           </div>
@@ -295,15 +295,15 @@ function subtaskTemplate(i) {
         <input id="taskFormSubtaskRewriteInput(${i})" onblur="renderSubtasksToList()" type="text" class="subtaskRewriteInput displayNone">
 
         <div id="subtaskIconBox(${i})" class="subtaskIconBox">
-          <img onclick="openRewriteInput(${i})" class="img24px" src="../images/icons/pencil_black.png">
+          <img onclick="openRewriteInput(${i})" class="subtaskPencil img24px" src="../images/icons/pencil_black.png">
           <div class="taskFormSubtaskDividingLine"></div>
-          <img onclick="deleteSubtaskFromList(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/trashcan_black.png">
+          <img onclick="deleteSubtaskFromList(${i}), renderSubtasksToList()" class="subtaskTrahCan img24px" src="../images/icons/trashcan_black.png">
         </div>
 
         <div id="subtaskRewriteIconBox(${i})" class="subtaskRewriteIconBox displayNone">
-          <img onclick="toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px"  src="../images/icons/x_black_subtask.png">
+          <img onclick="toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="subtaskX img24px"  src="../images/icons/x_black_subtask.png">
           <div class="taskFormSubtaskDividingLine"></div>
-          <img onmousedown="pushRewrittenSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="img24px" src="../images/icons/check_black.png">
+          <img onmousedown="pushRewrittenSubtask(${i}), toggleButtonsInsideSubtask(${i}), toggleRewriteInputInsideSubtask(${i}), renderSubtasksToList()" class="subtaskCheck img24px" src="../images/icons/check_black.png">
         </div>
 
       </div>
