@@ -130,13 +130,11 @@ function renderIconsInTaskForm() {
   let userIconContainer = document.getElementById("taskFormUserIcon");
   let plusUserIcons = document.getElementById("plusUserIcons");
   let numberUserIcons = document.getElementById("numberUserIcons");
-  userIconContainer.innerHTML = "";
-
   let maxIconsToShow = 4;
+  userIconContainer.innerHTML = "";
   for (let i = 0; i < taskFormCurrentUsersIds.length && i < maxIconsToShow; i++) {
     userIconContainer.innerHTML += iconTemplate(taskFormCurrentUsersIds[i]);
   }
-
   if (taskFormCurrentUsersIds.length <= maxIconsToShow) {
     plusUserIcons.classList.add("displayNone");
     numberUserIcons.textContent = "";
@@ -265,7 +263,7 @@ function logOut() {
  * @param {Event} event - The click event on the document.
  */
 addEventListener("click", (event) => {
-  if (!window.location.href.includes("landingpage")) {
+  if (!window.location.href.includes("index") && !window.location.href.includes("landingpage")) {
     let userProfileButton = document.getElementById("userPorfileButton");
     let userProfileDropdown = document.getElementById("userProfileDropdown");
     if (!userProfileButton.contains(event.target)) {
@@ -273,6 +271,7 @@ addEventListener("click", (event) => {
     }
   }
 });
+
 
 /**
  * Renders the profile button template and sets the user initials based on the logged-in user.

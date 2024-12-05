@@ -57,7 +57,7 @@ input:focus {
 
 .signUpBoard {
   background-color: #ffffff;
-  height: 100%;
+
   border-radius: 30px;
   position: relative;
   display: flex;
@@ -102,6 +102,14 @@ input:focus {
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+}
+
+.signUpForm {
+width: 90%;
+max-width: 500px;
+display: flex;
+flex-direction: column;
+align-items: center;
 }
 
 .signUpInputName {

@@ -22,9 +22,7 @@ async function postUserDataToFirebase(userType) {
   const userData = createUserDataForFirebase(userType);
   const response = await fetch(BASE_URL + `users/.json`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(userData),
   });
   const responseData = await response.json();
@@ -42,9 +40,7 @@ async function deleteUserFromFirebase(firebaseId) {
   try {
     await fetch(BASE_URL + `users/${firebaseId}.json`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error deleting user from Firebase:", error);
@@ -63,9 +59,7 @@ async function toggleSubtaskStatusOnFirebase(subtasksIndex, taskID, newSubtaskSt
   try {
     await fetch(`${BASE_URL}tasks/${taskID}/taskSubtasks/${subtasksIndex}/subtaskDone.json`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newSubtaskStatus),
     });
   } catch (error) {
@@ -84,9 +78,7 @@ async function updateUserInFirebase(firebaseId, updatedUserData) {
   try {
     await fetch(BASE_URL + `users/${firebaseId}.json`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedUserData),
     });
   } catch (error) {
@@ -134,9 +126,7 @@ async function putNewTaskStatus(newTaskStatus) {
   try {
     await fetch(`${BASE_URL}tasks/${currentDraggedElementID}/taskStatus.json`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTaskStatus),
     });
   } catch (error) {
@@ -154,9 +144,7 @@ async function postTaskData(taskStatus) {
   let createTaskData = getNewTaskInputData(taskStatus);
   const response = await fetch(BASE_URL + `/tasks.json`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(createTaskData),
   });
 }
@@ -172,9 +160,7 @@ async function updateTaskData(taskStatus, taskID) {
   let createTaskData = editTaskInputData(taskStatus);
   await fetch(BASE_URL + `/tasks/${taskID}.json`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(createTaskData),
   });
 }
@@ -189,9 +175,7 @@ async function deleteTaskFromFirebase(taskID) {
   try {
     await fetch(`${BASE_URL}tasks/${taskID}.json`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error deleting task from Firebase:", error);
