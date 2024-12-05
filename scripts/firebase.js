@@ -19,27 +19,17 @@ async function loadTasksObjectFromFirebase() {
  * @returns {Promise<Response>} The response object from the Firebase API.
  */
 async function postUserDataToFirebase(userType) {
-  try {
-    let userData = createUserDataForFirebase(userType);
-    const response = await fetch(BASE_URL + `users/.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to post user data");
-    }
-
-    const responseData = await response.json();
-    currentUserIdFromFirebase = responseData.name;
-    return currentUserIdFromFirebase;
-  } catch (error) {
-    console.error("Error posting user data to Firebase:", error);
-    return undefined;
-  }
+  const userData = createUserDataForFirebase(userType);
+  const response = await fetch(BASE_URL + `users/.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+  const responseData = await response.json();
+  currentUserIdFromFirebase = responseData.name;
+  return currentUserIdFromFirebase;
 }
 
 /**
@@ -161,22 +151,14 @@ async function putNewTaskStatus(newTaskStatus) {
  * @returns {Promise<void>} Resolves when the task is created.
  */
 async function postTaskData(taskStatus) {
-  try {
-    let createTaskData = getNewTaskInputData(taskStatus);
-    const response = await fetch(BASE_URL + `/tasks.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createTaskData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to post task data");
-    }
-  } catch (error) {
-    console.error("Error posting task data:", error);
-  }
+  let createTaskData = getNewTaskInputData(taskStatus);
+  const response = await fetch(BASE_URL + `/tasks.json`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createTaskData),
+  });
 }
 
 /**
@@ -187,19 +169,14 @@ async function postTaskData(taskStatus) {
  * @returns {Promise<void>} Resolves when the task data is updated.
  */
 async function updateTaskData(taskStatus, taskID) {
-  try {
-    let createTaskData = editTaskInputData(taskStatus);
-
-    await fetch(BASE_URL + `/tasks/${taskID}.json`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createTaskData),
-    });
-  } catch (error) {
-    console.error("Error updating task data in Firebase:", error);
-  }
+  let createTaskData = editTaskInputData(taskStatus);
+  await fetch(BASE_URL + `/tasks/${taskID}.json`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(createTaskData),
+  });
 }
 
 /**

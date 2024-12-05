@@ -24,21 +24,13 @@ function clickAcceptPolicy() {
  * Validates the sign-up form and enables/disables the sign-up button.
  */
 function validateSignUp() {
-  let button = document.getElementById("signUpButton");
-  let nameValue = document.getElementById("signUpNameInput").value.trim();
-  let emailValue = document.getElementById("signUpMailInput").value.trim();
+  const button = document.getElementById("signUpButton");
+  const isValid = policyAccepted && passwordMatch && document.getElementById("signUpNameInput").value.trim() && document.getElementById("signUpMailInput").value.trim();
 
-  if (policyAccepted && passwordMatch && nameValue && emailValue) {
-    button.classList.add("enabled");
-    button.style.opacity = "1";
-    button.setAttribute("onclick", "handleSignUpClick()");
-    button.style.pointerEvents = "auto";
-  } else {
-    button.classList.remove("enabled");
-    button.style.opacity = "0.1";
-    button.removeAttribute("onclick");
-    button.style.pointerEvents = "none";
-  }
+  button.classList[isValid ? "add" : "remove"]("enabled");
+  button.style.opacity = isValid ? "1" : "0.1";
+  button.style.pointerEvents = isValid ? "auto" : "none";
+  isValid ? button.setAttribute("onclick", "handleSignUpClick()") : button.removeAttribute("onclick");
 }
 
 /**
@@ -47,9 +39,7 @@ function validateSignUp() {
 function checkMatchingPasswords() {
   let passwordValue = document.getElementById("signUpPasswordInput").value;
   let confirmPassword = document.getElementById("signUpConfirmPasswordInput").value;
-
   passwordMatch = passwordValue === confirmPassword;
-
   if (!passwordMatch && confirmPassword !== "") {
     document.getElementById("signUpConfirmPasswordInput").style.border = "solid #FF8190 1px";
     document.getElementById("passwordDontMatchText").classList.remove("displayNone");

@@ -3,26 +3,26 @@ let BASE_URL = "https://remotestorage-1b599-default-rtdb.europe-west1.firebaseda
 //signUpGlobalArrays.tst
 let signUpData = {};
 let responseToJson;
-let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"]; //is needed
+let userColorsPreset = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
 let policyAccepted = false;
 let passwordMatch = false;
 
 //logInArrays
-let loggedUserInitials = "G"; //is needed
+let loggedUserInitials = "G";
 
 //addTaskGlobalArrays
-let taskPrioInput = ""; //is needed
-let taskFormCurrentUsersIds = []; //is needed
-let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"]; //is needed
-let categoriesColors = ["#0038FF", "#FF7A00", "#FF4646", "#FFC701", "#FC71FF", "#1FD7C1", "#9327FF"]; //is needed
+let taskPrioInput = "";
+let taskFormCurrentUsersIds = [];
+let categories = ["Cleaning", "Company Outing", "Cooking", "Meetings", "Others", "Technical Task", "User Story"];
+let categoriesColors = ["#0038FF", "#FF7A00", "#FF4646", "#FFC701", "#FC71FF", "#1FD7C1", "#9327FF"];
 let categoryData;
-let subtasks = []; //is needed
+let subtasks = [];
 
 //boardGlobalArrays
-let sortedUsers = []; //is needed
-let unsortedUsers = {}; //is needed
-let lokalTasksArray = []; //is needed. renamed from convertedTasks
-let allUnsortedTasks = []; //is needed
+let sortedUsers = [];
+let unsortedUsers = {};
+let lokalTasksArray = [];
+let allUnsortedTasks = [];
 let currentDraggedElementID;
 let globalTaskStatus = new URLSearchParams(window.location.search).get("status") || "to do";
 let globalRenderLocation;
@@ -33,8 +33,6 @@ let contactIndices = [];
 let renderedContact = [];
 let contactId;
 let selectedCardId = null;
-
-//often Used functions
 
 /**
  * Stops the propagation of the current event, preventing it from bubbling up the DOM.
@@ -52,8 +50,6 @@ async function fillSortedUsersObject() {
   sortedUsers = await sortUserData();
 }
 
-// Navigation
-
 /**
  * Redirects the user to the "board.html" page after a brief delay.
  */
@@ -63,23 +59,18 @@ function redirectToBoard() {
   }, 100);
 }
 
-
 /**
  * Defines the Location where the taskForm should render in
  */
 function setGlobalRenderLocation() {
-  if (window.location.href.includes('board.html')) {
-    globalRenderLocation = 'boardTaskPopupContentWrapper';
+  if (window.location.href.includes("board.html")) {
+    globalRenderLocation = "boardTaskPopupContentWrapper";
   }
 
-
-  if (window.location.href.includes('add_task.html')) {
-    globalRenderLocation = 'taskFormAddTask';
+  if (window.location.href.includes("add_task.html")) {
+    globalRenderLocation = "taskFormAddTask";
   }
 }
-
-
-// Task Form Render Functions
 
 /**
  * Renders the task form by fetching sorted user data, rendering the task form template,
@@ -94,7 +85,6 @@ async function renderTaskForm(taskStatus, renderLocation) {
   fillUserDropdown();
   fillCategoryDropdown();
   renderSubtasksToList();
-
 }
 
 /**
@@ -204,21 +194,16 @@ function toggleUserInTaskUsersArraySpliceAll() {
 function userFilterFunction() {
   let input = document.getElementById("taskFormUserInput");
   let filter = input.value.toUpperCase();
-
   for (let i = 0; i < sortedUsers.length; i++) {
     let userName = sortedUsers[i].name.toUpperCase();
     let userId = sortedUsers[i].id;
     let userElement = document.getElementById(`userContainerInsideUserDropdown(${userId})`);
-
     if (userElement) {
-      // Sicherheitsüberprüfung
       if (userName.includes(filter)) {
         userElement.classList.remove("displayNone");
       } else {
         userElement.classList.add("displayNone");
       }
-    } else {
-      console.warn(`Element mit ID userContainerInsideUserDropdown(${userId}) nicht gefunden.`);
     }
   }
 }
@@ -231,11 +216,9 @@ function userFilterFunction() {
 function categoryFilterFunction() {
   let input = document.getElementById("taskFormCategoryInput");
   let filter = input.value.toUpperCase();
-
   for (let i = 0; i < categories.length; i++) {
     let categoriesUpperCase = categories[i].toUpperCase();
     let categorieElement = document.getElementById(`categoriesDropdown${i}`);
-
     if (categoriesUpperCase.includes(filter)) {
       categorieElement.classList.remove("displayNone");
     } else {
@@ -251,19 +234,14 @@ function validateTaskForm() {
   let title = document.getElementById("taskTitleInput").value.trim();
   let dueDate = document.getElementById("dateInput").value.trim();
   let category = document.getElementById("taskFormCategoryInput").value.trim();
-
   let allValid = title !== "" && dueDate !== "" && category !== "";
-
   let button = document.getElementById("createTaskButton");
-
   if (allValid) {
     button.classList.remove("disabled");
   } else {
     button.classList.add("disabled");
   }
 }
-
-// Open Signed User Dropdown
 
 /**
  * Opens the signed-in user dropdown by removing the sliding class.
@@ -295,8 +273,6 @@ addEventListener("click", (event) => {
     }
   }
 });
-
-// Profile Button
 
 /**
  * Renders the profile button template and sets the user initials based on the logged-in user.

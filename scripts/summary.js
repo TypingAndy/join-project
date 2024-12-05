@@ -10,8 +10,8 @@ let allUrgentTasks = [];
  * Highlights the Summary NavLink
  */
 function highlightSummaryInNavbar() {
-  let navLink = document.getElementById('summaryLink');
-  navLink.classList.add('currentNavLinkBackground');
+  let navLink = document.getElementById("summaryLink");
+  navLink.classList.add("currentNavLinkBackground");
 }
 
 /**
@@ -73,7 +73,6 @@ function updateTaskSummaryUI(counts) {
   let awaitFeedbackValue = document.getElementById("summaryFeedbackValue");
   let inProgressValue = document.getElementById("summaryProgressValue");
   let summaryValue = document.getElementById("summaryBoardValue");
-
   toDoValue.innerHTML = counts.toDo;
   doneValue.innerHTML = counts.done;
   awaitFeedbackValue.innerHTML = counts.awaitFeedback;
@@ -141,7 +140,7 @@ function formatDate(dateString) {
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
-    day: "numeric"
+    day: "numeric",
   });
 }
 
@@ -166,7 +165,6 @@ function setWelcomeScreenDayTime() {
   let dayTimeDesktop = document.getElementById("welcomeDayTimeDesktop");
   let hours = new Date().getHours();
   let greeting;
-
   if (hours >= 5 && hours < 12) {
     greeting = "Good morning,";
   } else if (hours >= 12 && hours < 18) {
@@ -176,7 +174,6 @@ function setWelcomeScreenDayTime() {
   } else {
     greeting = "Hello";
   }
-
   dayTime.innerHTML = greeting;
   dayTimeDesktop.innerHTML = greeting;
 }
@@ -188,16 +185,11 @@ function setWelcomeScreenName() {
   let name = document.getElementById("welcomeName");
   let nameDesktop = document.getElementById("welcomeNameDesktop");
   let nameFromStorage = localStorage.getItem("loggedUserName");
-
   if (nameFromStorage) {
-    // Set the first name if available
     name.innerHTML = nameFromStorage.split(" ")[0];
     nameDesktop.innerHTML = nameFromStorage.split(" ")[0];
   } else {
-    // Fallback to "Guest"
     name.innerHTML = "Guest";
     nameDesktop.innerHTML = "Guest";
   }
 }
-
-

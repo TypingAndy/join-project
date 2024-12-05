@@ -38,15 +38,13 @@ async function initializeBoard() {
   highlightBoardInNavbar();
 }
 
-
-
 /**
  * Highlights the Board NavLink
  */
 
 function highlightBoardInNavbar() {
-  let navLink = document.getElementById('boardLink');
-  navLink.classList.add('currentNavLinkBackground');
+  let navLink = document.getElementById("boardLink");
+  navLink.classList.add("currentNavLinkBackground");
 }
 
 /**
@@ -75,14 +73,12 @@ async function handleSearchInput() {
 async function renderTaskCards() {
   let filteredLokalTasksArray = filterTasks();
   clearAllTaskCardWrappers();
-
   for (let taskIndex = 0; taskIndex < filteredLokalTasksArray.length; taskIndex++) {
     let currentElement = getElementByTaskStatus(filteredLokalTasksArray[taskIndex].taskStatus);
     let taskCardAllInitialsTemplate = returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray);
     let subtasksDone = countCompletedSubtasks(filteredLokalTasksArray[taskIndex]);
     const subtasksArrayLength = filteredLokalTasksArray[taskIndex].taskSubtasks?.length || 0;
     let subtaskDonePercentage = calculateSubtaskDonePercentage(subtasksDone, subtasksArrayLength);
-
     currentElement.innerHTML += taskCardTemplate(taskIndex, filteredLokalTasksArray, taskCardAllInitialsTemplate, subtasksArrayLength, subtasksDone, subtaskDonePercentage);
   }
   fillEmptyTaskCategories();
@@ -163,14 +159,12 @@ function clearAllTaskCardWrappers() {
  */
 function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
   let taskCardAllInitialsTemplate = "";
-
   if (!filteredLokalTasksArray[taskIndex].taskAssignedUsersIds) {
     return "";
   }
   const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
   const userMaxLength = 4;
   const plusNumber = userIds.length - userMaxLength;
-
   for (let userIndex = 0; userIndex < (userIds.length > userMaxLength ? userMaxLength : userIds.length); userIndex++) {
     const currentUserID = userIds[userIndex];
     taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(currentUserID);
@@ -208,11 +202,9 @@ function countCompletedSubtasks(task) {
 function openBoardTaskPopup(taskID) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
-
   renderBoardTaskPopupContent(taskID);
   renderBoardTaskPopupContentUsers(taskID);
   renderBoardTaskPopupSubtasks(taskID);
-
   popupBackgroundElement.style.display = "flex";
   void popupElement.offsetWidth;
   popupElement.classList.add("active");
@@ -245,7 +237,6 @@ function createBoardTaskPopupForNewTask(taskStatus) {
 function openBoardTaskPopupForAddTask() {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
-
   popupElement.innerHTML = boardTaskPopupTemplateEmpty();
   popupBackgroundElement.style.display = "flex";
   void popupElement.offsetWidth;
@@ -274,11 +265,9 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
 function closeBoardTaskPopup(event) {
   let popupBackgroundElement = document.getElementById("boardPopupBackground");
   let popupElement = document.getElementById("boardTaskPopup");
-
   if (!event || event.target === popupBackgroundElement) {
     popupElement.classList.remove("active");
     document.body.classList.remove("no-scroll");
-
     setTimeout(() => {
       popupBackgroundElement.style.display = "none";
       popupElement.removeEventListener("click", stopPropagation);
@@ -373,7 +362,6 @@ function clearTaskFormEdit() {
   renderTaskForm(globalTaskStatus || "to do", globalRenderLocation);
   deleteAllSubtaskFromList();
   renderSubtasksToList();
-  
 }
 
 /**
@@ -381,17 +369,10 @@ function clearTaskFormEdit() {
  * @param {string} taskId - The ID of the task to fill the form with.
  */
 function fillTaskFormEdit(taskId) {
-  let titleInput = document.getElementById("taskTitleInput");
-  let descriptionInput = document.getElementById("taskDescriptionInput");
-  let dateInput = document.getElementById("dateInput");
-  let categoryInput = document.getElementById("taskFormCategoryInput");
-
-  titleInput.value = allUnsortedTasks[taskId].taskTitle;
-  descriptionInput.value = allUnsortedTasks[taskId].taskDescription;
+  const task = allUnsortedTasks[taskId];
+  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach((id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i]));
   toggleTaskCurrentUserInTaskFormEdit(taskId);
-  dateInput.value = allUnsortedTasks[taskId].taskDate;
-  setTaskPrio(allUnsortedTasks[taskId].taskPrio);
-  categoryInput.value = allUnsortedTasks[taskId].taskCategory.category;
+  setTaskPrio(task.taskPrio);
   fillSubtaskListInTaskFormEdit(taskId);
   validateTaskForm();
   hideTaskFormHeader();
@@ -414,13 +395,10 @@ function toggleTaskCurrentUserInTaskFormEdit(taskId) {
  */
 
 function hideTaskFormHeader() {
-  if (window.location.pathname.includes("board.html" )) {
-    // Verstecke die Elemente mit der Klasse "taskFormHeader"
+  if (window.location.pathname.includes("board.html")) {
     document.querySelectorAll(".taskFormHeader").forEach((el) => {
       el.style.display = "none";
     });
-
-    // Setze die Höhe der Elemente mit der Klasse "taskFormHeaderBox" auf 0
     document.querySelectorAll(".taskFormHeaderBox").forEach((el) => {
       el.style.height = "0";
     });
@@ -459,20 +437,16 @@ function deleteTask(taskFirebaseID) {
  * @returns {Object} The task data object.
  */
 function editTaskInputData(taskStatus) {
-  let taskTitleInput = document.getElementById("taskTitleInput").value;
-  let taskDescriptionInput = document.getElementById("taskDescriptionInput").value;
-  let taskDateInput = document.getElementById("dateInput").value;
-  let createTaskData = {
-    taskTitle: taskTitleInput,
-    taskDescription: taskDescriptionInput,
+  return {
+    taskTitle: document.getElementById("taskTitleInput").value,
+    taskDescription: document.getElementById("taskDescriptionInput").value,
+    taskDate: document.getElementById("dateInput").value,
     taskAssignedUsersIds: taskFormCurrentUsersIds,
-    taskDate: taskDateInput,
     taskPrio: taskPrioInput,
     taskStatus: taskStatus,
     taskCategory: categoryData,
     taskSubtasks: subtasks,
   };
-  return createTaskData;
 }
 
 /**
@@ -493,7 +467,6 @@ document.addEventListener(
     if (document.getElementById("boardTaskPopup")) {
       setTimeout(() => {
         let dropdown = document.getElementById("userDropdown");
-
         if (dropdown) {
           dropdown.addEventListener("mousedown", function (event) {
             event.preventDefault();

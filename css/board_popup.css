@@ -14,10 +14,10 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  top: 100px; /* nav height */
+
   right: -100%;
-  height: calc(100vh - 230px); /* viewport height minus nav + footer */
-  width: min(80vw, 600px); /* responsive width with max size */
+  height: calc(100vh - 230px);
+  width: min(80vw, 600px);
   padding: 18px;
   background: white;
   border-radius: 30px;
@@ -219,14 +219,15 @@
 
   .boardTaskPopupContentWrapper {
     padding: 24px 8px;
+    /* overflow-y: auto; */
   }
 
   .boardTaskPopup {
-    min-width: 420px;
-    width: auto;
-min-height: 700px;
-max-height: 800px;
-    top: 160px;
+    min-width: 600px;
+    width: 100%;
+    min-height: 400px;
+    max-width: 760px;
+    /* max-height: 800px; */
   }
 
   .boardPopupBackground {
@@ -241,17 +242,18 @@ max-height: 800px;
   }
 }
 
-/* .boardTaskPopup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 100px; 
-  right: -100%;
-  height: calc(100vh - 230px);
-  width: min(80vw, 600px);
-  padding: 18px;
-  background: white;
-  border-radius: 8px;
-  transition: right 0.3s ease;
-} */
+@media (min-width: 1200px) {
+  .boardTaskPopup {
+    min-width: 600px;
+    /* width: 100%; */
+    min-height: 400px;
+    max-width: 930px;
+    max-height: 800px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .boardTaskPopup {
+    max-width: 1200px;
+  }
+}

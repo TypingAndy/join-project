@@ -42,7 +42,7 @@ p {
 .joinWrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   height: 100vh;
   width: 100%;
@@ -134,7 +134,7 @@ nav {
 
 .currentNavLinkBackground {
   background-color: #091931;
-  }
+}
 /*----------------------------- multi-usage */
 
 input {

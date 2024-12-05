@@ -572,12 +572,12 @@ input:not(.empty) {
 
 @media (min-width: 1024px) {
   .taskFormWrapper {
-    overflow: unset;
+    /* overflow: unset; */
   }
 
   .taskFormSubtaskList {
     max-height: 100px;
-   }
+  }
 
   .taskFormHeader {
     font-size: 61px;
@@ -590,6 +590,7 @@ input:not(.empty) {
     font-size: 47px;
     position: relative;
     padding-bottom: 40px;
+    margin-bottom: 24px;
   }
 
   .taskFormLabels {
@@ -608,10 +609,9 @@ input:not(.empty) {
   .taskFormMidSection {
     display: flex;
     justify-content: center;
-    flex-direction: unset;
-    gap: 32px;
-    overflow-y: unset;
-    
+    flex-direction: row;
+    gap: 12px;
+    overflow-y: auto;
   }
 
   .addTaskLeftSection {
@@ -843,6 +843,9 @@ input:not(.empty) {
 }
 
 @media (min-width: 1300px) {
+  .taskFormMidSection {
+    gap: 32px;
+  }
   .addTaskRightSection {
     width: 440px;
     gap: 26px;
@@ -861,7 +864,6 @@ input:not(.empty) {
     font-size: 20px;
   }
 }
-
 
 @media (min-width: 1600px) {
   .addTaskRightSection {
