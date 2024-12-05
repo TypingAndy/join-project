@@ -1,5 +1,5 @@
 body {
-  background-color: #D5DBE1;
+  background-color: #d5dbe1;
 }
 
 input:focus {
@@ -105,11 +105,11 @@ input:focus {
 }
 
 .signUpForm {
-width: 90%;
-max-width: 500px;
-display: flex;
-flex-direction: column;
-align-items: center;
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .signUpInputName {
@@ -124,7 +124,6 @@ align-items: center;
   background-repeat: no-repeat;
   background-size: 24px;
   background-position: calc(100% - 16px);
-  
 }
 
 .signUpInputEmail {
@@ -176,9 +175,8 @@ align-items: center;
 
 .passwordDontMatchText {
   position: absolute;
-  color: #FF8190;
+  color: #ff8190;
   font-size: 12px;
-  
 }
 
 .signUpInputName::placeholder {

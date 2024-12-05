@@ -570,6 +570,13 @@ input:not(.empty) {
   cursor: not-allowed;
 }
 
+.subtaskPencil,
+.subtaskTrahCan,
+.subtaskX,
+.subtaskCheck {
+cursor: pointer;
+}
+
 @media (min-width: 1024px) {
   .taskFormWrapper {
     /* overflow: unset; */
@@ -839,6 +846,10 @@ input:not(.empty) {
     color: #29abe2;
     scale: 1.02;
     cursor: pointer;
+  }
+
+  .displayNone {
+    display: none;
   }
 }
 
