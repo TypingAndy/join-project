@@ -42,7 +42,7 @@ p {
 .joinWrapper {
   position: relative;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   width: 100%;
@@ -236,6 +236,10 @@ textarea {
 }
 
 @media (min-width: 1024px) {
+  .joinWrapper {
+    flex-direction: row;
+  }
+
   nav {
     display: flex;
     flex-direction: column;
