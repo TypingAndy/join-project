@@ -370,12 +370,15 @@ function clearTaskFormEdit() {
  */
 function fillTaskFormEdit(taskId) {
   const task = allUnsortedTasks[taskId];
-  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach((id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i]));
+  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach(
+    (id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i])
+  );
   toggleTaskCurrentUserInTaskFormEdit(taskId);
   setTaskPrio(task.taskPrio);
   fillSubtaskListInTaskFormEdit(taskId);
   validateTaskForm();
   hideTaskFormHeader();
+  hidesClearButtonInEdit();
 }
 
 /**
@@ -402,6 +405,13 @@ function hideTaskFormHeader() {
     document.querySelectorAll(".taskFormHeaderBox").forEach((el) => {
       el.style.height = "0";
     });
+  }
+}
+
+function hidesClearButtonInEdit() {
+  let clearButton = document.getElementById("clearButton");
+  if (window.location.pathname.includes("board.html")) {
+    clearButton.classList.add("displayNone");
   }
 }
 
