@@ -114,13 +114,13 @@ function getCurrentDate() {
  * @param {string} priority - The priority of the task (e.g., 'urgent', 'medium', 'low').
  */
 function setTaskPrio(priority) {
-  if (taskPrioInput === priority) {
-    taskPrioInput = null;
-    setTaskPrioButtonColorSwitch(null);
-  } else {
-    taskPrioInput = priority;
-    setTaskPrioButtonColorSwitch(priority);
-  }
+  // if (taskPrioInput === priority) {
+  //   taskPrioInput = null;
+  //   setTaskPrioButtonColorSwitch(null);
+  // } else {
+  taskPrioInput = priority;
+  setTaskPrioButtonColorSwitch(priority);
+  // }
 }
 
 /**

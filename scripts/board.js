@@ -256,6 +256,7 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
   wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, (id = ""), (fetchStatus = ""), postOrPatchFunction);
   fillUserDropdown();
   fillCategoryDropdown();
+  setTaskPrio("medium");
 }
 
 /**
@@ -370,9 +371,7 @@ function clearTaskFormEdit() {
  */
 function fillTaskFormEdit(taskId) {
   const task = allUnsortedTasks[taskId];
-  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach(
-    (id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i])
-  );
+  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach((id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i]));
   toggleTaskCurrentUserInTaskFormEdit(taskId);
   setTaskPrio(task.taskPrio);
   fillSubtaskListInTaskFormEdit(taskId);

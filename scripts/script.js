@@ -85,6 +85,7 @@ async function renderTaskForm(taskStatus, renderLocation) {
   fillUserDropdown();
   fillCategoryDropdown();
   renderSubtasksToList();
+  setTaskPrio("medium");
 }
 
 /**
@@ -271,7 +272,6 @@ addEventListener("click", (event) => {
     }
   }
 });
-
 
 /**
  * Renders the profile button template and sets the user initials based on the logged-in user.
