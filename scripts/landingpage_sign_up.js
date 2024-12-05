@@ -18,18 +18,67 @@ function clearSignUpInputField() {
 function clickAcceptPolicy() {
   acceptPrivacyPolicyCheck();
   validateSignUp();
+} 
+
+/**
+ * Show or hide message if name is invalid.
+ */
+
+function toggleNameError() {
+let nameInput = document.getElementById('signUpNameInput').value;
+let errorMessage = document.getElementById('nameInputErrorText');
+
+if (nameInput) {
+  errorMessage.classList.add("displayNone");
+} else {
+  errorMessage.classList.remove("displayNone");
+}
+}
+
+/**
+ * Show or hide message if email is invalid.
+ */
+function toggleEmailError() {
+  let emailErrorElement = document.getElementById("emailInputWrong");
+
+  if (isEmailValid()) {
+    emailErrorElement.classList.add("displayNone");
+  } else {
+    emailErrorElement.classList.remove("displayNone");
+  }
 }
 
 /**
  * Validates the sign-up form and enables/disables the sign-up button.
  */
-function validateSignUp() {
-  const button = document.getElementById("signUpButton");
-  const isValid = policyAccepted && passwordMatch && document.getElementById("signUpNameInput").value.trim() && document.getElementById("signUpMailInput").value.trim();
+// Funktion zur E-Mail-Validierung
+function isEmailValid() {
+  let email = document.getElementById("signUpMailInput").value;
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
+// Funktion, die die Gesamtvalidität prüft
+function isFormValid() {
+  let nameInput = document.getElementById("signUpNameInput").value.trim();
+  let mailInput = document.getElementById("signUpMailInput").value.trim();
+
+  return (
+    policyAccepted && passwordMatch && nameInput && isEmailValid(mailInput) // E-Mail-Überprüfung wird hier aufgerufen
+  );
+}
+
+// Hauptfunktion zum Aktivieren/Deaktivieren des Buttons
+function validateSignUp() {
+  let button = document.getElementById("signUpButton");
+  let isValid = isFormValid(); // Gesamtvalidität prüfen
+
+  // Button-Status basierend auf Validität setzen
   button.classList[isValid ? "add" : "remove"]("enabled");
   button.style.opacity = isValid ? "1" : "0.1";
   button.style.pointerEvents = isValid ? "auto" : "none";
+
+  // onclick-Attribut verwalten
   isValid ? button.setAttribute("onclick", "handleSignUpClick()") : button.removeAttribute("onclick");
 }
 
@@ -81,7 +130,7 @@ function handleSignUpClick() {
  * Displays a popup upon successful registration after a short time.
  */
 function showPopup() {
-  const popup = document.querySelector(".signUpSuccessfulPopup");
+  let popup = document.querySelector(".signUpSuccessfulPopup");
   popup.classList.add("active");
 
   setTimeout(() => {

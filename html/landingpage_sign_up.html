@@ -25,11 +25,17 @@
             <div class="signUpTitle">Sign up</div>
             <div class="signUpBlueLine"></div>
           </div>
-          <form action="">
+          <form class="signUpForm" action="">
             <div class="signUpInputContainer">
-              <input id="signUpNameInput" class="signUpInputName" placeholder="Name" autocomplete="off" type="text" oninput="validateSignUp()" />
-              <input id="signUpMailInput" class="signUpInputEmail" placeholder="Email" type="email" oninput="validateSignUp()" required />
-              <input id="signUpPasswordInput" class="signUpInputPassword" placeholder="Password" type="password" />
+              <div class="passwordConfirmContainer">
+                <input id="signUpNameInput" class="signUpInputName" placeholder="Name" autocomplete="off" type="text" oninput="validateSignUp(), toggleNameError()" />
+                <div id="nameInputErrorText" class="passwordDontMatchText displayNone">Name is required.</div>
+              </div>
+              <div class="passwordConfirmContainer">
+                <input id="signUpMailInput" class="signUpInputEmail" placeholder="Email" type="email" oninput="validateSignUp(), toggleEmailError()" onblur="toggleEmailError()" required />
+                <div id="emailInputWrong" class="passwordDontMatchText displayNone">Please enter a valid email address.</div>
+              </div>
+              <input id="signUpPasswordInput" class="signUpInputPassword" onkeyup="checkMatchingPasswords(), validateSignUp()" placeholder="Password" type="password" />
               <div class="passwordConfirmContainer">
                 <input id="signUpConfirmPasswordInput" oninput="checkMatchingPasswords(), validateSignUp()" class="signUpInputConfirmPassword" placeholder="Confirm Password" type="password" />
                 <div id="passwordDontMatchText" class="passwordDontMatchText displayNone">Your passwords don't match. Please try again.</div>
