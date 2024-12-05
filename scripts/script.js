@@ -155,7 +155,6 @@ function addUserToTaskToggleCss(userFirebaseId) {
   let noCheck = document.getElementById(`noCheck${userFirebaseId}`);
   let userContainer = document.getElementById(`userContainerInsideUserDropdown(${userFirebaseId})`);
   let userDropdown = document.getElementById("userDropdown");
-
   check.classList.toggle("displayNone");
   noCheck.classList.toggle("displayNone");
   userContainer.classList.toggle("userDropdownUserContainerBackground");

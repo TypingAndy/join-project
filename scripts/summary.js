@@ -48,7 +48,6 @@ function countTaskStatus() {
     awaitFeedback: 0,
     inProgress: 0,
   };
-
   for (let i = 0; i < lokalTasksArray.length; i++) {
     if (lokalTasksArray[i].taskStatus == "to do") {
       counts.toDo += 1;
