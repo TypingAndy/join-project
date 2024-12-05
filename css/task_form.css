@@ -539,15 +539,35 @@ input:not(.empty) {
   align-items: center;
   gap: 4px;
   background-color: #2a3647;
-  padding: 16px;
-  font-size: 21px;
+  padding: 0 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #ffffff;
   border-radius: 10px;
+  width: 90px;
+  height: 60px;
 }
 
 .addTaskClearButton {
-  display: none;
+  display: flex;
+  width: 70px;
+  height: 58px;
+  gap: 4px;
+  padding: 0 16px;
+  border: 1px solid #2a3647;
+  background-color: #f6f7f8;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.addTaskButtonBox {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
 }
 
 .createTaskButton:hover {
@@ -574,7 +594,7 @@ input:not(.empty) {
 .subtaskTrahCan,
 .subtaskX,
 .subtaskCheck {
-cursor: pointer;
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {
@@ -602,6 +622,21 @@ cursor: pointer;
 
   .taskFormLabels {
     font-size: 20px;
+  }
+
+  .addTaskClearButton {
+    display: flex;
+    width: 110px;
+    max-height: 56px;
+    gap: 4px;
+    padding: 6px 16px;
+    border: 1px solid #2a3647;
+    background-color: #f6f7f8;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
   }
 
   .taskFormSection {
@@ -742,28 +777,6 @@ cursor: pointer;
 
   /* button Section */
 
-  .addTaskButtonBox {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .addTaskClearButton {
-    display: flex;
-    width: 110px;
-    max-height: 56px;
-    gap: 4px;
-    padding: 16px;
-    border: 1px solid #2a3647;
-    background-color: #f6f7f8;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
   .addTaskClearButton:hover {
     border-color: #29abe2;
     color: #29abe2;
@@ -784,6 +797,16 @@ cursor: pointer;
   }
 
   .createTaskButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #2a3647;
+    padding: 8px 16px;
+    font-size: 21px;
+    font-weight: 700;
+    color: #ffffff;
+    border-radius: 10px;
     width: 183px;
     max-height: 56px;
   }
