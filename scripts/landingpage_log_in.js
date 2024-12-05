@@ -25,6 +25,15 @@ function checkUserPasswortMatch() {
   }
 }
 
+function showMessageWhenPasswordInputIsEmpty() {
+  let passwordInput = document.getElementById("logInPasswordInput").value;
+  if (!passwordInput) {
+    document.getElementById("loginFalseMessage").innerHTML = "Password is required. Please enter a password.";
+  } else {
+    document.getElementById("loginFalseMessage").innerHTML = "";
+  }
+}
+
 /**
  * Stores user data in local storage if "Remember Me" is checked.
  * @param {string} firebaseId - The Firebase ID of the user.

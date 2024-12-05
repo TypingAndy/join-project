@@ -37,7 +37,7 @@
           <div class="logInInputContainer">
             <input id="logInMailInput" oninput="validateLogin()" class="logInInputEmail" placeholder="Email" type="email" />
             <div class="logInPasswordContainer">
-              <input id="logInPasswordInput" oninput="validateLogin()" class="logInInputPassword" placeholder="Password" type="password" />
+              <input id="logInPasswordInput" oninput="validateLogin(), showMessageWhenPasswordInputIsEmpty()" class="logInInputPassword" placeholder="Password" type="password" />
               <div id="loginFalseMessage" class="loginFalseMessage"></div>
             </div>
           </div>
