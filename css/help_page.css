@@ -1,61 +1,61 @@
 .helpPageSection {
-    margin-top: 80px;
-    margin-bottom: 80px;
-    padding: 32px 16px 24px 16px;
-  }
-  
-  .h1HelpBox {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 32px;
-  }
-  
-  .h1Help {
-    font-weight: 700;
-    font-size: 47px;
-  }
-  
-  .h2Help {
-    font-weight: 700;
-    font-size: 27px;
-  }
-  
-  .h3Help {
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  .imageH1HelpBox {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .imageH1HelpBox:hover {
-    cursor: pointer;
-  }
-  
-  .helpPageBlueJoin {
-    color: #29abe2;
-  }
-  
-  .helpPageHowToUseNumbers {
-    font-weight: bold;
-    font-size: 27px;
-    width: 20px;
-  }
-  
-  .helpPageGuideBoxes {
-    display: flex;
-      gap: 35px;
-  }
-  
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px 16px 24px 16px;
+}
 
-  @media (min-width: 1024px) {
-    .legalNoticeSidebarWrapper{
-      display: flex;
-    }
-    .helpPageSection{
-      margin-left: 232px;
-      padding: 120px;
-    }
+.h1HelpBox {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+}
+
+.h1Help {
+  font-weight: 700;
+  font-size: 47px;
+}
+
+.h2Help {
+  font-weight: 700;
+  font-size: 27px;
+}
+
+.h3Help {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.imageH1HelpBox {
+  width: 32px;
+  height: 32px;
+}
+
+.imageH1HelpBox:hover {
+  cursor: pointer;
+}
+
+.helpPageBlueJoin {
+  color: #29abe2;
+}
+
+.helpPageHowToUseNumbers {
+  font-weight: bold;
+  font-size: 27px;
+  width: 20px;
+}
+
+.helpPageGuideBoxes {
+  display: flex;
+  gap: 35px;
+}
+
+@media (min-width: 1024px) {
+  .legalNoticeSidebarWrapper {
+    display: flex;
   }
+  .helpPageSection {
+    margin-left: 232px;
+    padding: 48px;
+    max-width: 1440px;
+  }
+}
