@@ -25,8 +25,18 @@ function checkUserPasswortMatch() {
   }
 }
 
+/**
+ * Checks if the password input field is empty and displays an error message if it is.
+ * If a password is entered, the error message is removed.
+ *
+ * @function showMessageWhenPasswordInputIsEmpty
+ * @example
+ * // If the input field is empty, an error message is shown.
+ * showMessageWhenPasswordInputIsEmpty();
+ */
 function showMessageWhenPasswordInputIsEmpty() {
   let passwordInput = document.getElementById("logInPasswordInput").value;
+
   if (!passwordInput) {
     document.getElementById("loginFalseMessage").innerHTML = "Password is required. Please enter a password.";
   } else {

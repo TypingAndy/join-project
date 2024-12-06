@@ -42,12 +42,8 @@ function sortTasksToStatus() {
  * @returns {Object} An object containing the count of tasks for each status.
  */
 function countTaskStatus() {
-  let counts = {
-    toDo: 0,
-    done: 0,
-    awaitFeedback: 0,
-    inProgress: 0,
-  };
+  let counts = {toDo: 0, done: 0, awaitFeedback: 0, inProgress: 0,};
+  
   for (let i = 0; i < lokalTasksArray.length; i++) {
     if (lokalTasksArray[i].taskStatus == "to do") {
       counts.toDo += 1;

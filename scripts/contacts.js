@@ -58,6 +58,9 @@ function toggleAddContactButton(event) {
   addContactButtonElement.style.display = addContactButtonElement.style.display === "none" ? "flex" : "none";
 }
 
+/**
+ * select contact card in the contacts cenu and highlight background
+ */
 function selectContactCard(userID) {
   if (selectedCardId) {
     let previousCard = document.getElementById(selectedCardId);
@@ -79,23 +82,81 @@ function selectContactCard(userID) {
  * @param {string} popupType - The type of the popup, either "add" or "edit".
  * @param {string} firebaseUserId - The Firebase user ID for the contact (for editing).
  */
+// function toggleContactPopup(event, popupType, firebaseUserId) {
+//   if (event && event.target !== event.currentTarget) {
+//     return;
+//   }
+//   const popupElement = document.getElementById("addContactPopupBackground");
+//   if (popupElement.style.display === "none") {
+//     popupElement.innerHTML = contactPopupTemplate(popupType, firebaseUserId);
+//     popupElement.style.display = "flex";
+//     setTimeout(() => {
+//       popupElement.querySelector(".contactPopup").classList.add("show");
+//     }, 1);
+//   } else {
+//     popupElement.querySelector(".contactPopup").classList.remove("show");
+//     setTimeout(() => {
+//       popupElement.style.display = "none";
+//       popupElement.innerHTML = "";
+//     }, 300);
+//   }
+// }
+
+/**
+ * Sets the innerHTML of the contact popup with the specified template.
+ *
+ * @param {HTMLElement} popupElement - The DOM element representing the popup background.
+ * @param {string} popupType - The type of popup to display (e.g., "add", "edit").
+ * @param {string} firebaseUserId - The ID of the Firebase user to associate with the popup content.
+ */
+function setContactPopupHTML(popupElement, popupType, firebaseUserId) {
+  popupElement.innerHTML = contactPopupTemplate(popupType, firebaseUserId);
+}
+
+/**
+ * Displays the contact popup with a fade-in animation.
+ *
+ * @param {HTMLElement} popupElement - The DOM element representing the popup background.
+ */
+function showContactPopupCSS(popupElement) {
+  popupElement.style.display = "flex";
+  setTimeout(() => {
+    popupElement.querySelector(".contactPopup").classList.add("show");
+  }, 1);
+}
+
+/**
+ * Hides the contact popup with a fade-out animation and clears its content.
+ *
+ * @param {HTMLElement} popupElement - The DOM element representing the popup background.
+ */
+function hideContactPopupCSS(popupElement) {
+  popupElement.querySelector(".contactPopup").classList.remove("show");
+  setTimeout(() => {
+    popupElement.style.display = "none";
+    popupElement.innerHTML = "";
+  }, 300);
+}
+
+/**
+ * Toggles the visibility of a contact popup.
+ *
+ * @param {Event} event - The event object triggering the toggle. Used to prevent event bubbling.
+ * @param {string} popupType - The type of popup to display (e.g., "add", "edit").
+ * @param {string} firebaseUserId - The ID of the Firebase user to associate with the popup.
+ */
 function toggleContactPopup(event, popupType, firebaseUserId) {
   if (event && event.target !== event.currentTarget) {
     return;
   }
-  const popupElement = document.getElementById("addContactPopupBackground");
-  if (popupElement.style.display === "none") {
-    popupElement.innerHTML = contactPopupTemplate(popupType, firebaseUserId);
-    popupElement.style.display = "flex";
-    setTimeout(() => {
-      popupElement.querySelector(".contactPopup").classList.add("show");
-    }, 1);
+
+  let popupElement = document.getElementById("addContactPopupBackground");
+
+  if (popupElement.style.display === "none" || popupElement.style.display === "") {
+    setContactPopupHTML(popupElement, popupType, firebaseUserId);
+    showContactPopupCSS(popupElement);
   } else {
-    popupElement.querySelector(".contactPopup").classList.remove("show");
-    setTimeout(() => {
-      popupElement.style.display = "none";
-      popupElement.innerHTML = "";
-    }, 300);
+    hideContactPopupCSS(popupElement);
   }
 }
 
@@ -105,7 +166,7 @@ function toggleContactPopup(event, popupType, firebaseUserId) {
  * @returns {HTMLElement|null} The contact details section element if it exists, otherwise null.
  */
 function checkIfcontactDetailsExists() {
-  const contactDetailsExists = document.getElementById("contactDetailsContentWrapper");
+  let contactDetailsExists = document.getElementById("contactDetailsContentWrapper");
   return contactDetailsExists;
 }
 
@@ -125,7 +186,7 @@ function clearAddContactsInputData() {
  * @returns {Promise<void>} A promise that resolves when the contact is created and the UI is updated.
  */
 async function handleCreateContactsButtonClick() {
-  const newUserId = await postUserDataToFirebase("contact");
+  let newUserId = await postUserDataToFirebase("contact");
   if (newUserId) {
     await renderContacts();
     clearAddContactsInputData();
@@ -142,7 +203,7 @@ async function handleCreateContactsButtonClick() {
  * @param {string} firebaseUserId - The Firebase user ID for the contact whose details are to be displayed.
  */
 function toggleContactDetails(firebaseUserId) {
-  const contactDetailsElement = document.getElementById("contactDetailsSection");
+  let contactDetailsElement = document.getElementById("contactDetailsSection");
   if (window.innerWidth >= 1024) {
     contactDetailsElement.style.display = "flex";
     contactDetailsElement.innerHTML = contactDetailsTemplate(firebaseUserId);
@@ -234,28 +295,69 @@ function clearUserDetailsOnDesktop() {
  * @param {string} userId - The Firebase ID of the user to be removed from tasks.
  * @returns {Promise<void>} A promise that resolves when the user is removed from all tasks.
  */
+// async function removeUserFromAllTasks(userId) {
+//   await loadTasksObjectFromFirebase();
+//   for (let taskId in allUnsortedTasks) {
+//     let task = allUnsortedTasks[taskId];
+//     if (task.taskAssignedUsersIds && task.taskAssignedUsersIds.includes(userId)) {
+//       let updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
+//       if (updatedUserIds.length > 0) {
+//         await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
+//           method: "PUT",
+//           headers: { "Content-Type": "application/json" },
+//           body: JSON.stringify(updatedUserIds),
+//         });
+//       } else {
+//         await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
+//           method: "DELETE",
+//         });
+//       }
+//     }
+//   }
+// }
+
+
+/**
+ * Removes a user from the task's assigned user IDs.
+ *
+ * @param {string} taskId - The ID of the task.
+ * @param {Array<string>} userIds - The list of user IDs assigned to the task.
+ * @param {string} userIdToRemove - The ID of the user to remove.
+ * @returns {Promise<void>} - Resolves when the user is removed from the task.
+ */
+async function removeUserFromTask(taskId, userIds, userIdToRemove) {
+  const updatedUserIds = userIds.filter((id) => id !== userIdToRemove);
+  const url = `${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`;
+
+  if (updatedUserIds.length > 0) {
+    await fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedUserIds),
+    });
+  } else {
+    await fetch(url, {
+      method: "DELETE",
+    });
+  }
+}
+
+/**
+ * Removes a user from all tasks they are assigned to.
+ *
+ * @param {string} userId - The ID of the user to remove from all tasks.
+ * @returns {Promise<void>} - Resolves when the user is removed from all tasks.
+ */
 async function removeUserFromAllTasks(userId) {
   await loadTasksObjectFromFirebase();
   for (let taskId in allUnsortedTasks) {
-    const task = allUnsortedTasks[taskId];
+    let task = allUnsortedTasks[taskId];
     if (task.taskAssignedUsersIds && task.taskAssignedUsersIds.includes(userId)) {
-      const updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
-      if (updatedUserIds.length > 0) {
-        await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedUserIds),
-        });
-      } else {
-        await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-          method: "DELETE",
-        });
-      }
+      await removeUserFromTask(taskId, task.taskAssignedUsersIds, userId);
     }
   }
 }
+
 
 /**
  * Validates the contact form, checking if all fields are filled and if the email is valid.
