@@ -290,9 +290,9 @@ function renderBoardTaskPopupContent(taskID) {
  * @param {string} taskID - The ID of the task whose assigned users should be rendered.
  */
 function renderBoardTaskPopupContentUsers(taskID) {
-  const popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
+  let popupUsersElement = document.getElementById("boardTaskPopupContentAssignedToUserWrapper");
   popupUsersElement.innerHTML = "";
-  const userIds = allUnsortedTasks[taskID].taskAssignedUsersIds;
+  let userIds = allUnsortedTasks[taskID].taskAssignedUsersIds;
   if (userIds) {
     userIds.forEach((userId) => {
       popupUsersElement.innerHTML += popupUserTemplate(userId);
@@ -305,12 +305,12 @@ function renderBoardTaskPopupContentUsers(taskID) {
  * @param {string} taskID - The ID of the task whose subtasks should be rendered.
  */
 function renderBoardTaskPopupSubtasks(taskID) {
-  const popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
+  let popupSubtasksElement = document.getElementById("boardTaskPopupContentSubtasksList");
   popupSubtasksElement.innerHTML = "";
 
   allUnsortedTasks[taskID].taskSubtasks?.forEach((subtask, index) => {
     popupSubtasksElement.innerHTML += popupSubtaskTemplate(index, taskID);
-    const iconSrc = subtask.subtaskDone ? "../images/icons/checked.png" : "../images/icons/unchecked.png";
+    let iconSrc = subtask.subtaskDone ? "../images/icons/checked.png" : "../images/icons/unchecked.png";
     document.getElementById(`boardTaskPopupContentSubtaskIcon${index}`).src = iconSrc;
   });
 }

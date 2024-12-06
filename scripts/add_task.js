@@ -1,7 +1,6 @@
 /**
- * Highlights the AddTask NavLink
+ * Highlights the AddTask NavLink if on AddTask Page
  */
-
 function highlightAddTaskInNavbar() {
   let navLink = document.getElementById("addTaskLink");
   navLink.classList.add("currentNavLinkBackground");
@@ -197,7 +196,6 @@ function fillCategoryDropdown() {
  */
 function chooseCategory(chosenCategory, chosenCategoryColor) {
   let inputElement = document.getElementById("taskFormCategoryInput");
-
   inputElement.value = chosenCategory;
 
   categoryData = {
@@ -206,7 +204,6 @@ function chooseCategory(chosenCategory, chosenCategoryColor) {
   };
 
   validateTaskForm("taskFormCategoryInput", "requiredCategoryInfo");
-
   return categoryData;
 }
 
@@ -374,6 +371,10 @@ function clearTaskForm() {
   deleteAssignedUsersFormArray();
 }
 
+
+/**
+ * Clears the User Array if Clear Button is Clicked
+ */
 function deleteAssignedUsersFormArray() {
   taskFormCurrentUsersIds = [];
 }

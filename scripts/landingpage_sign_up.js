@@ -18,21 +18,21 @@ function clearSignUpInputField() {
 function clickAcceptPolicy() {
   acceptPrivacyPolicyCheck();
   validateSignUp();
-} 
+}
 
 /**
  * Show or hide message if name is invalid.
  */
 
 function toggleNameError() {
-let nameInput = document.getElementById('signUpNameInput').value;
-let errorMessage = document.getElementById('nameInputErrorText');
+  let nameInput = document.getElementById("signUpNameInput").value;
+  let errorMessage = document.getElementById("nameInputErrorText");
 
-if (nameInput) {
-  errorMessage.classList.add("displayNone");
-} else {
-  errorMessage.classList.remove("displayNone");
-}
+  if (nameInput) {
+    errorMessage.classList.add("displayNone");
+  } else {
+    errorMessage.classList.remove("displayNone");
+  }
 }
 
 /**
