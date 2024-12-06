@@ -1,4 +1,13 @@
 /**
+ * Highlights the Contact NavLink
+ */
+
+function highlightContactInNavbar() {
+  let navLink = document.getElementById("contactsLink");
+  navLink.classList.add("currentNavLinkBackground");
+}
+
+/**
  * Asynchronously groups users by the first letter of their names.
  * The function first sorts users and then groups them based on the first letter of their name.
  *
@@ -14,15 +23,6 @@ async function groupUsersByFirstLetter() {
     groups[firstLetter].push(user);
     return groups;
   }, {});
-}
-
-/**
- * Highlights the Contact NavLink
- */
-
-function highlightContactInNavbar() {
-  let navLink = document.getElementById("contactsLink");
-  navLink.classList.add("currentNavLinkBackground");
 }
 
 /**

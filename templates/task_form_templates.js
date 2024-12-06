@@ -241,7 +241,7 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
 function nameListTemplate(userFirebaseId) {
   return /*html*/ `
     <div id="userContainerInsideUserDropdown(${userFirebaseId})" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
-      <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials}</div>
+      <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials.toUpperCase()}</div>
       <div class="taskFormUserNameAndInitials">
         <div>${unsortedUsers[userFirebaseId].name}</div>
       </div>

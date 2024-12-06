@@ -16,7 +16,7 @@ function contactsTemplate(letter, users) {
                 `
             <div class="contactCard" id='${user.id}' onclick="toggleContactDetails('${user.id}'), toggleAddContactButton(), selectContactCard('${user.id}')">
               <div class="contactCardInitialsCircle" style="background-color: ${user.color}">
-                <span class="initials" style="color:${user.fontColor} ">${user.initials}</span>
+                <span class="initials" style="color:${user.fontColor} ">${user.initials.toUpperCase()}</span>
               </div>
               <div class="contactInfos">
                 <span class="contactName">${user.name}</span>
