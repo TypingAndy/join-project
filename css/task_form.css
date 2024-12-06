@@ -53,6 +53,10 @@
 
 /* task Form */
 
+body {
+  background-color: rgba(246, 247, 248, 1);
+}
+
 .taskFormWrapper {
   display: flex;
   flex-direction: column;

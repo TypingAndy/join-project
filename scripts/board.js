@@ -157,22 +157,20 @@ function clearAllTaskCardWrappers() {
  * @param {Array} filteredLokalTasksArray - The array of tasks to which the task belongs.
  * @returns {string} A string of user initials, with a "+" if there are more than 4 users.
  */
-function returnUserInitialsForTaskCards(taskIndex, filteredLokalTasksArray) {
-  let taskCardAllInitialsTemplate = "";
-  if (!filteredLokalTasksArray[taskIndex].taskAssignedUsersIds) {
-    return "";
+function returnUserInitialsForTaskCards(taskIndex, filteredTasks) {
+  const users = filteredTasks[taskIndex].taskAssignedUsersIds;
+  if (!users) return "";
+
+  const maxUsers = 4;
+  let initials = "";
+  for (let i = 0; i < Math.min(users.length, maxUsers); i++) {
+    initials += taskCardSingleInitialsTemplate(users[i]);
   }
-  const userIds = filteredLokalTasksArray[taskIndex].taskAssignedUsersIds;
-  const userMaxLength = 4;
-  const plusNumber = userIds.length - userMaxLength;
-  for (let userIndex = 0; userIndex < (userIds.length > userMaxLength ? userMaxLength : userIds.length); userIndex++) {
-    const currentUserID = userIds[userIndex];
-    taskCardAllInitialsTemplate += taskCardSingleInitialsTemplate(currentUserID);
+  if (users.length > maxUsers) {
+    const extraUsers = users.length - maxUsers;
+    initials += taskCardSingleInitialsPlusTemplate(extraUsers);
   }
-  if (userIds.length > userMaxLength) {
-    taskCardAllInitialsTemplate += taskCardSingleInitialsPlusTemplate(plusNumber);
-  }
-  return taskCardAllInitialsTemplate;
+  return initials;
 }
 
 /**
@@ -256,6 +254,7 @@ function fillBoardTaskPopupWithAddTask(taskStatus) {
   wrapper.innerHTML = taskFormTemplate(taskStatus, titleAcceptTaskButton, (id = ""), (fetchStatus = ""), postOrPatchFunction);
   fillUserDropdown();
   fillCategoryDropdown();
+  setTaskPrio("medium");
 }
 
 /**
@@ -370,9 +369,7 @@ function clearTaskFormEdit() {
  */
 function fillTaskFormEdit(taskId) {
   const task = allUnsortedTasks[taskId];
-  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach(
-    (id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i])
-  );
+  ["taskTitleInput", "taskDescriptionInput", "dateInput", "taskFormCategoryInput"].forEach((id, i) => (document.getElementById(id).value = [task.taskTitle, task.taskDescription, task.taskDate, task.taskCategory.category][i]));
   toggleTaskCurrentUserInTaskFormEdit(taskId);
   setTaskPrio(task.taskPrio);
   fillSubtaskListInTaskFormEdit(taskId);

@@ -49,7 +49,8 @@
 
   .privacyPolicySection {
     margin-left: 232px;
-    padding: 120px;
+    padding: 64px;
+    max-width: 1440px;
   }
 
   .subtitleWrapper {
