@@ -23,7 +23,6 @@ function clickAcceptPolicy() {
 /**
  * Show or hide message if name is invalid.
  */
-
 function toggleNameError() {
   let nameInput = document.getElementById("signUpNameInput").value;
   let errorMessage = document.getElementById("nameInputErrorText");
@@ -51,34 +50,40 @@ function toggleEmailError() {
 /**
  * Validates the sign-up form and enables/disables the sign-up button.
  */
-// Funktion zur E-Mail-Validierung
 function isEmailValid() {
   let email = document.getElementById("signUpMailInput").value;
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-// Funktion, die die Gesamtvalidität prüft
+/**
+ * Checks the overall validity of the sign-up form.
+ * Verifies that the name, email, and password conditions are met, and that the policy is accepted.
+ *
+ * @function
+ * @returns {boolean} True if the form is valid, false otherwise.
+ */
 function isFormValid() {
   let nameInput = document.getElementById("signUpNameInput").value.trim();
   let mailInput = document.getElementById("signUpMailInput").value.trim();
 
-  return (
-    policyAccepted && passwordMatch && nameInput && isEmailValid(mailInput) // E-Mail-Überprüfung wird hier aufgerufen
-  );
+  return policyAccepted && passwordMatch && nameInput && isEmailValid(mailInput);
 }
 
-// Hauptfunktion zum Aktivieren/Deaktivieren des Buttons
+/**
+ * Validates the sign-up form and updates the sign-up button state.
+ * The button is enabled if the form is valid, otherwise disabled.
+ *
+ * @function
+ * @returns {void}
+ */
 function validateSignUp() {
   let button = document.getElementById("signUpButton");
-  let isValid = isFormValid(); // Gesamtvalidität prüfen
-
-  // Button-Status basierend auf Validität setzen
+  let isValid = isFormValid();
   button.classList[isValid ? "add" : "remove"]("enabled");
   button.style.opacity = isValid ? "1" : "0.1";
   button.style.pointerEvents = isValid ? "auto" : "none";
 
-  // onclick-Attribut verwalten
   isValid ? button.setAttribute("onclick", "handleSignUpClick()") : button.removeAttribute("onclick");
 }
 

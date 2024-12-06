@@ -120,31 +120,6 @@ function allowDrop(ev) {
 }
 
 /**
- * Moves a task card to a new status and updates the local task array and the task's status on the server.
- *
- * @param {string} newTaskStatus - The new status for the task.
- * @param {string} [taskID=currentDraggedElementID] - The ID of the task to move.
- */
-// async function moveTo(newTaskStatus, taskID = currentDraggedElementID) {
-//   let currentCardElement = document.getElementById("taskCard" + taskID);
-//   if (currentCardElement) {
-//     currentCardElement.remove();
-//   }
-//   updateLokalTaskArrayStatus(newTaskStatus, taskID);
-//   renderTaskCards();
-//   await putNewTaskStatus(newTaskStatus, taskID);
-//   await createLokalTasksArray();
-//   let dropZones = document.querySelectorAll("[ondrop]");
-//   dropZones.forEach((zone) => {
-//     zone.classList.remove("drop-zone-active");
-//     let noTaskContainer = zone.querySelector(".noTasksContainer");
-//     if (noTaskContainer) {
-//       noTaskContainer.classList.remove("no-tasks-dragging");
-//     }
-//   });
-// }
-
-/**
  * Removes the task card element from the DOM.
  * 
  * @function removeTaskCard
