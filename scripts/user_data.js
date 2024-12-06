@@ -27,7 +27,7 @@ async function sortUserData() {
  * @returns {Object} The user data object with additional fields like initials, color, and font color.
  */
 function createUserDataForFirebase(userType) {
-  const userData = userType === "contact" ? getAddContactsInputData() : getSignUpInputData();
+  let userData = userType === "contact" ? getAddContactsInputData() : getSignUpInputData();
   userData.initials = createUserInitials(userData);
   userData.color = createUserColor();
   userData.fontColor = createUserFontColor(userData);
