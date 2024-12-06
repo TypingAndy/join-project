@@ -83,6 +83,7 @@ function handleDropdown(isFocused, currentDropdownID) {
     dropdown.style.border = "2px #29abe2 solid";
     dropdown.style.borderTop = "none";
     dropdown.style.overflowY = "scroll";
+    scrollSectionToBottom();
   } else {
     setTimeout(() => {
       dropdown.style.maxHeight = "0";
@@ -90,6 +91,18 @@ function handleDropdown(isFocused, currentDropdownID) {
       dropdown.style.overflow = "hidden";
     }, 80);
   }
+}
+
+function scrollSectionToBottom() {
+  setTimeout(() => {
+    const section = document.querySelector(".taskFormMidSection");
+    if (section) {
+      section.scrollTo({
+        top: 5000000,
+        behavior: "smooth",
+      });
+    }
+  }, 150); // 100ms Verzögerung
 }
 
 /**
@@ -365,7 +378,6 @@ function clearTaskForm() {
   deleteAllSubtaskFromList();
   deleteAssignedUsersFormArray();
 }
-
 
 /**
  * Clears the User Array if Clear Button is Clicked
