@@ -78,6 +78,9 @@
 .boardTaskPopupContentTitle {
   font-size: 36px;
   font-weight: bold;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 .boardTaskPopupContentDescription {
@@ -256,4 +259,11 @@
   .boardTaskPopup {
     max-width: 1200px;
   }
+}
+
+@media (max-width: 500px) {
+  .boardTaskPopupContentTitle {
+    font-size: 26px;
+  }
+
 }

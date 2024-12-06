@@ -102,7 +102,7 @@ function scrollSectionToBottom() {
         behavior: "smooth",
       });
     }
-  }, 150); // 100ms Verzögerung
+  }, 100); // 100ms Verzögerung
 }
 
 /**
