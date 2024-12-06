@@ -14,7 +14,6 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-
   right: -100%;
   height: calc(100vh - 230px);
   width: min(80vw, 600px);
@@ -78,6 +77,9 @@
 .boardTaskPopupContentTitle {
   font-size: 36px;
   font-weight: bold;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 .boardTaskPopupContentDescription {
@@ -257,3 +259,38 @@
     max-width: 1200px;
   }
 }
+
+@media (max-width: 500px) {
+  .boardTaskPopupContentTitle {
+    font-size: 26px;
+  }
+
+
+  .dropdownUserNames {
+    padding-left: 20px;
+  }
+
+  .boardTaskPopupContentWrapper {
+    background-color: #ffffff6a;
+    width: calc(100% - 20px);
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 30px;
+    gap: 16px;
+  }
+
+  .taskFormPrioButtonUrgent,
+  .taskFormPrioButtonMedium,
+  .taskFormPrioButtonLow {
+    font-size: 14px;
+  }
+
+  .taskFormPrioButtonImage{
+    width: 16px;
+  }
+
+    .prioText{
+display: none;
+    }
+  }
+
