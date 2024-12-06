@@ -405,10 +405,12 @@ function createTaskAllNeededFunctions() {
   if (window.location.href.endsWith("add_task.html")) {
     showCreateTaskModal();
     setTimeout(() => {
-      redirectToBoard();
+      initializeBoard();  closeBoardTaskPopup();
     }, 1500);
   } else {
-    redirectToBoard();
+    setTimeout(() => {
+      initializeBoard();  closeBoardTaskPopup();
+    }, 120);
   }
 }
 
