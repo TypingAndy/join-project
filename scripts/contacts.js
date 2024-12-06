@@ -124,7 +124,6 @@ function toggleContactPopup(event, popupType, firebaseUserId) {
   }
 
   let popupElement = document.getElementById("addContactPopupBackground");
-
   if (popupElement.style.display === "none" || popupElement.style.display === "") {
     setContactPopupHTML(popupElement, popupType, firebaseUserId);
     showContactPopupCSS(popupElement);
