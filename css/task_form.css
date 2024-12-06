@@ -948,15 +948,30 @@ input:not(.empty) {
   .taskFormPrioButtonBox {
     font-size: 20px;
   }
-
-
 }
 
 @media (max-width: 400px) {
   .taskFormCreateTaskButtonBox {
-flex-direction: column;
-align-items: center;
-gap: 16px;
-padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 0;
+  }
+
+  .dropdownUserNames {
+    padding-left: 18px;
   }
 }
+
+
+@media (max-width: 500px) {
+
+.dropdownUserNames {
+  padding-left: 10px;
+}
+
+  .prioText {
+display: none;
+  }
+}
+

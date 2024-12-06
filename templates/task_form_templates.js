@@ -111,15 +111,15 @@ function taskFormTemplate(taskStatus, titleAcceptTaskButton, id, fetchStatus, po
             <div class="taskFormLabels">Prio</div>
             <div class="taskFormPrioButtonBox">
               <div onclick="setTaskPrio('urgent')" class="taskFormPrioButtonUrgent">
-                <div>Urgent</div>
+                <div class="prioText">Urgent</div>
                 <img class="taskFormPrioButtonImage" src="../images/icons/urgend_white_background.svg" alt="" />
               </div>
               <div onclick="setTaskPrio('medium')" class="taskFormPrioButtonMedium">
-                <div>Medium</div>
+                <div class="prioText">Medium</div>
                 <img class="taskFormPrioButtonImage" src="../images/icons/medium_white_background.svg" alt="" />
               </div>
               <div onclick="setTaskPrio('low')" class="taskFormPrioButtonLow">
-                <div>Low</div>
+                <div class="prioText">Low</div>
                 <img class="taskFormPrioButtonImage" src="../images/icons/low_white_background.svg" alt="" />
               </div>
             </div>
@@ -243,7 +243,7 @@ function nameListTemplate(userFirebaseId) {
     <div id="userContainerInsideUserDropdown(${userFirebaseId})" onclick="toggleUserInTaskForm('${userFirebaseId}')" class="userDropdownUserContainer userDropdownUserContainerBackground">
       <div class="taskFormUserInitials" style="background-color: ${unsortedUsers[userFirebaseId].color};">${unsortedUsers[userFirebaseId].initials.toUpperCase()}</div>
       <div class="taskFormUserNameAndInitials">
-        <div>${unsortedUsers[userFirebaseId].name}</div>
+        <div class="dropdownUserNames">${unsortedUsers[userFirebaseId].name}</div>
       </div>
       <img id="noCheck${userFirebaseId}" class="img24px" src="../images/icons/unchecked.png" alt="">
       <img id="check${userFirebaseId}" class="img24px displayNone" src="../images/icons/check_solved_white.png" alt="">
