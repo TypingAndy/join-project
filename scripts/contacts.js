@@ -76,33 +76,6 @@ function selectContactCard(userID) {
 }
 
 /**
- * Toggles the visibility of the contact popup for adding or editing contacts.
- *
- * @param {Event} event - The event triggered by the click action.
- * @param {string} popupType - The type of the popup, either "add" or "edit".
- * @param {string} firebaseUserId - The Firebase user ID for the contact (for editing).
- */
-// function toggleContactPopup(event, popupType, firebaseUserId) {
-//   if (event && event.target !== event.currentTarget) {
-//     return;
-//   }
-//   const popupElement = document.getElementById("addContactPopupBackground");
-//   if (popupElement.style.display === "none") {
-//     popupElement.innerHTML = contactPopupTemplate(popupType, firebaseUserId);
-//     popupElement.style.display = "flex";
-//     setTimeout(() => {
-//       popupElement.querySelector(".contactPopup").classList.add("show");
-//     }, 1);
-//   } else {
-//     popupElement.querySelector(".contactPopup").classList.remove("show");
-//     setTimeout(() => {
-//       popupElement.style.display = "none";
-//       popupElement.innerHTML = "";
-//     }, 300);
-//   }
-// }
-
-/**
  * Sets the innerHTML of the contact popup with the specified template.
  *
  * @param {HTMLElement} popupElement - The DOM element representing the popup background.
@@ -288,34 +261,6 @@ function clearUserDetailsOnDesktop() {
     contactDetailsElement.innerHTML = emptyContactDetails();
   }
 }
-
-/**
- * Removes a user from all tasks where they are assigned.
- *
- * @param {string} userId - The Firebase ID of the user to be removed from tasks.
- * @returns {Promise<void>} A promise that resolves when the user is removed from all tasks.
- */
-// async function removeUserFromAllTasks(userId) {
-//   await loadTasksObjectFromFirebase();
-//   for (let taskId in allUnsortedTasks) {
-//     let task = allUnsortedTasks[taskId];
-//     if (task.taskAssignedUsersIds && task.taskAssignedUsersIds.includes(userId)) {
-//       let updatedUserIds = task.taskAssignedUsersIds.filter((id) => id !== userId);
-//       if (updatedUserIds.length > 0) {
-//         await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-//           method: "PUT",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify(updatedUserIds),
-//         });
-//       } else {
-//         await fetch(`${BASE_URL}tasks/${taskId}/taskAssignedUsersIds.json`, {
-//           method: "DELETE",
-//         });
-//       }
-//     }
-//   }
-// }
-
 
 /**
  * Removes a user from the task's assigned user IDs.
