@@ -474,9 +474,8 @@ input:not(.empty) {
   cursor: pointer;
 }
 
-.taskFormSubtaskList {
-  max-height: 200px;
-  overflow-y: auto;
+.taskFormMidSection::-webkit-scrollbar {
+  display: none; /* Scrollbalken ausblenden */
 }
 
 .taskFormSubtaskListBox {
@@ -656,7 +655,7 @@ input:not(.empty) {
     /* justify-content: center; */
     align-items: center;
     /* height: 100%; */
-    padding: 0 64px;
+    padding-left: 60px;
   }
 
   .taskFormMidSection {
@@ -665,6 +664,7 @@ input:not(.empty) {
     flex-direction: row;
     gap: 12px;
     overflow-y: auto;
+    padding-bottom: 120px;
   }
 
   .addTaskLeftSection {
@@ -963,15 +963,12 @@ input:not(.empty) {
   }
 }
 
-
 @media (max-width: 500px) {
-
-.dropdownUserNames {
-  padding-left: 10px;
-}
+  .dropdownUserNames {
+    padding-left: 10px;
+  }
 
   .prioText {
-display: none;
+    display: none;
   }
 }
-

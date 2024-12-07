@@ -175,6 +175,11 @@
 .boardTaskPopupDeleteIcon,
 .boardTaskPopupEditIcon {
   width: 24px;
+  cursor: pointer;
+}
+
+.boardTaskPopupContentSubtaskTitle {
+  cursor: default;
 }
 
 .boardTaskPopupContentBottom {

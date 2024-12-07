@@ -1,5 +1,5 @@
 body {
-  background-color: #D5DBE1;
+  background-color: #f6f7f8;
 }
 
 input:focus {
@@ -9,7 +9,6 @@ input:focus {
 .logInSection {
   position: relative;
   height: 100vh;
-  background-color: #d6dce2;
   display: flex;
   flex-direction: column;
 
@@ -17,7 +16,7 @@ input:focus {
 }
 
 .logInLinksBox {
-padding-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 .arrowLeftBlue {
@@ -36,6 +35,14 @@ padding-bottom: 8px;
   background-color: #ffffff;
   height: 100%;
   border-radius: 30px;
+  box-shadow: 0.7764155368876742px 4.902094772041789px 6.94848px -3px rgba(0, 0, 0, 0.08960000000000001),
+    1.5122832604369205px 9.548180726201316px 13.534080000000001px -2px rgba(0, 0, 0, 0.06720000000000001),
+    2.479924287389773px 15.6576257257866px 22.19392px -1.1296px rgba(0, 0, 0, 0.04894848000000001), 3.7198864310846593px 23.4864385886799px 33.290879999999994px 1.4816px rgba(0, 0, 0, 0.03629696),
+    5.539281833288561px 34.973649065137586px 49.57343999999999px 6.4448px rgba(0, 0, 0, 0.025096960000000005),
+    7.439772862169319px 46.9728771773598px 66.58175999999999px 15.8528px rgba(0, 0, 0, 0.013896960000000002), -0.38820776844383736px -2.451047386020894px 10.42272px -3px #ffffff04,
+    -0.7561416302184608px -4.774090363100658px 20.30112px -2px #ffffff03, -1.2399621436948873px -7.828812862893299px 33.29088px -1.1296px #ffffff02,
+    -1.8599432155423308px -11.743219294339948px 49.936319999999995px 1.4816px #ffffff02, -2.769640916644282px -17.486824532568793px 74.36015999999998px 6.4448px #ffffff01,
+    -3.7198864310846615px -23.486438588679896px 99.87263999999999px 15.8528px #ffffff01;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -363,7 +370,6 @@ padding-bottom: 8px;
 .displayNone {
   display: none;
 }
-
 
 @media (min-width: 1024px) {
   .logInNoUserSignUpBox {

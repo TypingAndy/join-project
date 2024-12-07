@@ -79,7 +79,7 @@ function disableCursorPointerOnInput(dropdownId) {
 function handleDropdown(isFocused, currentDropdownID) {
   let dropdown = document.getElementById(currentDropdownID);
   if (isFocused) {
-    dropdown.style.maxHeight = "80px";
+    dropdown.style.maxHeight = "200px";
     dropdown.style.border = "2px #29abe2 solid";
     dropdown.style.borderTop = "none";
     dropdown.style.overflowY = "scroll";

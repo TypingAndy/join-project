@@ -7,11 +7,12 @@
     <link rel="icon" type="image/x-icon" href="../images/icons/join_logo_dark.png" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/help_page.css" />
+    <link rel="stylesheet" href="../css/task_form.css">
     <script src="../scripts/script.js"></script>
     <script src="../templates/profile_button_template.js"></script>
   </head>
 
-  <body>
+  <body class="bodyNoLogLegals">
     <header>
       <img src="../images/icons/join_logo_black.svg" alt="" />
 
@@ -20,7 +21,7 @@
     <div class="helpPageSection">
       <div class="h1HelpBox">
         <div class="h1Help">Legal Notice</div>
-        <img onclick="history.back()" class="imageH1HelpBox" src="../images/icons/arrow_blue.png" alt="" />
+        <img onclick="window.location.href='../index.html'" class="imageH1HelpBox" src="../images/icons/arrow_blue.png" alt="" />
       </div>
 
       <div class="h2Help">Imprint</div>
@@ -69,7 +70,17 @@
       </div>
       <br />
     </div>
-      <br />
+
+      <nav class="navNoLog">
+        <img class="navJoinLogo" src="../images/icons/join_logo_white.png" alt="" />
+
+        <div class="legalContainer">
+          <div onclick="window.location.href='privacy_policy_no_nav.html'" class="navLegalPrivacyPolicy">Privacy Policy</div>
+          <div onclick="window.location.href='legal_notice_no_nav.html'" class="navLegalLegalNotice">Legal notice</div>
+        </div>
+      </nav>
+
+
     </div>
   </body>
 </html>
